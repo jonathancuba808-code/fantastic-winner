@@ -1,0 +1,1 @@
+{"textures":{"4":"modelengine:entity/hv_selenia_fire_vfx","particle":"#4"},"elements":[{"from":[8.0,1.5,-8.8125],"to":[8.0,16.5,24.8125],"faces":{"east":{"uv":[0.0,0.0,13.400001,6.0],"tintindex":0,"rotation":0,"texture":"#4"},"west":{"uv":[0.0,6.0,13.400001,12.0],"tintindex":0,"rotation":0,"texture":"#4"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

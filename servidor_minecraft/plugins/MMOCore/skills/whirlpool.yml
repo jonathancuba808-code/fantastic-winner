@@ -1,0 +1,43 @@
+name: Whirlpool
+lore:
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+- ""
+- "&7Create a vortex of water that draws in enemies, followed by"
+- "&7three slashing spins."
+- "&c🗡 {damage} Damage"
+- "&e⌛ {cooldown}s Cooldown"
+- ""
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+material: 'COAL:2279'
+passive-type: TIMER
+timer:
+  base: 10
+  per-level: 0
+  min: 10
+  max: 10
+damage:
+  base: 4
+  per-level: 1
+  min: 4
+  max: 7
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+skillcooldown:
+  base: 6
+  per-level: -0.01
+  min: 5
+  max: 6
+# 3snyUTPJPBJW/GNQXL+HlBWNUOF83HcP6b3dDtwSOR2RIlggzebOzv8G2qXIEvgXxBQJ9HBaDUqOFn/yxJ6xYrnkSlsGVS6NXkVYUEu0oto=

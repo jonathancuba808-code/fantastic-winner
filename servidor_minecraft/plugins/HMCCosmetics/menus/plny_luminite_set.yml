@@ -1,0 +1,65 @@
+items:
+  luminite_set_cosmetics_helmet:
+    cosmetic: luminite_set_cosmetics_helmet
+    item:
+      amount: 1
+      color: '#ffffff'
+      item-flags:
+      - HIDE_ATTRIBUTES
+      - HIDE_POTION_EFFECTS
+      - HIDE_ADDITIONAL_TOOLTIP
+      lore:
+      - ''
+      - '<gray>Enabled: <#6D9DC5>%HMCCosmetics_equipped_luminite_set_cosmetics_helmet%'
+      - '<gray>Allowed: <#6D9DC5>%HMCCosmetics_unlocked_luminite_set_cosmetics_helmet%'
+      material: POTION
+      model-data: 9926721
+      name: <white>Helmet
+    locked-item:
+      amount: 1
+      color: '#ffffff'
+      item-flags:
+      - HIDE_ATTRIBUTES
+      - HIDE_POTION_EFFECTS
+      - HIDE_ADDITIONAL_TOOLTIP
+      lore:
+      - <RED>You do not have this cosmetic available
+      material: POTION
+      model-data: 9926721
+      name: <white>Helmet <red><b>(LOCK)
+    slots:
+    - 1
+    type: cosmetic
+  luminite_set_cosmetics_wings:
+    cosmetic: luminite_set_cosmetics_wings
+    item:
+      amount: 1
+      color: '#ffffff'
+      item-flags:
+      - HIDE_ATTRIBUTES
+      - HIDE_POTION_EFFECTS
+      - HIDE_ADDITIONAL_TOOLTIP
+      lore:
+      - ''
+      - '<gray>Enabled: <#6D9DC5>%HMCCosmetics_equipped_luminite_set_cosmetics_wings%'
+      - '<gray>Allowed: <#6D9DC5>%HMCCosmetics_unlocked_luminite_set_cosmetics_wings%'
+      material: POTION
+      model-data: 9926722
+      name: <white>Wings
+    locked-item:
+      amount: 1
+      color: '#ffffff'
+      item-flags:
+      - HIDE_ATTRIBUTES
+      - HIDE_POTION_EFFECTS
+      - HIDE_ADDITIONAL_TOOLTIP
+      lore:
+      - <RED>You do not have this cosmetic available
+      material: POTION
+      model-data: 9926722
+      name: <white>Wings <red><b>(LOCK)
+    slots:
+    - 0
+    type: cosmetic
+rows: 6
+title: <white>

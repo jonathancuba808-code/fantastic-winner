@@ -1,0 +1,59 @@
+display:
+    name: '&b&lWater Samurai Class'
+    lore:
+    - '&cChoose the Water Samurai Class'
+    item: STONE_SWORD:2084 # Supports custom model data/texture by durability
+
+exp-curve: levels
+
+max-level: 100
+
+exp-table: class_exp_table
+
+skills:
+    SPLASHING_WATER_FLOW_TURBULENT:
+        level: 1
+        max-level: 30
+    WATER_SURFACE_SLASH:
+        level: 1
+        max-level: 30
+    WATER_WHEEL:
+        level: 1
+        max-level: 30
+    FLOWING_DANCE:
+        level: 1
+        max-level: 30
+    WHIRLPOOL:
+        level: 1
+        max-level: 20
+    STRIKING_TIDE:
+        level: 1
+        max-level: 30
+    CONSTANT_FLUX:
+        level: 1
+        max-level: 20
+
+skill-slots:
+    1:
+        name: "&aSkill Slot I (Passive)"
+        formula: "<PASSIVE>"
+        unlocked-by-default: true
+    2:
+        name: "&aSkill Slot II"
+        unlocked-by-default: true
+    3:
+        name: "&aSkill Slot III"
+        unlocked-by-default: true
+    4:
+        name: "&aSkill Slot IV"
+        unlocked-by-default: true
+    5:
+        name: "&aSkill Slot V"
+        unlocked-by-default: true
+    6:
+        name: "&aSkill Slot VI"
+        unlocked-by-default: true
+    7:
+        name: "&aSkill Slot VII"
+        unlocked-by-default: true
+#AHWBV0MxRWbwgnMDBHSGN3cvBzY3FkeTxEaFNVT4VUT4V0VRFGbhV0awZ0cBFDTItkbtBTN

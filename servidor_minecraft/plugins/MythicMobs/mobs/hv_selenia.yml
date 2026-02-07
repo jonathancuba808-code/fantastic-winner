@@ -1,0 +1,74 @@
+hv_selenia:
+  Type: husk
+  Display: '&6Selenia'
+  Health: 400
+  Damage: 5
+  DamageModifiers:
+  - SUFFOCATION 0.1
+  - PROJECTILE 0.25
+  - FALL 0.1
+  Faction: hv_selenia
+  Modules:
+    ThreatTable: true
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    Silent: true
+    FollowRange: 64
+    PreventItemPickup: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    MovementSpeed: 1
+    KnockbackResistance: 1
+    Collidable: true
+  BossBar:
+    Enabled: true
+    Title: '&6Selenia'
+    Range: 40
+    Color: RED
+    Style: SEGMENTED_10
+  Skills:
+  - model{mid=hv_selenia;ride=true;drive=true;s=1;d=false} @self ~onSpawn
+  - CancelEvent{sync=true} @self ~onAttack
+  - skill{s=hv_selenia_active} @target ~onTimer:20
+  - skill{s=hv_selenia_phase2} @target ~onTimer:15
+  - skill{s=hv_selenia_spawn} @self ~onSpawn
+  - skill{s=hv_selenia_death} @self ~onDeath
+  - skill{s=hv_selenia_step} @self ~onTimer:20
+  - skill{s=hv_selenia_stun} @target ~onDamaged
+  - randomskill{s=hv_selenia_phase1_skills,hv_selenia_phase2_skills} @target ~onTimer:10
+  
+hv_selenia_dagger:
+  Type: ARMOR_STAND
+  Display: '&6Selenia'
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Options:
+    NoAI: true
+    Marker: true
+    ApplyInvisibility: true
+    Invisible: true
+  Skills:
+  - model{mid=hv_selenia_dagger} @self ~onSpawn
+  
+hv_selenia_eruption:
+  Type: ARMOR_STAND
+  Display: '&6Selenia'
+  Damage: 5
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Options:
+    NoAI: true
+    Marker: true
+    ApplyInvisibility: true
+    Invisible: true
+  Skills:
+  - model{mid=hv_selenia_eruption_vfx} @self ~onSpawn
+  - skill{s=hv_selenia_eruption} @target ~onSpawn
+  - state{s=death;delay=99} @self ~onSpawn
+  - remove{delay=107} @self ~onSpawn
+#kTZJB1dpNnczJERLRnYURkRFV1Y0gGbOFFaY1EaGdVWPpkVSZTMO5ET0ZTMwgXYR5EWyBlM

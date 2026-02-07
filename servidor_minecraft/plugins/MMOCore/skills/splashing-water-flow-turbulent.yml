@@ -1,0 +1,31 @@
+name: Splashing Water Flow Turbulent
+lore:
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+- ""
+- "&7A fluid movement technique allowing fast, unhindered navigation."
+- "&7Your sprint speed gets faster."
+- ""
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+material: 'COAL:2275'
+passive-type: TIMER
+timer:
+  base: 10
+  per-level: 0
+  min: 10
+  max: 10
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+#AHWBV0MxRWbwgnMDBHSGN3cvBzY3FkeTxEaFNVT4VUT4V0VRFGbhV0awZ0cBFDTItkbtBTN

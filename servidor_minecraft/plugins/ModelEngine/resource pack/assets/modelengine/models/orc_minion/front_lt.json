@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/orc_minion","particle":"#0"},"elements":[{"from":[2.5,0.0,8.0],"to":[13.5,8.0,8.0],"faces":{"south":{"uv":[0.004,2.504,1.371,3.496],"tintindex":0,"rotation":0,"texture":"#0"},"north":{"uv":[1.371,2.504,0.004,3.496],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

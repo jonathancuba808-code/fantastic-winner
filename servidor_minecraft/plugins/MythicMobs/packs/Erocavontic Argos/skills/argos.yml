@@ -1,0 +1,1052 @@
+ero_argos_reset_idle:
+  Skills:
+  - defaultstate{mid=ero_argos;type=idle;state=idle;lerpin=2;lerpout=2} @self
+  - defaultstate{mid=ero_argos;type=idle;state=idle;lerpin=4;lerpout=4} @self
+
+ero_argos_reset_idle_b:
+  Skills:
+  - defaultstate{mid=ero_argos;type=idle;state=idle;lerpin=2;lerpout=2} @self
+  - defaultstate{mid=ero_argos;type=idle;state=idle;lerpin=3;lerpout=3} @self
+
+ero_argos_state_1_spawn:
+  Conditions:
+  - hastag{t=state_2} false
+  Skills:
+  - model{mid=ero_argos;n=false;damagetint=true;usestatemachine=true;lockpitch=true;scale=1;hitboxscale=1;radius=150;drive=true;ride=true} @self
+  - BodyRotation{delay=1;headuneven=true;maxhead=0;bodyuneven=true;minbody=0;maxbody=10} @self
+
+ero_argos_state_2_spawn:
+  Conditions:
+  - hastag{t=state_2} true
+  Skills:
+  - model{mid=ero_argos_two;n=false;damagetint=true;usestatemachine=true;lockpitch=true;scale=1;hitboxscale=1;radius=150;drive=true;ride=true} @self
+  - BodyRotation{delay=1;headuneven=true;maxhead=0;bodyuneven=true;minbody=0;maxbody=10} @self
+
+ero_argos_vfx_remove:
+  Skills:
+  - remove{sync=true} @self
+
+ero_stopEntityBoss_argos:
+  Skills:
+  - lockmodel{delay=1;l=true} @self
+  - lockmodel{l=false;delay=<skill.durations>+5} @self
+  - BodyRotation{headuneven=true;maxhead=0;bodyuneven=true;minbody=0;maxbody=0} @self
+  - BodyRotation{headuneven=true;maxhead=0;bodyuneven=true;minbody=0;maxbody=10;delay=<skill.durations>+5} @self
+  - potion{t=SLOW;d=<skill.durations>+5;l=254;force=true;p=false;i=false} @self
+  - attribute{attribute=GENERIC_KNOCKBACK_RESISTANCE;a=100;duration=<skill.durations>+5} @self
+  - attribute{attribute=GENERIC_EXPLOSION_KNOCKBACK_RESISTANCE;a=100;duration=<skill.durations>+5} @self
+  - attribute{attribute=GENERIC_ATTACK_KNOCKBACK;a=100;duration=<skill.durations>+5} @self
+  - onJump{cE=true;time=<skill.durations>+5;auraName=ero_stopEntity;oe=[ - setcollidable{c=true} @self ]} @self
+  - setAI{ai=false} @self
+  - setAI{ai=true;delay=<skill.durations>+4} @self
+
+ero_stopEntityBoss_argos_hb:
+  Skills:
+  - lockmodel{delay=1;l=true} @self
+  - lockmodel{l=false;delay=<skill.durations>+5} @self
+  - BodyRotation{headuneven=true;maxhead=0;bodyuneven=true;minbody=0;maxbody=0} @self
+  - BodyRotation{headuneven=true;maxhead=0;bodyuneven=true;minbody=0;maxbody=10;delay=<skill.durations>+5} @self
+  - potion{t=SLOW;d=<skill.durations>+5;l=254;force=true;p=false;i=false} @self
+  - attribute{attribute=GENERIC_KNOCKBACK_RESISTANCE;a=100;duration=<skill.durations>+5} @self
+  - attribute{attribute=GENERIC_EXPLOSION_KNOCKBACK_RESISTANCE;a=100;duration=<skill.durations>+5} @self
+  - attribute{attribute=GENERIC_ATTACK_KNOCKBACK;a=100;duration=<skill.durations>+5} @self
+  - onJump{cE=true;time=<skill.durations>+5;auraName=ero_stopEntity;oe=[ - setcollidable{c=true} @self ]} @self
+  - setAI{ai=false} @self
+  - setAI{ai=true;delay=<skill.durations>+4} @self
+
+ero_stopEntityBoss_argos_move:
+  Skills:
+  - lockmodel{delay=1;l=true} @self
+  - BodyRotation{headuneven=true;maxhead=0;bodyuneven=true;minbody=0;maxbody=0} @self
+  - potion{t=SLOW;d=60;l=254;force=true;p=false;i=false} @self
+  - setcollidable{c=false} @self
+
+ero_stopEntityBoss_argos_move_un:
+  Skills:
+  - lockmodel{l=false} @self
+  - BodyRotation{headuneven=true;maxhead=0;bodyuneven=true;minbody=0;maxbody=10} @self
+  - setcollidable{c=true} @self
+
+ero_stopEntityBoss_argos_move_hb:
+  Skills:
+  - lockmodel{delay=1;l=true} @self
+  - BodyRotation{headuneven=true;maxhead=0;bodyuneven=true;minbody=0;maxbody=0} @self
+  - potion{t=SLOW;d=60;l=254;force=true;p=false;i=false} @self
+  - setcollidable{c=false} @self
+
+ero_stopEntityBoss_argos_move_hb_un:
+  Skills:
+  - lockmodel{l=false} @self
+  - BodyRotation{headuneven=true;maxhead=0;bodyuneven=true;minbody=0;maxbody=10} @self
+  - setcollidable{c=true} @self
+
+ero_argos_state_1_hide_attack:
+  Cooldown: 7
+  Conditions:
+  - hastag{t=state_2} false
+  - offgcd
+  Skills:
+  - gcd{t=32} @self
+  - Aura{auraName=removeHitbox;time=32;i=1} @self
+  - effect:particles{p=reddust;color=#68b2ed;Size=1;a=35;hS=1.2;vS=1.2;y=1;repeat=4;repeatInterval=2} @SelfLocation{y=1.5}
+  - effect:particles{p=reddust;color=#4da4e9;Size=1;a=35;hS=1.3;vS=1.3;y=1;repeat=4;repeatInterval=2} @SelfLocation{y=1.5}
+  - effect:particles{p=reddust;color=#3096e6;Size=1;a=35;hS=1.5;vS=1.5;y=1;repeat=4;repeatInterval=2} @SelfLocation{y=1.5}
+  - delay 10
+  - skill{s=ero_stopEntityBoss_argos_move;sync=true} @self
+  - state{s=hide_attack} @self
+  - summon{t=ero_vfx_sh_sp_at9_b;a=1} @self
+  - delay 8
+  - sound{s=entity.enderman.teleport;p=0.93;v=1.0} @self
+  - effect:particles{p=reddust;color=#68b2ed;Size=1;a=50;hS=1.2;vS=1.2;y=1} @SelfLocation{y=1}
+  - effect:particles{p=reddust;color=#4da4e9;Size=1;a=60;hS=1.4;vS=1.4;y=1} @SelfLocation{y=1}
+  - effect:particles{p=reddust;color=#3096e6;Size=1;a=70;hS=1.7;vS=1.7;y=1} @SelfLocation{y=1}
+  - effect:particles{particle=Flash;speed=0.1;Size=1;a=1;hS=0.1;vS=0.1} @SelfLocation{y=1.5}
+  - delay 5
+  - teleport{sh=0;sv=0} @PlayersInRadius{r=35;limit=1;sort=RANDOM}
+  - sound{s=entity.enderman.teleport;p=0.93;v=1.0} @self
+  - skill{s=[
+      - potion{t=SLOW;d=50;l=3;delay=1}
+      - velocity{m=SET;x=0;y=-1;z=0;repeat=1;repeatInterval=1}
+    ];sync=true} @PlayersInRadius{r=8.5}
+  - delay 5
+  - summon{t=ero_vfx_sh_sp_at9_c;a=1;l=0;r=0} @self
+  - delay 3
+  - effect:particles{p=reddust;color=#68b2ed;Size=1;a=50;hS=1.2;vS=1.2;y=1} @SelfLocation{y=1}
+  - effect:particles{p=reddust;color=#4da4e9;Size=1;a=60;hS=1.4;vS=1.4;y=1} @SelfLocation{y=1}
+  - effect:particles{p=reddust;color=#3096e6;Size=1;a=70;hS=1.7;vS=1.7;y=1} @SelfLocation{y=1}
+  - effect:particles{particle=Flash;speed=0.1;Size=1;a=1;hS=0.1;vS=0.1} @SelfLocation{y=1.5}
+  - gcd{t=40} @self
+  - skill{s=ero_stopEntityBoss_argos_move_un;sync=true;delay=39} @self
+  - state{s=special_attack_9;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_9;p=1;v=3;delay=2} @self
+  - delay 9
+  - summon{t=ero_vfx_sh_sp_at4} @ModelPart{p=mark2;y=1}
+  - delay 5
+  - totem{md=2;oS=[ 
+      - skill{s=[
+          - damage{a="<caster.damage>*1.5"}
+          - delay 1
+          - throw{v=16;vy=0.8}
+          - effect:particles{particle=Trial_Spawner_Detection_Ominous;speed=0.15;Size=1;a=25;hS=0.3;vS=0.5;y=0.25}
+          - effect:particles{particle=Instant_Effect;speed=0.15;Size=1;a=12;hS=0.3;vS=0.5;y=0.8}
+        ];sync=true} @EntitiesNearOrigin{r=8.5}
+    ];yo=0} @ModelPart{p=mark2;yo=2}
+
+ero_argos_state_1_nAttack:
+  Cooldown: 0.5
+  Conditions:
+  - offgcd
+  - hastag{t=state_2} false
+  - healthpercent{p=<40%} false
+  Skills:
+  - randomskill{skills=ero_argos_state_1_nAttack_1,ero_argos_state_1_nAttack_2 0.8,ero_argos_state_1_nAttack_3 0.8,ero_argos_state_1_nAttack_4 0.8,ero_argos_state_1_nAttack_5 0.8,ero_argos_state_1_skill_attack_4 0.8,ero_argos_state_1_skill_attack_5 0.8,ero_argos_state_1_hide_attack 0.75} @self
+
+ero_argos_state_1_nAttack_1:
+  Cooldown: 4
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=45} @self
+  - skill{s=ero_stopEntityBoss_argos;sync=true;durations=45} @self
+  - delay 1
+  - Aura{auraName=tickEffect;oT=[ - effect:particles{particle=Smoke;speed=0.01;Size=1;a=18;hS=0.25;vS=0.25} @ModelPart{p=bone18}];time=25;i=1} @self
+  - state{s=normal_attack_1;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_attack_1;p=1;v=3} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_vocal_attack_1and5;p=<random.float.0.8to1.2>;v=3;delay=10} @self
+  - delay 20
+  - skill{s=[
+      - damage{a="<caster.damage>*1.2"}
+      - delay 1
+      - effect:particles{particle=Instant_Effect;speed=0.1;Size=1;a=12;hS=0.3;vS=0.35;y=0.8}
+      - throw{v=7;vy=0.3}
+    ];sync=true} @EntitiesInCone{angle=180;range=6.5;yoffset=1}
+  - delay 20
+  - setSkillCooldown{s=ero_argos_state_1_nAttack;t=0.1} @self
+
+ero_argos_state_1_nAttack_2:
+  Cooldown: 4
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=40} @self
+  - skill{s=ero_stopEntityBoss_argos;sync=true;durations=40} @self
+  - delay 1
+  - state{s=normal_attack_2;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - Aura{auraName=tickEffect;oT=[ - effect:particles{particle=Smoke;speed=0.01;Size=1;a=18;hS=0.18;vS=0.35} @ModelPart{p=bone17}];time=13;i=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_attack_2;p=1;v=3} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_vocal_attack_2and3;p=<random.float.0.9to1.1>;v=2;delay=10} @self
+  - delay 10
+  - skill{s=[
+      - damage{a="<caster.damage>*1.2"}
+      - delay 1
+      - effect:particles{particle=Trial_Spawner_Detection_Ominous;speed=0.1;Size=1;a=18;hS=0.3;vS=0.5;y=0.25}
+      - effect:particles{particle=Instant_Effect;speed=0.1;Size=1;a=13;hS=0.3;vS=0.5;y=0.8}
+      - effect:particles{particle=White_Smoke;speed=0.15;Size=1;a=13;hS=0.3;vS=0.5;y=0.8}
+      - throw{v=10;vy=0.3}
+    ];sync=true} @EntitiesInCone{angle=180;range=4.5;yoffset=1}
+  - delay 25
+  - setSkillCooldown{s=ero_argos_state_1_nAttack;t=0.1} @self
+
+ero_argos_state_1_nAttack_3:
+  Cooldown: 4
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=35} @self
+  - skill{s=ero_stopEntityBoss_argos;sync=true;durations=35} @self
+  - delay 1
+  - state{s=normal_attack_3;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_attack_3;p=1;v=3;delay=7} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_vocal_attack_2and3;p=<random.float.0.9to1.1>;v=2;delay=10} @self
+  - delay 10
+  - skill{s=[
+      - damage{a="<caster.damage>*0.8"}
+      - delay 1
+      - throw{v=16;vy=1.1}
+      - delay 1
+      - effect:particles{particle=White_Smoke;speed=0.07;Size=1;a=25;hS=0.3;vS=0.5;y=0.8}
+      - effect:particles{particle=Poof;speed=0.07;Size=1;a=10;hS=0.3;vS=0.5;y=0.8}
+    ];sync=true} @EntitiesInCone{angle=180;range=4.2;yoffset=0.5}
+  - delay 20
+  - setSkillCooldown{s=ero_argos_state_1_nAttack;t=0.1} @self
+  - setSkillCooldown{s=ero_argos_state_1_nAttack_3;t=1} @self
+
+ero_argos_state_1_nAttack_4:
+  Cooldown: 4
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=35} @self
+  - skill{s=ero_stopEntityBoss_argos;sync=true;durations=35} @self
+  - delay 1
+  - summon{t=ero_vfx_sh_at4;a=1;l=0;r=0;delay=6} @Forward{f=1.5;y=1.5;lockpitch=true}
+  - state{s=normal_attack_4;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_attack_4;p=1;v=3} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_vocal_attack_4;p=<random.float.0.9to1.0>;v=2;delay=10} @self
+  - delay 10
+  - skill{s=[
+      - damage{a="<caster.damage>*1.2"}
+      - delay 1
+      - throw{v=12;vy=1.2}
+      - effect:particles{particle=Trial_Spawner_Detection_Ominous;speed=0.15;Size=1;a=25;hS=0.3;vS=0.5;y=0.25}
+      - effect:particles{particle=Instant_Effect;speed=0.15;Size=1;a=15;hS=0.3;vS=0.5;y=0.8}
+    ];sync=true} @EntitiesInCone{angle=180;range=9.7;yoffset=1}
+  - delay 20
+  - setSkillCooldown{s=ero_argos_state_1_nAttack;t=0.1} @self
+  - setSkillCooldown{s=ero_argos_state_1_nAttack_4;t=1} @self
+
+ero_argos_state_1_nAttack_5:
+  Cooldown: 4
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=35} @self
+  - skill{s=ero_stopEntityBoss_argos;sync=true;durations=30} @self
+  - delay 1
+  - state{s=normal_attack_5;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_attack_5;p=1;v=3} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_vocal_attack_1and5;p=<random.float.0.8to1.2>;v=2;delay=10} @self
+  - totem{delay=10;yo=0;i=1;md=2
+      ;oT=[ ]
+      ;oS=[ 
+            - skill{s=[
+                - damage{a=<caster.damage>}
+                - delay 1
+                - throw{v=8;vy=1}
+              ];sync=true} @EntitiesNearOrigin{r=3.5}
+            - effect:particles{particle=Large_Smoke;speed=0.15;Size=1;a=20;hS=1;vS=0.45} @Origin
+            - effect:particles{particle=campfire_signal_smoke;speed=0.1;Size=1;a=15;hS=1;vS=0} @Origin
+            - effect:particles{particle=Warped_Spore;speed=0.15;Size=1;a=18;hS=1;vS=0.3} @Origin
+          ]
+    } @ModelPart{p=mark2}
+  - delay 20
+  - setSkillCooldown{s=ero_argos_state_1_nAttack;t=0.1} @self
+  - setSkillCooldown{s=ero_argos_state_1_nAttack_5;t=1} @self
+
+ero_argos_state_1_skill_attack_ran:
+  Cooldown: 5
+  Conditions:
+  - hastag{t=state_2} false
+  - offgcd
+  TargetConditions:
+  - (distance{d=6-10} && fieldofview{angle=135}) castinstead ero_argos_state_1_hide_attack
+  - distance{d=11-22} true
+  - fieldofview{angle=20} true
+  Skills:
+  - randomskill{skills=ero_argos_state_1_skill_attack_1 0.5,ero_argos_state_1_skill_attack_2 0.8,ero_argos_state_1_skill_attack_3 0.8} @self
+
+ero_argos_state_1_skill_attack_1:
+  Cooldown: 5
+  Skills:
+  - gcd{t=180} @self
+  - skill{s=ero_stopEntityBoss_argos;sync=true;durations=180} @self
+  - delay 1
+  - state{s=special_attack_1_2;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_1;p=1;v=3} @self
+  - delay 20
+  - skill{s=ero_argos_state_1_skill_attack_1_hit;sync=true} @self
+
+ero_argos_state_1_skill_attack_1_hit:
+  Skills:
+  - totem{yo=0;i=1;md=2
+      ;oT=[ ]
+      ;oS=[ 
+            - skill{s=[
+                - damage{a=<caster.damage>}
+                - delay 1
+                - throw{v=0;vy=12}
+                - potion{t=SLOW_FALLING;d=40;l=0;force=true;p=false;i=false}
+              ];sync=true;delay=7} @EntitiesNearOrigin{r=3.5}
+            - projectile{oT=ero_argos_state_1_skill_attack_1_hits;v=20;i=5;hs=true;hR=1;hnp=false;sE=false;sB=false;mr=30;fo=true} @Forward{f=30;y=1;lockpitch=true}
+            - summon{t=ero_vfx_stone_crack1} @Origin{xoffset=0;yoffset=-0.45;zoffset=0}
+            - delay 7
+            <#> blockwave{duration=80;radius=4.5;radiusY=5;velocity=3;shape=Sphere} @Origin
+            - effect:particles{particle=Large_Smoke;speed=0.1;Size=1;a=25;hS=1.4;vS=0.45} @Origin
+            - effect:particles{particle=campfire_signal_smoke;speed=0.03;Size=1;a=15;hS=1.3;vS=0} @Origin
+            <#> effect:particles{particle=trial_spawner_detection_ominous;speed=0.125;Size=1;a=30;hS=1.5;vS=0.3} @Origin
+            - effect:particles{particle=Warped_Spore;speed=0.125;Size=1;a=30;hS=1.5;vS=0.3} @Origin
+          ]
+    } @ModelPart{p=mark1}
+
+ero_argos_state_1_skill_attack_1_hits:
+  Skills:
+  - totem{yo=0;i=1;md=2
+      ;oT=[ ]
+      ;oS=[ 
+            - skill{s=[
+                - damage{a=<caster.damage>*0.8}
+                - delay 1
+                - throw{v=0;vy=12}
+                - potion{t=SLOW_FALLING;d=40;l=0;force=true;p=false;i=false}
+              ];sync=true;delay=7} @EntitiesNearOrigin{r=3.5}
+            - summon{t=ero_vfx_stone_up} @Origin{xoffset=0;yoffset=0.5;zoffset=0}
+            - summon{t=ero_vfx_stone_crack2;delay=1} @Origin{xoffset=0;yoffset=0.5;zoffset=0}
+            - delay 7
+            <#> blockwave{duration=80;radius=4.5;radiusY=5;velocity=3;shape=Sphere} @Origin
+            - effect:particles{particle=Large_Smoke;speed=0.1;Size=1;a=25;hS=1.4;vS=0.45} @Origin
+            - effect:particles{particle=campfire_signal_smoke;speed=0.05;Size=1;a=7;hS=1.3;vS=0} @Origin{xoffset=0;yoffset=1;zoffset=0}
+            <#> effect:particles{particle=trial_spawner_detection_ominous;speed=0.125;Size=1;a=30;hS=1.5;vS=0.3} @Origin
+            - effect:particles{particle=Warped_Spore;speed=0.125;Size=1;a=30;hS=1.5;vS=0.3} @Origin
+          ]
+    } @Origin{xoffset=0;yoffset=-1;zoffset=0}
+
+ero_argos_state_1_skill_attack_2:
+  Cooldown: 5
+  Skills:
+  - gcd{t=200} @self
+  - setvariable{var=CASTER.rotX;val="<caster.l.yaw>";t=FLOAT} @self
+  - setrotation{relative=false;yaw=<caster.var.rotX>;repeat=60;repeatInterval=1} @self
+  - skill{s=ero_stopEntityBoss_argos_move;sync=true} @self
+  - state{s=special_attack_2;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_2and4;p=1;v=3;delay=5} @self
+  - delay 14
+  - lunge{v=1.5;vy=1.5} @Forward{f=2;y=1;lockpitch=true}
+  - delay 10
+  - lunge{v=1.2;vy=0.1} @Forward{f=2;y=1;lockpitch=true}
+  - Aura{auraName=ero_argos_state_1_skill_attack_2;oT=[
+      - skill{s=ero_argos_state_1_skill_attack_2_og;sync=true} @self ?onground{}
+      - gcd{t=5} @self
+    ];time=200;i=1} @self
+
+ero_argos_state_1_skill_attack_2_og:
+  Skills:
+  - gcd{t=20} @self
+  - setrotation{relative=false;yaw=<caster.var.rotX>;repeat=20;repeatInterval=1} @self
+  - potion{t=SLOW;d=20;l=99;force=true;p=false;i=false} @self
+  - state{s=special_attack_3;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - summon{t=ero_vfx_sh_sp_at9} @self
+  - auraremove{n=ero_argos_state_1_skill_attack_2} @self
+  - skill{s=ero_argos_reset_idle;sync=true;delay=15} @self
+  - skill{s=[
+      - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_3and5_s1;p=1;v=3} @self
+      - damage{a=<caster.damage> * 0.7}
+      - delay 1
+      - throw{v=0;vy=12}
+      - potion{t=SLOW_FALLING;d=40;l=0;force=true;p=false;i=false}
+    ];sync=true} @EntitiesNearOrigin{r=5.4}
+  - blockwave{duration=80;radius=4.5;radiusY=5;velocity=3;shape=Sphere} @Origin{yoffset=-0.5}
+  - effect:particles{particle=campfire_signal_smoke;speed=0.03;Size=1;a=15;hS=1.3;vS=0} @Origin
+  - effect:particles{particle=White_Smoke;speed=0.2;Size=1;a=45;hS=1.8;vS=0.45} @Origin{yoffset=1}
+  - effect:particles{particle=Large_Smoke;speed=0.2;Size=1;a=45;hS=1.8;vS=0.45} @Origin{yoffset=1}
+  - effect:particles{particle=Smoke;speed=0.2;Size=1;a=45;hS=1.8;vS=0.45} @Origin{yoffset=1}
+  - effect:particles{particle=Warped_Spore;speed=0.125;Size=1;a=30;hS=1.5;vS=0.3} @Origin
+  - effect:particles{particle=campfire_signal_smoke;speed=0.04;Size=1;a=10;hS=3;vS=0;delay=5} @Origin{yoffset=1.25}
+  - skill{s=[
+      - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_3_s2;p=1;v=3} @self
+      - effect:particles{particle=White_Smoke;speed=0.2;Size=1;a=25;hS=1.4;vS=0.45}
+      - effect:particles{particle=Large_Smoke;speed=0.2;Size=1;a=25;hS=1.4;vS=0.45}
+      - effect:particles{particle=Smoke;speed=0.2;Size=1;a=25;hS=1.4;vS=0.45}
+      - effect:particles{particle=Warped_Spore;speed=0.125;Size=1;a=30;hS=1.1;vS=0.3}
+      - blockwave{duration=80;radius=2.5;radiusY=5;velocity=3;shape=Sphere}
+      - skill{s=[
+          - damage{a=<caster.damage> * 1}
+          - delay 1
+          - throw{v=0;vy=12}
+          - potion{t=SLOW_FALLING;d=40;l=0;force=true;p=false;i=false}
+        ];sync=true} @EntitiesNearOrigin{r=9.5}
+    ];sync=true;delay=5} @Ring{r=7;p=15}
+  - delay 20
+  - skill{s=ero_stopEntityBoss_argos_move_un;sync=true} @self
+  
+
+ero_argos_state_1_skill_attack_3:
+  Cooldown: 5
+  Skills:
+  - gcd{t=200} @self
+  - setvariable{var=CASTER.rotX;val="<caster.l.yaw>";t=FLOAT} @self
+  - setrotation{relative=false;yaw=<caster.var.rotX>;repeat=60;repeatInterval=1} @self
+  - skill{s=ero_stopEntityBoss_argos_move;sync=true} @self
+  - state{s=special_attack_4;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_2and4;p=1;v=3;delay=5} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_vocal_sp_attack_2and4;p=1;v=3;delay=7} @self
+  - delay 14
+  - lunge{v=1.5;vy=1} @Forward{f=2;y=1;lockpitch=true}
+  - delay 10
+  - lunge{v=1.35;vy=0.1} @Forward{f=2;y=1;lockpitch=true}
+  - Aura{auraName=ero_argos_state_1_skill_attack_3;oT=[
+      - skill{s=ero_argos_state_1_skill_attack_3_og;sync=true} @self ?onground{}
+      - gcd{t=5} @self
+    ];time=200;i=1} @self
+
+ero_argos_state_1_skill_attack_3_og:
+  Skills:
+  - gcd{t=50} @self
+  - setrotation{relative=false;yaw=<caster.var.rotX>;repeat=50;repeatInterval=1} @self
+  - potion{t=SLOW;d=50;l=99;force=true;p=false;i=false} @self
+  - state{s=special_attack_5;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_5;p=1;v=3} @self
+  - summon{t=ero_vfx_sh_sp_at9_a} @self
+  - totem{y=0;delay=4;i=1;md=2;oS=[ 
+      - summon{t=ero_vfx_stone_crack1;delay=2} @Origin{xoffset=0;yoffset=-1.5;zoffset=0} 
+      - projectile{oT=ero_argos_state_1_skill_attack_3_hits;v=20;i=5;hs=true;hR=1;hnp=false;sE=false;sB=false;mr=30;fo=true} @Forward{f=30;y=1;lockpitch=true;rotate=0}
+      - projectile{oT=ero_argos_state_1_skill_attack_3_hits;v=20;i=5;hs=true;hR=1;hnp=false;sE=false;sB=false;mr=30;fo=true} @Forward{f=30;y=1;lockpitch=true;rotate=27}
+      - projectile{oT=ero_argos_state_1_skill_attack_3_hits;v=20;i=5;hs=true;hR=1;hnp=false;sE=false;sB=false;mr=30;fo=true} @Forward{f=30;y=1;lockpitch=true;rotate=-27}
+    ]} @ModelPart{p=mark1}
+  - auraremove{n=ero_argos_state_1_skill_attack_3} @self
+  - skill{s=ero_argos_reset_idle;sync=true;delay=20} @self
+  - skill{s=[
+      - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_3and5_s1;p=1;v=3} @self
+      - sound{s=ero_boss_argos:ero_boss_argos.argos_vocal_sp_attack_3and5;p=1;v=3} @self
+      - damage{a=<caster.damage> * 0.7}
+      - delay 1
+      - throw{v=0;vy=12}
+      - potion{t=SLOW_FALLING;d=40;l=0;force=true;p=false;i=false}
+    ];sync=true} @EntitiesNearOrigin{r=5.4}
+  - blockwave{duration=80;radius=4.5;radiusY=5;velocity=3;shape=Sphere} @Origin{yoffset=-0.5}
+  - effect:particles{particle=campfire_signal_smoke;speed=0.03;Size=1;a=20;hS=1.3;vS=0} @Origin
+  - effect:particles{particle=White_Smoke;speed=0.2;Size=1;a=45;hS=2;vS=0.45} @Origin{yoffset=1}
+  - effect:particles{particle=Large_Smoke;speed=0.2;Size=1;a=45;hS=2;vS=0.45} @Origin{yoffset=1}
+  - effect:particles{particle=Smoke;speed=0.2;Size=1;a=45;hS=2;vS=0.45} @Origin{yoffset=1}
+  - effect:particles{particle=Warped_Spore;speed=0.125;Size=1;a=30;hS=1.5;vS=0.3} @Origin
+  - effect:particles{particle=campfire_signal_smoke;speed=0.04;Size=1;a=10;hS=3;vS=0;delay=5} @Origin{yoffset=1.25}
+  - delay 50
+  - skill{s=ero_stopEntityBoss_argos_move_un;sync=true} @self
+  
+ero_argos_state_1_skill_attack_3_hits:
+  Skills:
+  - totem{yo=0;i=1;md=2
+      ;oT=[ ]
+      ;oS=[ 
+            - skill{s=[
+                - damage{a=<caster.damage>*0.8}
+                - delay 1
+                - throw{v=0;vy=12}
+                - potion{t=SLOW_FALLING;d=40;l=0;force=true;p=false;i=false}
+              ];sync=true;delay=7} @EntitiesNearOrigin{r=3.5}
+            - summon{t=ero_vfx_stone_up} @Origin{xoffset=0;yoffset=0.5;zoffset=0}
+            - summon{t=ero_vfx_stone_crack2;delay=1} @Origin{xoffset=0;yoffset=0.5;zoffset=0}
+            - delay 7
+            - effect:particles{particle=Large_Smoke;speed=0.1;Size=1;a=25;hS=1.6;vS=0.45} @Origin
+            - effect:particles{particle=campfire_signal_smoke;speed=0.05;Size=1;a=4;hS=1.3;vS=0} @Origin{xoffset=0;yoffset=1;zoffset=0}
+            - effect:particles{particle=Warped_Spore;speed=0.15;Size=1;a=30;hS=1.5;vS=0.3} @Origin
+          ]
+    } @Origin{xoffset=0;yoffset=-1;zoffset=0}
+
+ero_argos_state_1_skill_attack_4:
+  Cooldown: 5
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=40} @self
+  - removetag{t=target_hit} @self
+  - skill{s=ero_stopEntityBoss_argos;sync=true;durations=40} @self
+  - state{s=special_attack_6;lerpout=1;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_6;p=1;v=3;delay=2} @self
+  - delay 6
+  - totem{md=2;oS=[
+      - skill{s=[
+          - sudoskill{s=[ - sudoskill{s=[ - addtag{t=target_hit} @self ];cat=true} @trigger ];cat=true}
+          - mountmodel{driver=true;mode=walking;mid=ero_argos}
+          - skill{s=[
+              - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_7;p=1;v=3;delay=2} @self
+              - state{s=special_attack_7;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+            ];sync=true} ?!hastag{t=target_hit}
+
+          - skill{s=[
+              - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_8;p=1;v=3;delay=2} @self
+              - state{s=special_attack_8;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+              - delay 20
+              - dismountmodel @TargetedTarget
+              - delay 1
+              - throw{v=15;vy=0} @TargetedTarget
+            ];sync=true} ?hastag{t=target_hit}
+        ];sync=true} @EntitiesNearOrigin{r=2.5;limit=1;Conditions=[ - isPlayer{} ]} 
+    ];yo=0} @ModelPart{p=mount}
+
+ero_argos_state_1_skill_attack_5:
+  Cooldown: 5
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=40} @self
+  - skill{s=ero_stopEntityBoss_argos;sync=true;durations=40} @self
+  - state{s=special_attack_9;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_9;p=1;v=3;delay=2} @self
+  - delay 9
+  - summon{t=ero_vfx_sh_sp_at4} @ModelPart{p=mark2;y=1}
+  - delay 5
+  - totem{md=2;oS=[ 
+      - skill{s=[
+          - damage{a="<caster.damage>*1.5"}
+          - delay 1
+          - throw{v=16;vy=0.8}
+          - effect:particles{particle=Trial_Spawner_Detection_Ominous;speed=0.15;Size=1;a=25;hS=0.3;vS=0.5;y=0.25}
+          - effect:particles{particle=Instant_Effect;speed=0.15;Size=1;a=12;hS=0.3;vS=0.5;y=0.8}
+        ];sync=true} @EntitiesNearOrigin{r=8.5}
+    ];yo=0} @ModelPart{p=mark2;yo=2}
+
+ero_argos_state_1_skill_attack_6:
+  Cooldown: 10
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=80} @self
+  - skill{s=ero_stopEntityBoss_argos;sync=true;durations=80} @self
+  - state{s=special_attack_10;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1;speed=1.3} @self
+  - delay 1
+  - summon{t=ero_vfx_sh_sp_at9_d;a=1} @self
+  - delay 5
+  - sound{s=ero_boss_argos:ero_boss_argos.crash_1;p=1;v=5;delay=3} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.crash_1;p=0.8;v=5;delay=3} @self
+  - projectile{oT=[
+      - effect:particles{p=reddust;color=#4da4e9;Size=0.95;a=7;hS=0.75;vS=0.5;y=0}
+    ];sfo=0;syo=0;sE=false;sB=false;v=20;i=1;hR=1;mr=13;repeat=3;repeatInterval=11} @Ring{radius=13;points=22;yoffset=0}
+  - skill{s=[
+      - damage{a=<caster.damage>*1.2}
+      - potion{t=SLOW;d=100;l=0}
+      - effect:particles{p=reddust;color=#4da4e9;Size=0.95;a=20;hS=0.35;vS=0.45;y=1}
+      - effect:particles{particle=Instant_Effect;speed=0.15;Size=1;a=12;hS=0.3;vS=0.5;y=0.8}
+    ];sync=true;repeat=3;repeatInterval=15} @PlayersInRadius{r=14.5}
+  - skill{s=[
+      - delay 1
+      - throw{v=16;vy=3}
+    ];sync=true} @PlayersInRadius{r=14.5}
+
+ero_argos_change_state:
+  Conditions:
+  - offgcd
+  - hastag{t=state_2} false
+  Skills:
+  - gcd{t=220} @self
+  - skill{s=ero_stopEntityBoss_argos_hb;sync=true;durations=220} @self
+  - addtag{t=state_2} @self
+  - addtag{t=state_2_on;delay=220} @self
+  - attribute{attribute=GENERIC_MOVEMENT_SPEED;a=0.45} @self
+  - state{s=crash_1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.crash_1;p=1;v=3;delay=2} @self
+  - delay 40
+  - sound{s=ero_boss_argos:ero_boss_argos.crash_2;p=1;v=3;delay=2} @self
+  - skill{s=[
+      - damage{a=<caster.damage>}
+      - throw{v=7;vy=4;fo=true} 
+    ];sync=true;delay=45} @PlayersInRadius{r=25}
+  - skill{delay=45;s=[
+      - potion{t=SLOW;d=1200;l=1}
+      - potion{t=WEAKNESS;d=1200;l=1}
+      - potion{t=SLOW_DIGGING;d=1200;l=1}
+      - skill{s=[
+          - totem{yo=0;i=1;md=2;oS=[
+              - skill{s=[
+                - effect:lightning{}
+                - effect:particles{particle=Witch;speed=0.3;Size=1;a=30;hS=1.4;vS=0.75}
+                - effect:particles{particle=Smoke;speed=0.15;Size=1;a=25;hS=1.4;vS=0.75}
+                - effect:particles{particle=Lava;speed=0.15;Size=1;a=25;hS=1.4;vS=0.75}
+                - skill{s=[
+                    - damage{a=<caster.damage> * 1.5}
+                    - delay 1
+                    - throw{v=7;vy=4;fo=true} 
+                  ];sync=true} @EntitiesNearOrigin{r=4.5}
+              ];sync=true}
+            ]} @RandomLocationsNearTargets{a=3;r=25;s=5}
+          - totem{yo=0;i=1;md=2;oS=[
+              - skill{s=[
+                - effect:lightning{}
+                - effect:particles{particle=Witch;speed=0.3;Size=1;a=30;hS=1.4;vS=0.75}
+                - effect:particles{particle=Smoke;speed=0.15;Size=1;a=25;hS=1.4;vS=0.75}
+                - effect:particles{particle=Lava;speed=0.15;Size=1;a=25;hS=1.4;vS=0.75}
+                - skill{s=[
+                    - damage{a=<caster.damage> * 1.5}
+                    - delay 1
+                    - throw{v=7;vy=4;fo=true} 
+                  ];sync=true} @EntitiesNearOrigin{r=4.5}
+              ];sync=true}
+            ];cd=2.5} @PlayersInRadius{r=25;limit=1;sort=RANDOM}
+        ];sync=true;cd=0.35} @self
+    ];sync=true;repeat=31;repeatInterval=4} @PlayersInRadius{r=25}
+  - model{mid=ero_argos_two;n=false;damagetint=true;usestatemachine=true;lockpitch=true;scale=1;hitboxscale=1;drive=true;ride=true;radius=150} @self
+  - model{mid=ero_argos;r=true} @self
+  - BodyRotation{delay=1;headuneven=true;maxhead=0;bodyuneven=true;minbody=0;maxbody=15} @self
+
+  - addtag{t=state_2} @self
+
+ero_argos_state_2_nAttack:
+  Cooldown: 1
+  Conditions:
+  - offgcd
+  - hastag{t=state_2} true
+  Skills:
+  - randomskill{skills=ero_argos_state_2_nAttack_1 0.8,ero_argos_state_2_nAttack_2 0.8,ero_argos_state_2_nAttack_3 0.8,ero_argos_state_2_skill_attack_1 0.75,ero_argos_state_2_skill_attack_3 0.7,ero_argos_state_2_skill_attack_5 0.7} @self
+
+ero_argos_state_2_nAttack_1:
+  Cooldown: 4
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=30} @self
+  - skill{s=ero_stopEntityBoss_argos_hb;sync=true;durations=30} @self
+  - delay 1
+  - state{s=normal_attack_1;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - summon{t=ero_vfx_sh_sp_at7;delay=8} @Forward{f=2.5;y=2.0;lockpitch=true}
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_stege2_attack_1;p=1;v=3;delay=2} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_vocal_attack_1and5;p=1;v=3;delay=7} @self
+  - delay 10
+  - skill{s=[
+      - damage{a="<caster.damage>*1.2"}
+      - delay 1
+      - effect:particles{particle=Witch;speed=0.2;Size=1;a=25;hS=0.3;vS=0.5;y=0.5}
+      - effect:particles{particle=Instant_Effect;speed=0.15;Size=1;a=13;hS=0.3;vS=0.5;y=0.8}
+      - throw{v=15;vy=0.3}
+    ];sync=true} @EntitiesInCone{angle=180;range=11;yoffset=1}
+
+ero_argos_state_2_nAttack_2:
+  Cooldown: 3
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=25} @self
+  - skill{s=ero_stopEntityBoss_argos_hb;sync=true;durations=25} @self
+  - delay 1
+  - state{s=normal_attack_2;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - summon{t=ero_vfx_sh_sp_at6;delay=12} @Forward{f=1;y=3.5;lockpitch=true}
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_stege2_attack_2;p=1;v=3;delay=2} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_vocal_attack_2and3;p=1;v=3;delay=7} @self
+  - delay 15
+  - skill{s=[
+      - damage{a="<caster.damage>*1.2"}
+      - delay 1
+      - effect:particles{particle=Witch;speed=0.2;Size=1;a=25;hS=0.3;vS=0.5;y=0.5}
+      - effect:particles{particle=Instant_Effect;speed=0.15;Size=1;a=13;hS=0.3;vS=0.5;y=0.8}
+      - throw{v=15;vy=0.3}
+    ];sync=true} @EntitiesInCone{angle=180;range=8.5;yoffset=1}
+
+ero_argos_state_2_nAttack_3:
+  Cooldown: 4
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=30} @self
+  - skill{s=ero_stopEntityBoss_argos_hb;sync=true;durations=30} @self
+  - delay 1
+  - state{s=normal_attack_3;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_attack_5;p=1;v=3;delay=2} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_vocal_attack_2and3;p=1;v=3;delay=10} @self
+  - delay 12
+  - totem{yo=0;i=1;md=2
+      ;oT=[ ]
+      ;oS=[ 
+            - skill{s=[
+                - damage{a=<caster.damage>}
+                - delay 2
+                - effect:particles{particle=Witch;speed=0.2;Size=1;a=20;hS=0.3;vS=0.5;y=0.5}
+                - effect:particles{particle=Instant_Effect;speed=0.15;Size=1;a=8;hS=0.3;vS=0.5;y=0.8}
+                - potion{t=SLOW;d=100;l=1}
+                - throw{v=28;vy=4}
+              ];sync=true} @EntitiesNearOrigin{r=4.5}
+            - effect:particles{particle=Large_Smoke;speed=0.15;Size=1;a=20;hS=1;vS=0.45} @Origin
+            - effect:particles{particle=campfire_signal_smoke;speed=0.1;Size=1;a=15;hS=1;vS=0} @Origin
+            - effect:particles{particle=lava;speed=0.15;Size=1;a=17;hS=1;vS=0.3} @Origin
+          ]
+    } @ModelPart{p=bone17}
+
+ero_argos_state_2_skill_attack_1:
+  Cooldown: 12
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=55} @self
+  - skill{s=ero_stopEntityBoss_argos_hb;sync=true;durations=55} @self
+  - state{s=special_attack_1;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_stege2_attack_4;p=1;v=3;delay=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_vocal_attack_4;p=1;v=3;delay=10} @self
+
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_stege2_attack_1;p=1;v=3;delay=35} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_vocal_attack_2and3;p=1;v=3;delay=40} @self
+
+  - delay 12
+
+  - totem{yo=0;i=1;md=2
+      ;oT=[ ]
+      ;oS=[ 
+            - skill{s=[
+                - damage{a=<caster.damage>}
+                - delay 1
+                - effect:particles{particle=Witch;speed=0.2;Size=1;a=25;hS=0.3;vS=0.5;y=0.5}
+                - effect:particles{particle=Instant_Effect;speed=0.15;Size=1;a=12;hS=0.3;vS=0.5;y=0.8}
+                - throw{v=11;vy=1;fo=true}
+              ];sync=true;delay=3} @EntitiesNearOrigin{r=7.5}
+            - summon{t=ero_vfx_sh_sp_at11;a=1}
+            - effect:particles{particle=Large_Smoke;speed=0.15;Size=1;a=18;hS=1;vS=0.45} @Origin
+            - effect:particles{particle=campfire_signal_smoke;speed=0.1;Size=1;a=12;hS=1;vS=0} @Origin
+            - effect:particles{particle=Warped_Spore;speed=0.15;Size=1;a=12;hS=1;vS=0.3} @Origin
+            - delay 5
+            - projectile{oT=ero_argos_state_2_skill_attack_1_hits;v=20;sfo=0;i=5;hs=true;hR=1;hnp=false;sE=false;sB=false;mr=30;fo=true} @Forward{f=30;y=1;lockpitch=true;rotate=0}
+            - projectile{oT=ero_argos_state_2_skill_attack_1_hits;v=20;sfo=0;i=5;hs=true;hR=1;hnp=false;sE=false;sB=false;mr=30;fo=true} @Forward{f=30;y=1;lockpitch=true;rotate=27}
+            - projectile{oT=ero_argos_state_2_skill_attack_1_hits;v=20;sfo=0;i=5;hs=true;hR=1;hnp=false;sE=false;sB=false;mr=30;fo=true} @Forward{f=30;y=1;lockpitch=true;rotate=-27}
+          ]
+    } @ModelPart{p=mark1}
+  
+  - summon{t=ero_vfx_sh_sp_at5;delay=25} @SelfLocation{y=3}
+  - delay 30
+  - skill{s=[
+      - damage{a="<caster.damage>*1.2"}
+      - delay 1
+      - throw{v=20;vy=0.7}
+      - delay 1
+      - effect:particles{particle=Witch;speed=0.2;Size=1;a=20;hS=0.3;vS=0.5;y=0.5}
+      - effect:particles{particle=Instant_Effect;speed=0.15;Size=1;a=8;hS=0.3;vS=0.5;y=0.8}
+      - effect:particles{particle=Trial_Spawner_Detection;speed=0.15;Size=1;a=20;hS=0.3;vS=0.5;y=0.25}
+    ];sync=true} @EntitiesNearOrigin{r=8}
+
+ero_argos_state_2_skill_attack_1_hits:
+  Skills:
+  - totem{yo=0;i=1;md=2
+      ;oT=[ ]
+      ;oS=[ 
+            - effect:lightning{}
+            - effect:particles{particle=Witch;speed=0.3;Size=1;a=35;hS=2;vS=0.75}
+            - effect:particles{particle=Smoke;speed=0.15;Size=1;a=30;hS=2;vS=0.75}
+            - effect:particles{particle=Lava;speed=0.15;Size=1;a=30;hS=2;vS=0.75}
+            - skill{s=[
+                - damage{a=<caster.damage> * 1.5}
+                - delay 1
+                - throw{v=7;vy=4;fo=true} 
+              ];sync=true} @EntitiesNearOrigin{r=7}
+          ]
+    } @Origin{xoffset=0;yoffset=-1;zoffset=0}
+
+ero_argos_state_2_down:
+  Cooldown: 120
+  Conditions:
+  - offgcd
+  - onground{}
+  Skills:
+  - gcd{t=190} @self
+  - skill{s=ero_stopEntityBoss_argos_hb;sync=true;durations=190} @self
+  - Aura{auraName=onBossDown;time=190;i=1} @self
+  - state{s=down;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - skill{s=[
+      - summon{t=ero_vfx_sh_sp_at7} @Forward{f=0;y=1.2;;sideOffset=-0.7;lockpitch=true}
+      - damage{a=<caster.damage>*1.8} @EntitiesInCone{angle=200;range=9.5;yoffset=1}
+      - delay 1
+      - throw{v=9;vy=1.2;fo=true} 
+    ];sync=true;delay=165} @self
+
+ero_argos_state_2_death:
+  Skills:
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_died2;p=1;v=4} @self
+  - skill{s=[
+      - effect:particles{particle=Smoke;speed=0.01;Size=1;a=3;hS=0.5;vS=0.5} @ModelPart{p=head}
+      - effect:particles{particle=Smoke;speed=0.01;Size=1;a=3;hS=0.5;vS=0.5} @ModelPart{p=bone5}
+      - effect:particles{particle=Smoke;speed=0.01;Size=1;a=3;hS=0.5;vS=0.5} @ModelPart{p=bone13}
+      - effect:particles{particle=Smoke;speed=0.01;Size=1;a=3;hS=0.5;vS=0.5} @ModelPart{p=bone12}
+      - effect:particles{particle=Smoke;speed=0.01;Size=1;a=3;hS=0.5;vS=0.5} @ModelPart{p=ribs}
+      - effect:particles{particle=Smoke;speed=0.01;Size=1;a=3;hS=0.5;vS=0.5} @ModelPart{p=bone22}
+      - effect:particles{particle=Smoke;speed=0.01;Size=1;a=3;hS=0.5;vS=0.5} @ModelPart{p=bone26}
+      - effect:particles{particle=Smoke;speed=0.01;Size=1;a=3;hS=0.5;vS=0.5} @ModelPart{p=bone27}
+      - effect:particles{particle=Smoke;speed=0.01;Size=1;a=3;hS=0.5;vS=0.5} @ModelPart{p=bone10}
+      - effect:particles{particle=Smoke;speed=0.01;Size=1;a=3;hS=0.5;vS=0.5} @ModelPart{p=bone11}
+      - effect:particles{particle=Smoke;speed=0.01;Size=1;a=3;hS=0.5;vS=0.5} @ModelPart{p=bone30}
+      - effect:particles{particle=Smoke;speed=0.01;Size=1;a=3;hS=0.5;vS=0.5} @ModelPart{p=bone31}
+    ];sync=true;repeat=999;repeatInterval=2} @self
+  - summon{t=ero_vfx_sh_sp_at8;a=1;then=[ 
+      - sound{s=entity.warden.sonic_charge;p=1.73;v=3.0}
+      - sound{s=entity.warden.sonic_charge;p=2.00;v=3.0}
+      - sound{s=entity.warden.sonic_charge;p=1.55;v=3.0}
+    ];delay=70} @ModelPart{p=core2}
+  - delay 85
+  - effect:lightning{repeat=2;repeatInterval=1} @ModelPart{p=core2}
+  - effect:particles{particle=Explosion_Emitter;speed=0;Size=1;a=5;hS=1;vS=1} @ModelPart{p=core2}
+  - effect:explosion @ModelPart{p=core2}
+  
+  - totem{md=2;oS=[
+      - summon{t=ero_vfx_sh_sp_at10;a=1}
+      - summon{t=ero_vfx_sh_sp_at8;a=1;then=[ - sound{s=ero_boss_argos:ero_boss_argos.argos_vocal_sp_attack_2and4;p=1;v=3} ]}
+      - skill{s=[
+          - summon{t=ero_vfx_sh_sp_at8;a=1;then=[ - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_3and5_s1;p=1;v=3} ]} @ModelPart{p=core2}
+          - damage{a=<caster.damage> * 0.7}
+          - delay 1
+          - throw{v=0;vy=12}
+          - potion{t=SLOW_FALLING;d=40;l=0;force=true;p=false;i=false}
+        ];sync=true} @EntitiesNearOrigin{r=5.4}
+      - blockwave{duration=80;radius=4.5;radiusY=5;velocity=3;shape=Sphere} @Origin{yoffset=-1}
+      - effect:particles{particle=campfire_signal_smoke;speed=0.03;Size=1;a=20;hS=1.3;vS=0} @Origin
+      - effect:particles{particle=Lava;speed=0.2;Size=1;a=30;hS=1.8;vS=0.45} @Origin{yoffset=1}
+      - effect:particles{particle=Large_Smoke;speed=0.2;Size=1;a=50;hS=1.8;vS=0.45} @Origin{yoffset=1}
+      - effect:particles{particle=Smoke;speed=0.2;Size=1;a=50;hS=1.8;vS=0.45} @Origin{yoffset=1}
+      - effect:particles{particle=Warped_Spore;speed=0.125;Size=1;a=35;hS=1.5;vS=0.3} @Origin
+      - effect:particles{particle=campfire_signal_smoke;speed=0.04;Size=1;a=10;hS=3;vS=0;delay=5} @Origin{yoffset=1.25}
+      - skill{s=[
+          - summon{t=ero_vfx_sh_sp_at8;a=1;then=[ - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_3_s2;p=1;v=3} ]} @ModelPart{p=core2}
+          - effect:particles{particle=Lava;speed=0.2;Size=1;a=20;hS=1.4;vS=0.45}
+          - effect:particles{particle=Witch;speed=0.2;Size=1;a=30;hS=1.4;vS=0.45}
+          - effect:particles{particle=Large_Smoke;speed=0.2;Size=1;a=30;hS=1.4;vS=0.45}
+          - effect:particles{particle=Smoke;speed=0.2;Size=1;a=30;hS=1.4;vS=0.45}
+          - effect:particles{particle=Warped_Spore;speed=0.125;Size=1;a=35;hS=1.1;vS=0.3}
+          - effect:particles{particle=Explosion_Emitter;speed=0;Size=1;a=5;hS=1;vS=1}
+          - summon{t=ero_vfx_sh_sp_at8;a=1;then=[ - sudoskill{s=[ - blockwave{duration=80;radius=2;radiusY=5;velocity=2;shape=Sphere;fo=true} @SelfLocation{y=0} ];cat=true} ]}
+          - skill{s=[
+              - damage{a=<caster.damage> * 1.2}
+              - delay 1
+              - throw{v=0;vy=12}
+              - potion{t=SLOW_FALLING;d=40;l=0;force=true;p=false;i=false}
+            ];sync=true} @EntitiesNearOrigin{r=9.5}
+        ];sync=true;delay=5} @RingAroundOrigin{r=7;p=15}
+      - skill{s=[
+          - summon{t=ero_vfx_sh_sp_at8;a=1;then=[ - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_3_s2;p=1;v=3} ]} @ModelPart{p=core2}
+          - effect:particles{particle=Lava;speed=0.2;Size=1;a=15;hS=1.4;vS=0.45}
+          - effect:particles{particle=Witch;speed=0.2;Size=1;a=25;hS=1.4;vS=0.45}
+          - effect:particles{particle=Large_Smoke;speed=0.2;Size=1;a=25;hS=1.4;vS=0.45}
+          - effect:particles{particle=Smoke;speed=0.2;Size=1;a=25;hS=1.4;vS=0.45}
+          - effect:particles{particle=Warped_Spore;speed=0.125;Size=1;a=30;hS=1.1;vS=0.3}
+          - effect:particles{particle=Explosion_Emitter;speed=0;Size=1;a=5;hS=1;vS=1}
+          - summon{t=ero_vfx_sh_sp_at8;a=1;then=[ - sudoskill{s=[ - blockwave{duration=80;radius=2;radiusY=5;velocity=2;shape=Sphere;fo=true} @SelfLocation{y=0} ];cat=true} ]}
+          - skill{s=[
+              - damage{a=<caster.damage> * 1.7}
+              - delay 1
+              - throw{v=0;vy=12}
+              - potion{t=SLOW_FALLING;d=40;l=0;force=true;p=false;i=false}
+            ];sync=true} @EntitiesNearOrigin{r=14.5}
+        ];sync=true;delay=10} @RingAroundOrigin{r=12;p=20}
+      - skill{s=[
+          - summon{t=ero_vfx_sh_sp_at8;a=1;then=[ - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_3_s2;p=1;v=3} ]} @ModelPart{p=core2}
+          - effect:particles{particle=Lava;speed=0.2;Size=1;a=15;hS=1.4;vS=0.45}
+          - effect:particles{particle=Witch;speed=0.2;Size=1;a=25;hS=1.4;vS=0.45}
+          - effect:particles{particle=Large_Smoke;speed=0.2;Size=1;a=25;hS=1.4;vS=0.45}
+          - effect:particles{particle=Smoke;speed=0.2;Size=1;a=25;hS=1.4;vS=0.45}
+          - effect:particles{particle=Warped_Spore;speed=0.125;Size=1;a=30;hS=1.1;vS=0.3}
+          - effect:particles{particle=Explosion_Emitter;speed=0;Size=1;a=5;hS=1;vS=1}
+          - summon{t=ero_vfx_sh_sp_at8;a=1;then=[ - sudoskill{s=[ - blockwave{duration=80;radius=2;radiusY=5;velocity=2;shape=Sphere;fo=true} @SelfLocation{y=0} ];cat=true} ]}
+          - skill{s=[
+              - damage{a=<caster.damage> * 2}
+              - delay 1
+              - throw{v=0;vy=12}
+              - potion{t=SLOW_FALLING;d=40;l=0;force=true;p=false;i=false}
+            ];sync=true} @EntitiesNearOrigin{r=14.5}
+        ];sync=true;delay=15} @RingAroundOrigin{r=17;p=25}
+    ];yo=-1.5} @ModelPart{p=core2}
+
+ero_argos_state_2_death_hs:
+  Skills:
+  - summon{t=ero_vfx_sh_sp_at8;a=1;then=[
+      - sound{s=block.beacon.deactivate;p=1.80;v=3}
+      - sound{s=block.conduit.deactivate;p=0.70;v=3}
+      - sound{s=entity.creaking.deactivate;p=2.00;v=1}
+    ]} @ModelPart{p=core2}
+
+ero_argos_state_2_skill_attack_ran:
+  Cooldown: 5
+  Conditions:
+  - hastag{t=state_2} true
+  - offgcd
+  TargetConditions:
+  - distance{d=10-20} true
+  - fieldofview{angle=20} true
+  Skills:
+  - randomskill{skills=ero_argos_state_2_skill_attack_2 0.8,ero_argos_state_2_skill_attack_3 0.7,ero_argos_state_2_skill_attack_4 0.8,ero_argos_state_2_skill_attack_1 0.8,ero_argos_state_2_skill_attack_5 0.7} @self
+
+ero_argos_state_2_skill_attack_2:
+  Cooldown: 7
+  Skills:
+  - gcd{t=200} @self
+  - setvariable{var=CASTER.rotX;val="<caster.l.yaw>";t=FLOAT} @self
+  - setrotation{relative=false;yaw=<caster.var.rotX>;repeat=70;repeatInterval=1} @self
+  - skill{s=ero_stopEntityBoss_argos_move_hb;sync=true;durations=45} @self
+  - state{s=special_attack_2_up;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_2and4;p=1;v=3;delay=5} @self
+  - delay 14
+  - lunge{v=1.5;vy=1.5} @Forward{f=2;y=1;lockpitch=true}
+  - delay 10
+  - lunge{v=1.2;vy=0.1} @Forward{f=2;y=1;lockpitch=true}
+  - Aura{auraName=ero_argos_state_2_skill_attack_2;oT=[
+      - skill{s=ero_argos_state_2_skill_attack_2_og;sync=true} @self ?onground{}
+      - gcd{t=5} @self
+    ];time=200;i=1} @self
+
+ero_argos_state_2_skill_attack_2_og:
+  Skills:
+  - gcd{t=20} @self
+  - setrotation{relative=false;yaw=<caster.var.rotX>;repeat=20;repeatInterval=1} @self
+  - state{s=special_attack_2_down;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - auraremove{n=ero_argos_state_2_skill_attack_2} @self
+  - summon{t=ero_vfx_sh_sp_at10;a=1;l=0;r=0} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_vocal_sp_attack_2and4;p=1;v=3} @self
+  - skill{s=ero_argos_reset_idle;sync=true;delay=15} @self
+  - skill{s=[
+      - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_3and5_s1;p=1;v=3} @self
+      - damage{a=<caster.damage> * 0.7}
+      - delay 1
+      - throw{v=0;vy=12}
+      - potion{t=SLOW_FALLING;d=40;l=0;force=true;p=false;i=false}
+    ];sync=true} @EntitiesNearOrigin{r=5.4}
+  - blockwave{duration=80;radius=4.5;radiusY=5;velocity=3;shape=Sphere} @Origin{yoffset=-0.5}
+  - effect:particles{particle=campfire_signal_smoke;speed=0.03;Size=1;a=20;hS=1.3;vS=0} @Origin
+  - effect:particles{particle=Lava;speed=0.2;Size=1;a=30;hS=1.8;vS=0.45} @Origin{yoffset=1}
+  - effect:particles{particle=Large_Smoke;speed=0.2;Size=1;a=50;hS=1.8;vS=0.45} @Origin{yoffset=1}
+  - effect:particles{particle=Smoke;speed=0.2;Size=1;a=50;hS=1.8;vS=0.45} @Origin{yoffset=1}
+  - effect:particles{particle=Warped_Spore;speed=0.125;Size=1;a=35;hS=1.5;vS=0.3} @Origin
+  - effect:particles{particle=campfire_signal_smoke;speed=0.04;Size=1;a=10;hS=3;vS=0;delay=5} @Origin{yoffset=1.25}
+  - skill{s=[
+      - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_3_s2;p=1;v=3} @self
+      - effect:particles{particle=Lava;speed=0.2;Size=1;a=20;hS=1.4;vS=0.45}
+      - effect:particles{particle=Witch;speed=0.2;Size=1;a=30;hS=1.4;vS=0.45}
+      - effect:particles{particle=Large_Smoke;speed=0.2;Size=1;a=30;hS=1.4;vS=0.45}
+      - effect:particles{particle=Smoke;speed=0.2;Size=1;a=30;hS=1.4;vS=0.45}
+      - effect:particles{particle=Warped_Spore;speed=0.125;Size=1;a=35;hS=1.1;vS=0.3}
+      - blockwave{duration=80;radius=2;radiusY=5;velocity=2;shape=Sphere}
+      - skill{s=[
+          - damage{a=<caster.damage> * 1.2}
+          - delay 1
+          - throw{v=0;vy=12}
+          - potion{t=SLOW_FALLING;d=40;l=0;force=true;p=false;i=false}
+        ];sync=true} @EntitiesNearOrigin{r=9.5}
+    ];sync=true;delay=5} @Ring{r=7;p=15}
+  - skill{s=[
+      - sound{s=ero_boss_argos:ero_boss_argos.argos_sfx_sp_attack_3_s2;p=0.9;v=3} @self
+      - effect:particles{particle=Lava;speed=0.2;Size=1;a=15;hS=1.4;vS=0.45}
+      - effect:particles{particle=Witch;speed=0.2;Size=1;a=25;hS=1.4;vS=0.45}
+      - effect:particles{particle=Large_Smoke;speed=0.2;Size=1;a=25;hS=1.4;vS=0.45}
+      - effect:particles{particle=Smoke;speed=0.2;Size=1;a=25;hS=1.4;vS=0.45}
+      - effect:particles{particle=Warped_Spore;speed=0.125;Size=1;a=30;hS=1.1;vS=0.3}
+      - blockwave{duration=80;radius=2;radiusY=5;velocity=2;shape=Sphere}
+      - skill{s=[
+          - damage{a=<caster.damage> * 1.7}
+          - delay 1
+          - throw{v=0;vy=12}
+          - potion{t=SLOW_FALLING;d=40;l=0;force=true;p=false;i=false}
+        ];sync=true} @EntitiesNearOrigin{r=14.5}
+    ];sync=true;delay=10} @Ring{r=12;p=20}
+  - delay 20
+  - skill{s=ero_stopEntityBoss_argos_move_hb_un;sync=true} @self
+
+ero_argos_state_2_skill_attack_3:
+  Cooldown: 8
+  Conditions:
+  - offgcd
+  - playersinradius{a=>0;r=35}
+  Skills:
+  - gcd{t=90} @self
+  - skill{s=ero_stopEntityBoss_argos_hb;sync=true;durations=90} @self
+  - state{s=special_attack_3;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_stege2_special_attack_3;p=1;v=3} @self
+  - delay 18
+  - skill{s=[
+      - pull{v=8;to=true;fo=true;Origin=@ModelPart{p=bone18};repeat=37;repeatInterval=1}
+      - effect:particleline{p=Smoke;a=5;speed=0.005;hS=0.15;vS=0.15;zigzagOffset=0.2;fo=true;Origin=@ModelPart{p=bone18};repeat=17;repeatInterval=1}
+      - sudoskill{s=[
+          - effect:particles{p=reddust;color=#151416;Size=0.35;a=3;hS=0.01;vS=0.01} @Ring{radius=0.6;points=18;oy=1;rotationx=45}
+          - effect:particles{p=reddust;color=#151416;Size=0.35;a=3;hS=0.01;vS=0.01} @Ring{radius=0.6;points=18;oy=1;rotationz=45}
+          - effect:particles{p=reddust;color=#151416;Size=0.35;a=3;hS=0.01;vS=0.01} @Ring{radius=0.6;points=18;oy=1;rotationy=45}
+        ];cat=true;repeat=17;repeatInterval=1} @TargetedTarget
+      - delay 20
+      - mountmodel{driver=true;mode=force_walking;mid=ero_argos_two} @TargetedTarget
+      - delay 15
+      - Aura{auraName=auraAttack;oT=[ - effect:particles{particle=Falling_Lava;speed=0;Size=1;a=7;hS=0.2;vS=0.25;y=1} ];time=25;i=3}
+      - delay 15
+      - setvariable{var=SKILL.hpTrgetp;val="<target.hp>";t=INTEGER}
+      - setvariable{var=SKILL.hpTrget;val="<target.mhp> * 0.5";t=INTEGER}
+      - skill{s=[ 
+          - damage{a="<skill.var.hpTrgetp> * 0.5";ia=true} @TargetedTarget 
+          - healpercent{m=0.05} @self 
+        ];sync=true} @TargetedTarget{Conditions=[ - variableInRange{var=skill.hpTrgetp;value=><skill.var.hpTrget>}]}
+      - skill{s=[ 
+        - damage{a="<skill.var.hpTrget> * 2.5";ia=true} @TargetedTarget 
+        - healpercent{m=0.05} @self ];sync=true} @TargetedTarget{Conditions=[ - variableInRange{var=skill.hpTrgetp;value=<<skill.var.hpTrget>}]}
+      - delay 15
+      - dismountmodel @TargetedTarget
+      - delay 1
+      - throw{v=13;vy=0} @TargetedTarget
+    ];sync=true} @PlayersInRadius{r=35;limit=1;sort=RANDOM}
+  
+ero_argos_state_2_skill_attack_4:
+  Cooldown: 6
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=30} @self
+  - skill{s=ero_stopEntityBoss_argos_hb;sync=true;durations=30} @self
+  - state{s=special_attack_4;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_stege2_attack_1;p=<random.float.0.9to1.0>;v=4;repeat=1;repeatInterval=20} @self
+  - summon{t=ero_vfx_sh_sp_at8;a=1;then=[ - sound{s=ero_boss_argos:ero_boss_argos.argos_stege2_attack_1;p=<random.float.0.9to1.0>;v=4} - remove{delay=10;sync=true} ];delay=10} @ModelPart{p=axe3}
+  - delay 7
+  - skill{s=[
+      - totem{yo=-1.5;i=1;md=2;oS=[
+          - effect:lightning{}
+          - effect:particles{particle=Witch;speed=0.3;Size=1;a=40;hS=1.4;vS=0.75}
+          - effect:particles{particle=Smoke;speed=0.15;Size=1;a=35;hS=1.4;vS=0.75}
+          - effect:particles{particle=Lava;speed=0.15;Size=1;a=35;hS=1.4;vS=0.75}
+          - skill{s=[
+              - damage{a=<caster.damage> * 1.8}
+              - delay 1
+              - throw{v=7;vy=4;fo=true} 
+            ];sync=true} @EntitiesNearOrigin{r=4.5}
+        ]}
+    ];sync=true;repeat=6;repeatInterval=1} @ModelPart{p=axe3}
+
+ero_argos_state_2_skill_attack_5:
+  Cooldown: 15
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=70} @self
+  - skill{s=ero_stopEntityBoss_argos_hb;sync=true;durations=70} @self
+  - state{s=special_attack_5;lerpout=5;skiplastframe=true;ignorelerp=true;priority=1;speed=1.3} @self
+  - delay 1
+  - summon{t=ero_vfx_sh_sp_at12;a=1} @self
+  - delay 5
+  - sound{s=ero_boss_argos:ero_boss_argos.crash_1;p=1;v=5;delay=3} @self
+  - sound{s=ero_boss_argos:ero_boss_argos.crash_1;p=0.8;v=5;delay=3} @self
+  - skill{s=[
+      - damage{a=<caster.damage>*1.5}
+      - potion{t=SLOW;d=200;l=0}
+      - effect:particles{particle=Smoke;speed=0.01;Size=1;a=10;hS=0.35;vS=0.45;y=1;repeat=60;repeatInterval=1}
+      - delay 1
+      - throw{v=8;vy=3}
+    ];sync=true} @EntitiesNearOrigin{r=38}
+  - skill{s=[
+      - skill{s=[
+          - summon{t=ero_vfx_rz;a=1}
+        ];sync=true} @RandomLocationsNearTargets{a=45;r=26;s=6}
+    ];sync=true} @self
+
+ero_argos_sound_a:
+  Skills:
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_footsteps;v=5} @self
+
+ero_argos_sound_b:
+  Skills:
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_chain_1;v=3} @self
+
+ero_argos_sound_c:
+  Skills:
+  - sound{s=ero_boss_argos:ero_boss_argos.argos_chain_2;v=3} @self

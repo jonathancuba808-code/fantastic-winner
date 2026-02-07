@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/water_surface_slash_7","particle":"#0"},"elements":[{"from":[-9.75,8.0,-5.75],"to":[25.75,8.0,21.75],"faces":{"up":{"uv":[0.0,0.375,16.0,11.125],"tintindex":0,"rotation":0,"texture":"#0"},"down":{"uv":[0.0,11.125,16.0,0.375],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

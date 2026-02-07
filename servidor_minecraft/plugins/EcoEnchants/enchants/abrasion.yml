@@ -1,0 +1,27 @@
+display-name: "Abrasion"
+description: "Deals &a%placeholder% &rdamage to your opponents armor"
+placeholder: "%level%"
+type: normal
+
+targets:
+  - sword
+  - axe
+
+conflicts: [ ]
+rarity: legendary
+max-level: 2
+
+tradeable: true
+discoverable: true
+enchantable: true
+
+effects:
+  - id: damage_armor
+    args:
+      damage: "%level%"
+    triggers:
+      - melee_attack
+
+conditions: [ ]
+
+# 3BqFZSpqobEsbdUSKJWcezrxkFhd1OlHGWsS5MFb23e9wh7R+AFgmTuNWELP4uw04kU56+Z7DKTqUBeBzbnoVxUN3mjjjUhkJS2KuORuEGLVzOu8dH4/Di+GYlhfc45p

@@ -1,0 +1,50 @@
+name: Blazing Barrage
+lore:
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+- ""
+- "&7Summon 6 magic fire circles behind you, firing fireballs from"
+- "&7each circle in a row that explode and burn enemies. Charge another"
+- "&7fireball growing in size in front of you and blast it forward in"
+- "&7a fan shape, burning enemies."
+- "&c🗡 {damage} Damage"
+- "&6🔥 {burndamage} Burn Damage"
+- "&9⏱ {burnduration}s Burn Duration"
+- "&e⌛ {cooldown}s Cooldown"
+- ""
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+material: 'COAL:2308'
+timer:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 4
+  per-level: 1
+  min: 4
+  max: 8
+burndamage:
+  base: 1
+  per-level: 1
+  min: 1
+  max: 3
+burnduration:
+  base: 4
+  per-level: 0.1
+  min: 4
+  max: 7
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 5
+  per-level: -0.01
+  min: 4
+  max: 5

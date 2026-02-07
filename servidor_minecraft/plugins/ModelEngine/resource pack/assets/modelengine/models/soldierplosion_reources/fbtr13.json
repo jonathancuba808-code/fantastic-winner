@@ -1,0 +1,1 @@
+{"textures":{"4":"modelengine:entity/fsoldier_fireblade_resources","particle":"#4"},"elements":[{"from":[-8.0,8.0,-8.0],"to":[24.0,8.0,24.0],"faces":{"up":{"uv":[8.0,8.001,9.998,9.999],"tintindex":0,"rotation":0,"texture":"#4"},"down":{"uv":[9.998,8.001,8.0,9.999],"tintindex":0,"rotation":180,"texture":"#4"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

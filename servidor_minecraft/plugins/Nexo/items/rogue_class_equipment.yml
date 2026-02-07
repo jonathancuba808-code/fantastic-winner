@@ -1,0 +1,134 @@
+rogue_dualdagger:
+  Pack:
+    custom_model_data: 4587
+    model: rogue_dualdaggers
+  material: STONE_SWORD
+  permission: rogue_spellstaff
+  itemname: <gradient:#5336DB:#9183D5:#B0A9D2>Rogue Dualdagger
+rogue_helmet:
+  itemname: <gradient:#5336DB:#9183D5:#B0A9D2>Rogue Helmet
+  material: CHAINMAIL_HELMET
+  Pack:
+    model: rogue_class_items/rogue_helmet
+    custom_model_data: 4588
+  Components:
+    equippable:
+      slot: HEAD
+rogue_chestplate:
+  material: CHAINMAIL_CHESTPLATE
+  Pack:
+    CustomArmor:
+      layer1: rogue_texture/rogue_layer_1.png
+      layer2: rogue_texture/rogue_layer_2.png
+    parent_model: item/generated
+    texture: rogue_texture/rogue_chestplate
+    custom_model_data: 4589
+  AttributeModifiers:
+  - attribute: GENERIC_ARMOR
+    amount: 8
+    operation: 0
+    slot: CHEST
+    uuid: 5c2bd4b6-3a5a-48cf-9bc4-c13bfd98d614
+    name: nexo:modifier
+    key: nexo:modifier
+  itemname: <gradient:#5336DB:#9183D5:#B0A9D2>Rogue Chestplate
+  Components:
+    equippable:
+      slot: CHEST
+      asset_id: nexo:rogue
+  ItemFlags:
+  - HIDE_ARMOR_TRIM
+  trim_pattern: nexo:rogue
+rogue_leggings:
+  material: CHAINMAIL_LEGGINGS
+  Pack:
+    CustomArmor:
+      layer1: rogue_texture/rogue_layer_1.png
+      layer2: rogue_texture/rogue_layer_2.png
+    parent_model: item/generated
+    texture: rogue_texture/rogue_leggings
+    custom_model_data: 4590
+  AttributeModifiers:
+  - attribute: GENERIC_ARMOR
+    amount: 6
+    operation: 0
+    slot: LEGS
+    uuid: 92dbd057-4eb6-4e15-85b3-4cd617749697
+    name: nexo:modifier
+    key: nexo:modifier
+  itemname: <gradient:#5336DB:#9183D5:#B0A9D2>Rogue Leggings
+  Components:
+    equippable:
+      slot: LEGS
+      asset_id: nexo:rogue
+  ItemFlags:
+  - HIDE_ARMOR_TRIM
+  trim_pattern: nexo:rogue
+rogue_boots:
+  material: CHAINMAIL_BOOTS
+  Pack:
+    CustomArmor:
+      layer1: rogue_texture/rogue_layer_1.png
+      layer2: rogue_texture/rogue_layer_2.png
+    parent_model: item/generated
+    texture: rogue_texture/rogue_boots
+    custom_model_data: 4591
+  AttributeModifiers:
+  - attribute: GENERIC_ARMOR
+    amount: 3
+    operation: 0
+    slot: FEET
+    uuid: 1bef8aa1-9f62-496f-bbfa-7622545f6004
+    name: nexo:modifier
+    key: nexo:modifier
+  itemname: <gradient:#5336DB:#9183D5:#B0A9D2>Rogue Boots
+  Components:
+    equippable:
+      slot: FEET
+      asset_id: nexo:rogue
+  ItemFlags:
+  - HIDE_ARMOR_TRIM
+  trim_pattern: nexo:rogue
+icon_rogue_vicious_cuts:
+  Pack:
+    custom_model_data: 1928
+    texture: rogue_texture/icon_rogue_vicious_cuts.png
+  material: COAL
+  permission: icon_rogue_vicious_cuts
+  itemname: icon_rogue_vicious_cuts
+icon_rogue_slice_and_dice:
+  Pack:
+    custom_model_data: 1929
+    texture: rogue_texture/icon_rogue_slice_and_dice.png
+  material: COAL
+  permission: icon_rogue_slice_and_dice
+  itemname: icon_rogue_slice_and_dice
+icon_rogue_cutthroat_combo:
+  Pack:
+    custom_model_data: 1930
+    texture: rogue_texture/icon_rogue_cutthroat_combo.png
+  material: COAL
+  permission: icon_rogue_cutthroat_combo
+  itemname: icon_rogue_cutthroat_combo
+icon_rogue_smokebomb:
+  Pack:
+    custom_model_data: 1931
+    texture: rogue_texture/icon_rogue_smokebomb.png
+  material: COAL
+  permission: icon_rogue_smokebomb
+  itemname: icon_rogue_smokebomb
+icon_rogue_grappling_hook:
+  Pack:
+    custom_model_data: 1932
+    texture: rogue_texture/icon_rogue_grappling_hook.png
+  material: COAL
+  permission: icon_rogue_grappling_hook
+  itemname: icon_rogue_grappling_hook
+icon_rogue_mark_of_death:
+  Pack:
+    custom_model_data: 1933
+    texture: rogue_texture/icon_rogue_mark_of_death.png
+  material: COAL
+  permission: icon_rogue_mark_of_death
+  itemname: icon_rogue_mark_of_death
+

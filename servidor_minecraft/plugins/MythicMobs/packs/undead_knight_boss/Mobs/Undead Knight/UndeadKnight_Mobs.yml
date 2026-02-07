@@ -1,0 +1,85 @@
+
+
+
+
+UndeadKnight:
+  Type: ZOMBIE
+  Display: 'UndeadKnight'
+  Health: 500 # <- Here you can change health
+  Damage: 0
+  Modules:
+    ThreatTable: true
+  Options:
+    AlwaysShowName: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    MaxCombatDistance: 50
+    MovementSpeed: 0.2
+    Silent: true
+    Despawn: false
+    PreventSunburn: true
+    KnockbackResistance: 10
+  BossBar:
+    Enabled: true
+    Title: '&3Undead Knight'
+    Range: 50
+    Color: WHITE
+    Style: SEGMENTED_10
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  - 2 attacker
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  Skills:
+  - effect:sound{s=entity.wither_skeleton.ambient;v=2;p=0} @self ~onTimer:120 0.5
+  - effect:sound{s=entity.wither.hurt;v=0.2;p=0} @self ~onDamaged
+  - effect:particles{particle=soul_fire_flame;amount=5;hS=0.1;vS=0.4;speed=.01} @ModelPart{m=undead_knight;p=head;y=0.6} ~onTimer:10
+  - effect:particles{particle=sculk_soul;amount=2;hS=0.1;vS=0.4;speed=.01} @ModelPart{m=undead_knight;p=head;y=0.6} ~onTimer:10
+  - randomskill{s=UndeadKnightStep1,UndeadKnightStep2,UndeadKnightStep3} @self ~onTimer:10
+  - model{mid=undead_knight;usm=true} @self ~onSpawn
+  - randomskill{s=UndeadKnightAttack,UndeadKnightAttack2,UndeadKnightAttack3} @self ~onAttack
+  - skill{s=UndeadKnightBigPunch} @self ~onTimer:200 0.4
+  - skill{s=UndeadKnightSummon} @self ~onTimer:360 0.6 <50%
+  - skill{s=CheckUndeadKnightSummon} @self ~onTimer:20
+  - skill{s=UndeadKnightDeath} @self ~onDeath
+  
+  
+  
+  
+
+SkullMinion:
+  Type: ZOMBIE
+  Display: 'SkullMinion'
+  Health: 20 # <- Here you can change health
+  Damage: 0
+  Options:
+    AlwaysShowName: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    MaxCombatDistance: 50
+    MovementSpeed: 0.25
+    Silent: true
+    Despawn: false
+    PreventSunburn: true
+    KnockbackResistance: 10
+    DigOutOfGround: true
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 lookatplayers
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Skills:
+  - effect:sound{s=entity.vindicator.hurt;v=0.5;p=2} @self ~onDamaged
+  - model{mid=skull_boss_minion;usm=true} @self ~onSpawn
+  - randomskill{s=SkullMinionStep1,SkullMinionStep2,SkullMinionStep3} @self ~onTimer:10
+  - skill{s=SkullMinionAttack} @self ~onTimer:30
+  - skill{s=SkullMinionSpawn} @self ~onSpawn
+  - skill{s=SkullMinionDeath} @self ~onDeath
+#AzNFpHcEdzRYh1NZd0Q4kHRBNTYqxmajJHbEpFNnRkW35kbRVzd1ZGaFJ3aTdGO5AnSjR2M

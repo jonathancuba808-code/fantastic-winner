@@ -1,0 +1,51 @@
+name: Cryo Prison
+lore:
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+- ""
+- "&7Create an ice aura forming on the ground, exploding and creating"
+- "&7a giant ice prism. Enemies in the area gets frozen, trapped in"
+- "&7an ice crystal which gets destroyed after some time, dealing"
+- "&7extra damage to enemies. Damaging frozen enemies will destroy"
+- "&7the ice crystal sooner."
+- "&c🗡 {damage} Damage"
+- "&b🧊 {freezedamage} Freeze Damage"
+- "&9⏱ {freezeduration}s Freeze Duration"
+- "&e⌛ {cooldown}s Cooldown"
+- ""
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+material: 'COAL:2309'
+timer:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 4
+  per-level: 1
+  min: 4
+  max: 8
+freezedamage:
+  base: 4
+  per-level: 1
+  min: 4
+  max: 8
+freezeduration:
+  base: 4
+  per-level: 0.1
+  min: 4
+  max: 7
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 7
+  per-level: -0.01
+  min: 6
+  max: 7

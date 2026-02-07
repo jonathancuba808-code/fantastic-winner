@@ -1,0 +1,272 @@
+vfx_rogue_vicious_cuts:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+    Interactable: false
+  Skills:
+  - model{mid=rogue_vicious_cuts;n=false} @self ~onSpawn
+  - brightness{mid=rogue_vicious_cuts;b=15;s=15} @self ~onSpawn
+  - state{s=idle;speed=1} @self ~onSpawn
+  
+vfx_rogue_slice_and_dice_slash1:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=rogue_slice_and_dice} @self ~onSpawn
+  - brightness{mid=rogue_slice_and_dice;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=slash1;speed=1} @self ~onSpawn
+  - remove{delay=17} @self ~onSpawn
+  
+vfx_rogue_slash_effect_slash1:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=rogue_slash_effect} @self ~onSpawn
+  - brightness{mid=rogue_slash_effect;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=slash1;speed=1} @self ~onSpawn
+  - remove{delay=8} @self ~onSpawn  
+  
+vfx_rogue_slash_effect_slash2:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=rogue_slash_effect} @self ~onSpawn
+  - brightness{mid=rogue_slash_effect;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=slash2;speed=1} @self ~onSpawn
+  - remove{delay=8} @self ~onSpawn    
+  
+vfx_rogue_slice_and_dice_slash2:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=rogue_slice_and_dice} @self ~onSpawn
+  - brightness{mid=rogue_slice_and_dice;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=slash2;speed=1} @self ~onSpawn
+  - remove{delay=17} @self ~onSpawn  
+  
+vfx_rogue_slice_and_dice_stab:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=rogue_slice_and_dice_stab} @self ~onSpawn
+  - brightness{mid=rogue_slice_and_dice_stab;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=14} @self ~onSpawn
+  
+vfx_rogue_cutthroat_combo_dash:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=rogue_cutthroat_combo_dash} @self ~onSpawn
+  - brightness{mid=rogue_cutthroat_combo_dash;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=24} @self ~onSpawn
+  
+vfx_rogue_cutthroat_combo_part1:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=rogue_cutthroat_combo_part1} @self ~onSpawn
+  - brightness{mid=rogue_cutthroat_combo_part1;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=18} @self ~onSpawn
+  
+vfx_rogue_cutthroat_combo_part2:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=rogue_cutthroat_combo_part2} @self ~onSpawn
+  - brightness{mid=rogue_cutthroat_combo_part2;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=16} @self ~onSpawn
+  
+vfx_rogue_cutthroat_combo_part3_slash1:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=rogue_cutthroat_combo_part3} @self ~onSpawn
+  - brightness{mid=rogue_cutthroat_combo_part3;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=slash1;speed=1} @self ~onSpawn
+  - remove{delay=17} @self ~onSpawn
+  
+vfx_rogue_cutthroat_combo_part3_slash2:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=rogue_cutthroat_combo_part3} @self ~onSpawn
+  - brightness{mid=rogue_cutthroat_combo_part3;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=slash2;speed=1} @self ~onSpawn
+  - remove{delay=17} @self ~onSpawn
+  
+vfx_rogue_cutthroat_combo_dust:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=rogue_cutthroat_combo_dust} @self ~onSpawn
+  - brightness{mid=rogue_cutthroat_combo_dust;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=21} @self ~onSpawn     
+  
+vfx_rogue_smokebomb:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=rogue_smokebomb} @self ~onSpawn
+  - brightness{mid=rogue_smokebomb;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=137} @self ~onSpawn
+  
+vfx_rogue_grappling_hook:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=rogue_grappling_hook} @self ~onSpawn
+  - brightness{mid=rogue_grappling_hook;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=hook1;speed=1} @self ~onSpawn
+  - state{s=hook1_end;speed=1;delay=10} @self ~onSpawn
+  - remove{delay=20} @self ~onSpawn
+  
+vfx_rogue_grappling_hook_smoke:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=rogue_grappling_hook_smoke} @self ~onSpawn
+  - brightness{mid=rogue_grappling_hook_smoke;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=24} @self ~onSpawn  
+  
+vfx_rogue_mark_of_death_disappear:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Collidable: false
+    Interactable: false
+  Skills:
+  - model{mid=rogue_mark_of_death_disappear;n=false} @self ~onSpawn
+  - brightness{mid=rogue_mark_of_death_disappear;b=15;s=15} @self ~onSpawn
+  - remove{delay=50} @self ~onSpawn   
+  
+vfx_rogue_mark_of_death_mark:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+    Interactable: false
+  Skills:
+  - model{mid=rogue_mark_of_death_mark;n=false} @self ~onSpawn
+  - brightness{mid=rogue_mark_of_death_mark;b=15;s=15} @self ~onSpawn
+  - remove{delay=17} @self ~onSpawn
+  
+vfx_rogue_mark_of_death_indicator:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+    Interactable: false
+  Skills:
+  - model{mid=rogue_mark_of_death_indicator;n=false} @self ~onSpawn
+  - brightness{mid=rogue_mark_of_death_indicator;b=15;s=15} @self ~onSpawn
+  - remove{delay=15} @self ~onSpawn
+  
+vfx_rogue_mark_of_death:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+    Interactable: false
+  Skills:
+  - model{mid=rogue_mark_of_death;n=false} @self ~onSpawn
+  - brightness{mid=rogue_mark_of_death;b=15;s=15} @self ~onSpawn
+  - remove{delay=23} @self ~onSpawn    

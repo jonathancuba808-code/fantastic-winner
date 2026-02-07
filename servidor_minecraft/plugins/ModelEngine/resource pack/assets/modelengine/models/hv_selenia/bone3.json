@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/hv_selenia","particle":"#0"},"elements":[{"from":[16.25,7.3,-10.1875],"to":[16.25,13.175,11.4375],"faces":{"east":{"uv":[1.92,12.32,3.6399999,12.799999],"tintindex":0,"rotation":0,"texture":"#0"},"west":{"uv":[3.6399999,12.32,5.3599997,12.799999],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

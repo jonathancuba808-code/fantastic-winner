@@ -1,0 +1,36 @@
+name: Mana Barrier
+lore:
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+- ""
+- "&7Generate a mana shield every {barriercooldown} seconds. The mana shield blocks"
+- "&7up to one incoming attack."
+- "&e⌛ {barriercooldown}s Barrier Cooldown"
+- ""
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+material: 'COAL:2311'
+passive-type: TIMER
+timer:
+  base: 10
+  per-level: 0
+  min: 10
+  max: 10
+barriercooldown:
+  base: 7
+  per-level: -0.05
+  min: 6
+  max: 7
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0

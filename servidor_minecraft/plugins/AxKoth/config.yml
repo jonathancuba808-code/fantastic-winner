@@ -1,0 +1,80 @@
+# DOCUMENTATION: https://docs.artillex-studios.com/axkoth.html
+
+prefix: '<gradient:#FF6600:#FF8800><b>AxKoth</b></gradient> <gray>»</gray> '
+
+# what plugin to use for these things?
+# if you need another plugin supported, please contact us on discord
+# note: we can only add plugins where the player can only be in a single team at once (so most land protection plugins are not possible)
+hooks:
+  # values:
+  # - none
+  # - BetterTeams
+  # - GangsPlus
+  # - Guilds
+  # - KingdomsX
+  # - FactionsUUID
+  # - SuperiorSkyblock2
+  # - UltimateClans
+  # - SaberFactions
+  # - Towny
+  # - SimpleClans
+  # - Parties
+  # - AxParties
+  team-plugin: none
+
+hook-settings:
+  BattlePass:
+    register: true
+  PlaceholderAPI:
+    register: true
+  GSit:
+    register: true
+  DeluxeCombat:
+    register: true
+
+# the format used in placeholders
+# 1 - HH:MM:SS, for example 01:25:35
+# 2 - short format, for example 20m
+# 3 - text format, for example 01h 25m 35s
+timer-format: 1
+
+# while capturing a koth, how often should the chat notify players about the current capture
+# set to -1 to disable
+capture-broadcast-every-seconds: 5
+
+# how often should leaderboards update?
+# the updates are done async
+# this value only changes after a restart
+leaderboard-update-seconds: 180
+
+# if enabled, the player who is currently capturing the koth will get a glow effect
+capturer-glow:
+  enabled: false
+
+database:
+  # h2, sqlite, mysql
+  # for single server setups we recommend h2 because it's way faster than sqlite
+  type: h2
+  
+  # you only need to touch these when using mysql/postgresql
+  address: 127.0.0.1
+  port: 3306
+  database: admin
+  username: admin
+  password: admin
+  pool:
+    maximum-pool-size: 10
+    minimum-idle: 10
+    maximum-lifetime: 1800000
+    keepalive-time: 0
+    connection-timeout: 5000
+
+# should be plugin notify you if there is a new update?
+update-notifier:
+  # if enabled, it will display the message in the console
+  enabled: true
+  # if enabled, it will broadcast the update message to all players who have the <plugin-name>.update-notify permission
+  on-join: true
+
+# do not change
+version: 6

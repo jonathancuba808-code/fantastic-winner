@@ -1,0 +1,59 @@
+name: Sorcery Combo
+lore:
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+- ""
+- "&7Unleash a chain of sorcery:"
+- "&bFirst-Second Strike: &7Shoot a fireball forward that explodes"
+- "&7and burns enemies."
+- "&bThird Strike: &7Teleport a short distance backwards and fire glacial"
+- "&7spikes in a fan shape, slowing down enemies."
+- "&bFourth Strike: &7Call down a thunder strike at the location you're"
+- "&7looking at."
+- "&c🗡 {damage} Damage"
+- "&6🔥 {burndamage} Burn Damage"
+- "&9⏱ {burnduration}s Burn Duration"
+- "&9⏱ {slowduration}s Slow Duration"
+- "&e⌛ {cooldown}s Cooldown"
+- ""
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+material: 'COAL:2313'
+timer:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 4
+  per-level: 1
+  min: 4
+  max: 8
+burndamage:
+  base: 1
+  per-level: 1
+  min: 1
+  max: 3
+burnduration:
+  base: 4
+  per-level: 0.1
+  min: 4
+  max: 7
+slowduration:
+  base: 4
+  per-level: 0.1
+  min: 4
+  max: 7
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 0.3
+  per-level: -0.01
+  min: 0.2
+  max: 0.3

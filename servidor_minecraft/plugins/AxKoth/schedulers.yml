@@ -1,0 +1,28 @@
+# DOCUMENTATION: https://docs.artillex-studios.com/axkoth.html
+
+# list of timezones: https://docs.oracle.com/cd/E72987_01/wcs/tag-ref/MISC/TimeZones.html
+# keep on 'server' to use the server machine's timezone
+# some examples: Europe/Paris, America/New_York
+timezone: server
+
+# this uses the usual CRON format
+# generator: https://crontab.guru/
+# the format is:
+# <minute> <hour> <day> <month> <day of week>
+# you can use '*'-s to make it run all the time when the other rules also match
+
+# you can make as many scheduler as you would like
+example:
+  times:
+    # this will run at hour 18 (6pm), minute 0, every day
+    - 0 18 * * *
+  # if 'random' is enabled, a random koth will start from the list
+  # otherwise, all the koths listed will be started
+  # note: random scheduler will be ignored in placeholders
+  random: false
+  # list of koths that will be activated
+  koths:
+  - example
+
+# do not change
+version: 1

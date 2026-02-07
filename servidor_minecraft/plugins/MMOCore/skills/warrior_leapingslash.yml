@@ -1,0 +1,41 @@
+name: Leaping Slash
+lore:
+- "&4&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+- ""
+- "&7Leap forward and crash down with your blade,"
+- "&7blasting everything at the point of impact."
+- "&c🗡 {damage} Damage"
+- "&e⌛ {cooldown}s Cooldown"
+- ""
+- "&4&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+material: 'COAL:1913'
+timer:
+  base: 15
+  per-level: 1
+  min: 15
+  max: 18
+damage:
+  base: 6
+  per-level: 1
+  min: 6
+  max: 8
+heal:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 3
+  per-level: -0.1
+  min: 2.5
+  max: 3

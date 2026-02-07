@@ -1,0 +1,37 @@
+name: Smoke Bomb
+lore:
+- "&4•--"
+- ""
+- "&7Deploy a cloud of smoke that blocks enemies’ vision from outside while you maintain clear sight inside."
+- "&7Enemies entering the smoke are slowed."
+- "&4•--"
+- "&c🗡 {damage} Damage"
+- "&e⌛ {cooldown}s Cooldown"
+- ""
+- "&4•--"
+material: 'COAL:1931'
+timer:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 6
+  per-level: 1
+  min: 6
+  max: 10
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 8
+  per-level: 0
+  min: 8
+  max: 8

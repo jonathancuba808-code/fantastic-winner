@@ -1,0 +1,15 @@
+# You can place whatever you need to drop (in mythic format)
+# when the mob is decapitated, thus, artificially killed,
+# and not killed by a direct action (for the game)
+
+cpbrute_drops:
+  MinItems: 0
+  MaxItems: 6
+  Drops:
+  - exp 20-35 1
+  - exp 20-35 1
+  - exp 20-35 1
+  - exp 20-35 1
+
+
+#123123

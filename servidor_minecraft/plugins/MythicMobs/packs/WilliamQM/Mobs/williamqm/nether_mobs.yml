@@ -1,0 +1,170 @@
+netherman: 
+  Type: HUSK
+  Display: 'Netherman'
+  Health: 50
+  Damage: 1
+  Faction: NetherMob
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - randomlookaround
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Options:
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 0.8
+    FollowRange: 64
+    MovementSpeed: 0.3
+    Collidable: true
+  Modules:
+    ThreatTable: true
+  Skills:
+  - model{mid=netherman;n=false;step=2} @self ~onSpawn
+  - model{mid=netherman;n=false;step=2} @self ~onLoad
+  - look{headOnly=true;immediately=true} @target ~onTimer:1
+  - randomskill{s=netherman_scream,netherman_swipe} ~onTimer:10
+  - sound{s=entity.polar_bear.hurt;p=0.9;v=1} @ self ~onDamaged
+  - sound{s=entity.strider.ambient;p=0.7;v=1} @self ~onTimer:120to140
+  - setspeed{t=walking;s=1} @self ~onDropCombat
+  - setspeed{t=walking;s=1.5} @self ~onEnterCombat
+  - cancelevent{sync=true} ~onAttack
+
+
+warped_creeper: 
+  Type: HUSK
+  Display: 'Warped Creeper'
+  Health: 20
+  Damage: 1
+  Faction: NetherMob
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - randomlookaround
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Options:
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 0.8
+    FollowRange: 64
+    MovementSpeed: 0.3
+    Collidable: true
+  Modules:
+    ThreatTable: true
+  DamageModifiers:
+  - PROJECTILE 100
+  Skills:
+  - model{mid=nether_creeper;n=false;step=2} @self ~onSpawn
+  - model{mid=nether_creeper;n=false;step=2} @self ~onLoad
+  - skill{s=creeper_explode} ~onTimer:10
+  - skill{s=creeper_fuse} ~onTimer:3
+  - sound{s=entity.spider.ambient;p=0.5;v=1} @self ~onTimer:100to120
+  - sound{s=entity.spider.hurt;p=0.7;v=1} @self ~onDamaged
+  - cancelevent{sync=true} ~onAttack
+
+crimson_skeleton: 
+  Type: HUSK
+  Display: 'Crimson Skeleton'
+  Health: 20
+  Damage: 1
+  Faction: NetherMob
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - randomlookaround
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Options:
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 0.8
+    FollowRange: 64
+    MovementSpeed: 0.5
+    Collidable: true
+  Skills:
+  - model{mid=crimson_skeleton;n=false;step=2} @self ~onSpawn
+  - model{mid=crimson_skeleton;n=false;step=2} @self ~onLoad
+  - randomskill{s=skeleton_whip,skeleton_spin} ~onTimer:10
+  - sound{s=entity.skeleton.ambient;p=1;v=1} @self ~onTimer:60to100
+  - sound{s=entity.stray.hurt;p=1;v=1} @self ~onDamaged
+  - cancelevent{sync=true} ~onAttack
+
+nether_scorpion: 
+  Type: HUSK
+  Display: 'Nether Scorpion'
+  Health: 40
+  Damage: 1
+  Faction: NetherMob
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - randomlookaround
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Options:
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 0.8
+    FollowRange: 64
+    MovementSpeed: 0.3
+    Collidable: true
+  Modules:
+    ThreatTable: true
+  Skills:
+  - model{mid=nether_scorpion;n=false;step=2} @self ~onSpawn
+  - model{mid=nether_scorpion;n=false;step=2} @self ~onLoad
+  - randomskill{s=scorpion_pinch,scorpion_sting} ~onTimer:10
+  - sound{s=entity.spider.step;p=0.8;v=1} @self ~onTimer:60to100
+  - sound{s=entity.silverfish.hurt;p=0.5;v=1} @self ~onDamaged
+  - cancelevent{sync=true} ~onAttack
+
+nether_zombie: 
+  Type: HUSK
+  Display: 'Nether Zombie'
+  Health: 50
+  Damage: 1
+  Faction: NetherMob
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - randomlookaround
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attackers
+  - players
+  Options:
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 0.8
+    FollowRange: 64
+    MovementSpeed: 0.3
+    Collidable: true
+  Modules:
+    ThreatTable: true
+  Skills:
+  - model{mid=nether_zombie;n=false;step=2} @self ~onSpawn
+  - model{mid=nether_zombie;n=false;step=2} @self ~onLoadà
+  - randomskill{s=zombie_kick,zombie_sweep,zombie_toss} ~onTimer:10
+  - sound{s=entity.zombie.ambient;p=0.85;v=1} @self ~onTimer:80to120
+  - sound{s=entity.zombie.hurt;p=0.85;v=1} @self ~onDamaged
+  - setspeed{t=walking;s=1} @self ~onDropCombat
+  - setspeed{t=walking;s=1.5} @self ~onEnterCombat
+  - cancelevent{sync=true} ~onAttack
+
+# eyJ1c2VyLW5hbWUiOiJGYXp6ZXIiLCJ1c2VyLWlkIjoiNzI4MSIsImRhdGUiOiIyMDI2LTAxLTMxIDE3OjQ2Iiwic2l0ZSI6Imh0dHBzOi8vZ2xlYWtzLnBybyJ9

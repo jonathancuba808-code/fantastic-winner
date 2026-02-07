@@ -1,0 +1,323 @@
+QueenBee:
+  Type:  ZOMBIE
+  Drops:
+  - exp 100-140 1
+  - queenbeeitems:stingspear_part 1-3 1
+  - queenbeeitems:stingblade_part 1-2 1
+  DamageModifiers:
+  - FALL -1
+  BossBar:
+    Enabled: true
+    Title: 'Queen Bee'
+    Range: 30
+    Color: WHITE
+  Health: 300
+  Modules:
+    ThreatTable: true
+  DamageModifiers:
+  - PROJECTILE 0.10
+  KillMessages:
+  - '<target.name> was slain by Queen Bee'
+  AIGoalSelectors:
+    - meleeattack{attackReach=6}
+    - goToSpawn{speed=1;max=15;min=10;dt=false}
+  AITargetSelectors:
+    - clear
+    - players
+  Skills:
+  - skill{s=QueenBeeSpawn} @self ~onSpawn
+  - skill{s=QueenBeeSpawnEF} @self ~onSpawn
+  - model{mid=QueenBee;damagetint=false} @self ~onSpawn
+  - skill{s=QueenBeeDeath} @self ~onDeath
+  - skill{s=SummonBee} @self ~onDamaged
+  - skill{s=[
+            - cancelEvent
+            - skill{s=QueenBeeAttack}
+            ];sync=true} @NearestPlayer{r=5} ~onAttack
+  Options:
+    Despawn: false
+    MovementSpeed: 0.25
+    Silent: true
+    MaxCombatDistance: 25
+    KnockbackResistance: 1
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventBlockInfection: true
+    Collidable: true
+    
+BeeMinion:
+  Type:  BEE
+  Drops:
+  - exp 6-8 1
+  Health: 20
+  Modules:
+    ThreatTable: true
+  KillMessages:
+  - '<target.name> was slain by Bee'
+  AITargetSelectors:
+    - clear
+    - players
+  Skills:
+  - model{mid=BeeMinion;damagetint=false} @self ~onSpawn
+  - skill{s=[
+            - cancelEvent
+            - skill{s=SoldierBeeAttack2}
+            ];sync=true} @NearestPlayer{r=5} ~onAttack
+  - skill{s=BeeDeath} @self ~onSpawn
+  - skill{s=SoldierBeeWalkAg} @self ~onEnterCombat
+  - skill{s=SoldierBeeWalk} @self ~onDropCombat
+  - skill{s=SoldierDeath} @self ~onDeath
+  Options:
+    Silent: false
+    PreventOtherDrops: true
+    PreventBlockInfection: true
+BeeMinion2:
+  Type:  BEE
+  Drops:
+  - exp 6-8 1
+  Health: 20
+  Modules:
+    ThreatTable: true
+  KillMessages:
+  - '<target.name> was slain by Bee'
+  AITargetSelectors:
+    - clear
+    - players
+  Skills:
+  - model{mid=BeeMinion;damagetint=false} @self ~onSpawn
+  - skill{s=[
+            - cancelEvent
+            - skill{s=SoldierBeeAttack2}
+            ];sync=true} @NearestPlayer{r=5} ~onAttack
+  - skill{s=SoldierBeeWalkAg} @self ~onEnterCombat
+  - skill{s=SoldierBeeWalk} @self ~onDropCombat
+  - skill{s=SoldierDeath} @self ~onDeath
+  Options:
+    Silent: false
+    PreventOtherDrops: true
+    PreventBlockInfection: true
+    
+QueenBeeEgg:
+  Type:  PIG
+  DamageModifiers:
+  - FALL -1
+  Health: 1000
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+    - clear
+    - players
+  Skills:
+  - setrotation{relative=true;yaw=135} @self ~onSpawn
+  - model{mid=queen_bee_egg;damagetint=false} @self ~onSpawn
+  - skill{s=QueenBeeaSummon} @self ~onDamaged
+  - skill{s=[
+            - setAI{ai=false}
+            ];sync=true} @self ~onSpawn
+  Options:
+    Despawn: false
+    MovementSpeed: 0.25
+    Silent: true
+    MaxCombatDistance: 25
+    KnockbackResistance: 1
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventBlockInfection: true
+    Collidable: true
+    
+SoldierBee:
+  Type: BEE
+  Drops:
+  - exp 6-8 1
+  - queenbeeitems:stingspear_part 1-2 0.3
+  - queenbeeitems:stingspear 1 0.05
+  DamageModifiers:
+  - FALL -1
+  Health: 20
+  Modules:
+    ThreatTable: true
+  KillMessages:
+  - '<target.name> was slain by Soldier Bee'
+  AIGoalSelectors:
+    - clear
+    - goToSpawn{speed=3;max=15;min=4;dt=true}
+    - meleeattack
+    - lookaround
+    - randomFly
+  AITargetSelectors:
+    - clear
+    - players
+  Skills:
+  - effect:particlesphere{p=item_crack;m=honeycomb;amount=50;radius=1;y=0.5}  @SelfLocation ~onSpawn
+  - skill{s=SoldierDeath} @self ~onDeath
+  - skill{s=SoldierOnDamaged} @self ~onDamaged
+  - model{mid=soldier_bee;damagetint=false} @self ~onSpawn
+  - skill{s=[
+            - cancelEvent
+            - skill{s=SoldierBeeAttack}
+            ];sync=true} @NearestPlayer{r=5} ~onAttack
+  - skill{s=SoldierBeeWalkAg} @self ~onEnterCombat
+  - skill{s=SoldierBeeWalk} @self ~onDropCombat
+  Options:
+    Despawn: false
+    Silent: false
+    MaxCombatDistance: 25
+    KnockbackResistance: 1
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventBlockInfection: true
+    Collidable: true
+SoldierBee2:
+  Type: BEE
+  Drops:
+  - exp 6-8 1
+  - queenbeeitems:stingspear_part 1-2 0.3
+  - queenbeeitems:stingspear 1 0.05
+  DamageModifiers:
+  - FALL -1
+  Health: 20
+  Modules:
+    ThreatTable: true
+  KillMessages:
+  - '<target.name> was slain by Soldier Bee'
+  AIGoalSelectors:
+    - clear
+    - goToSpawn{speed=3;max=20;min=4;dt=true}
+    - meleeattack
+    - lookaround
+    - randomFly
+  AITargetSelectors:
+    - clear
+    - players
+  Skills:
+  - effect:particlesphere{p=item_crack;m=honeycomb;amount=50;radius=1;y=0.5}  @SelfLocation ~onSpawn
+  - skill{s=SoldierDeath} @self ~onDeath
+  - skill{s=SoldierOnDamaged} @self ~onDamaged
+  - model{mid=soldier_bee;damagetint=false} @self ~onSpawn
+  - skill{s=[
+            - cancelEvent
+            - skill{s=SoldierBeeAttack}
+            ];sync=true} @NearestPlayer{r=5} ~onAttack
+  - skill{s=SoldierBeeWalkAg} @self ~onEnterCombat
+  - skill{s=SoldierBeeWalk} @self ~onDropCombat
+  Options:
+    Despawn: false
+    Silent: false
+    MaxCombatDistance: 25
+    KnockbackResistance: 1
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventBlockInfection: true
+    Collidable: true
+
+BeeLoot:
+  Type:  PIG
+  Drops:
+  - sugar 1-3 0.708
+  - honeycomb 1-3 0.708
+  - honey_bottle 1 0.338
+  - golden_carrot 1-3 0.235
+  - golden_apple 1 0.235
+  - enchanted_golden_apple 1 0.026
+  DamageModifiers:
+  - FALL -1
+  Health: 20
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - lookaround
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - effect:particlesphere{p=block_crack;m=honey_block;amount=50;radius=1} @self ~onDamaged
+  - state{s=damage} @self ~onDamaged
+  - sound{s=block.honey_block.break;v=1;p=1} @self ~onDamaged
+  - skill{s=BeeEggDeath} @self ~onDeath
+  - model{mid=bee_loot;damagetint=false} @self ~onSpawn
+  - skill{s=[
+            - delay 60
+            - setAI{ai=false}
+            ];sync=true} @self ~onSpawn
+  Options:
+    Despawn: false
+    MovementSpeed: 0
+    Silent: true
+    MaxCombatDistance: 25
+    KnockbackResistance: 1
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventBlockInfection: true
+    Collidable: true
+BeeEgg:
+  Type:  PIG
+  Drops:
+  - exp 2-5 1
+  DamageModifiers:
+  - FALL -1
+  Health: 10
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - lookaround
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - effect:particlesphere{p=block_crack;m=honey_block;amount=50;radius=1} @self ~onDamaged
+  - state{s=damage} @self ~onDamaged
+  - sound{s=block.honey_block.break;v=1;p=1} @self ~onDamaged
+  - skill{s=BeeEggDeath} @self ~onDeath
+  - model{mid=bee_egg;damagetint=false} @self ~onSpawn
+  - skill{s=[
+            - delay 60
+            - setAI{ai=false}
+            ];sync=true} @self ~onSpawn
+  Options:
+    Despawn: false
+    MovementSpeed: 0
+    Silent: true
+    MaxCombatDistance: 25
+    KnockbackResistance: 1
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventBlockInfection: true
+    Collidable: true
+BeeEgg2:
+  Type:  PIG
+  Drops:
+  - exp 6-8 1
+  DamageModifiers:
+  - FALL -1
+  Health: 20
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - lookaround
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - summon{t=BeeMinion2;a=1} @self ~onDeath
+  - effect:particlesphere{p=block_crack;m=honey_block;amount=50;radius=1} @self ~onDamaged
+  - state{s=damage} @self ~onDamaged
+  - sound{s=block.honey_block.break;v=1;p=1} @self ~onDamaged
+  - skill{s=BeeEggDeath} @self ~onDeath
+  - model{mid=bee_egg2;damagetint=false} @self ~onSpawn
+  - skill{s=[
+            - delay 60
+            - setAI{ai=false}
+            ];sync=true} @self ~onSpawn
+  Options:
+    Despawn: false
+    MovementSpeed: 0
+    Silent: true
+    MaxCombatDistance: 25
+    KnockbackResistance: 1
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventBlockInfection: true
+    Collidable: true
+
+
+# eyJ1c2VyLW5hbWUiOiJGYXp6ZXIiLCJ1c2VyLWlkIjoiNzI4MSIsImRhdGUiOiIyMDI2LTAxLTMxIDE3OjQ4Iiwic2l0ZSI6Imh0dHBzOi8vZ2xlYWtzLnBybyJ9

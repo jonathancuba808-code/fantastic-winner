@@ -1,0 +1,44 @@
+
+elpe_hudupper:
+  layers:
+
+    health:
+      texture:
+        path: assets/elpe/health_bar_fill.png
+      color: white
+      offset:
+        x: 14
+        y: -14
+      function:
+        listener: health
+        increment: 20
+        orientation: horizontal
+    food:
+      texture:
+        path: assets/elpe/food_bar_fill.png
+      color: white
+      offset:
+        x: 13
+        y: -21
+      function:
+        listener: food
+        increment: 20
+        orientation: horizontal
+    mana:
+      texture:
+        path: assets/elpe/mana_bar_fill.png
+      color: white
+      offset:
+        x: 16
+        y: -28
+      function:
+        listener: mana
+        increment: 20
+        orientation: horizontal
+
+    outline:
+      texture:
+        path: assets/elpe/hud_outline.png
+    
+  
+

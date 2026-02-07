@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/warrior_leaping_slash_downslash","particle":"#0"},"elements":[{"from":[8.0,7.5,2.0],"to":[8.0,8.5,14.0],"faces":{"east":{"uv":[8.0,3.0,9.5,3.125],"tintindex":0,"rotation":0,"texture":"#0"},"west":{"uv":[8.0,3.125,9.5,3.25],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

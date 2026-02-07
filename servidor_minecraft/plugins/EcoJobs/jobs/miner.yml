@@ -1,0 +1,133 @@
+name: "&6Miner"
+description: "&8&oLevel up by mining blocks"
+
+unlocked-by-default: true
+
+reset-on-quit: false
+
+join-price:
+  value: 0
+  type: coins
+  display: "&a$%value%"
+
+join-effects: []
+
+join-lore: []
+
+leave-price:
+  value: 0
+  type: coins
+  display: "&a$%value%"
+
+leave-effects: []
+
+leave-lore:
+  - ""
+
+level-xp-requirements:
+  - 100
+  - 120
+  - 150
+  - 180
+  - 210
+  - 250
+  - 300
+  - 360
+  - 430
+  - 520
+  - 620
+  - 740
+  - 890
+  - 1000
+  - 1300
+  - 1500
+  - 1900
+  - 2200
+  - 2700
+  - 3200
+  - 3800
+  - 4600
+  - 5500
+  - 6600
+  - 7900
+  - 9500
+  - 11500
+  - 14000
+  - 17000
+  - 19000
+  - 24000
+  - 29000
+  - 34000
+  - 41000
+  - 50000
+  - 60000
+  - 70000
+  - 85000
+  - 100000
+  - 120000
+  - 150000
+  - 180000
+  - 210000
+  - 250000
+  - 300000
+  - 360000
+  - 440000
+  - 580000
+  - 750000
+
+xp-gain-methods:
+  - trigger: mine_block
+    multiplier: 0.5
+    filters: [ ]
+    conditions:
+      - id: in_mainhand
+        args:
+          items:
+            - "*wooden_pickaxe"
+            - "*stone_pickaxe"
+            - "*iron_pickaxe"
+            - "*golden_pickaxe"
+            - "*diamond_pickaxe"
+            - "*netherite_pickaxe"
+
+level-placeholders:
+  - id: "money"
+    value: "%level% * 0.4"
+  - id: "blocks"
+    value: "ceil(10 - %level% / 10)"
+
+effects-description:
+  1:
+    - "&8» &8Earn &a$%money%&8 for each &a%blocks%&8 blocks mined"
+
+rewards-description:
+  1:
+    - "&8» &8Earn &a$%money%&8 for each &a%blocks%&8 blocks mined"
+
+level-up-messages:
+  1:
+    - "&8» &8Earn &a$%money%&8 for each &a%blocks%&8 blocks mined"
+
+level-up-effects: [ ]
+
+effects:
+  - id: give_money
+    args:
+      every: "ceil(10 - %level% / 10)"
+      amount: "0.4 * %level%"
+    conditions:
+      - id: in_mainhand
+        args:
+          items:
+            - "*wooden_pickaxe"
+            - "*stone_pickaxe"
+            - "*iron_pickaxe"
+            - "*golden_pickaxe"
+            - "*diamond_pickaxe"
+            - "*netherite_pickaxe"
+    triggers:
+      - mine_block
+
+conditions: [ ]
+
+icon: player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODU3MDVjZjg2NGRmMmMxODJlMzJjNDg2YjcxNDdjYmY3ODJhMGFhM2RmOGE2ZDYxNDUzOTM5MGJmODRmYjE1ZCJ9fX0=

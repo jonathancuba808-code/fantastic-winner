@@ -1,0 +1,68 @@
+dark_elegance-hotbar-exp-bar:
+  split: 25
+  split-type: left
+  setting:
+    listener:
+      class: exp
+  type: listener
+  file: dark_elegance/fill_exp.png
+dark_elegance-hotbar-outline:
+  type: single
+  file: dark_elegance/outline_footer.png
+dark_elegance-hotbar-outline-empty:
+  type: single
+  file: dark_elegance/outline_footer_empty.png
+dark_elegance-hotbar-top-air-bar:
+  split: 16
+  split-type: left
+  setting:
+    listener:
+      class: air
+  type: listener
+  file: dark_elegance/fill_air.png
+dark_elegance-hotbar-top-armor-bar:
+  split: 16
+  split-type: left
+  setting:
+    listener:
+      class: armor
+  type: listener
+  file: dark_elegance/fill_armor.png
+dark_elegance-hotbar-top-food-bar:
+  split: 16
+  split-type: left
+  setting:
+    listener:
+      class: food
+  type: listener
+  file: dark_elegance/fill_food.png
+dark_elegance-hotbar-top-hp-bar:
+  split: 16
+  split-type: left
+  setting:
+    listener:
+      class: health
+  type: listener
+  file: dark_elegance/fill_hp.png
+dark_elegance-hotbar-top-outline:
+  type: single
+  file: dark_elegance/outline_top.png
+dark_elegance-hotbar-top-mmocore-stamina-bar:
+  split: 16
+  split-type: down
+  setting:
+    listener:
+      class: mmocore_stamina
+  type: listener
+  file: dark_elegance/fill_stamina.png
+dark_elegance-hotbar-top-mmocore-mana-bar:
+  split: 16
+  split-type: down
+  setting:
+    listener:
+      class: mmocore_mana
+  type: listener
+  file: dark_elegance/fill_mana.png
+dark_elegance-hotbar-top-mmocore-outline:
+  type: single
+  file: dark_elegance/outline_top_mmocore.png

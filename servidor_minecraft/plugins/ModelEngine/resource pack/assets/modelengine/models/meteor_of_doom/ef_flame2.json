@@ -1,0 +1,1 @@
+{"textures":{"1":"modelengine:entity/fireball_long","particle":"#1"},"elements":[{"from":[6.94944,-3.1072502,-10.93903],"to":[6.94944,15.89275,27.06097],"faces":{"east":{"uv":[0.0,16.0,6.0,0.0],"tintindex":0,"rotation":90,"texture":"#1"},"west":{"uv":[6.0,0.0,0.0,16.0],"tintindex":0,"rotation":90,"texture":"#1"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

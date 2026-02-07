@@ -1,0 +1,17 @@
+QueenBee:
+  MobName: QueenBeeEgg
+  World: QueenBeeWorld
+  X: 24
+  Y: -17
+  Z: 12
+  Yaw: 0.0
+  Pitch: 0.0
+  MobsPerSpawn: 1
+  MaxMobs: '1'
+  Cooldown: 1
+  ActivationRange: 60.0
+  Warmup: 0
+  ActiveMobs: 1
+  Conditions:
+  - mobsInRadius{types=QueenBee;amount=1;radius=1000} cancel
+  LeashRange: 30.0

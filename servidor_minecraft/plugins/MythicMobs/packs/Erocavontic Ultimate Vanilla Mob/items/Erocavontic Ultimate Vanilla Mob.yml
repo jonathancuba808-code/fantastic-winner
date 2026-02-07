@@ -1,0 +1,9 @@
+ero_witch_potion_drink:
+  Id: potion
+  Model: 0
+  Display: "&c"
+  Options:
+    Color: 255,0,0
+    HideFlags: false
+  Skills:
+  

@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/meteor_of_doom","particle":"#0"},"elements":[{"from":[0.0,-7.5,8.0],"to":[16.0,23.5,8.0],"faces":{"south":{"uv":[2.875,10.9375,1.8125,12.84375],"tintindex":0,"rotation":0,"texture":"#0"},"north":{"uv":[1.8125,10.9375,2.875,12.84375],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

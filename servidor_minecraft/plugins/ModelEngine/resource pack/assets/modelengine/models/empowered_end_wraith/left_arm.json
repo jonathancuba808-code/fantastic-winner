@@ -1,0 +1,1 @@
+{"textures":{"2":"modelengine:entity/empowered_end_wraith_anim","particle":"#2"},"elements":[{"from":[-6.0,2.0,8.0],"to":[8.0,19.0,8.0],"faces":{"south":{"uv":[16.0,11.75,12.5,16.0],"tintindex":0,"rotation":0,"texture":"#2"},"north":{"uv":[12.5,11.75,16.0,16.0],"tintindex":0,"rotation":0,"texture":"#2"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

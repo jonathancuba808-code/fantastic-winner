@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/cryo_prison_f","particle":"#0"},"elements":[{"from":[7.0,-0.5,8.0],"to":[9.0,16.5,8.0],"faces":{"south":{"uv":[15.8125,14.5,15.625,15.9375],"tintindex":0,"rotation":0,"texture":"#0"},"north":{"uv":[15.625,14.5,15.8125,15.9375],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

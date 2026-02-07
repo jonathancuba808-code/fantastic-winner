@@ -1,0 +1,1590 @@
+
+fallenMauler_em_hp_check:
+  Conditions:
+  - playersinradius{a=>1;r=60} orElseCast fallenMauler_em_hp_checkB
+  Skills:
+  - skill{s=fallenMauler_em_hp_checkB} @pir{r=100} #MODIFY THE RANGE TO CHECK FOR PLAYERS
+fallenMauler_em_hp_checkB:
+  Conditions:
+  Skills:
+  - setvariable{var=skill.amount_targets;val=<skill.targets>}
+  - setmaxhealth{amount=<caster.var.eichpee>+(15*<skill.var.amount_targets>);mode=SCALE} @self
+
+
+fallenMauler_emstcheck: 
+  Conditions:
+  - playerwithin{d=7} castinstead fallenMauler_emstcheck2 #This is the distance to check for activation.
+  - hasaura{n=RAMPAGE_activated} castinstead fallenMauler_emstcheck_remove
+  Skills:
+  - spin{auraName=spin;d=22;v=0} @self
+  - lunge{vy=-0.05;v=0;repeat=19;repeatinterval=1} @forward{f=0;y=-2}
+  - potion{type=SLOW;duration=23;level=200;p=false;delay=0;force=true} @Self
+  - velocity{m=set;x=0;y=0;z=0} @self
+fallenMauler_emstcheck_remove:
+  Skills:
+  - auraremove{aura=staticfallenMauler_em} @self
+fallenMauler_emstcheck2: 
+  Conditions:
+  - variableEquals{var=caster.statueform;value="1"} true
+  - hasaura{n=RAMPAGE_activated} false
+  - playerwithin{d=7} orElseCast fallenMauler_emstcheck3 #===== MODIFY: THIS IS THE ACTIVATION RANGE FOR THE FALLEN SOLDIERS =================================
+  Skills:
+  - setvariable{var=caster.skillxd;value="activate";t=string;delay=0} @Self
+  - skill{s=fallenMauler_em_hp_check;cooldown=99999;sync=true} @PlayersInRadius{r=80}
+  - setstance{stance=casting} @self
+  - auraremove{aura=spin} @self
+  - spin{auraName=spin;d=30;v=0} @self
+  - lunge{vy=-0.45;v=0;repeat=30;repeatinterval=1;delay=0} @forward{f=0;y=-2} ?onground
+  - potion{type=SLOW;duration=30;level=200;p=false;delay=0;force=true} @Self
+  - potion{type=SLOW;duration=3;level=1;p=false;delay=0;force=true;delay=30} @Self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=90;hS=0.4;vS=1.3;size=2} @Self
+  - setvariable{var=caster.statueform;value="0";t=integer} @Self
+  - state{s=activate;li=0;lo=10} @self
+  - partvisibility{m=fallen_mauler;p=sword;v=true;delay=18} @self
+  - partvisibility{m=fallen_mauler;p=body_sword;v=false;delay=18} @self
+  - changepart{m=fallen_mauler;pid=hip;nm=fallen_mauler;npid=hip} @self
+  - changepart{m=fallen_mauler;pid=chest;nm=fallen_mauler;npid=chest} @self
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=35;hS=0.3;vS=0.3;size=2} @ModelPart{p=chest;offset=LOCAL;y=0}
+  - changepart{m=fallen_mauler;pid=left_arm;nm=fallen_mauler;npid=left_arm;delay=7} @self
+  - changepart{m=fallen_mauler;pid=left_forearm;nm=fallen_mauler;npid=left_forearm;delay=7} @self
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.1;vS=0.1;size=0.7;delay=6} @ModelPart{p=left_forearm;offset=LOCAL;y=0}
+  - changepart{m=fallen_mauler;pid=left_leg;nm=fallen_mauler;npid=left_leg;delay=10} @self
+  - changepart{m=fallen_mauler;pid=left_shin;nm=fallen_mauler;npid=left_shin;delay=10} @self
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.1;vS=0.1;size=0.7;delay=8;repeat=12;repeatinterval=1} @ModelPart{p=left_forearm;offset=LOCAL;y=0}
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.1;vS=0.1;size=0.7;delay=8;repeat=12;repeatinterval=1} @ModelPart{p=left_shin;offset=LOCAL;y=0}
+  - changepart{m=fallen_mauler;pid=right_arm;nm=fallen_mauler;npid=right_arm;delay=12} @self
+  - changepart{m=fallen_mauler;pid=right_forearm;nm=fallen_mauler;npid=right_forearm;delay=12} @self
+  - changepart{m=fallen_mauler;pid=right_leg;nm=fallen_mauler;npid=right_leg;delay=12} @self
+  - changepart{m=fallen_mauler;pid=right_shin;nm=fallen_mauler;npid=right_shin;delay=12} @self
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.1;vS=0.1;size=0.7;delay=11;repeat=12;repeatinterval=1} @ModelPart{p=right_forearm;offset=LOCAL;y=0}
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.1;vS=0.1;size=0.7;delay=11;repeat=12;repeatinterval=1} @ModelPart{p=right_shin;offset=LOCAL;y=0}
+  - BodyClamp{maxbody=50;stable=15;rdelay=1;rduration=10} @self #BODYCLAMP End
+  - changepart{m=fallen_mauler;pid=head;nm=fallen_mauler;npid=head;delay=2} @self
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.7;delay=1;repeat=7;repeatinterval=1} @ModelPart{p=eye1;offset=LOCAL;y=0}
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.7;delay=1;repeat=7;repeatinterval=1} @ModelPart{p=eye2;offset=LOCAL;y=0}
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.7;delay=0;repeat=2;repeatinterval=1} @ModelPart{p=swordparticles5;offset=LOCAL;y=0}
+  - changepart{m=fallen_mauler;pid=shield;nm=fallen_mauler;npid=shield;delay=12} @self 
+  - changepart{m=fallen_mauler;pid=right_weapon;nm=fallen_mauler;npid=right_weapon;delay=12} @self
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.7;delay=12;repeat=7;repeatinterval=1} @ModelPart{p=shield_krystel;offset=LOCAL;y=0}
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.7;delay=12;repeat=7;repeatinterval=1} @ModelPart{p=weapon_krystel;offset=LOCAL;y=0}
+  - delay 1
+  - sound{s=emaginationfallenheroes:custom.fallenhero.spawn;p=1;v=1} @selflocation
+  - RunAIGoalSelector{goal=randomstroll} @self
+  - RunAIGoalSelector{goal=meleeattack} @self
+  - RunAIGoalSelector{goal=randomlookaround} @self
+  - RunAIGoalSelector{goal=float} @self
+  - setspeed{speed=2.15;type=walking} @Self
+  - sound{s=emv4fallena:custom.fallenhero.herospawn;p=<random.float.0.9to1.3>;v=1;cooldown=2} @selflocation
+  - auraremove{aura=staticfallenMauler_em} @self
+  - state{s=idlestatic;li=3;lo=10;remove=true} @self
+  - DefaultState{type=IDLE;state=idle_combat} @self
+  - DefaultState{type=WALK;state=walk_combat} @self
+  - velocity{m=set;x=0;y=0;z=0} @self
+  - delay 22
+  - setstance{stance=normal} @self ?variableEquals{var=caster.skillxd;value="activate"}
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?variableEquals{var=caster.skillxd;value="activate"}
+  - delay 8 #30
+  - lockmodel{l=false} @Self #LOCKMODEL
+  - Aura{auraName=checkrunfallenMauler_em;onTick=fallenMauler_em_runprotocolcheck;interval=30;duration=99999} @self
+  - Aura{auraName=backstepdodgerfallenMauler_em;onTick=fallenMauler_em_bstpcheck;interval=7;duration=99999} @self
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ?variableEquals{var=caster.skillxd;value="activate"}
+fallenMauler_emstcheck3: 
+  Cooldown: 10
+  Conditions:
+  - variableEquals{var=caster.statueform;value="1"} true
+  Skills:
+  - setvariable{var=caster.skillxd;value="activate";t=string;delay=0} @Self
+  - skill{s=fallenMauler_em_hp_check;cooldown=99999;sync=true} @PlayersInRadius{r=80}
+  - setstance{stance=casting} @self
+  - auraremove{aura=spin} @self
+  - spin{auraName=spin;d=30;v=0} @self
+  - lunge{vy=-0.45;v=0;repeat=30;repeatinterval=1;delay=0} @forward{f=0;y=-2} ?onground
+  - potion{type=SLOW;duration=30;level=200;p=false;delay=0;force=true} @Self
+  - potion{type=SLOW;duration=3;level=1;p=false;delay=0;force=true;delay=30} @Self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=90;hS=0.4;vS=1.3;size=2} @Self
+  - setvariable{var=caster.statueform;value="0";t=integer} @Self
+  - state{s=activate;li=0;lo=10} @self
+  - partvisibility{m=fallen_mauler;p=sword;v=true;delay=18} @self
+  - partvisibility{m=fallen_mauler;p=body_sword;v=false;delay=18} @self
+  - changepart{m=fallen_mauler;pid=hip;nm=fallen_mauler;npid=hip} @self
+  - changepart{m=fallen_mauler;pid=chest;nm=fallen_mauler;npid=chest} @self
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=35;hS=0.3;vS=0.3;size=2} @ModelPart{p=chest;offset=LOCAL;y=0}
+  - changepart{m=fallen_mauler;pid=left_arm;nm=fallen_mauler;npid=left_arm;delay=7} @self
+  - changepart{m=fallen_mauler;pid=left_forearm;nm=fallen_mauler;npid=left_forearm;delay=7} @self
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.1;vS=0.1;size=0.7;delay=6} @ModelPart{p=left_forearm;offset=LOCAL;y=0}
+  - changepart{m=fallen_mauler;pid=left_leg;nm=fallen_mauler;npid=left_leg;delay=10} @self
+  - changepart{m=fallen_mauler;pid=left_shin;nm=fallen_mauler;npid=left_shin;delay=10} @self
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.1;vS=0.1;size=0.7;delay=8;repeat=12;repeatinterval=1} @ModelPart{p=left_forearm;offset=LOCAL;y=0}
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.1;vS=0.1;size=0.7;delay=8;repeat=12;repeatinterval=1} @ModelPart{p=left_shin;offset=LOCAL;y=0}
+  - changepart{m=fallen_mauler;pid=right_arm;nm=fallen_mauler;npid=right_arm;delay=12} @self
+  - changepart{m=fallen_mauler;pid=right_forearm;nm=fallen_mauler;npid=right_forearm;delay=12} @self
+  - changepart{m=fallen_mauler;pid=right_leg;nm=fallen_mauler;npid=right_leg;delay=12} @self
+  - changepart{m=fallen_mauler;pid=right_shin;nm=fallen_mauler;npid=right_shin;delay=12} @self
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.1;vS=0.1;size=0.7;delay=11;repeat=12;repeatinterval=1} @ModelPart{p=right_forearm;offset=LOCAL;y=0}
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.1;vS=0.1;size=0.7;delay=11;repeat=12;repeatinterval=1} @ModelPart{p=right_shin;offset=LOCAL;y=0}
+  - BodyClamp{maxbody=50;stable=15;rdelay=1;rduration=10} @self #BODYCLAMP End
+  - changepart{m=fallen_mauler;pid=head;nm=fallen_mauler;npid=head;delay=2} @self
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.7;delay=1;repeat=7;repeatinterval=1} @ModelPart{p=eye1;offset=LOCAL;y=0}
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.7;delay=1;repeat=7;repeatinterval=1} @ModelPart{p=eye2;offset=LOCAL;y=0}
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.7;delay=0;repeat=2;repeatinterval=1} @ModelPart{p=swordparticles5;offset=LOCAL;y=0}
+  - changepart{m=fallen_mauler;pid=shield;nm=fallen_mauler;npid=shield;delay=12} @self 
+  - changepart{m=fallen_mauler;pid=right_weapon;nm=fallen_mauler;npid=right_weapon;delay=12} @self
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.7;delay=12;repeat=7;repeatinterval=1} @ModelPart{p=shield_krystel;offset=LOCAL;y=0}
+  - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.7;delay=12;repeat=7;repeatinterval=1} @ModelPart{p=weapon_krystel;offset=LOCAL;y=0}
+  - delay 1
+  - sound{s=emaginationfallenheroes:custom.fallenhero.spawn;p=1;v=1} @selflocation
+  - RunAIGoalSelector{goal=randomstroll} @self
+  - RunAIGoalSelector{goal=meleeattack} @self
+  - RunAIGoalSelector{goal=randomlookaround} @self
+  - RunAIGoalSelector{goal=float} @self
+  - setspeed{speed=2.15;type=walking} @Self
+  - sound{s=emv4fallena:custom.fallenhero.herospawn;p=<random.float.0.9to1.3>;v=1;cooldown=2} @selflocation
+  - auraremove{aura=staticfallenMauler_em} @self
+  - state{s=idlestatic;li=3;lo=10;remove=true} @self
+  - DefaultState{type=IDLE;state=idle_combat} @self
+  - DefaultState{type=WALK;state=walk_combat} @self
+  - velocity{m=set;x=0;y=0;z=0} @self
+  - delay 22
+  - setstance{stance=normal} @self ?variableEquals{var=caster.skillxd;value="activate"}
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?variableEquals{var=caster.skillxd;value="activate"}
+  - delay 8 #30
+  - lockmodel{l=false} @Self #LOCKMODEL
+  - Aura{auraName=checkrunfallenMauler_em;onTick=fallenMauler_em_runprotocolcheck;interval=30;duration=99999} @self
+  - Aura{auraName=backstepdodgerfallenMauler_em;onTick=fallenMauler_em_bstpcheck;interval=7;duration=99999} @self
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ?variableEquals{var=caster.skillxd;value="activate"}
+  
+
+hurt1fallenMauler_em:
+  Cooldown: 0.3
+  Skills:
+  - skill{s=fallenMauler_em_backhurtCLEAR;sync=true} @Trigger 0.25
+  - variableadd{var=caster.hitrec;amount=1} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=hurt1;lo=6;remove=true} @self
+  - state{state=hurt2;lo=6;remove=true} @self
+  - state{state=hurt3;lo=6;remove=true} @self
+  - state{state=hurt4;lo=6;remove=true} @self
+  
+  - state{state=hurt_back1;lo=6;remove=true} @self
+  - state{state=hurt_back2;lo=6;remove=true} @self
+  - state{state=hurt_back3;lo=6;remove=true} @self
+  - state{state=hurt_back4;lo=6;remove=true} @self
+  - randomskill{s=[
+      - state{state=hurt1;li=0;lo=0} @self
+    ],
+      [
+      - state{state=hurt2;li=0;lo=0} @self
+    ],
+      [
+      - state{state=hurt4;li=0;lo=0} @self
+    ],
+      [
+      - state{state=hurt3;li=0;lo=0} @self
+    ];sync=false} ?~fieldofview{a=160}
+  
+  - randomskill{s=[
+      - state{state=hurt_back1;li=0;lo=0} @self
+    ],
+      [
+      - state{state=hurt_back2;li=0;lo=0} @self
+    ],
+      [
+      - state{state=hurt_back4;li=0;lo=0} @self
+    ],
+      [
+      - state{state=hurt_back3;li=0;lo=0} @self
+    ];sync=false} ?~!fieldofview{a=160}
+
+  - Aura{auraName=nule_parry;duration=12;delay=1;mergeSameCaster=true} @self 0.94 ?!hasaura{n=nule_parry}
+  - Aura{auraName=nule_parry;duration=42;delay=1;mergeSameCaster=true} @self 0.9 ?hasaura{n=nule_parry} ?!hasaura{n=parried}
+  
+  - onDamaged{
+      auraName=quickblock;d=70;onHit=quickblock_a_fallenMauler_em_commute;
+      cancelEvent=true} @self >60% 0.25 ?variableInRange{var=caster.hitrec;value=2to4} ?~fieldofview{a=160}
+  - onDamaged{
+      auraName=quickblock;d=70;onHit=quickblock_a_fallenMauler_em_commute;
+      cancelEvent=true} @self >60% 0.4 ?variableInRange{var=caster.hitrec;value=>4} ?~fieldofview{a=160}
+  
+  - onDamaged{
+      auraName=quickblock;d=80;onHit=quickblock_a_fallenMauler_em_commute;
+      cancelEvent=true} @self <60% 0.4 ?variableInRange{var=caster.hitrec;value=2to4} ?~fieldofview{a=160}
+  - onDamaged{
+      auraName=quickblock;d=80;onHit=quickblock_a_fallenMauler_em_commute;
+      cancelEvent=true} @self <60% 0.7 ?variableInRange{var=caster.hitrec;value=>4} ?~fieldofview{a=160}
+
+  - skill{s=fallenMauler_em_parrystance_trigger} @self 0.25 ?variableInRange{var=caster.hitrec;value=3to5}
+  - skill{s=fallenMauler_em_parrystance_trigger} @self 0.4 ?variableInRange{var=caster.hitrec;value=>5}
+  - Aura{auraName=shielderfallenMauler_em;onTick=fallenMauler_em_sdppcheck;interval=7;duration=40;mergeSameCaster=true} @self 0.15 ?variableInRange{var=caster.hitrec;value=3to5}
+  - Aura{auraName=shielderfallenMauler_em;onTick=fallenMauler_em_sdppcheck;interval=7;duration=40;mergeSameCaster=true} @self 0.28 ?variableInRange{var=caster.hitrec;value=>5}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hurt;p=0.9;v=1.2;cooldown=2} @selflocation 0.65
+  - potion{type=SLOW;duration=20;level=0;p=false;force=false} @Self ?!haspotioneffect{type=SLOW;level=>0;duration=0to200}
+  
+  - skill{s=hurtbad2_fallenMauler_em} @self 0.4 ?hasaura{n=hurtedbad} ?!hasaura{n=nule_parry} ?~fieldofview{a=160}
+  - skill{s=hurtbad2_fallenMauler_em} @self 0.15 ?hasaura{n=hurtedbad} ?hasaura{n=nule_parry} ?~fieldofview{a=160}
+  - skill{s=hurtbad2_fallenMauler_em} @self 0.5 ?hasaura{n=hurtedbad} ?!hasaura{n=nule_parry} ?~!fieldofview{a=160}
+  - skill{s=hurtbad2_fallenMauler_em} @self 0.25 ?hasaura{n=hurtedbad} ?hasaura{n=nule_parry} ?~!fieldofview{a=160}
+
+  - skill{s=hurtbfallenMauler_em} @self <60% 0.15 ?!hasaura{n=largecast} ?!hasaura{n=parried} ?!hasaura{n=nule_parry} ?~fieldofview{a=160}
+  - skill{s=hurtbfallenMauler_em} @self <60% 0.06 ?!hasaura{n=largecast} ?!hasaura{n=parried} ?hasaura{n=nule_parry} ?~fieldofview{a=160}
+  - skill{s=hurtbfallenMauler_em} @self <60% 0.2 ?!hasaura{n=largecast} ?!hasaura{n=parried} ?!hasaura{n=nule_parry} ?~!fieldofview{a=160} #BACK
+  - skill{s=hurtbfallenMauler_em} @self <60% 0.08 ?!hasaura{n=largecast} ?!hasaura{n=parried} ?hasaura{n=nule_parry} ?~!fieldofview{a=160}
+
+  - skill{s=hurtbfallenMauler_em} @self >60% 0.08 ?!hasaura{n=largecast} ?!hasaura{n=parried} ?!hasaura{n=nule_parry} ?~fieldofview{a=160}
+  - skill{s=hurtbfallenMauler_em} @self >60% 0.03 ?!hasaura{n=largecast} ?!hasaura{n=parried} ?hasaura{n=nule_parry} ?~fieldofview{a=160}
+  - skill{s=hurtbfallenMauler_em} @self >60% 0.1 ?!hasaura{n=largecast} ?!hasaura{n=parried} ?!hasaura{n=nule_parry} ?~!fieldofview{a=160} #BACK
+  - skill{s=hurtbfallenMauler_em} @self >60% 0.05 ?!hasaura{n=largecast} ?!hasaura{n=parried} ?hasaura{n=nule_parry} ?~!fieldofview{a=160}
+
+  - skill{s=hurtbfallenMauler_em} @self 0.5 ?hasaura{n=parried} ?!hasaura{n=nule_parry} ?!hasaura{n=largecast} ?~fieldofview{a=160}
+  - skill{s=hurtbfallenMauler_em} @self 0.12 ?hasaura{n=parried} ?hasaura{n=nule_parry} ?!hasaura{n=largecast} ?~fieldofview{a=160}
+  - skill{s=hurtbfallenMauler_em} @self 0.65 ?hasaura{n=parried} ?!hasaura{n=nule_parry} ?!hasaura{n=largecast} ?~!fieldofview{a=160}
+  - skill{s=hurtbfallenMauler_em} @self 0.18 ?hasaura{n=parried} ?hasaura{n=nule_parry} ?!hasaura{n=largecast} ?~!fieldofview{a=160}
+
+
+hurtbfallenMauler_em:
+  Cooldown: 4
+  Conditions:
+  - damagecause{c=ENTITY_SWEEP_ATTACK} false
+  - variableEquals{var=caster.casting;value="1"} false
+  - variableEquals{var=caster.running;value="2"} false
+  - hasaura{n=hurtedbad} false
+  Skills:
+  - lockmodel{l=true} @Self
+  - setstance{stance=casting} @self ?stance{s=normal}
+  - skill{s=fallenMauler_em_hurtCLEAR;sync=true} 0.35
+  - variableadd{var=caster.hitrec;amount=2} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - variableadd{var=caster.combor;amount=1} @self 0.5
+  - setvariable{var=caster.casting;value="1";t=integer} @Self ?variableEquals{var=caster.casting;value="0"} 
+  - setvariable{var=caster.skillxd;value="hurtb";t=string;delay=0} @Self
+  - summon{mob=vfx_fallenMauler_em_expFXmarker1;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-2.2}
+  - randomskill{s=[
+      - state{state=hurtbad1;li=1;lo=8} @self
+    ],
+      [
+      - state{state=hurtbad2;li=1;lo=8} @self
+    ],
+      [
+      - state{state=hurtbad3;li=1;lo=8} @self
+    ],
+      [
+      - state{state=hurtbad4;li=1;lo=8} @self
+    ];sync=true}
+  - setvariable{var=caster.hurtened;value="1";t=integer} @Self
+  - potion{type=SLOW;duration=28;level=7;p=false;force=true} @Self
+  - sound{s=emaginationfallenreaper:custom.fallenreaper.hurt;p=0.84;v=1.5;cooldown=2} @selflocation ############SOUND
+  - sound{s=emaginationfallenreaper:custom.fallenreaper.hurt;p=0.94;v=1.5;cooldown=2} @selflocation
+
+  - skill{s=fallenMauler_em_clearstates} @Self
+  - Aura{auraName=hurtedbad;duration=32} @self
+  - delay 12
+  - skill{s=[
+    - Aura{auraName=shielderfallenMauler_em;onTick=fallenMauler_em_sdppcheck;interval=7;duration=60;mergeSameCaster=true} @self
+    - setvariable{var=caster.hurtened;value="0";t=integer} @Self
+    - setstance{stance=normal} @self
+    - lockmodel{l=false} @Self
+    - setvariable{var=caster.casting;value="0";t=integer} @Self
+    - setvariable{var=caster.skillxd;value="none";t=string} @Self
+    - Aura{auraName=bruttackrest;duration=20} @self];sync=false} @Self 0.5 ?variableEquals{var=caster.skillxd;value="hurtb"} ?variableEquals{var=caster.skillxd;value="none"}
+  - skill{s=fallenMauler_em_parrystance_trigger} @Self =60%-95% 0.45 ?variableEquals{var=caster.skillxd;value="hurtb"} ?variableEquals{var=caster.skillxd;value="none"}
+  - skill{s=fallenMauler_em_parrystance_trigger} @Self =30%-60% 0.6 ?variableEquals{var=caster.skillxd;value="hurtb"} ?variableEquals{var=caster.skillxd;value="none"}
+  - skill{s=fallenMauler_em_parrystance_trigger} @Self <30% 0.75 ?variableEquals{var=caster.skillxd;value="hurtb"} ?variableEquals{var=caster.skillxd;value="none"}
+  - delay 21
+  
+  - lockmodel{l=false} @Self ?variableEquals{var=caster.skillxd;value="hurtb"}
+  - setvariable{var=caster.hurtened;value="0";t=integer} @Self ?variableEquals{var=caster.skillxd;value="hurtb"}
+  - setstance{stance=normal} @self ?variableEquals{var=caster.skillxd;value="hurtb"}
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?variableEquals{var=caster.casting;value="1"} ?variableEquals{var=caster.skillxd;value="hurtb"}
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ?variableEquals{var=caster.skillxd;value="hurtb"}
+  - skill{s=fallenMauler_em_parrystance_trigger} @Self =60%-95% 0.65 ?variableEquals{var=caster.skillxd;value="hurtb"}
+  - skill{s=fallenMauler_em_parrystance_trigger} @Self =30%-60% 0.75 ?variableEquals{var=caster.skillxd;value="hurtb"}
+  - skill{s=fallenMauler_em_parrystance_trigger} @Self <30% 0.85 ?variableEquals{var=caster.skillxd;value="hurtb"}
+
+
+
+fallenMauler_em_hurtbad2_recoverylunge:
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} true
+  - variableEquals{var=caster.hurtened;value="1"} true
+  Skills:
+  - propel{v=<skill.lungeintensity>} ?onground
+  - propel{v=<skill.lungeintensity>*1.4} @forward{f=-2;y=-2} ?!onground
+
+hurtbad2_fallenMauler_em:
+  Cooldown: 4
+  Conditions:
+  - damagecause{c=ENTITY_SWEEP_ATTACK} false
+  Skills:
+  - auraremove{aura=spin} @self
+  - lockmodel{l=false} @Self
+  - look{headOnly=false;immediately=true;repeat=3;repeatInterval=1} @Trigger
+  - SyncYaw{target=yaw;repeat=15;repeatinterval=1} @Self
+  - lockmodel{l=true;delay=3} @Self
+  - spin{auraname=spin;d=42;v=0;delay=3} @self
+  - message{m="Casted &eHurtedBad"} @PlayersNearOrigin{r=75} 0 #DEGBUGMESSAGE
+  - setstance{stance=casting} @self
+  - setvariable{var=caster.skillxd;value="hurtedvbad";t=string} @Self
+  - sound{s=emaginationfallenknights:custom.spell.swordclash;p=<random.float.1.5to2>;v=2} @selflocation
+  - sound{s=emaginationfallenreaper:custom.fallenreaper.hurt;p=1;v=1.5} @selflocation 
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=<random.float.1.5to2>;v=1.5} @selflocation
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=<random.float.1.5to2>;v=1} @selflocation
+  - variableadd{var=caster.hitrec;amount=4} @self
+  - randomskill{s=[
+      - state{state=hurtverybad1;li=0;lo=8} @self
+    ],
+      [
+      - state{state=hurtverybad2;li=0;lo=8} @self ]}
+  
+  - Aura{auraName=parried;duration=45} @self
+  - summon{mob=vfx_fallenMauler_em_expFXmarker1;amount=1;noise=0.5;r=0.6;yr=0} @Forward{y=-2.4;f=0.2;sideOffset=0.7}
+  - summon{mob=vfx_fallenMauler_em_expFXmarker1;amount=1;noise=1.5;r=1.3;yr=0.5;delay=1} @Forward{y=-2.4;f=0.1;sideOffset=0.4}
+  - summon{mob=vfx_fallenMauler_em_expFXmarker1;amount=1;noise=2.5;r=1.2;yr=0.5;delay=2} @Forward{y=-2.4;f=0;sideOffset=0.4}
+  - summon{mob=vfx_fallenMauler_em_expFXmarker1;amount=1;noise=3.5;r=1.2;yr=0.5;delay=3} @Forward{y=-2.4;f=0;sideOffset=0.4}
+  - potion{type=SLOW;duration=58;level=15;p=false;force=true} @Self
+  - skill{s=fallenMauler_em_clearstates} @Self
+  - setvariable{var=caster.hurtened;value="1";t=integer} @Self
+  - setvariable{var=caster.countered;value="1";t=integer} @Self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - skill{s=fallenMauler_em_hurtbad2_recoverylunge;lungeintensity=0.13;repeat=9;repeatinterval=1} @forward{f=-10;y=-1}
+  - delay 9 #9
+  - skill{s=fallenMauler_em_hurtbad2_recoverylunge;lungeintensity=0.091;repeat=10;repeatinterval=1} @forward{f=-10;y=-1}
+  - delay 10 #19
+  - skill{s=fallenMauler_em_hurtbad2_recoverylunge;lungeintensity=0.07;repeat=12;repeatinterval=1} @forward{f=-10;y=-1}
+  - delay 1 #20
+  - skill{s=[
+    - state{state=hurtverybad1;li=0;lo=8;remove=true} @self
+    - state{state=hurtverybad2;li=0;lo=8;remove=true} @self
+    - state{state=hurtverybad_to_idle;li=0;lo=8} @self
+    - auraremove{aura=spin} @self
+    - onDamaged{
+      auraName=quickblock;d=10;onHit=quickblock_a_fallenMauler_em_commute_precast;
+      cancelEvent=true;delay=13} @self 0.7
+    - setvariable{var=caster.hurtened;value="0";t=integer} @Self
+    - setstance{stance=normal} @self
+    - lockmodel{l=false} @Self
+    - setvariable{var=caster.casting;value="0";t=integer} @Self
+    - Aura{auraName=bruttackrest;duration=30} @self
+    - setvariable{var=caster.skillxd;value="none";t=string} @Self ]} @Self 0.25 ?variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - delay 11 #31
+  - skill{s=[
+    - state{state=hurtverybad1;li=0;lo=8;remove=true} @self
+    - state{state=hurtverybad2;li=0;lo=8;remove=true} @self
+    - state{state=hurtverybad_to_idle;li=0;lo=8} @self
+    - auraremove{aura=spin} @self
+    - setvariable{var=caster.hurtened;value="0";t=integer} @Self
+    - setstance{stance=normal} @self
+    - lockmodel{l=false} @Self
+    - setvariable{var=caster.casting;value="0";t=integer} @Self
+    - Aura{auraName=bruttackrest;duration=4to18} @self
+    - setvariable{var=caster.skillxd;value="none";t=string} @Self ]} @Self 0.25 ?variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - skill{s=fallenMauler_em_hurtbad2_recoverylunge;lungeintensity=0.065;repeat=14;repeatinterval=1} @forward{f=-10;y=-1}
+  - delay 14 #45
+  - delay 20 
+  - Aura{auraName=shielderfallenMauler_em;onTick=fallenMauler_em_sdppcheck;interval=7;duration=60;mergeSameCaster=true} @self 0.4
+  
+  - skill{s=fallenMauler_em_parrystance_trigger} @Self =60%-95% 0.56
+  - skill{s=fallenMauler_em_parrystance_trigger} @Self =30%-60% 0.65
+  - skill{s=fallenMauler_em_parrystance_trigger} @Self <30% 0.75
+  - delay 25
+  - skill{s=[
+    - setvariable{var=caster.hurtened;value="0";t=integer} @Self
+    - setstance{stance=normal} @self
+    - lockmodel{l=false} @Self
+    - setvariable{var=caster.casting;value="0";t=integer} @Self
+    - setvariable{var=caster.skillxd;value="none";t=string} @Self];sync=false} @Self ?variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - skill{s=fallenMauler_em_parrystance_trigger} @Self =60%-95% 0.35
+  - skill{s=fallenMauler_em_parrystance_trigger} @Self =30%-60% 0.4
+  - skill{s=fallenMauler_em_parrystance_trigger} @Self <30% 0.5
+  
+
+
+
+fallenMauler_em_backhurtCLEAR:
+  Cooldown: 9
+  Conditions:
+  - hasaura{n=changedThreat} false
+  TriggerConditions:
+  - FieldOfView{angle=120;r=0} false
+  Skills:
+  - Aura{auraName=changedThreat;duration=220} @self
+  - clearThreat{} @self
+  - threat{amount=150} @TargetedTarget
+fallenMauler_em_hurtCLEAR:
+  Cooldown: 6
+  Conditions:
+  - hasaura{n=changedThreat} false
+  TriggerConditions:
+  - FieldOfView{angle=30;r=0} false
+  Skills:
+  - Aura{auraName=changedThreat;duration=200} @self
+  - clearThreat{} @self
+  - threat{amount=100} @TargetedTarget
+
+hurtgenfallenMauler_em:
+  Cooldown: 0
+  Conditions:
+  - damagecause{c=PROJECTILE} true
+  Skills:
+  - skill{s=hurtgenfallenMauler_emCLEAR;sync=true} @Trigger 0.15
+  - onShoot{auraName=fallenMauler_em_arrowWarning;onShoot=signalcheckWarning_fallenMauler_em;interval=3;duration=200;charges=5;cooldown=5} @trigger 0.5
+  - variableadd{var=caster.projrec;amount=1} @self
+  - variableadd{var=caster.projrec;amount=1} @self 0.5
+  - variableadd{var=caster.runstacks;amount=1} @self
+  - variableadd{var=caster.runstacks;amount=2} @self ?distance{d=>6}
+  - variableadd{var=caster.runstacks;amount=3} @self ?distance{d=>10} 0.8
+  - variableadd{var=caster.shieldstacks;amount=1} @self
+  - velocity{m=set;x=0;y=0;z=0;repeat=2;Repeatinterval=1} @self ?onground #ANTIKNOCKBACK SYSTEM
+  - variableadd{var=caster.combor;amount=2} @self
+  - randomskill{s=fallenMauler_em_parrystance_trigger;sync=true} @Trigger 0.3
+  - stun{d=1;f=false;stopai=false} @Self
+hurtgenfallenMauler_emCLEAR:
+  Skills:
+  - clearThreat{} @self
+  - threat{amount=100} @Trigger
+hurtgenfallenMauler_em2:
+  Cooldown: 0
+  Conditions:
+  - damagecause{c=PROJECTILE} false
+  TriggerConditions:
+  - distance{d=>5} true
+  Skills:
+  - skill{s=hurtgenfallenMauler_emCLEAR;sync=true} @Trigger 0.25
+  - variableadd{var=caster.projrec;amount=1} @self
+  - variableadd{var=caster.projrec;amount=1} @self 0.5
+  - variableadd{var=caster.shieldstacks;amount=1} @self
+  - variableadd{var=caster.shieldstacks;amount=1} @self 0.6
+  - variableadd{var=caster.runstacks;amount=2} @self
+  - variableadd{var=caster.runstacks;amount=2} @self ?distance{d=>10}
+  - variableadd{var=caster.runstacks;amount=3} @self ?distance{d=>10} 0.8
+  - velocity{m=set;x=0;y=0;z=0;repeat=2;Repeatinterval=1} @self ?onground #ANTIKNOCKBACK SYSTEM
+  - variableadd{var=caster.combor;amount=2} @self
+  - skill{s=fallenMauler_em_parrystance_trigger;sync=false} @Trigger 0.3
+  - stun{d=1;f=false;stopai=false} @Self
+
+outrun_discharge_fallenMauler_em:
+  Cooldown: 8
+  TargetConditions:
+  - lineofsight true
+  Skills:
+  - variablesubtract{var=caster.hitrec;amount=1} @self ?variableInRange{var=caster.hitrec;value=>0}
+  - variablesubtract{var=caster.hitrec;amount=1} @self 0.7 ?variableInRange{var=caster.hitrec;value=>0}
+  - variablesubtract{var=caster.hitrec;amount=1} @self 0.4 ?variableInRange{var=caster.hitrec;value=>0}
+  - message{m="FallenPirobo Hitrec: <caster.var.hitrec>"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+outrun_aleviate_fallenMauler_em:
+  TargetConditions:
+  - lineofsight true
+  Skills:
+  - variablesubtract{var=caster.hitrec;amount=1} @self 0.8 ?variableInRange{var=caster.hitrec;value=>0}
+  - message{m="Hitrec <caster.var.projrec> SUBTRACT-1"} @PlayersNearOrigin{r=75}  0 #DEBUGMESSAGE
+
+
+fallenMauler_em_meleetrigger:
+  Cooldown: 0.5
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - variableEquals{var=caster.parrying;value="1"} CastInstead fallenMauler_em_meleetrigger2
+  Skills:
+  - delay 0to6
+  - randomskill{s=fallenMauler_em_bruttack1,fallenMauler_em_bruttack1,fallenMauler_em_bruttack1;sync=false} @LivingInCone{a=110.0;r=6.5;rot=0.0;ignore=samefaction}
+  - randomskill{s=fallenMauler_em_bruttack1,fallenMauler_em_bruttack1,fallenMauler_em_bruttack1;sync=false} @LivingInCone{a=180.0;r=1;rot=0.0;ignore=samefaction}
+fallenMauler_em_meleetrigger2:
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - variableEquals{var=caster.parrying;value="1"} true
+  Skills:
+  - delay 0to6
+  - randomskill{s=fallenMauler_em_bruttack1,fallenMauler_em_bruttack1,fallenMauler_em_bruttack1;sync=false} @LivingInCone{a=110.0;r=5.5;rot=0.0;ignore=samefaction}
+  - randomskill{s=fallenMauler_em_bruttack1,fallenMauler_em_bruttack1,fallenMauler_em_bruttack1;sync=false} @LivingInCone{a=180.0;r=1;rot=0.0;ignore=samefaction}
+fallenMauler_em_sdppcheck:
+  Cooldown: 0.3
+  Conditions:
+  - playersinradius{a=>0;r=7}
+  - variableEquals{var=caster.statueform;value="1"} false
+  - variableEquals{var=caster.running;value="2"} false
+  Skills:
+  - effect:particles{particle=reddust;color=#03c982;amount=2;hS=0.01;vS=0.01;size=0.75;forwardOffset=0.4;y=1.5} @Self 0 #DEBUGPARTICLES
+  - skill{s=fallenMauler_em_sdpcheckB;sync=true;delay=6;repeat=0;repeatinterval=3} @PlayersInRadius{r=7;limit=2;Sort=NEAREST;conditions=[  - distance{d=4to7}]}
+  - skill{s=fallenMauler_em_sdpcheckA;sync=true;delay=4;repeat=2;repeatinterval=3} @PlayersInRadius{r=4;limit=2;Sort=NEAREST;conditions=[  - distance{d=2to4}  - Moving{} true  - targetinlineofsight{} true]}
+fallenMauler_em_sdpcheckB:
+  Conditions:
+  - hasaura{n=ShieldennblockA} false
+  TargetConditions:
+  - isSprinting{} true
+  - distance{d=0to5}
+  Skills:
+  - skill{s=[
+    - skill{s=fallenMauler_emcommuterdefense;sync=false} @TargetedTarget
+    - variableadd{var=caster.shieldstacks;amount=1} @self
+    - variableadd{var=caster.shieldstacks;amount=1} @self 0.5
+    - Aura{auraName=ShieldennblockA;duration=20} @self];sync=true} @TargetedTarget{limit=1;Sort=NEAREST} 
+  - effect:particles{particle=reddust;color=#1dd7ee;amount=105;hS=0.1;vS=0.1;size=0.8;repeat=1;repeatinterval=1} @Self 0 #DEBUGPARTICLES
+fallenMauler_em_sdpcheckA:
+  Conditions:
+  - hasaura{n=backstepB} false
+  - hasaura{n=ShieldennblockB} false
+  TargetConditions:
+  - distance{d=0to3}
+  Skills:
+  - skill{s=[
+    - skill{s=fallenMauler_emcommuterdefense;sync=false} @TargetedTarget
+    - variableadd{var=caster.shieldstacks;amount=1} @self
+    - variableadd{var=caster.shieldstacks;amount=1} @self 0.5
+    - Aura{auraName=ShieldennblockB;duration=15} @self];sync=true} @TargetedTarget{limit=1;Sort=NEAREST} 
+  - effect:particles{particle=reddust;color=#1dd7ee;amount=105;hS=0.1;vS=0.1;size=0.8;repeat=1;repeatinterval=1} @Self 0 #DEBUGPARTICLES
+
+
+fallenMauler_emcommuterdefense:
+  Conditions:
+  - variableEquals{var=caster.parrying;value="1"} castinstead fallenMauler_emcommuterdefenseparryien
+  TargetConditions:
+  - FieldOfView{angle=110;r=0} orElseCast fallenMauler_emcommuterdefenseRear
+  Skills:
+  - message{m="&e<caster.name> &bcast &cfallenMauler_emcommuterdefense &e@<target.name>"} @TargetedTarget 0 #DEBUGMESSAGE
+  - randomskill{s=fallenMauler_em_quickblock1,fallenMauler_em_quickblock1,fallenMauler_em_backstep1_check} @TargetedTarget
+fallenMauler_emcommuterdefenseRear:
+  Skills:
+  - randomskill{s=fallenMauler_em_quickblock1,fallenMauler_em_quickblock1} @TargetedTarget
+  - skill{s=commuterfallenMauler_emCLEAR;sync=true} @TargetedTarget 0.45
+
+fallenMauler_emcommuterdefenseparryien:
+  Conditions:
+  - variableEquals{var=caster.parrying;value="1"} true
+  TargetConditions:
+  - FieldOfView{angle=110;r=0} orElseCast fallenMauler_emcommuterdefenseRearParryien
+  Skills:
+  - randomskill{s=fallenMauler_em_quickblock1,fallenMauler_em_quickblock1,fallenMauler_em_quickblock1,fallenMauler_em_backstep1_check} @TargetedTarget
+fallenMauler_emcommuterdefenseRearParryien:
+  Skills:
+  - randomskill{s=fallenMauler_em_quickblock1} @TargetedTarget
+  - skill{s=commuterfallenMauler_emCLEAR;sync=true} @TargetedTarget 0.45
+
+commuterfallenMauler_emCLEAR:
+  Skills:
+  - clearThreat{} @self
+  - threat{amount=150} @TargetedTarget
+
+
+quickblock_a_fallenMauler_em_commute_precast:
+  Skills:
+  - setstance{stance=normal} @self
+  - skill{s=quickblock_a_fallenMauler_em_commute} @Self
+quickblock_a_fallenMauler_em_commute:
+  TriggerConditions:
+  - distance{d=0to5} true
+  - FieldOfView{angle=120;r=0} true
+  Conditions:
+  - stance{s=normal} true
+  - stance{s=casting} false
+  Skills:
+  - cancelevent{sync=true} @Self
+  - setvariable{var=caster.skillxd;value="quickblock_a";t=string} @Self
+  - setstance{stance=casting} @self
+  - BodyClamp{maxbody=0;stable=0;rdelay=0;rduration=5;delay=0} @self #BODYCLAMP Start
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - spin{auraname=spin;d=18;v=0} @self
+  - skill{s=fallenMauler_em_clearstates} @Self
+
+  - state{remove=true;s=quickblockb1;lo=1} @self
+  - state{remove=true;s=quickblockb2;lo=1} @self
+  - state{remove=true;s=quickblockb3;lo=1} @self
+  - state{remove=true;s=quickparry3;lo=1} @self
+  - skill{s=incapacitate_fallenMauler_em_quickblock_a} @Trigger
+  - randomskill{s=[
+      - state{state=quickblockb1;li=0;lo=2} @self
+    ],
+      [
+      - state{state=quickblockb2;li=0;lo=2} @self
+    ],
+      [
+      - state{state=quickblockb2;li=0;lo=2} @self
+    ];sync=false} ?!variableEquals{var=caster.parrying;value="1"}
+  - randomskill{s=[
+      - state{state=quickblockb1_parrying;li=0;lo=2} @self
+    ],
+      [
+      - state{state=quickblockb2_parrying;li=0;lo=2} @self
+    ];sync=false} ?variableEquals{var=caster.parrying;value="1"}
+
+  - randomskill{s=[
+      - state{state=block_trigger1;li=0;lo=8} @self
+    ],
+      [
+      - state{state=block_trigger2;li=0;lo=8} @self
+    ],
+      [
+      - state{state=block_trigger3;li=0;lo=8} @self
+    ]} 
+  - summon{mob=vfx_fallenMauler_em_chipsumMarker;amount=1;noise=0.9;r=0.4;yr=0} @Forward{y=-1.9;f=1.45;sideOffset=-0.3}
+  - sound{s=emaginationfallenknights:custom.spell.swordclash;p=<random.float.0.7to0.8>;v=2} @Forward{y=1.5;f=1.45}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=3;v=2} @selflocation ~onDamaged
+  - sound{s=item.shield.block;p=2;v=1;cooldown=0} @selflocation ~onDamaged
+  
+  - skill{s=fallenMauler_em_clearstates} @Self
+  - potion{type=SLOW;duration=18;level=7;p=false;force=true} @Self
+  - spin{auraName=spin;d=15;v=0;delay=3} @self
+  - look{headOnly=false;immediately=true;repeat=40;repeatInterval=1} @Target
+  - delay 8
+
+  - setstance{stance=normal} @self ?variableEquals{var=caster.skillxd;value="quickblock_a"}
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?variableEquals{var=caster.skillxd;value="quickblock_a"}
+  - randomskill{s=fallenMauler_em_bruttack1,fallenMauler_em_bruttack1,fallenMauler_em_bruttack1;sync=false;repeat=3;repeatinterval=2} @LivingInCone{a=110.0;r=6.5;rot=0.0;ignore=samefaction} 0.7
+  - delay 10
+  - BodyClamp{maxbody=50;stable=15;rdelay=1;rduration=10} @self ?variableEquals{var=caster.skillxd;value="quickblock_a"}
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ?variableEquals{var=caster.skillxd;value="quickblock_a"}
+incapacitate_fallenMauler_em_quickblock_a:
+  Skills:
+  - potion{type=SLOW_DIGGING;duration=30;lvl=5;particles=false}
+  - potion{type=WEAKNESS;duration=6;lvl=7;particles=false} @TargetedTarget
+
+  - potion{type=LEVITATION;duration=2;level=2;p=false} 
+  - potion{type=LEVITATION;duration=1;level=0;p=false;delay=2}
+  - potion{type=SLOW_FALLING;duration=2;level=0;p=false;delay=3}
+
+  - potion{type=SLOW;duration=20;lvl=4;particles=false}
+  - potion{type=SLOW;duration=20;lvl=2;particles=false;delay=20}
+  - potion{type=SLOW;duration=20;lvl=1;particles=false;delay=40}
+  - effect:bloodyScreen{d=5} 
+  - recoil{r=4;pitch=-8to-2;yaw=3to8}
+
+fallenMauler_em_quickblock1:
+  Cooldown: 2
+  Conditions:
+  - targetwithin{d=4.9}
+  - variableEquals{var=caster.running;value="1"} castinstead fallenMauler_em_meleetrigger
+  - hasaura{n=backstepB} false
+  - stance{s=normal} true
+  - stance{s=casting} false
+  TargetConditions:
+  - distance{d=0to5}
+  Skills:
+  - auraremove{aura=spin} @self
+  - auraremove{aura=spin} @self
+  - lockmodel{l=false} @Self
+  - SyncYaw{target=yaw;repeat=15;repeatinterval=1} @Self
+  - onDamaged{
+      auraName=quickblock;d=15;onHit=quickblock_a_fallenMauler_em_commute_precast;
+      cancelEvent=true} @self 
+  - message{m="&e<caster.name> &bcast &cfallenMauler_em_quickblock1 &e@<target.name>"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - setstance{stance=casting} @self
+  - setvariable{var=caster.skillxd;value="quickblock1";t=string} @Self
+  - BodyClamp{maxbody=0;stable=0;rdelay=0;rduration=5;delay=0} @self #BODYCLAMP Start
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - Aura{auraName=backstepA;interval=10;duration=60} @self
+  - Aura{auraName=ShieldennblockA;refreshDuration=true;duration=60} @self
+  - state{state=quickblockb1;li=3;lo=6;delay=0} @self ?variableEquals{var=caster.parrying;value="1"}
+  - state{state=quickblockb1_parriyng;li=2;lo=6;delay=0} @self ?!variableEquals{var=caster.parrying;value="1"}
+  - randomskill{s=[
+      - state{state=quickblocka1;li=0;lo=2} @self
+    ],
+      [
+      - state{state=quickblocka2;li=0;lo=2} @self
+    ]} @self ?!variableEquals{var=caster.parrying;value="1"}
+  - randomskill{s=[
+      - state{state=quickblocka1_parrying;li=0;lo=2} @self
+    ],
+      [
+      - state{state=quickblocka2_parrying;li=0;lo=2} @self
+    ]} @self ?!variableEquals{var=caster.parrying;value="1"}
+  - skill{s=fallenMauler_em_clearstates} @Self
+  - potion{type=SLOW;duration=20;level=5;p=false;force=true} @Self
+  - spin{auraName=spin;d=1;v=90} @self ?~!fieldofview{a=160}
+  - look{headOnly=false;immediately=false;repeat=10;repeatInterval=1} @Trigger
+  - spin{auraName=spin;d=10;v=0;delay=10} @self
+  - delay 20
+  - BodyClamp{maxbody=50;stable=15;rdelay=1;rduration=10} @self #BODYCLAMP End
+  - setstance{stance=normal} @self ?stance{s=casting}
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?variableEquals{var=caster.casting;value="1"}
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ?variableEquals{var=caster.skillxd;value="quickblock1"}
+
+
+
+
+fallenMauler_em_backstep1_safedistancecheck:
+  TargetConditions:
+  - inblock{b=AIR} orElsecast fallenMauler_em_backstep1_safedistancecheckB
+  Skills:
+  - effect:particles{p=reddust;c=#ef1fff;a=1;speed=0;hs=0.1;vs=0.1;Size=0.9;y=0.2;repeat=1;repeatinterval=1} 0 #DEBUGPARTICLES
+  - skill{s=fallenMauler_em_backstep1_safedistancecheckC} @TargetedLocation{y=1}
+
+fallenMauler_em_backstep1_safedistancecheckB:
+  Conditions:
+  - hasaura{n=foundgap} false
+  Skills:
+  - variableadd{var=skill.itr;amount=1} @Self 1
+  - message{m="<#ef1fff>iteration <skill.var.itr>"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE 
+  - skill{s=fallenMauler_em_backstep1} @Trigger ?variableInRange{var=skill.itr;v=>8}
+fallenMauler_em_backstep1_safedistancecheckC:
+  Cooldown: 0.1
+  Conditions:
+  - hasaura{n=foundgap} false
+  TargetConditions:
+  - inblock{b=AIR} true
+  Skills:
+  - aura{b=foundgap;d=10;ma=true} @Self
+  - aura{b=fallenMauler_em_backstepimpediment;d=15;ma=true} @Self
+  - effect:particles{p=reddust;c=#ef1fff;a=15;speed=0;hs=0.2;vs=0.2;Size=0.9;y=0.2;repeat=1;repeatinterval=1} 0 #DEBUGPARTICLES
+  - message{m="<#ef1fff>GAP DETECTED"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE 
+  - setvariable{var=skill.Utility_GetDistanceA;type=FLOAT;val=(<skill.var.itr>*0.5)-3} 
+  - skill{s=fallenMauler_emcommuterdefense} @Trigger
+fallenMauler_em_backstep1_check:
+  Conditions:
+  - hasaura{n=foundgap} false
+  - hasaura{n=fallenMauler_em_backstepimpediment} false
+  Cooldown: 0.1
+  Skills:
+  - setvariable{var=skill.itr;val="0";type=integer} @Self
+  - skill{s=[
+    - skill{s=fallenMauler_em_backstep1_safedistancecheck;origin=@Origin{y=-1.5}} @line{r=0.5;fo=true;yo=-1.5}
+    ]} @Forward{f=-4.5;yo=-1.5;lockpitch=true}
+  
+fallenMauler_em_backstep1:
+  Cooldown: 1.5
+  Conditions:
+  - hasaura{n=foundgap} false
+  - targetwithin{d=4.9}
+  - variableEquals{var=caster.running;value="1"} castinstead fallenMauler_em_meleetrigger2
+  - variableEquals{var=caster.casting;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - hasaura{n=backstepB} false
+  - stance{s=normal} true
+  - stance{s=casting} false
+  TriggerConditions:
+  - fieldofview{a=140}
+  TargetConditions:
+  Skills:
+  - setvariable{var=caster.skillxd;value="backstep1";t=string} @Self
+  - auraremove{aura=spin} @self
+  - lockmodel{l=false} @Self
+  - SyncYaw{target=yaw;repeat=6;repeatinterval=1} @Self
+  - BodyClamp{maxbody=0;stable=0;rdelay=0;rduration=3;delay=0} @self #BODYCLAMP Start
+  - look{headOnly=false;immediately=true;repeat=5;repeatInterval=1} @Trigger ?~fieldofview{a=160}
+  - setstance{stance=casting} @self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - Aura{auraName=backstepA;interval=10;duration=60} @self
+  - state{state=backstep;li=1;lo=6;delay=1} @self ?!variableEquals{var=caster.parrying;value="1"}
+  - state{state=backstep_parrying;li=1;lo=6;delay=1} @self ?variableEquals{var=caster.parrying;value="1"}
+  - skill{s=fallenMauler_em_clearstates} @Self
+  
+  - potion{type=SLOW;duration=26;lvl=7;p=false;force=true} @Self
+  - sound{s=emaginationfallenreaper:custom.fallenreaper.reffortc;p=1;v=1.4} 0.7 @SelfLocation
+  - effect:sound{s=emaginationfallenreaper:custom.spell.land;v=2;repeat=0;repeatInterval=6} @self
+  - skill{s=fallenMauler_em_backstep1_recoverylunge;lungeintensity=0.1;repeat=1;repeatinterval=1} @forward{f=-10;y=-1}
+  - delay 1 #1
+  - skill{s=fallenMauler_em_backstep1_recoverylunge;lungeintensity=0.2;repeat=2;repeatinterval=1} @forward{f=-10;y=-1}
+  - delay 2 #3
+  - lockmodel{l=true} @Self
+  - spin{auraName=spin;d=10;v=0} @self
+  - skill{s=fallenMauler_em_backstep1_recoverylunge;lungeintensity=0.4;repeat=4;repeatinterval=1} @forward{f=-10;y=-1}
+  - delay 4 #7
+  - effect:sound{s=emaginationfallenreaper:custom.spell.land;v=1;delay=1;p=<random.float.1to1.2} @self
+  - skill{s=fallenMauler_em_backstep1_recoverylunge;lungeintensity=0.2;repeat=12;repeatinterval=1} @forward{f=-10;y=-1}
+  - delay 6 #13
+  - lockmodel{l=false} @Self ?variableEquals{var=caster.skillxd;value="backstep1"}
+  - setstance{stance=normal} @self ?variableEquals{var=caster.skillxd;value="backstep1"}
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?variableEquals{var=caster.skillxd;value="backstep1"}
+  - SyncYaw{target=yaw;repeat=12;repeatinterval=1} @Self
+  - effect:sound{s=emaginationfallenreaper:custom.spell.land;v=1;p=<random.float.1to1.2} @self
+  - delay 6 #18
+  - skill{s=fallenMauler_em_backstep1_recoverylunge;lungeintensity=0.097;repeat=7;repeatinterval=1} @forward{f=-10;y=-1}
+  - delay 7 #25
+  
+  - BodyClamp{maxbody=50;stable=15;rdelay=1;rduration=10} @self ?variableEquals{var=caster.skillxd;value="backstep1"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ?variableEquals{var=caster.skillxd;value="backstep1"} ?!variableEquals{var=caster.hurtened;value="1"}
+fallenMauler_em_backstep1_recoverylunge:
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="backstep1"} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  Skills:
+  - propel{v=<skill.lungeintensity>} ?onground
+  - propel{v=<skill.lungeintensity>} @forward{f=-2;y=-2} ?!onground
+
+
+
+
+countertacked_fallenMauler_em_A:
+  TriggerConditions:
+  - fieldofview{a=120} true
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="bruttack1"} castinstead cakd_fallenMauler_em_cattack1
+  - variableEquals{var=caster.skillxd;value="bruttack2"} castinstead cakd_fallenMauler_em_cattack1
+  Skills:
+  - message{m="Casted &ecountertacked_fallenMauler_em_A"} @PlayersNearOrigin{r=75} 0 #DEGBUGMESSAGE
+countertacked_fallenMauler_em_B:
+  Conditions:
+  - variableEquals{var=caster.parrying;value="1"} true
+  Skills:
+  - randomskill{s=[
+      - state{state=parry_trigger1;li=0;lo=8} @self
+    ],
+      [
+      - state{state=parry_trigger2;li=0;lo=8} @self
+    ];sync=false}
+  - summon{mob=vfx_fallenMauler_em_chipsumMarker;amount=1;noise=0.9;r=0.4;yr=0} @Forward{y=-1.9;f=1.45;sideOffset=-0.3}
+cakd_antilunge1:
+  Conditions:
+  - variableEquals{var=caster.hurtened;value="1"} true
+  - variableEquals{var=caster.skillxd;value="cattack1"} true
+  Skills:
+  - propel{v=<skill.lungeintensity>} ?onground
+  - propel{v=<skill.lungeintensity>*3} @forward{f=-2;y=-3} ?!onground
+cakd_fallenMauler_em_cattack1:
+  Conditions:
+  - hasaura{n=nule_parry} false
+  - variableEquals{var=caster.casting;value="1"} false
+  Skills:
+  - skill{s=incapacitate_fallenMauler_em_quickblock_a} @Trigger
+  - auraremove{aura=spin} @self
+  - spin{auraname=spin;d=21;v=0} @self
+  - lockmodel{l=true} @Self
+  - message{m="Casted &eCountered attack 1"} @PlayersNearOrigin{r=75} 0 #DEGBUGMESSAGE
+  - setstance{stance=casting} @self
+  - state{s=attack1_parried;li=0;lo=3} @self ?!variableEquals{var=caster.parrying;value="1"} ?variableEquals{var=caster.skillxd;value="bruttack1"} ?hasaura{n=right_attack}
+  - state{s=attack1_parried_parrying;li=0;lo=3} @self ?variableEquals{var=caster.parrying;value="1"} ?variableEquals{var=caster.skillxd;value="bruttack1"} ?hasaura{n=right_attack}
+  - state{s=attack2_parried;li=0;lo=3} @self ?!variableEquals{var=caster.parrying;value="1"} ?variableEquals{var=caster.skillxd;value="bruttack1"} ?hasaura{n=left_attack}
+  - state{s=attack2_parried_parrying;li=0;lo=3} @self ?variableEquals{var=caster.parrying;value="1"} ?variableEquals{var=caster.skillxd;value="bruttack1"} ?hasaura{n=left_attack}
+  - state{s=attack2_parried;li=0;lo=3} @self ?!variableEquals{var=caster.parrying;value="1"} ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - state{s=attack2_parried_parrying;li=0;lo=3} @self ?variableEquals{var=caster.parrying;value="1"} ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - summon{mob=vfx_fallenMauler_em_expFXmarker1;amount=1;noise=0.5;r=0.6;yr=0} @Forward{y=-2.4;f=1;sideOffset=0.7} ?variableEquals{var=caster.skillxd;value="bruttack1"}
+  - summon{mob=vfx_fallenMauler_em_expFXmarker1;amount=1;noise=0.5;r=0.6;yr=0} @Forward{y=-2.4;f=1;sideOffset=-0.7} ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - setvariable{var=caster.skillxd;value="cattack1";t=string} @Self
+  - variableadd{var=caster.hitrec;amount=3} @self
+  - Aura{auraName=parried;duration=35} @self
+  - Aura{auraName=blockdamage;duration=6;delay=1} @self
+  - remove @children{conditions=[  - mythicmobtype{t=vfx_fallenMauler_em_attack3_b,vfx_fallenMauler_em_attack2_b,vfx_fallenMauler_em_attack1_b} true ]}
+  - potion{type=SLOW;duration=21;level=8;p=false;force=true} @Self
+  - skill{s=fallenMauler_em_clearstates} @Self
+  - setvariable{var=caster.hurtened;value="1";t=integer} @Self
+  - setvariable{var=caster.countered;value="1";t=integer} @Self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - delay 1 #1
+  - skill{s=cakd_antilunge1;lungeintensity=0.0375;repeat=6;repeatInterval=1} @forward{f=-10;y=-1} ?variableEquals{var=caster.skillxd;value="cattack1"}
+  - delay 6 #7
+  - skill{s=cakd_antilunge1;lungeintensity=0.01071428571;repeat=14;repeatInterval=1} @forward{f=-10;y=-1} ?variableEquals{var=caster.skillxd;value="cattack1"}
+  - delay 1 #8
+  - Aura{auraName=shielderfallenMauler_em;onTick=fallenMauler_em_sdppcheck;interval=7;duration=80;mergeSameCaster=true} @self 0.6
+  - skill{s=[
+    - auraremove{aura=spin} @self
+    - setvariable{var=caster.hurtened;value="0";t=integer} @Self
+    - setstance{stance=normal} @self ?stance{s=casting}
+    - lockmodel{l=false} @Self
+    - setvariable{var=caster.casting;value="0";t=integer} @Self
+    - Aura{auraName=bruttackrest;duration=30} @self];sync=false} @Self 0.4 ?variableEquals{var=caster.skillxd;value="cattack1"}
+  - delay 13 #21
+  - skill{s=[
+    - auraremove{aura=spin} @self
+    - setvariable{var=caster.hurtened;value="0";t=integer} @Self
+    - setstance{stance=normal} @self
+    - lockmodel{l=false} @Self
+    - setvariable{var=caster.casting;value="0";t=integer} @Self
+    - setvariable{var=caster.skillxd;value="none";t=string} @Self];sync=false} @Self ?variableEquals{var=caster.skillxd;value="cattack1"}
+ 
+
+fallenMauler_em_bruttack1:
+  Cooldown: 2.2
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.casting;value="1"} false
+  - hasaura{n=bruttackrest} false
+  TargetConditions:
+  - distance{d=0to5} true
+  - fieldofview{angle=120} true
+  Skills:
+  - auraremove{aura=spin} @self
+  - lockmodel{l=false} @Self
+  - SyncYaw{target=yaw;repeat=6;repeatinterval=1} @Self
+  - setstance{stance=casting} @self
+  - BodyClamp{maxbody=0;stable=0;rdelay=0;rduration=3;delay=0} @self #BODYCLAMP Start
+  - sound{s=emaginationfallenheroes:custom.spell.channelstun;p=1.2;v=1} @selflocation{} ######SOUND
+  - setvariable{var=caster.skillxd;value="bruttack1";t=string} @Self
+  - variableadd{var=caster.combor;amount=1} @self
+  - randomskill{s=[
+      - state{state=attack1;li=1;lo=10} @self
+      - Aura{auraName=right_attack;duration=30} @Self
+    ],
+      [
+      - state{state=attack1;li=1;lo=10} @self
+      - Aura{auraName=right_attack;duration=30} @Self
+    ],
+      [
+      - state{state=attack2_start;li=1;lo=10} @self
+      - Aura{auraName=left_attack;duration=30} @Self]} ?!variableEquals{var=caster.parrying;value="1"}
+  
+  - randomskill{s=[
+      - state{state=attack1_parrying;li=1;lo=10} @self
+      - Aura{auraName=right_attack;duration=30} @Self
+    ],
+      [
+      - state{state=attack1_parrying;li=1;lo=10} @self
+      - Aura{auraName=right_attack;duration=30} @Self
+    ],
+      [
+      - state{state=attack2_start_parrying;li=1;lo=10} @self
+      - Aura{auraName=left_attack;duration=30} @Self]} ?variableEquals{var=caster.parrying;value="1"}
+
+  - skill{s=fallenMauler_em_clearstates} @Self
+  - potion{type=SLOW;duration=26;level=7;p=false;force=true} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - spin{auraname=spin;d=36;v=0;delay=5} @self
+  - lockmodel{l=true;delay=5} @Self
+  - throw{velocity=2;vy=-0.5;repeat=25;repeatInterval=1} @LivingInCone{a=180.0;r=1.3;rot=0;ignore=samefaction} 
+  - skill{s=fallenMauler_em_bruttack1_recoverylunge;lungeintensity=0.09;repeat=6;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack1"} #0.06
+  - delay 6
+  - skill{s=fallenMauler_em_bruttack1_recoverylunge;lungeintensity=0.18;repeat=6;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack1"} #0.134
+  - delay 6 #12
+  - skill{s=fallenMauler_em_bruttack1_recoverylunge;lungeintensity=0.15;repeat=5;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack1"} #0.1024
+  - delay 6 #16
+  - delay 1 #17
+  - summon{mob=vfx_fallenMauler_em_attack1_a;amount=1;noise=0;r=0;yr=0} @Forward{y=-4;f=2.2;lockpitch=true} ?hasaura{n=right_attack} ?variableEquals{var=caster.skillxd;value="bruttack1"}
+  - summon{mob=vfx_fallenMauler_em_attack2_a;amount=1;noise=0;r=0;yr=0} @Forward{y=-4;f=2.2;lockpitch=true} ?hasaura{n=left_attack} ?variableEquals{var=caster.skillxd;value="bruttack1"}
+  - skill{s=fallenMauler_em_bruttack1_adaptivelunge;lungeintensity=0.6;repeat=3;repeatInterval=1} @TargetedTarget ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - sound{s=emaginationfallenheroes:custom.spell.herostun;p=<random.float.0.8to0.9>;v=1.5} @SelfLocation ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - delay 1 #18
+  - cancelskill ?!variableEquals{var=caster.skillxd;value="bruttack1"}
+  - stopsound{s=emaginationfallenheroes:custom.spell.herostun} @PIR{r=6} ?!variableEquals{var=caster.skillxd;value="bruttack1"}
+  - skill{s=fallenMauler_em_bruttack1_adaptivelunge_reach;repeat=2;repeatInterval=1} @TargetedTarget ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - Aura{auraName=attack1state;duration=19} @Self ?!variableEquals{var=caster.hurtened;value="1"}
+  - sound{s=emv4fallena:custom.fallenhero.macewindup;p=<random.float.0.8to0.9>;v=1.5} @selflocation ?!variableEquals{var=caster.hurtened;value="1"}
+  - skill{s=[
+      - skill{s=fallenMauler_em_bruttack1_hit;repeat=2;repeatinterval=1} @LivingInCone{a=80.0;r=2.8;rot=80;ignore=samefaction} 
+      - skill{s=fallenMauler_em_bruttack1_hit;repeat=2;repeatinterval=1} @LivingInCone{a=180.0;r=1.3;rot=80.0;ignore=samefaction} 
+      
+      - skill{s=fallenMauler_em_bruttack1_hit;repeat=2;repeatinterval=1;delay=1} @LivingInCone{a=70.0;r=3.7;rot=20;ignore=samefaction} 
+      - skill{s=fallenMauler_em_bruttack1_hit;repeat=2;repeatinterval=1;delay=1} @LivingInCone{a=180.0;r=1.1;rot=20.0;ignore=samefaction}
+
+      - skill{s=fallenMauler_em_bruttack1_hit;repeat=2;repeatinterval=1;delay=3} @LivingInCone{a=60.0;r=3.7;rot=330;ignore=samefaction}
+      - skill{s=fallenMauler_em_bruttack1_hit;repeat=2;repeatinterval=1;delay=3} @LivingInCone{a=200.0;r=1.2;rot=320;ignore=samefaction}
+      
+      - skill{s=fallenMauler_em_bruttack1_hit;repeat=2;repeatinterval=1;delay=4} @LivingInCone{a=90.0;r=2.6;rot=270;ignore=samefaction}
+      - skill{s=fallenMauler_em_bruttack1_hit;repeat=2;repeatinterval=1;delay=4} @LivingInCone{a=200.0;r=1.2;rot=270;ignore=samefaction}]} ?hasaura{n=right_attack} ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+
+  - skill{s=[
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1} @LivingInCone{a=80.0;r=4;rot=280;ignore=samefaction} 
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1} @LivingInCone{a=180.0;r=1.3;rot=280.0;ignore=samefaction} 
+      
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=1} @LivingInCone{a=60.0;r=4.3;rot=340;ignore=samefaction} 
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=1} @LivingInCone{a=180.0;r=1.1;rot=340.0;ignore=samefaction}
+
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=3} @LivingInCone{a=60.0;r=4.3;rot=30;ignore=samefaction}
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=3} @LivingInCone{a=200.0;r=1.2;rot=30;ignore=samefaction}
+      
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=4} @LivingInCone{a=80.0;r=3.9;rot=90;ignore=samefaction}
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=4} @LivingInCone{a=200.0;r=1.2;rot=90;ignore=samefaction}
+
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=5} @LivingInCone{a=60.0;r=2;rot=130;ignore=samefaction}
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=5} @LivingInCone{a=200.0;r=1.2;rot=130;ignore=samefaction}]} ?hasaura{n=left_attack} ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"}
+  
+  - delay 1 #19
+  - setvariable{var=caster.casting;value="1";t=integer;delay=1} @Self ?variableEquals{var=caster.skillxd;value="bruttack1"}
+  - summon{mob=vfx_fallenMauler_em_attack1_b;amount=1;noise=0;r=0;yr=0} ?hasaura{n=right_attack} @Forward{y=-4;f=1;lockpitch=true} ?variableEquals{var=caster.skillxd;value="bruttack1"}
+  - summon{mob=vfx_fallenMauler_em_attack2_b;amount=1;noise=0;r=0;yr=0} @Forward{y=-4;f=1;lockpitch=true} ?hasaura{n=left_attack} ?variableEquals{var=caster.skillxd;value="bruttack1"}
+  - delay 1 #20
+  - stopsound{s=emaginationfallenheroes:custom.spell.herostun} @PIR{r=6} ?!variableEquals{var=caster.skillxd;value="bruttack1"}
+  - skill{s=fallenMauler_em_bruttack1_recoverylunge;lungeintensity=0.11;repeat=5;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - Aura{auraName=tickfallenMauler_emcomboa;onTick=reducestacksfallenMauler_em;interval=30;duration=110;mergeSameCaster=true;refreshDuration=true} @self ?!variableEquals{var=caster.hurtened;value="1"}<<<<<<<<<<<<<<<<
+  - delay 5 #25
+  - skill{s=fallenMauler_em_bruttack1_recoverylunge;lungeintensity=0.11;repeat=6;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack1"}
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - setstance{stance=normal} @self ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - randomskill{s=fallenMauler_em_bruttack2;repeat=6;repeatinterval=2} @LivingInCone{a=100.0;r=5.5;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?hasaura{n=right_attack} 0.8 ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - randomskill{s=fallenMauler_em_bruttack3;repeat=6;repeatinterval=2} @LivingInCone{a=100.0;r=5.5;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?hasaura{n=left_attack} 0.8 ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - randomskill{s=fallenMauler_em_bruttack2;repeat=6;repeatinterval=2} @TargetedTarget ?hasaura{n=right_attack} 0.65 ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - randomskill{s=fallenMauler_em_bruttack3;repeat=6;repeatinterval=2} @TargetedTarget ?hasaura{n=left_attack} 0.65 ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - delay 1 #26
+  - SyncYaw{target=yaw;repeat=6;repeatinterval=1} @Self
+  - potion{type=SLOW;duration=15;level=7;p=false;force=true} @Self
+  - delay 5 #31
+  - skill{s=fallenMauler_em_bruttack1_recoverylunge;lungeintensity=0.12;repeat=8;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack1"}
+  - lockmodel{l=false} @Self ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"}
+
+  - delay 8 #39
+  - skill{s=fallenMauler_em_bruttack1_recoverylunge;lungeintensity=0.0001} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack1"}
+  - delay 2 #41
+  
+  - BodyClamp{maxbody=50;stable=15;rdelay=1;rduration=10} @self ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"}
+fallenMauler_em_bruttack1_hit:
+  Conditions:
+  - hasaura{n=blockdamage} false
+  TargetConditions:
+  - hasaura{n=hit_fallenMauler_em_bruttack1} false
+  - samefaction false
+  - hasaura{n=iframe} false
+  Skills:
+  - throw{velocity=7;velocityY=0.4;fromorigin=true;origin=@Forward{f=-0.5;sideoffset=0.1}} @TargetedTarget{conditions=[  - distance{d=<1.5} true ]}
+  - throw{velocity=4;velocityY=0.4;fromorigin=true;origin=@Forward{f=-0.8;sideoffset=-3}} @TargetedTarget{conditions=[  - distance{d=<1.5} false ]}
+  - recoil{r=6;pitch=-3to-2;yaw=16to32}
+  - shieldbreak{duration=60} @TargetedTarget
+  - basedamage{m=1.9;ignorearmor=false} @TargetedTarget
+  - basedamage{m=0.1;ignorearmor=true;preventknockback=true;preventimmunity=true} @TargetedTarget{conditions=[  - distance{d=<1.3} true ]}
+  - sound{s=emv4fallena:custom.fallenhero.macehitb;p=<random.float.0.8to1.3>;v=1.5} @TargetedTarget
+  - skill{s=outrun_aleviate_fallenMauler_em;sync=true} @TargetedTarget{limit=1;sort=NEAREST}
+  - Aura{auraName=hit_fallenMauler_em_bruttack1;duration=10} @TargetedTarget
+  
+  - sudoskill{s=[
+    - summon{mob=vfx_fallenMauler_em_expFXmarker1;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-2.3;ForwardOffset=0.3}];sync=true} @TargetedTarget{ignore=samefaction}
+
+  - potion{type=LEVITATION;duration=5;level=1;p=false} 
+  - potion{type=LEVITATION;duration=3;level=0;p=false;delay=5}
+  - potion{type=SLOW_FALLING;duration=4;level=0;p=false;delay=8}
+
+  - potion{type=SLOW_DIGGING;duration=5;lvl=10;particles=false} @TargetedTarget
+
+  - potion{type=SLOW;duration=8;lvl=7;particles=false}
+  - potion{type=SLOW;duration=20;lvl=0;delay=8;p=false}
+  - randomskill{s=fallenMauler_em_bruttack2;repeat=20;repeatinterval=1} @targetedtarget{conditions=[  - distance{d=<6} true ]} 0.9
+fallenMauler_em_bruttack1_recoverylunge:
+  Conditions:
+  - onground true
+  - variableEquals{var=caster.skillxd;value="bruttack1"} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  Skills:
+  - propel{v=<skill.lungeintensity>}
+
+fallenMauler_em_bruttack1_adaptivelunge:
+  TargetConditions:
+  - distance{d=0to0.7} castinstead fallenMauler_em_bruttack1_adaptivelunge_reach
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="bruttack1"} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  Skills:
+  - propel{v=<skill.lungeintensity>} @forward{f=10}
+fallenMauler_em_bruttack1_adaptivelunge_reach:
+  Cooldown: 2
+  TargetConditions:
+  - distance{d=0to0.6} true 
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="bruttack1"} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  Skills:
+  - propel{v=-0.0006} @forward{f=10} 
+
+fallenMauler_em_bruttack2:
+  Cooldown: 2
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.casting;value="1"} false
+  - hasaura{n=bruttackrest} false
+  TargetConditions:
+  - distance{d=0to7} true
+  - fieldofview{angle=180} true
+  Skills:
+  - auraremove{aura=spin} @self
+  - lockmodel{l=false} @Self
+  - SyncYaw{target=yaw;repeat=6;repeatinterval=1} @Self
+  - setstance{stance=casting} @self
+  - BodyClamp{maxbody=0;stable=0;rdelay=0;rduration=3;delay=0} @self #BODYCLAMP Start
+  - sound{s=emaginationfallenheroes:custom.spell.channelstun;p=1.2;v=1} @selflocation{} ######SOUND
+  - setvariable{var=caster.skillxd;value="bruttack2";t=string} @Self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack2;li=0;lo=4} @self ?!variableEquals{var=caster.parrying;value="1"}
+  - state{state=attack2_parrying;li=0;lo=4} @self ?variableEquals{var=caster.parrying;value="1"}
+  - skill{s=fallenMauler_em_clearstates} @Self
+  - potion{type=SLOW;duration=35;level=7;p=false;force=true} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - spin{auraname=spin;d=30;v=0;delay=5} @self
+  - lockmodel{l=true;delay=5} @Self
+  - throw{velocity=2;vy=-0.5;repeat=25;repeatInterval=1} @LivingInCone{a=180.0;r=1.3;rot=0;ignore=samefaction} 
+  - skill{s=fallenMauler_em_bruttack2_recoverylunge;lungeintensity=0.18;repeat=6;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack2"} #0.134
+  - delay 6 #6
+  - skill{s=fallenMauler_em_bruttack2_recoverylunge;lungeintensity=0.15;repeat=5;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack2"} #0.1024
+  - delay 5 #11
+  - delay 1 #12
+  - summon{mob=vfx_fallenMauler_em_attack2_a;amount=1;noise=0;r=0;yr=0} @Forward{y=-4;f=2.2;lockpitch=true} ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - skill{s=fallenMauler_em_bruttack2_adaptivelunge;lungeintensity=0.6;repeat=3;repeatInterval=1} @TargetedTarget ?variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - sound{s=emaginationfallenheroes:custom.spell.herostun;p=<random.float.0.8to0.9>;v=1.5} @SelfLocation ?variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - delay 1 #13
+  - cancelskill ?!variableEquals{var=caster.skillxd;value="bruttack2"}
+  - skill{s=fallenMauler_em_bruttack2_adaptivelunge_reach;repeat=2;repeatInterval=1} @TargetedTarget ?variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - Aura{auraName=attack1state;duration=19} @Self ?!variableEquals{var=caster.hurtened;value="1"}
+  - sound{s=emv4fallena:custom.fallenhero.macewindup;p=<random.float.0.8to0.9>;v=1.5} @selflocation ?!variableEquals{var=caster.hurtened;value="1"}
+  - skill{s=[
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1} @LivingInCone{a=80.0;r=4;rot=280;ignore=samefaction} 
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1} @LivingInCone{a=180.0;r=1.3;rot=280.0;ignore=samefaction} 
+      
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=1} @LivingInCone{a=60.0;r=4.3;rot=340;ignore=samefaction} 
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=1} @LivingInCone{a=180.0;r=1.1;rot=340.0;ignore=samefaction}
+
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=3} @LivingInCone{a=60.0;r=4.3;rot=30;ignore=samefaction}
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=3} @LivingInCone{a=200.0;r=1.2;rot=30;ignore=samefaction}
+      
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=4} @LivingInCone{a=80.0;r=3.9;rot=90;ignore=samefaction}
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=4} @LivingInCone{a=200.0;r=1.2;rot=90;ignore=samefaction}
+
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=5} @LivingInCone{a=60.0;r=2;rot=130;ignore=samefaction}
+      - skill{s=fallenMauler_em_bruttack2_hit;repeat=2;repeatinterval=1;delay=5} @LivingInCone{a=200.0;r=1.2;rot=130;ignore=samefaction}]} ?variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  
+  - delay 1 #14
+  - setvariable{var=caster.casting;value="1";t=integer;delay=1} @Self ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - summon{mob=vfx_fallenMauler_em_attack2_b;amount=1;noise=0;r=0;yr=0} @Forward{y=-4;f=1;lockpitch=true} ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - skill{s=fallenMauler_em_bruttack2_recoverylunge;lungeintensity=0.11;repeat=5;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - delay 5 #19
+  - skill{s=fallenMauler_em_bruttack2_recoverylunge;lungeintensity=0.11;repeat=6;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - setstance{stance=normal} @self ?variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - randomskill{s=fallenMauler_em_bruttack3;sync=false;repeat=5;repeatinterval=2} @TargetedTarget 0.7 ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - randomskill{s=fallenMauler_em_bruttack3;sync=false;repeat=5;repeatinterval=2} @LivingInCone{a=100.0;r=5.5;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} 0.7 ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - delay 1 #20
+  - SyncYaw{target=yaw;repeat=6;repeatinterval=1} @Self
+  - potion{type=SLOW;duration=15;level=7;p=false;force=true} @Self
+  - delay 5 #25
+  - skill{s=fallenMauler_em_bruttack2_recoverylunge;lungeintensity=0.12;repeat=8;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  
+  - delay 4 #29
+  - lockmodel{l=false} @Self ?variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - delay 4 #33
+  - skill{s=fallenMauler_em_bruttack2_recoverylunge;lungeintensity=0.0001} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - delay 1 #34
+  
+  - BodyClamp{maxbody=50;stable=15;rdelay=1;rduration=10} @self ?variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ?variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.hurtened;value="1"}
+fallenMauler_em_bruttack2_hit:
+  Conditions:
+  - hasaura{n=blockdamage} false
+  TargetConditions:
+  - hasaura{n=hit_fallenMauler_em_bruttack2} false
+  - samefaction false
+  - hasaura{n=iframe} false
+  Skills:
+  - throw{velocity=5;velocityY=0.4;fromorigin=true;origin=@Forward{f=-0.8;sideoffset=-0.1}} @TargetedTarget{conditions=[  - distance{d=<1.5} true ]}
+  - throw{velocity=4;velocityY=0.4;fromorigin=true;origin=@Forward{f=-0.8;sideoffset=-3}} @TargetedTarget{conditions=[  - distance{d=<1.5} false ]}
+  - recoil{r=12;pitch=0to4;yaw=-32to-16}
+  - shieldbreak{duration=60} @TargetedTarget
+
+  - basedamage{m=1.9;ignorearmor=false} @TargetedTarget
+  - basedamage{m=0.1;ignorearmor=true;preventknockback=true;preventimmunity=true} @TargetedTarget{conditions=[  - distance{d=<1.3} true ]}
+  - sound{s=emv4fallena:custom.fallenhero.macehitb;p=<random.float.0.8to1.3>;v=1.5} @TargetedTarget
+  - skill{s=outrun_aleviate_fallenMauler_em;sync=true} @TargetedTarget{limit=1;sort=NEAREST}
+  - Aura{auraName=hit_fallenMauler_em_bruttack2;duration=10} @TargetedTarget
+  
+  - sudoskill{s=[
+    - summon{mob=vfx_fallenMauler_em_expFXmarker1;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-2.3;ForwardOffset=0.1}];sync=true} @TargetedTarget{ignore=samefaction}
+
+  - potion{type=LEVITATION;duration=5;level=1;p=false} 
+  - potion{type=LEVITATION;duration=3;level=0;p=false;delay=5}
+  - potion{type=SLOW_FALLING;duration=4;level=0;p=false;delay=8}
+
+  - potion{type=SLOW_DIGGING;duration=5;lvl=10;particles=false} @TargetedTarget
+
+  - potion{type=SLOW;duration=8;lvl=7;particles=false}
+  - potion{type=SLOW;duration=20;lvl=0;delay=8;p=false}
+  - randomskill{s=fallenMauler_em_bruttack3,fallenMauler_em_bruttack3,fallenMauler_em_bruttack1;repeat=20;repeatinterval=1} @targetedtarget{conditions=[  - distance{d=<6} true ]} 0.8
+
+fallenMauler_em_bruttack2_recoverylunge:
+  Conditions:
+  - onground true
+  - variableEquals{var=caster.skillxd;value="bruttack2"} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  Skills:
+  - propel{v=<skill.lungeintensity>}
+
+fallenMauler_em_bruttack2_adaptivelunge:
+  TargetConditions:
+  - distance{d=0to1.7} castinstead fallenMauler_em_bruttack2_adaptivelunge_reach
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="bruttack2"} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  Skills:
+  - propel{v=<skill.lungeintensity>} @forward{f=10}
+fallenMauler_em_bruttack2_adaptivelunge_reach:
+  Cooldown: 2
+  TargetConditions:
+  - distance{d=0to1.6} true 
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="bruttack2"} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  Skills:
+  - propel{v=-0.0006} @forward{f=10} 
+
+
+fallenMauler_em_bruttack3:
+  Cooldown: 4
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+
+  - variableEquals{var=caster.casting;value="1"} false
+  - hasaura{n=bruttackrest} false
+  TargetConditions:
+  - distance{d=0to6} true
+  - fieldofview{angle=180} true
+  Skills:
+  - auraremove{aura=spin} @self
+  - lockmodel{l=false} @Self
+  - SyncYaw{target=yaw;repeat=25;repeatinterval=1} @Self
+  - setstance{stance=casting} @self
+  - setvariable{var=caster.skillxd;value="bruttack3";t=string} @Self
+  - BodyClamp{maxbody=0;stable=0;rdelay=0;rduration=5;delay=0} @self #BODYCLAMP Start
+  - sound{s=emaginationfallenheroes:custom.spell.channelstun;p=1.2;v=1} ######SOUND
+  - state{remove=true;s=run_roll;lo=1;frame=0} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack3;li=0;lo=4} @self ?!variableEquals{var=caster.parrying;value="1"}
+  - state{state=attack3_parrying;li=0;lo=4} @self ?variableEquals{var=caster.parrying;value="1"}
+  - skill{s=fallenMauler_em_clearstates} @Self
+  - setvariable{var=caster.comboa;value="1";t=integer} @Self ?variableEquals{var=caster.comboa;value="0"}
+  
+  - potion{type=SLOW;duration=45;level=7;p=false;force=false} @Self
+  - skill{s=fallenMauler_em_bruttack3_rotate;repeat=10;repeatinterval=1} @TargetedTarget ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - look{headOnly=false;immediately=false;repeat=6;repeatInterval=1} @TargetedTarget
+  - spin{auraName=spin;d=28;v=0;delay=10} @self
+  - lockmodel{l=true;delay=10} @Self #LOCKMODEL
+  - sound{s=emaginationfallenreaper:custom.fallenreaper.reffortb;p=0.86;v=1.2;cooldown=2;delay=2} @selflocation 0.7 ?!variableEquals{var=caster.hurtened;value="1"}
+  - skill{s=fallenMauler_em_bruttack3_recoverylunge;lungeintensity=0.0875;repeat=6;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - throw{velocity=2;vy=-0.5;repeat=25;repeatInterval=1} @LivingInCone{a=180.0;r=1.3;rot=0;ignore=samefaction} 
+  - delay 6
+  - skill{s=fallenMauler_em_bruttack3_recoverylunge;lungeintensity=0.075;repeat=5;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - delay 5 #11
+  - skill{s=fallenMauler_em_bruttack3_recoverylunge;lungeintensity=0.2325;repeat=3;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - delay 3 #14
+  - skill{s=fallenMauler_em_bruttack3_recoverylunge;lungeintensity=0.2025;repeat=2;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - Aura{auraName=bruttackrest;duration=60} @self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self ?variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.hurtened;value="1"}
+  
+  - delay 2 #16
+  - skill{s=fallenMauler_em_bruttack3_adaptivelunge_reach;repeat=3;repeatInterval=1} @LivingInCone{a=180.0;r=1;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?!variableEquals{var=caster.hurtened;value="1"}
+  - skill{s=fallenMauler_em_bruttack3_adaptivelunge;lungeintensity=0.8;repeat=3;repeatinterval=1} @TargetedTarget ?variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.hurtened;value="1"}
+
+  - delay 3 #19
+  - summon{mob=vfx_fallenMauler_em_attack3_a;amount=1;noise=0;r=0;yr=0} @Forward{y=-4;f=1;lockpitch=true} ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - skill{s=fallenMauler_em_bruttack3_recoverylunge;lungeintensity=0.045;repeat=5;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - sound{s=emaginationfallenheroes:custom.spell.herostun;p=<random.float.1.3to1.6>;v=1} ?!variableEquals{var=caster.hurtened;value="1"} 0
+  - delay 1 #20
+  - cancelskill ?!variableEquals{var=caster.skillxd;value="bruttack3"}
+  - setrotation{relative=false;pitch=0} @Self
+  - skill{s=[
+      - sound{s=emaginationfallenheroes:custom.spell.landshockwave;v=2.4;p=<random.float.0.8to1.1>} @TargetedLocation 
+      - skill{s=fallenMauler_em_bruttack3_hit;repeat=2;repeatinterval=1} @LivingNearTargetLocation{r=3;ignore=samefaction}
+      - skill{s=fallenMauler_em_bruttack3_hitB;repeat=2;repeatinterval=1;delay=1} @LivingNearTargetLocation{r=4;ignore=samefaction}
+      - effect:particles{particle=block_crack;m=dirt;amount=45;hS=0.4;vS=0.4;y=0} @TargetedLocation 
+      - effect:particles{particle=cloud;amount=1;hS=1.2;vS=0.1;speed=0.3;directional=true;origin=@Forward{f=2.5;lockpitch=true};y=-0.5} @Ring{radius=4;points=8}
+    ];fromorigin=true} @Forward{f=2.9;lockpitch=true} ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - skill{s=fallenMauler_em_bruttack3_hit;repeat=2;repeatinterval=1} @LivingInCone{a=40.0;r=3.5;rot=0.0;ignore=samefaction} ?variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.hurtened;value="1"}
+  
+  - sound{s=emaginationfallenreaper:custom.spell.grandslashcast;pitch=<random.float.1.7to2>;v=2} @Forward{f=2.9} ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - sound{s=emv4fallena:custom.fallenhero.macewindup;p=<random.float.0.8to0.9>;v=1.5} @selflocation ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - sound{s=emaginationfallenreaper:custom.spell.attack4reaper;p=<random.float.1to1.4>;v=1.5;cooldown=2} @selflocation ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - summon{mob=vfx_fallenMauler_em_fireblade1;amount=1;noise=0;r=0.01;yr=0} @Forward{y=-3;f=2.9;sideOffset=0;lockpitch=true} ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - summon{mob=vfx_fallenMauler_em_expFXmarker2;amount=1;noise=0;r=0.01;yr=0} @Forward{y=-4;f=2.9;sideOffset=0;lockpitch=true} ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - summon{mob=vfx_fallenMauler_em_shockwave_1;amount=1;noise=0;r=0.01;yr=0} @Forward{y=-5.55;f=2.9;sideOffset=0;lockpitch=true} ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - delay 1 #21
+  - summon{mob=vfx_fallenMauler_em_attack3_b;amount=1;noise=0;r=0;yr=0} @Forward{y=-4;f=1;lockpitch=true} ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - delay 3 #24
+  - skill{s=fallenMauler_em_bruttack3_recoverylunge;lungeintensity=0.015;repeat=5;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  
+  - delay 5 #29
+  - skill{s=fallenMauler_em_bruttack3_recoverylunge;lungeintensity=0.028125;repeat=16;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  
+  - delay 1 #20
+  - skill{s=fallenMauler_em_bruttack3_adaptivelunge_reach;repeat=2;repeatInterval=1} @Self ?variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - delay 18 #38
+  - potion{type=SLOW;duration=13;level=2;p=false;force=true} @Self ?variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - lockmodel{l=false} @Self ?variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - setstance{stance=normal} @self ?variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - BodyClamp{maxbody=50;stable=15;rdelay=1;rduration=10} @self ?variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.hurtened;value="1"} #BODYCLAMP End
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ?variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.hurtened;value="1"}
+  
+fallenMauler_em_bruttack3_rotate:
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="bruttack3"} true
+  TargetConditions:
+  - fieldofview{angle=15} castinstead fallenMauler_em_bruttack3_rotate_luc
+  Skills:
+  - skill{s=fallenMauler_em_rotate_left}
+  - skill{s=fallenMauler_em_rotate_right}
+
+fallenMauler_em_bruttack3_rotate_luc:
+  Skills:
+  - look{headOnly=false;immediately=false} @TargetedTarget 
+  - message{m="xd luquing"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+fallenMauler_em_rotate_left:
+  Conditions: 
+  - hasaura{n=rotating_stop} false
+  TargetConditions:
+  - fieldofview{angle=170;r=90} true
+  Skills:
+  - message{m="&bRotten left"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - effect:particles{p=reddust;color=#ffd966;a=1;hs=0.1;vs=0.1;y=2.6;Size=0.9} @SelfLocation 0 #DEBUGPARTICLES
+  - Aura{auraName=rotating_left;duration=3} @Self
+  - Aura{auraName=rotating_defensive;duration=2} @Self
+  - setrotation{relative=true;yaw=-12} @self
+
+
+fallenMauler_em_rotate_right:
+  Conditions: 
+  - hasaura{n=rotating_stop} false
+  TargetConditions:
+  - fieldofview{angle=170;r=270} true
+  Skills:
+  - message{m="&aRotten right"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - effect:particles{p=reddust;color=#00ffdd;a=1;hs=0.1;vs=0.1;y=2.6;Size=0.9} @SelfLocation 0 #DEBUGPARTICLES
+  - Aura{auraName=rotating_right;duration=3} @Self
+  - Aura{auraName=rotating_defensive;duration=2} @Self
+  - setrotation{relative=true;yaw=9} @self
+
+fallenMauler_em_bruttack3_hit:
+  TargetConditions:
+  - hasaura{n=hit_fallenMauler_em_bruttack3} false
+  - samefaction false
+  - hasaura{n=iframe} false
+  Skills:
+  - shieldbreak{duration=80} @TargetedTarget
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhitb;p=<random.float.0.9to1.1>;v=1.3} @TargetedTarget
+  - Aura{auraName=hit_fallenMauler_em_bruttack3;duration=10} @TargetedTarget
+  
+  - summon{mob=vfx_fallenMauler_em_expFXmarker2;amount=1;noise=0.5;r=0.1;yr=0} @ProjectileForward{y=-3.7;f=0.9}
+  - sudoskill{s=[
+    - summon{mob=vfx_fallenMauler_em_expFXmarker1;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-2.3;ForwardOffset=0.3}];sync=true} @TargetedTarget
+
+  - skill{s=outrun_discharge_fallenMauler_em} @EntitiesNearOrigin{r=3;limit=1;sort=NEAREST;ignore=samefaction}
+  - basedamage{m=2.2;ignorearmor=false}
+  - basedamage{m=0.6;ignorearmor=true;preventknockback=true;preventimmunity=true}
+  - sound{s=emv4fallena:custom.fallenhero.macehit;p=<random.float.0.7to0.9>;v=2} @TargetedTarget
+  - sound{s=emv4fallena:custom.fallenhero.macehitb;p=<random.float.0.8to1.3>;v=1.5} @TargetedTarget
+  - sound{s=emaginationfallenreaper:custom.spell.grandslashcast;pitch=<random.float.1.7to2>;v=2}
+  - throw{velocity=2;velocityY=1} 
+  - potion{type=LEVITATION;duration=9;level=1;p=false;delay=0} 
+  - potion{type=LEVITATION;duration=5;level=0;p=false;delay=9}
+  - potion{type=SLOW_FALLING;duration=5;level=0;p=false;delay=14}
+  - potion{type=SLOW;duration=16;lvl=7;particles=false}
+  - potion{type=SLOW;duration=40;lvl=4;delay=16;p=false}
+  - potion{type=SLOW;duration=20;lvl=3;delay=56;p=false}
+  - potion{type=SLOW;duration=20;lvl=2;delay=76;p=false} 0.5
+
+  - potion{type=SLOW_DIGGING;duration=10;lvl=10;particles=false} @TargetedTarget
+
+  - potion{type=SLOW;duration=8;lvl=7;particles=false}
+  - potion{type=SLOW;duration=20;lvl=0;delay=8;p=false}
+
+fallenMauler_em_bruttack3_hitB:
+  TargetConditions:
+  - hasaura{n=hit_fallenMauler_em_bruttack3} false
+  - samefaction false
+  Skills:
+
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhitb;p=<random.float.0.9to1.1>;v=1.3} @TargetedTarget
+  - Aura{auraName=hit_fallenMauler_em_bruttack3;duration=10} @TargetedTarget
+  
+  - sudoskill{s=[
+    - summon{mob=vfx_fallenMauler_em_expFXmarker1;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-2.3;ForwardOffset=0.3}];sync=true} @TargetedTarget
+
+  - skill{s=outrun_discharge_fallenMauler_em} @EntitiesNearOrigin{r=3;limit=1;sort=NEAREST;ignore=samefaction}
+  - basedamage{m=0.7;ignorearmor=false}
+  - basedamage{m=0.07;ignorearmor=true;preventknockback=true}
+  - sound{s=emaginationfallenreaper:custom.spell.grandslashcast;pitch=<random.float.1.7to2>;v=2}
+  - throw{velocity=2;velocityY=1} 
+  - potion{type=LEVITATION;duration=9;level=1;p=false;delay=0} 
+  - potion{type=LEVITATION;duration=5;level=0;p=false;delay=9}
+  - potion{type=SLOW_FALLING;duration=5;level=0;p=false;delay=14}
+  - potion{type=SLOW;duration=16;lvl=7;particles=false}
+  - potion{type=SLOW;duration=40;lvl=2;delay=16;p=false}
+  - potion{type=SLOW;duration=20;lvl=1;delay=56;p=false}
+  - potion{type=SLOW;duration=20;lvl=0;delay=76;p=false} 0.5
+
+  - potion{type=SLOW_DIGGING;duration=10;lvl=10;particles=false} @TargetedTarget
+
+  - potion{type=SLOW;duration=8;lvl=7;particles=false}
+  - potion{type=SLOW;duration=20;lvl=0;delay=8;p=false}
+fallenMauler_em_bruttack3_recoverylunge:
+  Conditions:
+  - onground true
+  - variableEquals{var=caster.skillxd;value="bruttack3"} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  Skills:
+  - propel{v=<skill.lungeintensity>}
+
+fallenMauler_em_bruttack3_adaptivelunge:
+  TargetConditions:
+  - distance{d=0to1.7} castinstead fallenMauler_em_bruttack3_adaptivelunge_reach
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="bruttack3"} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  Skills:
+  - propel{v=<skill.lungeintensity>} @forward{f=10}
+fallenMauler_em_bruttack3_adaptivelunge_reach:
+  Cooldown: 2
+  TargetConditions:
+  - distance{d=0to1.7} true 
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="bruttack3"} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  Skills:
+  - propel{v=-0.0006} @forward{f=10} 
+
+
+fallenMauler_em_parrystance_trigger:
+  Conditions:
+  - variableEquals{var=caster.running;value="2"} false
+  - variableEquals{var=caster.running;value="1"} false
+  - variableEquals{var=caster.parrying;value="1"} false
+  - variableInRange{var=caster.hitrec;value=>4} true
+  - hasaura{n=parrycooldown} false
+  TargetConditions:
+  - distance{d=0to8}
+  Skills:
+  - Aura{auraName=shielderfallenMauler_em;onTick=fallenMauler_em_sdppcheck;interval=7;duration=140;mergeSameCaster=true} @self 0.8
+  - state{state=quickblock1;lo=0;remove=true} @self
+  - setvariable{var=caster.parrystacks;value="11";t=integer} @Self ?variableInRange{var=caster.parrystacks;value=<10}
+  - setvariable{var=caster.parrying;value="1";t=integer} @Self
+  - Aura{auraName=parryingaddstacks_temporary;duration=200} @Children{conditions=[  - variableEquals{var=target.parrybox;value="1"} true ]}
+  - DefaultState{type=WALK;state=walk_parrying} @self ?!variableEquals{var=caster.running;value="2"} ?!variableEquals{var=caster.running;value="1"}
+  - DefaultState{type=IDLE;state=idle_parrying} @self ?!variableEquals{var=caster.running;value="2"} ?!variableEquals{var=caster.running;value="1"}
+  - setspeed{speed=1.85;type=walking} @Self ?!variableEquals{var=caster.running;value="2"} ?!variableEquals{var=caster.running;value="1"}
+  - Aura{desot=true;auraName=checkparryfallenMauler_em;onTick=fallenMauler_em_parryproximitycheck;onEnd=fallenMauler_em_parryproximitycheckEND;interval=15;duration=400} @self
+
+fallenMauler_em_parryproximitycheck:
+  Conditions:
+  - targetnotwithin{d=9} castinstead fallenMauler_em_parryproximitycheckb
+  - incombat orElseCast fallenMauler_em_parryproximitycheck_nocombat
+  - variableInRange{var=caster.parrystacks;value=<1} castinstead fallenMauler_em_parryproximitycheckc
+  Skills:
+  - variablesubtract{var=caster.parrystacks;amount=1} @self 0.7
+  - message{m="parrystax <caster.var.parrystacks> STACKS"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+fallenMauler_em_parryproximitycheck_nocombat:
+  Conditions:
+  - variableEquals{var=caster.parrying;value="1"} true
+  - incombat false
+  Skills:
+  - auraremove{aura=checkparryfallenMauler_em} @self
+  - auraremove{aura=checkparryfallenMauler_em1b} @self
+  - Aura{auraName=parrycooldown;duration=40} @self
+  - effect:particles{particle=reddust;color=#e2eb32;amount=15;hS=0.1;vS=0.1;size=0.8;repeat=2;repeatinterval=1} @Origin{y=2.4} 0 #DEBUG
+  - setvariable{var=caster.parrying;value="0";t=integer} @Self
+  - state{state=parrying_to_normal;li=2;lo=3} @self
+  - potion{type=SLOW;duration=8;level=5;p=false;force=true} @Self
+  - DefaultState{type=WALK;state=walk} @self 
+  - DefaultState{type=IDLE;state=idle} @self 
+  - setspeed{speed=1.5;type=walking} @self
+fallenMauler_em_parryproximitycheckb:
+  Conditions:
+  - targetnotwithin{d=9} true
+  - variableEquals{var=caster.running;value="2"} false
+  Skills:
+  - variablesubtract{var=caster.parrystacks;amount=1} @self 1
+  - variablesubtract{var=caster.parrystacks;amount=1} @self 0.55
+  - variablesubtract{var=caster.parrystacks;amount=1} @self 0.3
+  - skill{s=[
+    - auraremove{aura=checkparryfallenMauler_em} @self
+    - auraremove{aura=checkparryfallenMauler_em1b} @self
+    - setvariable{var=caster.parrying;value="0";t=integer} @Self
+    - Aura{auraName=parrycooldown;duration=120} @self
+    - setvariable{var=caster.parrystacks;value="0";t=integer} @Self
+    - potion{type=SLOW;duration=8;level=5;p=false;force=true} @Self
+    - state{state=parrying_to_normal;li=2;lo=3} @self
+    - DefaultState{type=WALK;state=walk_combat} @self 
+    - DefaultState{type=IDLE;state=idle_combat} @self 
+    - setspeed{speed=2.15;type=walking} @self];sync=true} @self 0.16 ############## 0.25
+
+fallenMauler_em_parryproximitycheckc:
+  Conditions:
+  - variableEquals{var=caster.parrying;value="1"} true
+  Skills:
+  - auraremove{aura=checkparryfallenMauler_em} @self
+  - auraremove{aura=checkparryfallenMauler_em1b} @self
+  - Aura{auraName=parrycooldown;duration=120} @self
+  - effect:particles{particle=reddust;color=#e2eb32;amount=15;hS=0.1;vS=0.1;size=0.8;repeat=2;repeatinterval=1} @Origin{y=2.4} 0 #DEBUG
+  - setvariable{var=caster.parrying;value="0";t=integer} @Self
+  - setvariable{var=caster.parrystacks;value="0";t=integer} @Self
+  - potion{type=SLOW;duration=8;level=5;p=false;force=true} @Self
+  - state{state=parrying_to_normal;li=2;lo=3} @self
+  - DefaultState{type=WALK;state=walk_combat} @self 
+  - DefaultState{type=IDLE;state=idle_combat} @self 
+  - setspeed{speed=2.15;type=walking} @self
+fallenMauler_em_parryproximitycheckEND:
+  Conditions:
+  - variableEquals{var=caster.parrying;value="1"} true
+  Skills:
+  - Aura{auraName=parrycooldown;duration=120} @self
+  - effect:particles{particle=reddust;color=#e2eb32;amount=15;hS=0.1;vS=0.1;size=0.8;repeat=2;repeatinterval=1} @Origin{y=2.4} 0 #DEBUG
+  - setvariable{var=caster.parrying;value="0";t=integer} @Self
+  - setvariable{var=caster.parrystacks;value="0";t=integer} @Self
+  - potion{type=SLOW;duration=8;level=5;p=false;force=true} @Self
+  - state{state=parrying_to_normal;li=2;lo=3} @self
+  - DefaultState{type=WALK;state=walk_combat} @self 
+  - DefaultState{type=IDLE;state=idle_combat} @self 
+  - setspeed{speed=2.15;type=walking} @self
+
+
+
+fallenMauler_em_spirittick:
+  Skills:
+  - effect:particles{p=reddust;c=#EAE6CE;a=8;s=20;hs=0.16;vs=0.16;y=0;sideOffset=0;Size=1.4;delay=0} @origin
+  - effect:particles{p=reddust;c=#EAE6CE;a=5;s=20;hs=0.4;vs=0.4;y=0;sideOffset=0.5;Size=0.7;delay=0} @origin
+  - effect:particles{p=reddust;c=#EAE6CE;a=5;s=20;hs=0.5;vs=0.5;y=0;sideOffset=-0.5;Size=0.7;delay=0} @origin
+fallenMauler_em_possess:
+  TargetConditions:
+  - mythicmobtype{t=statue_fallenMauler_em_s,statue_fallenMauler_em_n,statue_fallenMauler_em_e,statue_fallenMauler_em_w,statue_fallenMauler_em_activable_n,statue_fallenMauler_em_activable_s,statue_fallenMauler_em_activable_e,statue_fallenMauler_em_activable_w,statue_fallenMauler_em_activable_resist_n,statue_fallenMauler_em_activable_resist_s,statue_fallenMauler_em_activable_resist_e,statue_fallenMauler_em_activable_resist_w} true
+  Skills:
+  - sudoskill{s=[
+    - summon{mob=fallenMauler_em_revived;amount=1;noise=0;r=0;yr=0} @SelfLocation{y=0}
+    - signal{s=RAMPAGE_ACTIVATE;delay=1} @LivingEntitiesInRadius{r=5;limit=1;sort=NEAREST;conditions=[  - mythicmobtype{t=fallenMauler_em_revived} true ]}
+    - remove{delay=1} @self];sync=true}
+  - delay 2
+  - remove @self
+posessing_missile_fallenMauler_em:
+  TargetConditions:
+  - variableEquals{var=target.posess;value="1"} false
+  Skills:
+  - missile{onTick=fallenMauler_em_spirittick;onHit=fallenMauler_em_possess;v=4;i=1;hR=1;vR=1;g=1.5;hp=false;syo=1;sB=true;sE=false;HitNonPlayers=true;in=4;fromorigin=false;syo=3;tyo=1.5;vO=75;delay=35} @TargetedTarget
+  - setvariable{var=target.posess;value="1";t=integer} @TargetedTarget
+
+fallenMauler_em_clearstates:
+  Skills:
+  - setAI{ai=true} @self
+  - state{remove=true;s=run_roll;lo=1;frame=0} @self
+  - state{remove=true;s=activate;lo=6} @self ?!variableEquals{var=caster.skillxd;value="activate"}
+
+  - state{remove=true;s=attack1;lo=3} @self ?!variableEquals{var=caster.skillxd;value="bruttack1"}
+  - state{remove=true;s=attack1_parrying;lo=3} @self ?!variableEquals{var=caster.skillxd;value="bruttack1"}
+  - state{remove=true;s=attack2_start;lo=3} @self ?!variableEquals{var=caster.skillxd;value="bruttack1"}
+  - state{remove=true;s=attack2_start_parrying;lo=3} @self ?!variableEquals{var=caster.skillxd;value="bruttack1"}
+
+  - state{remove=true;s=attack2;lo=3} @self ?!variableEquals{var=caster.skillxd;value="bruttack2"}
+  - state{remove=true;s=attack2_parrying;lo=3} @self ?!variableEquals{var=caster.skillxd;value="bruttack2"}
+
+  - state{remove=true;s=attack3;lo=3} @self ?!variableEquals{var=caster.skillxd;value="bruttack3"}
+  - state{remove=true;s=attack3_parrying;lo=3} @self ?!variableEquals{var=caster.skillxd;value="bruttack3"}
+  - state{remove=true;s=attack1_parried;lo=3} @self ?!variableEquals{var=caster.skillxd;value="cattack1"}
+  - state{remove=true;s=attack2_parried;lo=3} @self ?!variableEquals{var=caster.skillxd;value="cattack1"}
+  - state{remove=true;s=attack1_parried_parrying;lo=3} @self ?!variableEquals{var=caster.skillxd;value="cattack1"}
+  - state{remove=true;s=attack2_parried_parrying;lo=3} @self ?!variableEquals{var=caster.skillxd;value="cattack1"}
+  - state{remove=true;s=quickblockb1;lo=6} @self ?!variableEquals{var=caster.skillxd;value="quickblock_a"} ?!variableEquals{var=caster.skillxd;value="quickblock1"}
+  - state{remove=true;s=quickblockb2;lo=6} @self ?!variableEquals{var=caster.skillxd;value="quickblock_a"} ?!variableEquals{var=caster.skillxd;value="quickblock1"}
+  - state{remove=true;s=quickblockb3;lo=6} @self ?!variableEquals{var=caster.skillxd;value="quickblock_a"} ?!variableEquals{var=caster.skillxd;value="quickblock1"}
+
+  - state{remove=true;s=quickblockb1_parrying;lo=6} @self ?!variableEquals{var=caster.skillxd;value="quickblock_a"} ?!variableEquals{var=caster.skillxd;value="quickblock1"}
+  - state{remove=true;s=quickblockb2_parrying;lo=6} @self ?!variableEquals{var=caster.skillxd;value="quickblock_a"} ?!variableEquals{var=caster.skillxd;value="quickblock1"}
+  - state{remove=true;s=quickblockb3_parrying;lo=6} @self ?!variableEquals{var=caster.skillxd;value="quickblock_a"} ?!variableEquals{var=caster.skillxd;value="quickblock1"}
+  
+  - state{remove=true;s=backstep;lo=6} @self ?!variableEquals{var=caster.skillxd;value="backstep1"}
+  - state{remove=true;s=backstep_parrying;lo=6} @self ?!variableEquals{var=caster.skillxd;value="backstep1"}
+
+  - state{remove=true;s=hurtbad1;lo=3} @self ?!variableEquals{var=caster.skillxd;value="hurtb"}
+  - state{remove=true;s=hurtbad2;lo=3} @self ?!variableEquals{var=caster.skillxd;value="hurtb"}
+  - state{remove=true;s=hurtbad3;lo=3} @self ?!variableEquals{var=caster.skillxd;value="hurtb"}
+  - state{remove=true;s=hurtbad4;lo=3} @self ?!variableEquals{var=caster.skillxd;value="hurtb"}
+  - state{remove=true;s=hurtverybad1;lo=3} @self ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - state{remove=true;s=hurtverybad2;lo=3} @self ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - state{remove=true;s=hurtverybad3;lo=3} @self ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - state{remove=true;s=hurtverybad4;lo=3} @self ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+
+# 0265S0JZXIMUKWS2MSZM0WEZ76

@@ -1,0 +1,34 @@
+name: Circular Slash
+lore:
+- Unleash a powerful strike
+- that sends nearby targets flying
+- ''
+- '&e{cooldown}s Cooldown'
+- '&9Costs {mana} {mana_name}'
+material: IRON_SWORD
+
+parameters:
+  timer: 0
+  delay: 0
+  mana:
+    base: 2
+    per-level: 1
+  stamina:
+    base: 2
+    per-level: 1
+  cooldown:
+    base: 2
+    per-level: 1
+
+  # Damage dealt by the slash
+  damage:
+    base: 2
+    per-level: 1
+  # Knockback dealt by the slash
+  knockback:
+    base: 2
+    per-level: 1
+  # Radius of slash
+  radius:
+    base: 3
+    per-level: 1

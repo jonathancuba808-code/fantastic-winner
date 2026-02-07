@@ -1,0 +1,31 @@
+backpack_lvl1:
+  displayname: <#D5D6D8>Adventure Backpack Lvl I.
+  material: PAPER
+  Pack:
+    model: adventure_backpacks/backpack_lvl1
+    custom_model_data: 1037
+backpack_lvl2:
+  displayname: <#D5D6D8>Adventure Backpack Lvl II.
+  material: PAPER
+  Pack:
+    model: adventure_backpacks/backpack_lvl2
+    custom_model_data: 1038
+backpack_lvl3:
+  displayname: <#D5D6D8>Adventure Backpack Lvl III.
+  material: PAPER
+  Pack:
+    model: adventure_backpacks/backpack_lvl3
+    custom_model_data: 1039
+backpack_lvl4:
+  displayname: <#D5D6D8>Adventure Backpack Lvl IV.
+  material: PAPER
+  Pack:
+    model: adventure_backpacks/backpack_lvl4
+    custom_model_data: 1040
+backpack_lvl5:
+  displayname: <#D5D6D8>Adventure Backpack Lvl V.
+  material: PAPER
+  Pack:
+    model: adventure_backpacks/backpack_lvl5
+    custom_model_data: 1041
+# Ry0jX0WFCX5akuRyWISvC9YNhiZl3QLhAWtSarvzScSrPZ6GQtOpMOAz2NVcHpMG9sXQOFJVnC9fPqlX190qhdSafjbhNt0oMeq3SwtO8Vs=

@@ -1,0 +1,26 @@
+name: Blink
+lore:
+- Teleport yourself around by
+- looking at your destination
+- ''
+- '&e{cooldown}s Cooldown'
+- '&9Costs {mana} {mana_name}'
+material: ENDER_PEARL
+
+parameters:
+  delay: 0
+  timer: 0
+  mana:
+    base: 4
+    per-level: 1
+  stamina: 0
+  cooldown:
+    base: 4
+    per-level: -0.1
+    min: 1.5
+
+  # Maximum distance you can blink.
+  range:
+    base: 2
+    per-level: 1
+    max: 8

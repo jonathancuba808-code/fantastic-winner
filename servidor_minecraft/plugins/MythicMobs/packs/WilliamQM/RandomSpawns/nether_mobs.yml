@@ -1,0 +1,50 @@
+netherman_spawn:
+  Action: ADD
+  Type: netherman
+  Chance: 0.1
+  Priority: 128
+  UseWorldScaling: false
+  Worlds: Morebiomes_nether,world_nether
+  Conditions:
+    - biome{b=SOUL_SAND_VALLEY,BASALT_DELTAS}
+  PositionType: LAND
+warped_creeper_spawn:
+  Action: ADD
+  Type: warped_creeper
+  Chance: 0.1
+  Priority: 128
+  UseWorldScaling: false
+  Worlds: Morebiomes_nether,world_nether
+  Conditions:
+    - biome{b=WARPED_FOREST}
+  PositionType: LAND
+crimson_skeleton_spawn:
+  Action: ADD
+  Type: crimson_skeleton
+  Chance: 0.1
+  Priority: 128
+  UseWorldScaling: false
+  Worlds: Morebiomes_nether,world_nether
+  Conditions:
+    - biome{b=CRIMSON_FOREST,NETHER_WASTES,BASALT_DELTAS}
+  PositionType: LAND
+nether_scorpion_spawn:
+  Action: ADD
+  Type: nether_scorpion
+  Chance: 0.1
+  Priority: 128
+  UseWorldScaling: false
+  Worlds: Morebiomes_nether,world_nether
+  Conditions:
+    - biome{b=WARPED_FOREST}
+  PositionType: LAND
+nether_zombie_spawn:
+  Action: ADD
+  Type: nether_zombie
+  Chance: 0.1
+  Priority: 128
+  UseWorldScaling: false
+  Worlds: Morebiomes_nether,world_nether
+  Conditions:
+    - biome{b=CRIMSON_FOREST,NETHER_WASTES,BASALT_DELTAS}
+  PositionType: LAND

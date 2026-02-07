@@ -1,0 +1,35 @@
+vd_historical_infantry1_template:
+  Type: PILLAGER
+  Modules:
+    ThreatTable: true
+  Options:
+    PreventOtherDrops: true
+    Despawn: false
+    MaxCombatDistance: 256
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    AttackSpeed: 0.18
+    Collidable: true
+    FollowRange: 80
+    KnockbackResistance: 0.75
+    MovementSpeed: 0.19
+    AttackSpeed: 1
+    Interactable: true
+    Invincible: false
+    NoAI: false
+    Silent: true
+  Skills:
+  - skill{s=vd_historical_infantry1_set_damage} @self ~onSpawn
+
+vd_historical_infantry1_hitbox_template:
+  Type: SILVERFISH
+  Options:
+    MovementSpeed: 0
+    NoAI: true
+    Silent: true
+    Collidable: false
+    PreventMobKillDrops: true
+    PreventOtherDrops: true
+    Despawn: false
+    MaxCombatDistance: 256
+    PreventRandomEquipment: true

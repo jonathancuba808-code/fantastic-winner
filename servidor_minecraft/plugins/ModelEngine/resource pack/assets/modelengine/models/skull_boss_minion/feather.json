@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/skull_minion","particle":"#0"},"elements":[{"from":[7.191342,8.176777,8.426777],"to":[11.191341,8.176777,14.426777],"faces":{"up":{"uv":[8.5,5.75,8.0,5.0],"tintindex":0,"rotation":0,"texture":"#0"},"down":{"uv":[8.625,2.375,8.125,3.125],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

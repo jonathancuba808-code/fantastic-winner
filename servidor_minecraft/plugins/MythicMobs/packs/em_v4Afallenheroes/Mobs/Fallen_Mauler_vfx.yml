@@ -1,0 +1,418 @@
+
+
+vfx_fallenMauler_em_attackslash_a:
+  Type: silverfish
+  Display: ''
+  Faction: FallenHero
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 150
+  Damage: 0
+  Drops:
+  Skills:
+   - model{mid=v4fallen_slashfx;damagetint=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false} @self ~onSpawn
+   - BodyClamp{maxbody=0;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_a_1;delay=0} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_a_2;delay=1} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_a_3;delay=2} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_a_4;delay=3} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_a_5;delay=4} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_a_6;delay=5} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_a_7;delay=6} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_a_8;delay=7} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_a_9;delay=8} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_a_10;delay=9} @self]} @self ~onSpawn 1
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=10} @Self ~onSpawn
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.56
+    MaxCombatDistance: 5
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: true
+    Interactable: false
+    Invincible: true
+    KnockbackResistance: 0
+    Collidable: false
+    NoGravity: true
+
+vfx_fallenMauler_em_attackslash_b:
+  Type: silverfish
+  Display: ''
+  Faction: FallenHero
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 150
+  Damage: 0
+  Drops:
+  Skills:
+   - model{mid=v4fallen_slashfx;damagetint=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false} @self ~onSpawn
+   - BodyClamp{maxbody=0;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_b_1;delay=0} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_b_2;delay=1} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_b_3;delay=2} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_b_4;delay=3} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_b_5;delay=4} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_b_6;delay=5} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_b_7;delay=6} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_b_8;delay=7} @self
+    - changepart{m=v4fallen_slashfx;pid=frame;nm=v4fallen_shared_resources;npid=slash_b_9;delay=8} @self]} @self ~onSpawn 1
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=9} @Self ~onSpawn
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.56
+    MaxCombatDistance: 5
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: true
+    Interactable: false
+    Invincible: true
+    KnockbackResistance: 0
+    Collidable: false
+    NoGravity: true
+  
+vfx_fallenMauler_em_attack1_a:
+  Template: vfx_fallenMauler_em_attackslash_a
+  Skills:
+  - state{state=bruttack1;li=0;lo=0} @self ~onSpawn
+vfx_fallenMauler_em_attack1_b:
+  Template: vfx_fallenMauler_em_attackslash_b
+  Skills:
+  - state{state=bruttack1;li=0;lo=0} @self ~onSpawn
+
+vfx_fallenMauler_em_attack2_a:
+  Template: vfx_fallenMauler_em_attackslash_a
+  Skills:
+  - state{state=bruttack2;li=0;lo=0} @self ~onSpawn
+vfx_fallenMauler_em_attack2_b:
+  Template: vfx_fallenMauler_em_attackslash_b
+  Skills:
+  - state{state=bruttack2;li=0;lo=0} @self ~onSpawn
+
+vfx_fallenMauler_em_attack3_a:
+  Template: vfx_fallenMauler_em_attackslash_a
+  Skills:
+  - state{state=bruttack3;li=0;lo=0} @self ~onSpawn
+vfx_fallenMauler_em_attack3_b:
+  Template: vfx_fallenMauler_em_attackslash_b
+  Skills:
+  - state{state=bruttack3;li=0;lo=0} @self ~onSpawn
+
+vfx_fallenMauler_em_fireblade1:
+  Type: silverfish
+  Display: ''
+  Faction: FallenHero
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 150
+  Damage: 0
+  Skills:
+   - model{mid=soldier_fireblade;n=false;damagetint=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;delay=1} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb1;delay=0} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb2;delay=1} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb3;delay=2} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb4;delay=3} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb5;delay=4} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb6;delay=5} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb7;delay=6} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb8;delay=7} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb9;delay=8} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb10;delay=9} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb11;delay=10} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb12;delay=11} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb13;delay=12} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb14;delay=13} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb15;delay=14} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb16;delay=15} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb17;delay=16} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb18;delay=17} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb19;delay=18} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb20;delay=19} @self];sync=false} @self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=20} @Self ~onSpawn
+   - effect:particles{particle=reddust;color=#ECEBE2;amount=4;hS=0.3;vS=0.3;size=1.2;repeat=1;repeatinterval=1} @Origin{y=2.3} ~onSpawn 1
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.001
+    MaxCombatDistance: 1
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Invincible: true
+    Despawn: true
+    Interactable: false
+    KnockbackResistance: 1
+    Collidable: false
+    NoGravity: true
+vfx_fallenMauler_em_thrustblade1:
+  Type: silverfish
+  Display: ''
+  Faction: FallenHero
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 150
+  Damage: 0
+  Skills:
+   - model{mid=soldier_thrustblade;n=false;damagetint=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;delay=0} @self ~onSpawn
+   - bodyclamp{m=soldier_thrustblade;c=360} @self ~onSpawn 0
+   - skill{s=[
+    - changepart{m=soldier_thrustblade;pid=fb1;nm=soldierplosion_reources;npid=fbtr1;delay=0} @self
+    - changepart{m=soldier_thrustblade;pid=fb1;nm=soldierplosion_reources;npid=fbtr2;delay=1} @self
+    - changepart{m=soldier_thrustblade;pid=fb1;nm=soldierplosion_reources;npid=fbtr3;delay=2} @self
+    - changepart{m=soldier_thrustblade;pid=fb1;nm=soldierplosion_reources;npid=fbtr4;delay=3} @self
+    - changepart{m=soldier_thrustblade;pid=fb1;nm=soldierplosion_reources;npid=fbtr5;delay=4} @self
+    - changepart{m=soldier_thrustblade;pid=fb1;nm=soldierplosion_reources;npid=fbtr6;delay=5} @self
+    - changepart{m=soldier_thrustblade;pid=fb1;nm=soldierplosion_reources;npid=fbtr7;delay=6} @self
+    - changepart{m=soldier_thrustblade;pid=fb1;nm=soldierplosion_reources;npid=fbtr8;delay=7} @self
+    - changepart{m=soldier_thrustblade;pid=fb1;nm=soldierplosion_reources;npid=fbtr9;delay=8} @self
+    - changepart{m=soldier_thrustblade;pid=fb1;nm=soldierplosion_reources;npid=fbtr10;delay=9} @self
+    - changepart{m=soldier_thrustblade;pid=fb1;nm=soldierplosion_reources;npid=fbtr11;delay=10} @self
+    - changepart{m=soldier_thrustblade;pid=fb1;nm=soldierplosion_reources;npid=fbtr12;delay=11} @self
+    - changepart{m=soldier_thrustblade;pid=fb1;nm=soldierplosion_reources;npid=fbtr13;delay=12} @self
+    - changepart{m=soldier_thrustblade;pid=fb1;nm=soldierplosion_reources;npid=fbtr14;delay=13} @self
+    - changepart{m=soldier_thrustblade;pid=fb1;nm=soldierplosion_reources;npid=fbtr15;delay=14} @self];sync=false;delay=1} @self ~onSpawn 1
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=16} @Self ~onSpawn
+   - effect:particles{particle=reddust;color=#ECEBE2;amount=4;hS=0.3;vS=0.3;size=1.2;repeat=1;repeatinterval=1} @Origin{y=2.3} ~onSpawn 1
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.001
+    MaxCombatDistance: 1
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Invincible: true
+    Despawn: true
+    Interactable: false
+    KnockbackResistance: 1
+    Collidable: false
+    NoGravity: true
+vfx_fallenMauler_em_expFXmarker1:
+  Type: silverfish
+  Display: ''
+  Faction: FallenHero
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 150
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  Damage: 0
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - air:1
+  - air:0
+  Drops:
+  Skills:
+   - model{mid=fsoldier_fireexplosion;damagetint=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;delay=0} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=frame1;delay=0} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=frame2;delay=1} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=frame3;delay=2} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=frame4;delay=3} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=frame5;delay=4} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=frame6;delay=5} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=frame7;delay=6} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=frame8;delay=7} @self]} @self ~onSpawn 1
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=8} @Self ~onSpawn
+   - effect:particles{particle=reddust;color=#ECEBE2;amount=5;hS=0.3;vS=0.3;size=0.8;repeat=1;repeatinterval=1} @Origin{y=0.3} ~onSpawn 1
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.56
+    MaxCombatDistance: 5
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: true
+    Interactable: true
+    KnockbackResistance: 0
+    Collidable: false
+    NoGravity: true
+vfx_fallenMauler_em_expFXmarker2:
+  Type: silverfish
+  Display: ''
+  Faction: FallenHero
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 150
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  Damage: 0
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - air:1
+  - air:0
+  Drops:
+  Skills:
+   - model{mid=fsoldier_fireexplosion;damagetint=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;delay=0} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=explosionb1;delay=0} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=explosionb2;delay=1} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=explosionb3;delay=2} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=explosionb4;delay=3} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=explosionb5;delay=4} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=explosionb6;delay=5} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=explosionb7;delay=6} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=explosionb8;delay=7} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=explosionb9;delay=8} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=explosionb10;delay=9} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=explosionb11;delay=10} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=explosionb12;delay=11} @self];sync=true;delay=1} @self ~onSpawn 1
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=13} @Self ~onSpawn
+   - effect:particles{particle=reddust;color=#ECEBE2;amount=5;hS=0.3;vS=0.3;size=0.8;repeat=1;repeatinterval=1} @Origin{y=0.3} ~onSpawn 1
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.56
+    MaxCombatDistance: 5
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: true
+    Interactable: true
+    KnockbackResistance: 0
+    Collidable: false
+    NoGravity: true
+vfx_fallenMauler_em_chipsumMarker:
+  Type: silverfish
+  Display: ''
+  Faction: FallenHero
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 150
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  Damage: 0
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - air:1
+  - air:0
+  Drops:
+  Skills:
+   - model{mid=fsoldier_fireexplosion;damagetint=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;delay=0} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=chipsum1;delay=0} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=chipsum2;delay=1} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=chipsum3;delay=2} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=chipsum4;delay=4} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=chipsum5;delay=6} @self
+    - changepart{m=fsoldier_fireexplosion;pid=frame1;nm=soldierplosion_reources;npid=chipsum6;delay=8} @self];sync=true;delay=1} @self ~onSpawn 1
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=9} @Self ~onSpawn
+   - effect:particles{particle=reddust;color=#ECEBE2;amount=5;hS=0.3;vS=0.3;size=0.8;repeat=1;repeatinterval=1} @Origin{y=0.5} ~onSpawn 1
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.56
+    MaxCombatDistance: 5
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: true
+    Interactable: true
+    KnockbackResistance: 0
+    Collidable: false
+    NoGravity: true
+
+vfx_fallenMauler_em_shockwave_1:
+  Type: silverfish
+  Display: ''
+  Faction: FallenHero
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 150
+  Damage: 0
+  Skills:
+   - model{mid=soldier_fireblade;n=false;damagetint=false;scale=1.2} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;delay=1} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=rsw1;delay=0} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=rsw2;delay=1} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=rsw3;delay=2} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=rsw4;delay=3} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=rsw5;delay=4} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=rsw6;delay=5} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=rsw7;delay=6} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=rsw8;delay=7} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=rsw9;delay=8} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=rsw10;delay=9} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=rsw11;delay=10} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=rsw12;delay=11} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=rsw13;delay=12} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=rsw14;delay=13} @self];sync=false} @self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=15} @Self ~onSpawn
+
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.001
+    MaxCombatDistance: 1
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Invincible: true
+    Despawn: true
+    Interactable: false
+    KnockbackResistance: 1
+    Collidable: false
+    NoGravity: true

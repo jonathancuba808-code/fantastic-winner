@@ -1,0 +1,133 @@
+mender_lifecane:
+  Pack:
+    custom_model_data: 4597
+    model: mender_lifecane
+  material: STONE_SWORD
+  permission: mender_towershield
+  itemname: <gradient:#ffec93:#f2c759:#daa255>Mender Lifecane
+mender_helmet:
+  itemname: <gradient:#ffec93:#f2c759:#daa255>Mender Helmet
+  material: DIAMOND_HELMET
+  Pack:
+    model: mender_class_items/mender_helmet
+    custom_model_data: 4598
+  Components:
+    equippable:
+      slot: HEAD
+mender_chestplate:
+  material: CHAINMAIL_CHESTPLATE
+  Pack:
+    CustomArmor:
+      layer1: mender_texture/mender_layer_1.png
+      layer2: mender_texture/mender_layer_2.png
+    parent_model: item/generated
+    texture: mender_texture/mender_chestplate
+    custom_model_data: 4599
+  AttributeModifiers:
+  - attribute: GENERIC_ARMOR
+    amount: 8
+    operation: 0
+    slot: CHEST
+    uuid: bf5063bb-b05d-4bab-af82-e2e3edd5130c
+    name: nexo:modifier
+    key: nexo:modifier
+  itemname: <gradient:#ffec93:#f2c759:#daa255>Mender Chestplate
+  Components:
+    equippable:
+      slot: CHEST
+      asset_id: nexo:mender
+  ItemFlags:
+  - HIDE_ARMOR_TRIM
+  trim_pattern: nexo:mender
+mender_leggings:
+  material: CHAINMAIL_LEGGINGS
+  Pack:
+    CustomArmor:
+      layer1: mender_texture/mender_layer_1.png
+      layer2: mender_texture/mender_layer_2.png
+    parent_model: item/generated
+    texture: mender_texture/mender_leggings
+    custom_model_data: 4600
+  AttributeModifiers:
+  - attribute: GENERIC_ARMOR
+    amount: 6
+    operation: 0
+    slot: LEGS
+    uuid: dfa44631-50b5-4428-aa4a-f786b64201f4
+    name: nexo:modifier
+    key: nexo:modifier
+  itemname: <gradient:#ffec93:#f2c759:#daa255>Mender Leggings
+  Components:
+    equippable:
+      slot: LEGS
+      asset_id: nexo:mender
+  ItemFlags:
+  - HIDE_ARMOR_TRIM
+  trim_pattern: nexo:mender
+mender_boots:
+  material: CHAINMAIL_BOOTS
+  Pack:
+    CustomArmor:
+      layer1: mender_texture/mender_layer_1.png
+      layer2: mender_texture/mender_layer_2.png
+    parent_model: item/generated
+    texture: mender_texture/mender_boots
+    custom_model_data: 4601
+  AttributeModifiers:
+  - attribute: GENERIC_ARMOR
+    amount: 3
+    operation: 0
+    slot: FEET
+    uuid: 7ac1a9c8-895a-48c5-a66f-7ed822030205
+    name: nexo:modifier
+    key: nexo:modifier
+  itemname: <gradient:#ffec93:#f2c759:#daa255>Mender Boots
+  Components:
+    equippable:
+      slot: FEET
+      asset_id: nexo:mender
+  ItemFlags:
+  - HIDE_ARMOR_TRIM
+  trim_pattern: nexo:mender
+icon_mender_lifebound:
+  Pack:
+    custom_model_data: 1940
+    texture: mender_texture/icon_mender_lifebound.png
+  material: COAL
+  permission: icon_mender_lifebound
+  itemname: icon_mender_lifebound
+icon_mender_spirit_bolt:
+  Pack:
+    custom_model_data: 1941
+    texture: mender_texture/icon_mender_spiritbolt.png
+  material: COAL
+  permission: icon_mender_spirit_bolt
+  itemname: icon_mender_spirit_bolt
+icon_mender_cascadebolt:
+  Pack:
+    custom_model_data: 1942
+    texture: mender_texture/icon_mender_cascadebolt.png
+  material: COAL
+  permission: icon_mender_cascadebolt
+  itemname: icon_mender_cascadebolt
+icon_mender_purging_light:
+  Pack:
+    custom_model_data: 1943
+    texture: mender_texture/icon_mender_purging_light.png
+  material: COAL
+  permission: icon_mender_purging_light
+  itemname: icon_mender_purging_light
+icon_mender_vital_beam:
+  Pack:
+    custom_model_data: 1944
+    texture: mender_texture/icon_mender_vital_beam.png
+  material: COAL
+  permission: icon_mender_vital_beam
+  itemname: icon_mender_vital_beam
+icon_mender_lifeweavers_grace:
+  Pack:
+    custom_model_data: 1945
+    texture: mender_texture/icon_mender_lifeweavers_grace.png
+  material: COAL
+  permission: icon_mender_lifeweavers_grace
+  itemname: icon_mender_lifeweavers_grace

@@ -1,0 +1,155 @@
+
+
+
+###########################################################
+# GENERAL OPTIONS
+###########################################################
+
+
+# Item name in the skill UI
+name: 'Fireball'
+
+# Item lore in the skill UI
+lore:
+- 'Casts a deadly fireball onto your'
+- 'target, dealing &c{damage} &7damage upon contact'
+- 'and igniting it for &c{ignite} &7seconds.'
+- ''
+- 'Shatters into 3 blazing hot shards which stick'
+- 'to walls and explode 3 seconds later, dealing'
+- '&c{ratio}% &7of the initial spell damage.'
+- ''
+- 'Shards deal more damage the more health the'
+- 'player is missing, up to 50% missing health.'
+- ''
+- '&e{cooldown}s Cooldown'
+- '&9Costs {mana} {mana_name}'
+
+# Item/icon in the skill UI
+material:
+  item: EMERALD
+  #custom_model_data_float: 0.45        # 1.20.4+ Float custom model data. Either this, or string option above works completely fine
+  #custom_model_data: 0                 # 1.14-1.20.3 Custom model data. Prefer using custom_model_data_string on 1.20.4+
+  #tooltip: 'myplugin:tooltip_asset_id' # You can edit the slot icon tooltip that way
+  #custom_model_data_string: 'test'     # 1.20.4+ string custom model data
+  #item_model: 'minecraft:dirt'         # 1.21.2+ item model
+  #skull_texture: '......'              # SKull texture value or URL
+  #hide_tooltip: false                  # True or false, for vanilla tooltip
+  #unbreakable: false                   # Is it unbreakable or not?
+  #fake_attribute: false                # Should MythicLib add a fake attribute modifier? Useful for 1.20 or lower to hide vanilla attributes from the item
+  #item_flags: [HIDE_ENCHANTS, ....]    # Add item flags to your items. https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/inventory/ItemFlag.html
+
+
+###########################################################
+# GENERIC SKILL PARAMETERS
+#
+# All skills have at least the following parameters:
+# mana, stamina, cooldown, delay, timer
+#
+# Skills then have skill-specific parameters like the amount
+# of damage dealt, radius of effect, duration of effect, etc.
+###########################################################
+
+parameters:
+
+  ##################
+  # How much mana spent by the skill
+  ##################
+
+  # 15 base Mana + 1 Mana Pt per skill level
+  mana: '15 + 1.0 * {level}'
+
+  ##################
+  # How much stamina spent by the skill
+  ##################
+
+  # 2 Base Stamina + 1 Stamina Pt per skill level
+  # Capped at 5
+  stamina:
+    base: 2.0
+    per-level: 1.0
+    max: 5
+
+  ##################
+  # Skill cooldown
+  #
+  # How many seconds to wait before being
+  # able to cast the same skill again
+  ##################
+
+  # FIRST EXAMPLE
+  # 9 Base Seconds, -0.1 Sec per skill level
+  # Minimum cooldown of 3 seconds
+  cooldown:
+    base: 9.0
+    per-level: -0.1
+    min: 3.0
+
+  # ANOTHER EXAMPLE
+  # Base Cooldown of 9 Seconds, -0.1 Sec per skill level
+  # Minimum value of 4 Sec
+  #cooldown: 'max(   4, 9 - 0.1 * {level})'
+
+  ##################
+  # Timer period
+  ##################
+
+  # This is only relevant when the skill trigger type is set to TIMER.
+  # This defines the default period, in seconds, between each skill cast.
+  # For example, if set to 2, the skill will be cast every 2 seconds
+  timer:
+    base: 2
+    per-level: 0
+
+  ##################
+  # Casting Delay
+  #
+  # Time between clicking the skill and the skill actually
+  # activating. During this time the player cannot move/is slowed down.
+  ##################
+
+  # Base timer of 1 seconds, -0.1 Sec per skill level
+  # Minimum value of 0.3 Sec
+  delay:
+    base: 1
+    per-level: -0.1
+    min: 0.3
+
+  ###########################################################
+  # SKILL-SPECIFIC PARAMETERS
+  #
+  # These parameters are specific to this skill.
+  ###########################################################
+
+  ##################
+  # Damage dealt by the fireball when hitting an enemy
+  ##################
+
+  # 5 Base Damage + 3 Dmg per skill Level
+  damage:
+    base: 5.0
+    per-level: 3.0
+    #Optional: The decimal format used for this skill parameter.
+    decimal-format: '0.#'
+
+  ##################
+  # For how long (seconds) the fireball ignites the enemy hit
+  ##################
+
+  # 2 Seconds + 1.1 Sec per skill level
+  # Capped at 10 seconds
+  ignite: 'min(2 + 1.1 * {level}, 10)'
+
+  ##################
+  # Ratio of additional fireball shards damage,
+  # relative to the initial fireball damage.
+  ##################
+
+  # 50% Base + 30% extra depending on missing health.
+  # Maximum at 50% missing health (half empty health bar).
+  #
+  # If any error happens such as PAPI not installed
+  # or missing PAPI extension, MMOCore will use 50% (failsafe)
+  ratio:
+    formula: '50 + min( 0.5, 1 - (%mmocore_health% / %mmocore_max_health%)) * 30 * 2'
+    failsafe: 50.0

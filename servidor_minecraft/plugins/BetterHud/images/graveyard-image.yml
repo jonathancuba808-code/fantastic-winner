@@ -1,0 +1,303 @@
+
+
+health_bar:
+  type: listener
+  file: health_bar.png
+  split: 25
+  split-type: left
+  setting:
+    listener:
+      class: health
+
+hunger_bar:
+  type: listener
+  file: hunger_bar.png
+  split: 25
+  split-type: right
+  setting:
+    listener:
+      class: food
+
+armor_bar:
+  type: listener
+  file: armor_bar.png
+  split: 25
+  split-type: left
+  setting:
+    listener:
+      class: armor
+
+air_bar:
+  type: listener
+  file: air_bar.png
+  split: 25
+  split-type: right
+  setting:
+    listener:
+      class: air
+
+
+hud_under_exp:
+  type: listener
+  file: exp_bar.png
+  split: 25
+  split-type: left
+  setting:
+    listener:
+      class: exp
+
+
+hud_top_left:
+  type: sequence
+  files:
+    - hud_top_left/top_left1.png
+    - hud_top_left/top_left2.png
+    - hud_top_left/top_left3.png
+    - hud_top_left/top_left4.png
+    - hud_top_left/top_left5.png
+    - hud_top_left/top_left6.png
+    - hud_top_left/top_left7.png
+    - hud_top_left/top_left8.png
+    - hud_top_left/top_left9.png
+    - hud_top_left/top_left10.png
+    - hud_top_left/top_left11.png
+    - hud_top_left/top_left12.png
+    - hud_top_left/top_left13.png
+    - hud_top_left/top_left14.png
+    - hud_top_left/top_left15.png
+    - hud_top_left/top_left16.png
+    - hud_top_left/top_left17.png
+    - hud_top_left/top_left18.png
+    - hud_top_left/top_left19.png
+    - hud_top_left/top_left20.png
+    - hud_top_left/top_left21.png
+    - hud_top_left/top_left22.png
+    - hud_top_left/top_left23.png
+    - hud_top_left/top_left24.png
+    - hud_top_left/top_left25.png
+    - hud_top_left/top_left26.png
+    - hud_top_left/top_left27.png
+    - hud_top_left/top_left28.png
+    - hud_top_left/top_left29.png
+    - hud_top_left/top_left30.png
+    - hud_top_left/top_left31.png
+    - hud_top_left/top_left32.png
+
+
+hud_under_left:
+  type: sequence
+  files:
+  - under/left/under_left1.png
+  - under/left/under_left2.png
+  - under/left/under_left3.png
+  - under/left/under_left4.png
+  - under/left/under_left5.png
+  - under/left/under_left6.png
+  - under/left/under_left7.png
+  - under/left/under_left8.png
+  - under/left/under_left9.png
+  - under/left/under_left10.png
+  - under/left/under_left11.png
+  - under/left/under_left12.png
+  - under/left/under_left13.png
+  - under/left/under_left14.png
+  - under/left/under_left15.png
+  - under/left/under_left16.png
+  - under/left/under_left17.png
+  - under/left/under_left18.png
+  - under/left/under_left19.png
+  - under/left/under_left20.png
+  - under/left/under_left21.png
+  - under/left/under_left22.png
+  - under/left/under_left23.png
+  - under/left/under_left24.png
+  - under/left/under_left25.png
+  - under/left/under_left26.png
+  - under/left/under_left27.png
+  - under/left/under_left28.png
+  - under/left/under_left29.png
+  - under/left/under_left30.png
+  - under/left/under_left31.png
+  - under/left/under_left32.png
+
+hud_under_right:
+  type: sequence
+  files:
+  - under/right/under_right1.png
+  - under/right/under_right2.png
+  - under/right/under_right3.png
+  - under/right/under_right4.png
+  - under/right/under_right5.png
+  - under/right/under_right6.png
+  - under/right/under_right7.png
+  - under/right/under_right8.png
+  - under/right/under_right9.png
+  - under/right/under_right10.png
+  - under/right/under_right11.png
+  - under/right/under_right12.png
+  - under/right/under_right13.png
+  - under/right/under_right14.png
+  - under/right/under_right15.png
+  - under/right/under_right16.png
+  - under/right/under_right17.png
+  - under/right/under_right18.png
+  - under/right/under_right19.png
+  - under/right/under_right20.png
+  - under/right/under_right21.png
+  - under/right/under_right22.png
+  - under/right/under_right23.png
+  - under/right/under_right24.png
+  - under/right/under_right25.png
+  - under/right/under_right26.png
+  - under/right/under_right27.png
+  - under/right/under_right28.png
+  - under/right/under_right29.png
+  - under/right/under_right30.png
+  - under/right/under_right31.png
+  - under/right/under_right32.png
+
+
+hud_top_right:
+  type: single
+  file: "top_right/top_right.png"
+hud_top_right_east:
+  type: sequence
+  files:
+  - top_right/east/east1.png
+  - top_right/east/east2.png
+  - top_right/east/east3.png
+  - top_right/east/east4.png
+  - top_right/east/east5.png
+  - top_right/east/east6.png
+  - top_right/east/east7.png
+  - top_right/east/east8.png
+  - top_right/east/east9.png
+  - top_right/east/east10.png
+  - top_right/east/east11.png
+  - top_right/east/east12.png
+  - top_right/east/east13.png
+  - top_right/east/east14.png
+  - top_right/east/east15.png
+  - top_right/east/east16.png
+  - top_right/east/east17.png
+  - top_right/east/east18.png
+  - top_right/east/east19.png
+  - top_right/east/east20.png
+  - top_right/east/east21.png
+  - top_right/east/east22.png
+  - top_right/east/east23.png
+  - top_right/east/east24.png
+  - top_right/east/east25.png
+  - top_right/east/east26.png
+  - top_right/east/east27.png
+  - top_right/east/east28.png
+  - top_right/east/east29.png
+  - top_right/east/east30.png
+  - top_right/east/east31.png
+  - top_right/east/east32.png
+hud_top_right_west:
+  type: sequence
+  files:
+  - top_right/west/west1.png
+  - top_right/west/west2.png
+  - top_right/west/west3.png
+  - top_right/west/west4.png
+  - top_right/west/west5.png
+  - top_right/west/west6.png
+  - top_right/west/west7.png
+  - top_right/west/west8.png
+  - top_right/west/west9.png
+  - top_right/west/west10.png
+  - top_right/west/west11.png
+  - top_right/west/west12.png
+  - top_right/west/west13.png
+  - top_right/west/west14.png
+  - top_right/west/west15.png
+  - top_right/west/west16.png
+  - top_right/west/west17.png
+  - top_right/west/west18.png
+  - top_right/west/west19.png
+  - top_right/west/west20.png
+  - top_right/west/west21.png
+  - top_right/west/west22.png
+  - top_right/west/west23.png
+  - top_right/west/west24.png
+  - top_right/west/west25.png
+  - top_right/west/west26.png
+  - top_right/west/west27.png
+  - top_right/west/west28.png
+  - top_right/west/west29.png
+  - top_right/west/west30.png
+  - top_right/west/west31.png
+  - top_right/west/west32.png
+hud_top_right_south:
+  type: sequence
+  files:
+  - top_right/south/south1.png
+  - top_right/south/south2.png
+  - top_right/south/south3.png
+  - top_right/south/south4.png
+  - top_right/south/south5.png
+  - top_right/south/south6.png
+  - top_right/south/south7.png
+  - top_right/south/south8.png
+  - top_right/south/south9.png
+  - top_right/south/south10.png
+  - top_right/south/south11.png
+  - top_right/south/south12.png
+  - top_right/south/south13.png
+  - top_right/south/south14.png
+  - top_right/south/south15.png
+  - top_right/south/south16.png
+  - top_right/south/south17.png
+  - top_right/south/south18.png
+  - top_right/south/south19.png
+  - top_right/south/south20.png
+  - top_right/south/south21.png
+  - top_right/south/south22.png
+  - top_right/south/south23.png
+  - top_right/south/south24.png
+  - top_right/south/south25.png
+  - top_right/south/south26.png
+  - top_right/south/south27.png
+  - top_right/south/south28.png
+  - top_right/south/south29.png
+  - top_right/south/south30.png
+  - top_right/south/south31.png
+  - top_right/south/south32.png
+
+hud_top_right_north:
+  type: sequence
+  files:
+  - top_right/north/north1.png
+  - top_right/north/north2.png
+  - top_right/north/north3.png
+  - top_right/north/north4.png
+  - top_right/north/north5.png
+  - top_right/north/north6.png
+  - top_right/north/north7.png
+  - top_right/north/north8.png
+  - top_right/north/north9.png
+  - top_right/north/north10.png
+  - top_right/north/north11.png
+  - top_right/north/north12.png
+  - top_right/north/north13.png
+  - top_right/north/north14.png
+  - top_right/north/north15.png
+  - top_right/north/north16.png
+  - top_right/north/north17.png
+  - top_right/north/north18.png
+  - top_right/north/north19.png
+  - top_right/north/north20.png
+  - top_right/north/north21.png
+  - top_right/north/north22.png
+  - top_right/north/north23.png
+  - top_right/north/north24.png
+  - top_right/north/north25.png
+  - top_right/north/north26.png
+  - top_right/north/north27.png
+  - top_right/north/north28.png
+  - top_right/north/north29.png
+  - top_right/north/north30.png
+  - top_right/north/north31.png
+  - top_right/north/north32.png

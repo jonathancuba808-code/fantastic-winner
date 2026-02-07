@@ -1,0 +1,15 @@
+ero_boss_argos_big_axe_v1:
+  Pack:
+    model: ero_boss_argos:big_axe_v1
+    custom_model_data: 1006
+  customname: <white>Argos Big Axe V1
+  material: IRON_AXE
+  permission: ero_boss_argos.big_axe_v1
+ero_boss_argos_big_axe_v2:
+  Pack:
+    model: ero_boss_argos:big_axe_v2
+    custom_model_data: 1007
+  customname: <white>Argos Big Axe V2
+  material: IRON_AXE
+  permission: ero_boss_argos.big_axe_v2
+

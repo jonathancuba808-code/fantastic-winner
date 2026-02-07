@@ -1,0 +1,30 @@
+World:
+  MobName: ''
+X: -44
+Y: -20
+Z: -44
+Yaw: 0.0
+Pitch: 0.0
+Breakable: false
+MobName: 15%BeeLoot,70%BeeEgg,15%BeeEgg2
+Radius: 3.0
+RadiusY: 1.0
+UseTimer: true
+MaxMobs: '4'
+MobLevel: '1'
+MobsPerSpawn: 1
+Cooldown: 30
+Warmup: 120
+ActivationRange: 200.0
+ScalingRange: 32.0
+LeashRange: 32.0
+HealOnLeash: true
+ResetThreatOnLeash: true
+CheckForPlayers: true
+ShowFlames: false
+Conditions: []
+SpawnConditions: []
+WarmupTimer: 1
+CooldownTimer: 6
+
+# eyJ1c2VyLW5hbWUiOiJGYXp6ZXIiLCJ1c2VyLWlkIjoiNzI4MSIsImRhdGUiOiIyMDI2LTAxLTMxIDE3OjQ4Iiwic2l0ZSI6Imh0dHBzOi8vZ2xlYWtzLnBybyJ9

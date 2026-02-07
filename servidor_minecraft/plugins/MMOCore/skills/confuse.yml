@@ -1,0 +1,23 @@
+name: Confuse
+lore:
+- Confuse your enemies by performing
+- a quick 180-degree flip on your target
+- ''
+- '&e{cooldown}s Cooldown'
+- '&9Costs {mana} {mana_name}'
+material: BOOK
+
+parameters:
+  timer: 0
+  delay: 0
+  mana:
+    base: 20
+    per-level: -1
+    min: 10
+  stamina: 0
+  cooldown:
+    base: 2
+    per-level: -0.1
+    min: 1
+
+  # No skill specific parameter for this skill

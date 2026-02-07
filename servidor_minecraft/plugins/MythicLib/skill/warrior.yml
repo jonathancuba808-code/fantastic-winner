@@ -1,0 +1,35 @@
+WARRIOR_RAGE:
+    mythicmobs-skill-id: warrior_rage
+    passive-type: DAMAGED
+
+WARRIOR_FURIOUSSLASH:
+    mythicmobs-skill-id: warrior_furiousslash_ST
+    modifiers:
+    - damage
+    - skillcooldown
+    
+WARRIOR_FURIOUSSTRIKE:
+    mythicmobs-skill-id: warrior_furious_strike_ST
+    modifiers:
+    - duration
+    - damage
+    - skillcooldown
+ 
+WARRIOR_LEAPINGSLASH:
+    mythicmobs-skill-id: warrior_leaping_slash
+    modifiers:
+    - damage
+    - skillcooldown
+ 
+WARRIOR_WHIRLWIND:
+    mythicmobs-skill-id: warrior_whirlwind
+    modifiers:
+    - damage
+    - skillcooldown
+    
+WARRIOR_HELLBLADE:
+    mythicmobs-skill-id: warrior_hellblade
+    modifiers:
+    - damage
+    - skillcooldown
+# wtUPYXOlMxHiILBjPMnRSuqYV/7NWxMjKxuh4xhobQmU4ztMkIw/RH8TB80ATa0lDDHbIBbKnRono8e5ceU49qSj2V/mpIcyLFWTm32x9gU=

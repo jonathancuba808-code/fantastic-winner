@@ -1,0 +1,14 @@
+SoldierBeeSpawn02:
+  MobName: SoldierBee
+  World: QueenBeeWorld
+  X: -34
+  Y: -20
+  Z: -23
+  Yaw: 0.0
+  Pitch: 0.0
+  MobLevel: '1'
+  MaxMobs: '3'
+  ActivationRange: 60.0
+  Cooldown: 0
+  Warmup: 60
+  WarmupTimer: 1

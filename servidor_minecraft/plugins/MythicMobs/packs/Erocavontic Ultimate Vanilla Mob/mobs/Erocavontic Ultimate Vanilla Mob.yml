@@ -1,0 +1,209 @@
+
+pider:
+  Type: spider
+  Display: '&cSpider'
+  Health: 50
+  Damage: 5
+  Armor: 10
+  Faction: UltimateVanillaMob
+  Options:
+    AlwaysShowName: true
+    MovementSpeed: 0.18
+    KnockbackResistance: 0.35
+    MaxCombatDistance: 20
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    PreventItemPickup: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack{s=1;fu=false}
+  - randomstroll
+  - lookatplayers{r=15}
+  Skills:
+  - CancelEvent{sync=true} ~onAttack
+  - skill{s=ero_spider_attack;sync=true} ~onAttack
+  - model{mid=ero_spider;n=false;usestatemachine=true} @self ~onSpawn
+  - model{mid=ero_spider;n=false;usestatemachine=true} @self ~onLoad
+  - skill{s=ero_spider_shoot;sync=true} @nearestPlayer{r=15} ~onTimer:10 ?incombat ?onground{}
+  - skill{s=ero_spider_idle_set;sync=true} @self ~onTimer:20
+
+ero_spider_cobweb:
+  Type: block_display
+  DisplayOptions:
+    Block: COBWEB
+    BlockLight: 15
+    SkyLight: 15
+    Translation: -0.6,0,-0.6
+    Scale: 1.2,1.2,1.2
+  Skills:
+  - setrotation{relative=false;yaw=0;pitch=0} @self ~onSpawn
+  - teleport{sh=0;sv=0} @SelfLocation{y=-0.7} ~onSpawn ?altitude{h=>1.5}
+  - skill{s=[ - sudoskill{s=[ - pull{v=10;fo=true;Origin=@SelfLocation{y=-10};repeat=5;repeatInterval=1} @self ];cat=true} - potion{t=SLOW;d=6;l=5;force=true;p=false;i=false} ];sync=true} @PlayersInRadius{r=1;yoffset=0.5} ~onTimer:5 ?!hastag{t=lock}
+  - skill{s=[ - sudoskill{s=[ - pull{v=20;fo=true;Origin=@SelfLocation{y=-10};repeat=5;repeatInterval=1} @self ];cat=true} - potion{t=SLOW;d=6;l=9;force=true;p=false;i=false} ];sync=true} @PlayersInRadius{r=1;yoffset=0.5} ~onTimer:5 ?hastag{t=lock}
+
+
+skeleton:
+  Type: skeleton
+  Display: '&cSkeleton'
+  Health: 45
+  Damage: 7
+  Armor: 10
+  Faction: UltimateVanillaMob
+  Options:
+    AlwaysShowName: true
+    MovementSpeed: 0.18
+    PreventSunburn: true
+    PreventItemPickup: true
+    KnockbackResistance: 0.8
+  Variables:
+    shootC: 0
+  Skills:
+  - CancelEvent{sync=true} ~onShoot
+  - setvariable{var=CASTER.shootC;val="0";t=INTEGER} @self ~onSpawn
+  - setvariable{var=CASTER.shootC;val="0";t=INTEGER} @self ~onLoad
+  - skill{s=ero_skeleton_shoot;sync=true} @target ~onShoot
+  - model{mid=ero_skeleton;n=false} @self ~onSpawn
+  - model{mid=ero_skeleton;n=false} @self ~onLoad
+  - sound{s=minecraft:entity.skeleton.death;p=1;v=1} @self ~onDeath
+
+
+witch:
+  Type: skeleton
+  Display: '&cWitch'
+  Health: 75
+  Damage: 5
+  Armor: 10
+  Faction: UltimateVanillaMob
+  Options:
+    AlwaysShowName: true
+    MovementSpeed: 0.22
+    PreventSunburn: true
+    KnockbackResistance: 0.4
+    Silent: true
+    MaxCombatDistance: 25
+    PreventOtherDrops: true
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=2.5;ss=1.5}
+  - randomstroll
+  - rangedAttack{smax=60;amin=5;radius=18}
+  - lookatplayers{r=20}
+  AITargetSelectors:
+  - clear
+  - player
+  Drops:
+  - REDSTONE 1-6 1
+  - STICK 0-3 1
+  - SUGAR 0-1 1
+  - SPIDER_EYE 1-3 0.5
+  Variables:
+    damaged: 0
+  Skills:
+  - CancelEvent{sync=true} ~onShoot
+  - model{mid=ero_witch;n=false} @self ~onSpawn
+  - model{mid=ero_witch;n=false} @self ~onLoad
+  - skill{s=[ - meg:setitemmodel{mid=ero_witch;bone=drink;i=ero_witch_potion_drink} @self - meg:setitemmodel{mid=ero_witch;bone=drink;i=air;delay=5} @self - meg:setitemmodel{mid=ero_witch;bone=right_hand;i=ero_witch_potion_drink} @self - meg:setitemmodel{mid=ero_witch;bone=left_hand;i=ero_witch_potion_drink} @self - meg:setitemmodel{mid=ero_witch;bone=right_hand;i=air;delay=5} @self - meg:setitemmodel{mid=ero_witch;bone=left_hand;i=air;delay=5} @self ];sync=true} @self ~onSpawn
+  - skill{s=[ - meg:setitemmodel{mid=ero_witch;bone=drink;i=ero_witch_potion_drink} @self - meg:setitemmodel{mid=ero_witch;bone=drink;i=air;delay=5} @self - meg:setitemmodel{mid=ero_witch;bone=right_hand;i=ero_witch_potion_drink} @self - meg:setitemmodel{mid=ero_witch;bone=left_hand;i=ero_witch_potion_drink} @self - meg:setitemmodel{mid=ero_witch;bone=right_hand;i=air;delay=5} @self - meg:setitemmodel{mid=ero_witch;bone=left_hand;i=air;delay=5} @self ];sync=true} @self ~onLoad
+  - skill{s=ero_witch_heal;sync=true} @self ~onTimer:20 <50%
+  - sound{s=entity.witch.hurt;p=1;v=1} @self ~onDamaged
+  - sound{s=minecraft:entity.witch.ambient;p=1;v=1} @self ~onTimer:40 ?!incombat
+  - skill{s=[
+      - gcd{t=60} @self
+      - sound{s=minecraft:entity.witch.death;p=1;v=1} @self
+    ];sync=true} @self ~onDeath
+  - skill{s=ero_witch_throw;sync=true} @self ~onShoot
+  - potionclear{type=SLOW} @self ~onTimer:10 ?offgcd
+
+
+vindicator:
+  Type: vindicator
+  Display: '&cVindicator'
+  Health: 95
+  Damage: 8
+  Armor: 10
+  Faction: UltimateVanillaMob
+  Options:
+    AlwaysShowName: true
+    MovementSpeed: 0.22
+    KnockbackResistance: 0.4
+    MaxCombatDistance: 25
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    PreventItemPickup: true
+  Variables:
+    shootC: 0
+  AIGoalSelectors:
+  - 1 clear
+  - 2 meleeattack{s=1;fu=true}
+  - 3 lookatplayers{r=25}
+  - 4 randomstroll
+  Skills:
+  - model{mid=ero_vindicator;n=false} @self ~onSpawn
+  - model{mid=ero_vindicator;n=false} @self ~onLoad
+  - CancelEvent{sync=true} @self ~onAttack
+  - skill{s=ero_vindicator_attack;sync=true} @self ~onAttack
+  - skill{s=ero_vindicator_axe_shoot;sync=true} @EntitiesInCone{angle=25;range=20;limit=1;sort=NEAREST;usepitch=true} ~onTimer:20 ?incombat
+  - skill{s=ero_vindicator_summon;sync=true} @self ~onTimer:5 <60%
+  - skill{s=[
+      - addtag{t=incombat} @self
+      - defaultstate{mid=ero_vindicator;type=walk;state=run} @self
+    ];sync=true} @self ~onTimer:5 ?!hastag{t=incombat} ?playersinradius{a=>0;r=25}
+  - skill{s=[
+      - removetag{t=incombat} @self
+      - defaultstate{mid=ero_vindicator;type=walk;state=walk} @self
+    ];sync=true} @self ~onTimer:5 ?hastag{t=incombat} ?playersinradius{a=0;r=25}
+  
+ero_vindicator_axe:
+  Type: pig
+  Display: '&aRare'
+  Options:
+    Silent: true
+    Invisible: true
+    Invincible: true
+    Collidable: false
+    Interactable: true
+    MovementSpeed: 0
+    AlwaysShowName: false
+    ApplyInvisibility: true
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventJockeyMounts: true
+    NoAI: true
+  Skills:
+  - model{mid=ero_vindicator_axe;n=false} @self ~onSpawn
+  - state{m=ero_vindicator_axe;s=spawnspin;delay=1} @self ~onSpawn
+
+
+zombie:
+  Type: zombie
+  Display: '&cZombie'
+  Health: 85
+  Damage: 8
+  Armor: 15
+  Faction: UltimateVanillaMob
+  Options:
+    AlwaysShowName: true
+    MovementSpeed: 0.22
+    KnockbackResistance: 0.5
+    MaxCombatDistance: 25
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    PreventItemPickup: true
+  Variables:
+    shootC: 0
+  Skills:
+  - CancelEvent{sync=true} @self ~onAttack
+  - model{mid=ero_zombie;n=false} @self ~onSpawn
+  - model{mid=ero_zombie;n=false} @self ~onLoad
+  - skill{s=ero_zombie_attack;sync=true} @self ~onAttack
+  - skill{s=[
+      - healpercent{m=0.05} @self
+      - skill{s=ero_zombie_right_arm;sync=true} @self
+    ];sync=true} @self ~onTimer:20 ?hastag{t=two_arm}
+  - skill{s=ero_zombie_left_arm;sync=true} @self <65% ~onTimer:5
+  - skill{s=ero_zombie_two_arm;sync=true} @self <35% ~onTimer:5
+  - effect:particles{p=falling_dust;material=REDSTONE_BLOCK;speed=9;Size=0.65;a=1;hS=0.05;vS=0.05;repeat=1;repeatInterval=1} @ModelPart{m=ero_zombie;p=LeftArm} ?hastag{t=left_arm} ?!hastag{t=death} ~onTimer:4
+  - effect:particles{p=falling_dust;material=REDSTONE_BLOCK;speed=9;Size=0.65;a=1;hS=0.05;vS=0.05;repeat=1;repeatInterval=1} @ModelPart{m=ero_zombie;p=RightArm} ?hastag{t=two_arm} ?!hastag{t=death} ~onTimer:4
+  - addtag{t=death} @self ~onDeath
+  - skill{s=ero_zombie_death;sync=true;delay=16} @self ~onDeath
+  

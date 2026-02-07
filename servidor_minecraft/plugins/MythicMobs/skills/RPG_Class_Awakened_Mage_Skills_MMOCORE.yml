@@ -1,0 +1,615 @@
+Mana_Barrier:
+  Cooldown: 0
+  Conditions:
+  - hasaura{n=Mana_Barrier_CD} false
+  Skills:
+  - skill{s=Mana_Barrier_SKILL;barriercooldown=<modifier.barriercooldown>}
+
+Mana_Barrier_SKILL:
+  Skills:
+  - onDamaged{auraName=Mana_Barrier;c=1;oH=Mana_Barrier_HIT;cE=true;deflectProjectiles=true} @self
+
+  - orbital{aura=MB1;reversed=true;onTick=Mana_Barrier_FX;r=0.8;points=30;i=1;duration=30;oy=1;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;cooldown=0.75} @self
+  - orbital{aura=MB2;reversed=true;startingpoint=15;onTick=Mana_Barrier_FX;r=0.8;points=30;i=1;duration=30;oy=1;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;cooldown=0.75} @self
+  - orbital{aura=MB3;reversed=true;startingpoint=30;onTick=Mana_Barrier_FX;r=0.8;points=30;i=1;duration=30;oy=1;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;cooldown=0.75} @self
+
+  - orbital{aura=MB4;onTick=Mana_Barrier_FX;r=0.8;points=30;i=1;duration=30;oy=1.3;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;cooldown=0.75} @self
+  - orbital{aura=MB5;startingpoint=15;onTick=Mana_Barrier_FX;r=0.8;points=30;i=1;duration=30;oy=1.3;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;cooldown=0.75} @self
+  - orbital{aura=MB6;startingpoint=30;onTick=Mana_Barrier_FX;r=0.8;points=30;i=1;duration=30;oy=1.3;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;cooldown=0.75} @self
+
+  - orbital{aura=MB7;onTick=Mana_Barrier_FX;r=0.8;points=30;i=1;duration=30;oy=0.7;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;cooldown=0.75} @self
+  - orbital{aura=MB8;startingpoint=15;onTick=Mana_Barrier_FX;r=0.8;points=30;i=1;duration=30;oy=0.7;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;cooldown=0.75} @self
+  - orbital{aura=MB9;startingpoint=30;onTick=Mana_Barrier_FX;r=0.8;points=30;i=1;duration=30;oy=0.7;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;cooldown=0.75} @self
+  
+Mana_Barrier_FX:
+  Skills:
+  - effect:particles{p=dust_color_transition;color1=#84d8ff;color2=#7913ff;size=0.45;amount=2;hS=0.02;vS=0.02;speed=0} @origin
+
+Mana_Barrier_HIT:
+  Skills:
+  - Aura{auraName=Mana_Barrier_CD;duration=<skill.barriercooldown> * 20} @self
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.mana_barrier_break;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+  - auraremove{aura=MB1} @self
+  - auraremove{aura=MB2} @self
+  - auraremove{aura=MB3} @self
+  - auraremove{aura=MB4} @self
+  - auraremove{aura=MB5} @self
+  - auraremove{aura=MB6} @self
+  - auraremove{aura=MB7} @self
+  - auraremove{aura=MB8} @self
+  - auraremove{aura=MB9} @self
+
+  - effect:sound{s=entity.ender_eye.death;volume=1;pitch=<random.float.0.9to1.1>;delay=<skill.barriercooldown> * 20} @self
+
+
+Awakened_Mage_BURN:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  - hasaura{n=FW_BURN} false
+  Skills:
+  - aura{auraName=FW_BURN;duration=<skill.burnduration> * 20}
+  - delay 1
+  - effect:sound{s=entity.player.hurt_on_fire;volume=0.6;pitch=1;repeat=<skill.burnduration> - 1;repeati=20} @TargetedTarget{conditions=[ - isLiving true - hasaura{n=FW_FREEZE} false - hasaura{n=FW_BURN} true ]}
+  - effect:sound{s=entity.generic.burn;volume=0.5;pitch=1.4;repeat=<skill.burnduration> - 1;repeati=20} @TargetedTarget{conditions=[ - isLiving true - hasaura{n=FW_FREEZE} false - hasaura{n=FW_BURN} true ]}
+  - damage{a=<skill.burndamage>;pkb=true;hnp=true;hp=true;repeat=<skill.burnduration> - 1;repeati=20} @TargetedTarget{conditions=[ - isLiving true - hasaura{n=FW_FREEZE} false - hasaura{n=FW_BURN} true ]}
+  - ignite{ticks=<skill.burnduration> * 20}
+  - particles{p=small_flame;amount=10;hS=0.3;vS=0.7;y=1;size=1;speed=0.03;repeat=<skill.burnduration> - 1;repeati=20} @TargetedTarget{conditions=[ - isLiving true - hasaura{n=FW_FREEZE} false - hasaura{n=FW_BURN} true ]}
+Awakened_Mage_FREEZE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  - hasaura{n=FW_FREEZE} false
+  Skills:
+  - effect:sound{s=block.glass.break;volume=1;pitch=1.2}
+  - stun{stopai=true;d=<skill.freezeduration> * 20;g=false;f=false;CancelOnTakeDamage=true;CancelOnDeath=true;noknockback=true}
+  
+  - particles{p=block_crack;m=ICE;amount=15;hS=0.45;vS=0.9;y=1;size=1;speed=0.03;repeat=1;repeati=3}
+  - particles{p=snowflake;amount=8;hS=0.45;vS=0.9;y=1;size=1;speed=0.03;repeat=1;repeati=3}
+  - orbital{rotate=false;cancelontakedamage=true;oE=FREEZE_BREAK;auraName=FW_FREEZE;bulletType=MOB;mob=VFX_AwakenedMage_Cryo_Prison_Cage;hr=0;vr=0;hp=false;hnp=false;r=0;points=1;i=1;duration=<skill.freezeduration> * 20;oy=1.3;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0}
+  
+  - auraremove{aura=FW_BURN}
+  - extinguish
+FREEZE_BREAK:
+  Skills:
+  - damage{a=<skill.freezedamage>;pkb=true;hnp=true;hp=true}
+  - effect:sound{s=block.glass.break;volume=1;pitch=1.2}
+  - particles{p=block_crack;m=ICE;amount=15;hS=0.45;vS=0.9;y=1;size=1;speed=0.03;repeat=1;repeati=3}
+  - particles{p=snowflake;amount=8;hS=0.45;vS=0.9;y=1;size=1;speed=0.03;repeat=1;repeati=3}
+
+Awakened_Mage_SLOW:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  - hasaura{n=FW_SLOW} false
+  Skills:
+  - effect:sound{s=block.respawn_anchor.deplete;volume=1;pitch=1.2}
+  - potion{type=SLOW;duration=<skill.slowduration> * 20;level=1;hasParticles=false} @TargetedTarget{conditions=[ - isLiving true ]}
+
+  - particles{p=block_crack;m=ICE;amount=10;hS=0.4;vS=0.1;y=0.1;size=0.7;speed=0.03;repeat=(<skill.slowduration> * 4) - 1;repeati=5} @TargetedTarget{conditions=[ - isLiving true ]}
+
+
+
+Sorcery_Combo:
+  Conditions:
+  - hasAura{aura=CASTING} false
+  Skills:
+  - skill{s=Sorcery_Combo_ST_CAST}
+Sorcery_Combo_ST_CAST:
+  Skills:
+  - skill{s=Sorcery_Combo_ST_1;damage=<modifier.damage>;burndamage=<modifier.burndamage>;burnduration=<modifier.burnduration>}
+  - skill{s=Sorcery_Combo_ST_2;damage=<modifier.damage>;burndamage=<modifier.burndamage>;burnduration=<modifier.burnduration>}
+  - skill{s=Sorcery_Combo_ST_3;damage=<modifier.damage>;slowduration=<modifier.slowduration>}
+  - skill{s=Sorcery_Combo_ST_4;damage=<modifier.damage>}
+
+
+Sorcery_Combo_ST_1:
+  Conditions:
+  - hasaurastacks{auraName=Sorcery_Combo_Stack;stacks=1} false
+  - hasaurastacks{auraName=Sorcery_Combo_Stack;stacks=2} false
+  - hasaurastacks{auraName=Sorcery_Combo_Stack;stacks=3} false
+  Skills:
+  - Aura{auraName=Sorcery_Combo_Stack;duration=300;maxStacks=3;delay=1} @self
+
+  - skill{s=Sorcery_Combo_SHOOT}
+
+
+Sorcery_Combo_SHOOT:
+  Skills:
+  - skill{s=Sorcery_Combo_SHOOT_PRO;origin=@SelfEyeLocation{fo=-0.5;yo=-0.2}} @forward{f=12;uel=true}
+Sorcery_Combo_SHOOT_PRO:
+  Skills:
+  - projectile{bmd=true;bulletType=MOB;mob=VFX_AwakenedMage_Fireball;oH=Sorcery_Combo_DAMAGE_D;ohb=Sorcery_Combo_DAMAGE_D;v=21;i=1;hR=1;vR=1;mr=30;hnp=true;hO=0;sE=true;sB=true;hs=false;hfs=0;sfo=0;syo=0;tyo=0;sso=0;fo=true;hitConditions=[- isLiving true];byo=0;drawhitbox=false;ham=true}
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.fire_ball;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+
+Sorcery_Combo_DAMAGE_D:
+  Cooldown: 0.001
+  Skills:
+  - skill{s=Sorcery_Combo_DAMAGE_DD} @EntitiesNearOrigin{r=3;limit=5;sort=NEAREST}
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.fire_explode;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+  - summon{type=VFX_AwakenedMage_Fireball_Explosion_FULL;amount=1;radius=0;yRadius=0;onSurface=true} @origin
+  - particles{p=campfire_cosy_smoke;amount=4;hS=0.3;vS=0.3;y=0;size=1;speed=0.05} @origin
+Sorcery_Combo_DAMAGE_DD:
+  Skills:
+  - skill{s=Sorcery_Combo_DAMAGE} @TargetedTarget{conditions=[ - isLiving true - hasaura{aura=immunedelay} false ]}
+Sorcery_Combo_DAMAGE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=3}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_AwakenedMage_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+  - effect:sound{s=universal_sounds:samus.universal.hit_impact_thud;volume=0.45;pitch=<random.float.1.1to1.2>} @self
+  - skill{s=Awakened_Mage_BURN} 1
+
+
+
+
+Sorcery_Combo_ST_2:
+  Conditions:
+  - hasaurastacks{auraName=Sorcery_Combo_Stack;stacks=1} true
+  - hasaurastacks{auraName=Sorcery_Combo_Stack;stacks=2} false
+  - hasaurastacks{auraName=Sorcery_Combo_Stack;stacks=3} false
+  Skills:
+  - Aura{auraName=Sorcery_Combo_Stack;duration=300;maxStacks=3;delay=1} @self
+
+  - skill{s=Sorcery_Combo_SHOOT}
+
+
+
+
+
+Sorcery_Combo_ST_3:
+  Conditions:
+  - hasaurastacks{auraName=Sorcery_Combo_Stack;stacks=1} false
+  - hasaurastacks{auraName=Sorcery_Combo_Stack;stacks=2} true
+  - hasaurastacks{auraName=Sorcery_Combo_Stack;stacks=3} false
+  Skills:
+  - Aura{auraName=Sorcery_Combo_Stack;duration=300;maxStacks=3;delay=1} @self
+  
+  - skill{s=Sorcery_Combo_GLACIAL}
+
+
+Sorcery_Combo_GLACIAL:
+  Skills:
+  - summon{type=VFX_AwakenedMage_Glacial_Spikes;amount=1;radius=0;yRadius=0;onSurface=false} @forward{f=0.5;y=1.3}
+  - skill{s=Sorcery_Combo_GLACIAL_PRO;origin=@SelfEyeLocation{fo=-0.5;yo=-0.2}} @forward{f=12;uel=true}
+Sorcery_Combo_GLACIAL_PRO:
+  Skills:
+  - projectile{bmd=true;onHit=Sorcery_Combo_GLACIAL_DAMAGE_D;v=25;i=1;hR=0.6;vR=0.6;mr=8;hnp=true;hO=-45;sE=false;sB=true;hs=false;hfs=0;sfo=0;syo=0;tyo=0;sso=0;fo=true;hitConditions=[- isLiving true];byo=0;drawhitbox=false;ham=true}
+  - projectile{delay=3;bmd=true;onHit=Sorcery_Combo_GLACIAL_DAMAGE_D;v=25;i=1;hR=0.6;vR=0.6;mr=8;hnp=true;hO=-22.5;sE=false;sB=true;hs=false;hfs=0;sfo=0;syo=0;tyo=0;sso=0;fo=true;hitConditions=[- isLiving true];byo=0;drawhitbox=false;ham=true}
+  - projectile{delay=6;bmd=true;onHit=Sorcery_Combo_GLACIAL_DAMAGE_D;v=25;i=1;hR=0.6;vR=0.6;mr=8;hnp=true;hO=0;sE=false;sB=true;hs=false;hfs=0;sfo=0;syo=0;tyo=0;sso=0;fo=true;hitConditions=[- isLiving true];byo=0;drawhitbox=false;ham=true}
+  - projectile{delay=9;bmd=true;onHit=Sorcery_Combo_GLACIAL_DAMAGE_D;v=25;i=1;hR=0.6;vR=0.6;mr=8;hnp=true;hO=22.5;sE=false;sB=true;hs=false;hfs=0;sfo=0;syo=0;tyo=0;sso=0;fo=true;hitConditions=[- isLiving true];byo=0;drawhitbox=false;ham=true}
+  - projectile{delay=12;bmd=true;onHit=Sorcery_Combo_GLACIAL_DAMAGE_D;v=25;i=1;hR=0.6;vR=0.6;mr=8;hnp=true;hO=45;sE=false;sB=true;hs=false;hfs=0;sfo=0;syo=0;tyo=0;sso=0;fo=true;hitConditions=[- isLiving true];byo=0;drawhitbox=false;ham=true}
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.glacial_spikes_shoot;volume=0.7;pitch=<random.float.0.9to1.1>;repeat=4;repeati=3} @self
+
+Sorcery_Combo_GLACIAL_DAMAGE_D:
+  Cooldown: 0.001
+  Skills:
+  - skill{s=Sorcery_Combo_GLACIAL_DAMAGE_DD} @EntitiesNearOrigin{r=3;limit=3;sort=NEAREST}
+Sorcery_Combo_GLACIAL_DAMAGE_DD:
+  Skills:
+  - skill{s=Sorcery_Combo_GLACIAL_DAMAGE} @TargetedTarget{conditions=[ - isLiving true - hasaura{aura=immunedelay} false ]}
+Sorcery_Combo_GLACIAL_DAMAGE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=3}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_AwakenedMage_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+  - effect:sound{s=universal_sounds:samus.universal.hit_impact_thud;volume=0.45;pitch=<random.float.1.1to1.2>} @self
+  - skill{s=Awakened_Mage_SLOW} 1
+
+
+
+Sorcery_Combo_ST_4:
+  Conditions:
+  - hasaurastacks{auraName=Sorcery_Combo_Stack;stacks=1} false
+  - hasaurastacks{auraName=Sorcery_Combo_Stack;stacks=2} false
+  - hasaurastacks{auraName=Sorcery_Combo_Stack;stacks=3} true
+  Skills:
+  - auraremove{aura=Sorcery_Combo_Stack;delay=1} @self
+
+  - aura{auraName=CASTING;duration=18} @self
+  
+  - skill{s=Sorcery_Combo_THUNDERSTRIKE}
+
+Sorcery_Combo_THUNDERSTRIKE:
+  Cooldown: 0.001
+  Skills:
+  - skill{s=Sorcery_Combo_THUNDERSTRIKE_PRO;origin=@SelfEyeLocation{fo=-0.5;yo=-0.2}} @forward{f=12;uel=true}
+Sorcery_Combo_THUNDERSTRIKE_PRO:
+  Skills:
+  - projectile{bmd=true;ohb=Sorcery_Combo_THUNDERSTRIKE_PRO_OHB;v=30;i=1;hR=1;vR=1;mr=20;hnp=false;hO=0;sE=false;sB=true;hs=false;hfs=0;sfo=0;syo=0;tyo=0;sso=0;fo=true;hitConditions=[- isLiving false ];byo=0;drawhitbox=false;ham=true}
+Sorcery_Combo_THUNDERSTRIKE_PRO_OHB:
+  Skills:
+  - summon{type=VFX_AwakenedMage_Thunder_Strike1;amount=1;radius=0;yRadius=0;onSurface=true} @origin
+  - summon{type=VFX_AwakenedMage_Thunder_Strike2;amount=1;radius=0;yRadius=0;onSurface=true;delay=2} @origin
+  - summon{type=VFX_AwakenedMage_Thunder_Strike3;amount=1;radius=0;yRadius=0;onSurface=true;delay=1} @origin
+  - summon{type=VFX_AwakenedMage_Rupture_Small;amount=1;radius=0;yRadius=0;onSurface=true;delay=2} @origin
+  - summon{type=VFX_AwakenedMage_Rubbles_Small;amount=1;radius=0;yRadius=0;onSurface=true;delay=2} @origin
+  - particles{p=Campfire_Cosy_Smoke;amount=7;hS=1;vS=0.1;y=0;size=1;speed=0.07;delay=2} @origin
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.thunder_strike;volume=0.7;pitch=<random.float.0.9to1.1>;delay=1} @self
+  - effect:sound{s=universal_sounds:samus.universal.rupture_quick;volume=0.65;pitch=<random.float.0.9to1.1>;delay=3} @self
+  - skill{s=Sorcery_Combo_THUNDERSTRIKE_DAMAGE_DD;delay=2} @EntitiesNearOrigin{r=5;limit=7;sort=NEAREST}
+Sorcery_Combo_THUNDERSTRIKE_DAMAGE_DD:
+  Skills:
+  - skill{s=Sorcery_Combo_THUNDERSTRIKE_DAMAGE} @TargetedTarget{conditions=[ - isLiving true - hasaura{aura=immunedelay} false ]}
+Sorcery_Combo_THUNDERSTRIKE_DAMAGE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=3}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_AwakenedMage_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+  - effect:sound{s=universal_sounds:samus.universal.hit_impact_thud;volume=0.45;pitch=<random.float.1.1to1.2>} @self
+
+
+Teleport_Strike:
+  Conditions:
+  - onground true
+  Skills:
+  - skill{s=Teleport_Strike_CAST;damage=<modifier.damage>;stunduration=<modifier.stunduration>}
+
+Teleport_Strike_CAST:
+  Conditions:
+  - hasAura{aura=CASTING} false
+  Skills:
+  - aura{auraName=CASTING;duration=5} @self
+  
+  - summon{type=VFX_AwakenedMage_Thunder_Teleport;amount=1;radius=0;yRadius=0;onSurface=false} @self
+
+  - delay 1
+
+  - lunge{velocity=4;velocityY=0} @Forward{f=5;y=0;lockpitch=false;sideOffset=0}
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.thunder_teleport;volume=1;pitch=<random.float.0.9to1.1>;delay=1} @self
+
+  - delay 4
+  
+  - summon{type=VFX_AwakenedMage_Thunder_Teleport;amount=1;radius=0;yRadius=0;onSurface=false} @self
+  - summon{type=VFX_AwakenedMage_Thunder_Explosion;amount=1;radius=0;yRadius=0;onSurface=false} @self
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.thunder_strike;volume=0.7;pitch=<random.float.0.6to0.8>} @self
+  - skill{s=Sorcery_Combo_Teleport_Strike_DAMAGE_DD} @EIR{r=5;limit=7;sort=NEAREST}
+Sorcery_Combo_Teleport_Strike_DAMAGE_DD:
+  Skills:
+  - skill{s=Sorcery_Combo_Teleport_Strike_DAMAGE} @TargetedTarget{conditions=[ - isLiving true - hasaura{aura=immunedelay} false ]}
+Sorcery_Combo_Teleport_Strike_DAMAGE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=3}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_AwakenedMage_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+  - effect:sound{s=universal_sounds:samus.universal.hit_impact_thud;volume=0.45;pitch=<random.float.1.1to1.2>} @self
+  - stun{d=<skill.stunduration> * 20;f=true;CancelOnTakeDamage=false;CancelOnDeath=true}
+  - orbital{onTick=Sorcery_Combo_Teleport_Strike_STUN_FX;r=0.5;points=22;i=1;duration=<skill.stunduration> * 20;oy=2.3;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0}
+Sorcery_Combo_Teleport_Strike_STUN_FX:
+  Skills:
+  - particles{p=crit;amount=1;hS=0;vS=0;y=0;size=0.4;speed=0} @origin
+  
+
+
+Blazing_Barrage:
+  Conditions:
+  - onground true
+  Skills:
+  - skill{s=Blazing_Barrage_CAST;damage=<modifier.damage>;burndamage=<modifier.burndamage>;burnduration=<modifier.burnduration>}
+Blazing_Barrage_CAST:
+  Conditions:
+  - hasAura{aura=CASTING} false
+  Skills:
+  - aura{auraName=CASTING;duration=55} @self
+  
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.fire_circle;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+  - orbital{auraName=VFX_AwakenedMage_FireCircle1;bulletType=MOB;mob=VFX_AwakenedMage_FireCircle1;hr=1;vr=1;hp=false;hnp=false;r=0;points=1;i=1;duration=28;oy=2.4;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0} @self
+  - skill{s=Blazing_Barrage_SHOOT_PRO1;origin=@SelfEyeLocation{fo=-0.5;yo=-0.65};delay=4} @forward{f=12;uel=true;lockpitch=true}
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.fire_ball;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+
+  - delay 3
+
+  - orbital{auraName=VFX_AwakenedMage_FireCircle2;bulletType=MOB;mob=VFX_AwakenedMage_FireCircle2;hr=1;vr=1;hp=false;hnp=false;r=0;points=1;i=1;duration=28;oy=2.4;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0} @self
+  - skill{s=Blazing_Barrage_SHOOT_PRO2;origin=@SelfEyeLocation{fo=-0.5;yo=-0.65};delay=4} @forward{f=12;uel=true;lockpitch=true}
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.fire_ball;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+
+  - delay 3
+  
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.fire_circle;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+  - orbital{auraName=VFX_AwakenedMage_FireCircle3;bulletType=MOB;mob=VFX_AwakenedMage_FireCircle3;hr=1;vr=1;hp=false;hnp=false;r=0;points=1;i=1;duration=28;oy=2.4;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0} @self
+  - skill{s=Blazing_Barrage_SHOOT_PRO3;origin=@SelfEyeLocation{fo=-0.5;yo=-0.65};delay=4} @forward{f=12;uel=true;lockpitch=true}
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.fire_ball;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+
+  - delay 3
+  
+  - orbital{auraName=VFX_AwakenedMage_FireCircle4;bulletType=MOB;mob=VFX_AwakenedMage_FireCircle4;hr=1;vr=1;hp=false;hnp=false;r=0;points=1;i=1;duration=28;oy=2.4;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0} @self
+  - skill{s=Blazing_Barrage_SHOOT_PRO4;origin=@SelfEyeLocation{fo=-0.5;yo=-0.65};delay=4} @forward{f=12;uel=true;lockpitch=true}
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.fire_ball;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+
+  - delay 3
+  
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.fire_circle;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+  - orbital{auraName=VFX_AwakenedMage_FireCircle5;bulletType=MOB;mob=VFX_AwakenedMage_FireCircle5;hr=1;vr=1;hp=false;hnp=false;r=0;points=1;i=1;duration=28;oy=3.5;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0} @self
+  - skill{s=Blazing_Barrage_SHOOT_PRO5;origin=@SelfEyeLocation{fo=-0.5;yo=0.55};delay=4} @forward{f=12;uel=true;lockpitch=true}
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.fire_ball;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+
+  - delay 3
+
+  - orbital{auraName=VFX_AwakenedMage_FireCircle6;bulletType=MOB;mob=VFX_AwakenedMage_FireCircle6;hr=1;vr=1;hp=false;hnp=false;r=0;points=1;i=1;duration=28;oy=3.5;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0} @self
+  - skill{s=Blazing_Barrage_SHOOT_PRO6;origin=@SelfEyeLocation{fo=-0.5;yo=0.55};delay=4} @forward{f=12;uel=true;lockpitch=true}
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.fire_ball;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+
+  - delay 10
+  
+  - stun{d=30;f=true;CancelOnTakeDamage=false;CancelOnDeath=true} @self
+  - summon{type=VFX_AwakenedMage_Fireblast;amount=1;radius=0;yRadius=0;onSurface=true} @self
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.fire_circle;volume=0.7;pitch=<random.float.0.5to0.6>} @self
+
+  - delay 30
+  
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.fire_blast;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+  - skill{s=FIREBLAST_PRO;origin=@SelfEyeLocation{fo=-0.5;yo=-0.2}} @forward{f=12;uel=true}
+
+FIREBLAST_PRO:
+  Skills:
+  - projectile{bmd=true;oT=FIREBLAST_PRO_T;onHit=FIREBLAST_PRO_DAMAGE_D;v=25;i=1;hR=2.3;vR=1.3;mr=8;hnp=true;hO=0;sE=false;sB=true;hs=false;hfs=0;sfo=0;syo=0;tyo=0;sso=0;fo=true;hitConditions=[- isLiving true];byo=0;drawhitbox=false;ham=true}
+FIREBLAST_PRO_T:
+  Cooldown: 0.07
+  Skills:
+  - particles{p=campfire_cosy_smoke;amount=6;hS=0.6;vS=0.3;y=0;size=1;speed=0.1} @origin
+  - particles{p=small_flame;amount=15;hS=0.6;vS=0.3;y=0;size=1;speed=0.1} @origin
+FIREBLAST_PRO_DAMAGE_D:
+  Cooldown: 0.001
+  Skills:
+  - skill{s=FIREBLAST_PRO_DAMAGE_DD} @EntitiesNearOrigin{r=4;limit=7;sort=NEAREST}
+FIREBLAST_PRO_DAMAGE_DD:
+  Skills:
+  - skill{s=FIREBLAST_PRO_DAMAGE} @TargetedTarget{conditions=[ - isLiving true - hasaura{aura=immunedelay} false ]}
+FIREBLAST_PRO_DAMAGE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=5}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_AwakenedMage_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+  - effect:sound{s=universal_sounds:samus.universal.hit_impact_thud;volume=0.45;pitch=<random.float.1.1to1.2>} @self
+  - skill{s=Awakened_Mage_BURN} 1
+
+
+
+Blazing_Barrage_TICK:
+  Skills:
+  - modifyProjectile{trait=VELOCITY;action=MULTIPLY;value=1.3}
+
+Blazing_Barrage_SHOOT_PRO1:
+  Skills:
+  - projectile{oT=Blazing_Barrage_TICK;bmd=true;bulletType=MOB;mob=VFX_AwakenedMage_Fireball2;oH=Blazing_Barrage_DAMAGE_D;ohb=Blazing_Barrage_DAMAGE_D;v=5;i=1;hR=1;vR=1;mr=30;hnp=true;hO=-2;sE=true;sB=true;hs=false;hfs=0;sfo=-0.4;syo=0;tyo=0;sso=-1.05;fo=true;hitConditions=[- isLiving true];byo=0;drawhitbox=false;ham=true}
+Blazing_Barrage_SHOOT_PRO2:
+  Skills:
+  - projectile{oT=Blazing_Barrage_TICK;bmd=true;bulletType=MOB;mob=VFX_AwakenedMage_Fireball3;oH=Blazing_Barrage_DAMAGE_D;ohb=Blazing_Barrage_DAMAGE_D;v=5;i=1;hR=1;vR=1;mr=30;hnp=true;hO=2;sE=true;sB=true;hs=false;hfs=0;sfo=-0.4;syo=0;tyo=0;sso=1.05;fo=true;hitConditions=[- isLiving true];byo=0;drawhitbox=false;ham=true}
+Blazing_Barrage_SHOOT_PRO3:
+  Skills:
+  - projectile{oT=Blazing_Barrage_TICK;bmd=true;bulletType=MOB;mob=VFX_AwakenedMage_Fireball2;oH=Blazing_Barrage_DAMAGE_D;ohb=Blazing_Barrage_DAMAGE_D;v=5;i=1;hR=1;vR=1;mr=30;hnp=true;hO=-2;sE=true;sB=true;hs=false;hfs=0;sfo=-0.4;syo=0;tyo=0;sso=-3.15;fo=true;hitConditions=[- isLiving true];byo=0;drawhitbox=false;ham=true}
+Blazing_Barrage_SHOOT_PRO4:
+  Skills:
+  - projectile{oT=Blazing_Barrage_TICK;bmd=true;bulletType=MOB;mob=VFX_AwakenedMage_Fireball3;oH=Blazing_Barrage_DAMAGE_D;ohb=Blazing_Barrage_DAMAGE_D;v=5;i=1;hR=1;vR=1;mr=30;hnp=true;hO=2;sE=true;sB=true;hs=false;hfs=0;sfo=-0.4;syo=0;tyo=0;sso=3.15;fo=true;hitConditions=[- isLiving true];byo=0;drawhitbox=false;ham=true}
+Blazing_Barrage_SHOOT_PRO5:
+  Skills:
+  - projectile{oT=Blazing_Barrage_TICK;bmd=true;bulletType=MOB;mob=VFX_AwakenedMage_Fireball2;oH=Blazing_Barrage_DAMAGE_D;ohb=Blazing_Barrage_DAMAGE_D;v=5;i=1;hR=1;vR=1;mr=30;hnp=true;hO=-2;sE=true;sB=true;hs=false;hfs=0;sfo=-0.4;syo=0;tyo=0;sso=-1.55;fo=true;hitConditions=[- isLiving true];byo=0;drawhitbox=false;ham=true}
+Blazing_Barrage_SHOOT_PRO6:
+  Skills:
+  - projectile{oT=Blazing_Barrage_TICK;bmd=true;bulletType=MOB;mob=VFX_AwakenedMage_Fireball3;oH=Blazing_Barrage_DAMAGE_D;ohb=Blazing_Barrage_DAMAGE_D;v=5;i=1;hR=1;vR=1;mr=30;hnp=true;hO=2;sE=true;sB=true;hs=false;hfs=0;sfo=-0.4;syo=0;tyo=0;sso=1.55;fo=true;hitConditions=[- isLiving true];byo=0;drawhitbox=false;ham=true}
+
+
+
+Blazing_Barrage_DAMAGE_D:
+  Cooldown: 0.001
+  Skills:
+  - skill{s=Blazing_Barrage_DAMAGE_DD} @EntitiesNearOrigin{r=3;limit=3;sort=NEAREST}
+  - summon{type=VFX_AwakenedMage_Fireball_Explosion_FULL;amount=1;radius=0;yRadius=0;onSurface=true} @origin
+  - particles{p=campfire_cosy_smoke;amount=4;hS=0.3;vS=0.3;y=0;size=1;speed=0.05} @origin
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.fire_explode;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+Blazing_Barrage_DAMAGE_DD:
+  Skills:
+  - skill{s=Blazing_Barrage_DAMAGE} @TargetedTarget{conditions=[ - isLiving true - hasaura{aura=immunedelay} false ]}
+Blazing_Barrage_DAMAGE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=2}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_AwakenedMage_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+  - effect:sound{s=universal_sounds:samus.universal.hit_impact_thud;volume=0.45;pitch=<random.float.1.1to1.2>} @self
+  - skill{s=Awakened_Mage_BURN} 1
+
+
+
+Cryo_Prison:
+  Conditions:
+  - hasAura{aura=CASTING} false
+  Skills:
+  - skill{s=Cryo_Prison_CAST;damage=<modifier.damage>;freezedamage=<modifier.freezedamage>;freezeduration=<modifier.freezeduration>}
+
+Cryo_Prison_CAST:
+  Skills:
+  - auraremove{aura=Cryo_Prison_STACK} @self
+  - aura{auraName=CASTING;duration=10} @self
+
+  - skill{s=Sorcery_Combo_Cryo_Prison_PRO;origin=@SelfEyeLocation{fo=-0.5;yo=-0.2}} @forward{f=12;uel=true}
+Sorcery_Combo_Cryo_Prison_PRO:
+  Skills:
+  - projectile{bmd=true;ohb=Sorcery_Combo_Cryo_Prison_PRO_OHB;v=30;i=1;hR=1;vR=1;mr=25;hnp=false;hO=0;sE=false;sB=true;hs=false;hfs=0;sfo=0;syo=0;tyo=0;sso=0;fo=true;hitConditions=[- isLiving false ];byo=0;drawhitbox=false;ham=true}
+Sorcery_Combo_Cryo_Prison_PRO_OHB:
+  Skills:
+  - summon{type=VFX_AwakenedMage_Cryo_Prison;amount=1;radius=0;yRadius=0;onSurface=true} @origin
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.ice_charge;volume=1;pitch=<random.float.0.7to0.8>} @self
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.ice_spike_creation;volume=0.7;pitch=<random.float.0.7to0.8>;delay=24} @self
+  - particles{p=snowflake;amount=40;hS=3.5;vS=2;y=1.5;size=1;speed=0.07;delay=24} @origin
+  - skill{s=Sorcery_Combo_Cryo_Prison_DAMAGE_DD;delay=24} @EntitiesNearOrigin{r=7;limit=15;sort=NEAREST}
+Sorcery_Combo_Cryo_Prison_DAMAGE_DD:
+  Skills:
+  - skill{s=Sorcery_Combo_Cryo_Prison_DAMAGE} @TargetedTarget{conditions=[ - isLiving true - hasaura{aura=immunedelay} false ]}
+Sorcery_Combo_Cryo_Prison_DAMAGE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=5}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_AwakenedMage_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+  - effect:sound{s=universal_sounds:samus.universal.hit_impact_thud;volume=0.45;pitch=<random.float.1.1to1.2>} @self
+  - skill{s=Awakened_Mage_FREEZE} 1
+
+
+
+Hailpiercer:
+  Conditions:
+  - hasAura{aura=CASTING} false
+  Skills:
+  - skill{s=Hailpiercer_CAST;damage=<modifier.damage>;slowduration=<modifier.slowduration>}
+Hailpiercer_CAST:
+  Skills:
+  - aura{auraName=CASTING;duration=35} @self
+  
+  - stun{d=35;f=true;CancelOnTakeDamage=false;CancelOnDeath=true} @self
+  - summon{type=VFX_AwakenedMage_Hailpiercer_Inhale;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=1.5;y=0;lockpitch=true}
+  - skill{s=Hailpiercer_PRO;origin=@SelfEyeLocation{fo=-0.5;yo=-0.2};repeat=5;repeati=5} @forward{f=12;uel=true}
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.ice_charge;volume=1;pitch=<random.float.0.9to1.1>} @self
+
+  - delay 30
+  
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.ice_spike_creation;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+  - summon{type=VFX_AwakenedMage_Hailpiercer0;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=2;y=0;sideoffset=0;lockpitch=true}
+  - totem{md=1;i=1;oT=Hailpiercer_PRO_DAMAGE_D1;hnp=true;hp=true;hR=1;vR=1;delay=2} @forward{f=3;y=0;lockpitch=true}
+  - totem{md=1;i=1;oT=Hailpiercer_PRO_DAMAGE_D1;hnp=true;hp=true;hR=1;vR=1;delay=7} @forward{f=9;y=0;lockpitch=true}
+  - totem{md=1;i=1;oT=Hailpiercer_PRO_DAMAGE_D1;hnp=true;hp=true;hR=1;vR=1;delay=12} @forward{f=15;y=0;lockpitch=true}
+
+  - delay 5
+  
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.ice_spike_creation;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+  - summon{type=VFX_AwakenedMage_Hailpiercer1;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=6;y=0;sideoffset=-1;lockpitch=true}
+
+  - delay 5
+  
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.ice_spike_creation;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+  - summon{type=VFX_AwakenedMage_Hailpiercer2;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=10;y=0;sideoffset=0;lockpitch=true}
+
+Hailpiercer_PRO:
+  Skills:
+  - projectile{bmd=true;onHit=Hailpiercer_PRO_DAMAGE_D;v=25;i=1;hR=1;vR=1;mr=9;hnp=true;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=0;tyo=0;sso=0;fo=true;hitConditions=[- isLiving true];byo=0;drawhitbox=false;ham=true}
+  
+Hailpiercer_PRO_DAMAGE_D:
+  Cooldown: 0.001
+  Skills:
+  - skill{s=Hailpiercer_PRO_DAMAGE_DD} @EntitiesNearOrigin{r=3;limit=5;sort=NEAREST}
+Hailpiercer_PRO_DAMAGE_DD:
+  Skills:
+  - skill{s=Hailpiercer_PRO_DAMAGE} @TargetedTarget{conditions=[ - isLiving true ]}
+Hailpiercer_PRO_DAMAGE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - pull{velocity=1}
+
+
+Hailpiercer_PRO_DAMAGE_D1:
+  Skills:
+  - skill{s=Hailpiercer_PRO_DAMAGE_DD1} @EntitiesNearOrigin{r=6;limit=5;sort=NEAREST}
+Hailpiercer_PRO_DAMAGE_DD1:
+  Skills:
+  - skill{s=Hailpiercer_PRO_DAMAGE1} @TargetedTarget{conditions=[ - isLiving true - hasaura{aura=immunedelay} false ]}
+Hailpiercer_PRO_DAMAGE1:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=3}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_AwakenedMage_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+  - effect:sound{s=universal_sounds:samus.universal.hit_impact_thud;volume=0.45;pitch=<random.float.1.1to1.2>} @self
+  - skill{s=Awakened_Mage_SLOW} 1
+
+
+
+Meteor_Of_Doom:
+  Conditions:
+  - hasAura{aura=CASTING} false
+  Skills:
+  - skill{s=Meteor_Of_Doom_CAST;damage=<modifier.damage>;burndamage=<modifier.burndamage>;burnduration=<modifier.burnduration>}
+Meteor_Of_Doom_CAST:
+  Skills:
+  - aura{auraName=CASTING;duration=45} @self
+  
+  - potion{type=LEVITATION;duration=24;level=2;hasParticles=false} @self
+  - potion{type=LEVITATION;duration=25;level=-255;hasParticles=false;delay=25} @self
+  - potion{type=SLOW_FALLING;duration=40;level=1;hasParticles=false;delay=50} @self
+  - orbital{auraName=VFX_AwakenedMage_Meteor_Create;bulletType=MOB;mob=VFX_AwakenedMage_Meteor_Create;hr=1;vr=1;hp=false;hnp=false;r=0;points=1;i=1;duration=40;oy=1.5;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0} @self
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.meteor_creation;volume=1;pitch=<random.float.0.9to1.1>} @self
+
+  - delay 40
+
+  - skill{s=Meteor_Of_Doom_SHOOT}
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.meteor_shoot;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+
+
+Meteor_Of_Doom_SHOOT:
+  Skills:
+  - skill{s=Meteor_Of_Doom_SHOOT_PRO;origin=@SelfEyeLocation{fo=-0.5;yo=-0.2}} @forward{f=12;uel=true;lockpitch=true}
+Meteor_Of_Doom_SHOOT_PRO:
+  Skills:
+  - projectile{bmd=true;bulletType=MOB;mob=VFX_AwakenedMage_Meteor;ohb=Meteor_Of_Doom_DAMAGE_D;v=17;i=1;hR=1;vR=1;mr=70;hnp=true;hO=0;sE=false;sB=true;hs=false;hfs=0;sfo=-0.5;syo=4.2;tyo=-3;sso=0;fo=true;byo=0;drawhitbox=false;ham=true}
+  
+Meteor_Of_Doom_DAMAGE_D:
+  Skills:
+  - skill{s=Meteor_Of_Doom_DAMAGE_DD} @EntitiesNearOrigin{r=10;limit=10;sort=NEAREST}
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.meteor_explosion;volume=1;pitch=<random.float.0.9to1.1>} @self
+  - effect:sound{s=universal_sounds:samus.universal.rupture_quick;volume=0.8;pitch=<random.float.0.9to1.1>} @self
+  - totem{md=80;oT=Meteor_Of_Doom_DAMAGE_DD_BURND;hnp=true;hp=true;hR=2;vR=1.2;i=10;drawhitbox=false} @origin
+  - totem{md=80;oT=Meteor_Of_Doom_DAMAGE_DD_BURND;hnp=true;hp=true;hR=2;vR=1.2;i=10;drawhitbox=false} @origin{fo=4;so=4}
+  - totem{md=80;oT=Meteor_Of_Doom_DAMAGE_DD_BURND;hnp=true;hp=true;hR=2;vR=1.2;i=10;drawhitbox=false} @origin{fo=-4;so=4}
+  - totem{md=80;oT=Meteor_Of_Doom_DAMAGE_DD_BURND;hnp=true;hp=true;hR=2;vR=1.2;i=10;drawhitbox=false} @origin{fo=4;so=-4;}
+  - totem{md=80;oT=Meteor_Of_Doom_DAMAGE_DD_BURND;hnp=true;hp=true;hR=2;vR=1.2;i=10;drawhitbox=false} @origin{fo=-4;so=-4}
+  - totem{md=80;oT=Meteor_Of_Doom_DAMAGE_DD_BURND_RING;hnp=true;hp=true;hR=2;vR=1.2;i=10;drawhitbox=false} @origin
+  - skill{s=Meteor_Of_Doom_EXPLOSION_BIT} @origin{y=2.2}
+  - particles{p=campfire_cosy_smoke;amount=25;hS=2.3;vS=1.2;y=0.1;size=1;speed=0.1} @origin
+  - particles{p=small_flame;amount=40;hS=2.3;vS=1.2;y=0.1;size=1;speed=0.1} @origin
+  - summon{type=VFX_AwakenedMage_Meteor_Cross;amount=1;radius=0;yRadius=0;onSurface=true;yaw=0} @origin
+Meteor_Of_Doom_EXPLOSION_BIT:
+  Skills:
+  - summon{type=VFX_AwakenedMage_Fireball_Explosion_FULL;amount=3;radius=0.5;yRadius=0;onSurface=true}
+  - summon{type=VFX_AwakenedMage_Fireball_Explosion_FULL;amount=7;radius=3;yRadius=0;onSurface=true;delay=3}
+  - summon{type=VFX_AwakenedMage_Fireball_Explosion_FULL;amount=12;radius=6;yRadius=0;onSurface=true;delay=6}
+
+Meteor_Of_Doom_DAMAGE_DD:
+  Skills:
+  - skill{s=Meteor_Of_Doom_DAMAGE} @TargetedTarget{conditions=[ - isLiving true - hasaura{aura=immunedelay} false ]}
+Meteor_Of_Doom_DAMAGE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=3}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_AwakenedMage_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+  - effect:sound{s=universal_sounds:samus.universal.hit_impact_thud;volume=0.45;pitch=<random.float.1.1to1.2>} @self
+
+Meteor_Of_Doom_DAMAGE_DD_BURND_RING:
+  Skills:
+  - skill{s=Meteor_Of_Doom_DAMAGE_DD_BURN} @EntitiesInRingNearOrigin{min=8;max=10}
+Meteor_Of_Doom_DAMAGE_DD_BURND:
+  Skills:
+  - skill{s=Meteor_Of_Doom_DAMAGE_DD_BURN} @EntitiesNearOrigin{r=4;limit=6;sort=NEAREST}
+Meteor_Of_Doom_DAMAGE_DD_BURN:
+  Skills:
+  - skill{s=Meteor_Of_Doom_DAMAGE_BURN} @TargetedTarget{conditions=[ - isLiving true ]}
+Meteor_Of_Doom_DAMAGE_BURN:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - skill{s=Awakened_Mage_BURN} 1

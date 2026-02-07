@@ -1,0 +1,58 @@
+display:
+    name: '&b&lAwakened Mage Class'
+    lore:
+    - '&9Choose the Awakened Mage Class'
+    item: STONE_SWORD:2089 # Supports custom model data/texture by durability
+
+exp-curve: levels
+
+max-level: 100
+
+exp-table: class_exp_table
+
+skills:
+    MANA_BARRIER:
+        level: 1
+        max-level: 30
+    SORCERY_COMBO:
+        level: 1
+        max-level: 30
+    TELEPORT_STRIKE:
+        level: 1
+        max-level: 30
+    BLAZING_BARRAGE:
+        level: 1
+        max-level: 30
+    CRYO_PRISON:
+        level: 1
+        max-level: 20
+    HAILPIERCER:
+        level: 1
+        max-level: 30
+    METEOR_OF_DOOM:
+        level: 1
+        max-level: 20
+
+skill-slots:
+    1:
+        name: "&aSkill Slot I (Passive)"
+        formula: "<PASSIVE>"
+        unlocked-by-default: true
+    2:
+        name: "&aSkill Slot II"
+        unlocked-by-default: true
+    3:
+        name: "&aSkill Slot III"
+        unlocked-by-default: true
+    4:
+        name: "&aSkill Slot IV"
+        unlocked-by-default: true
+    5:
+        name: "&aSkill Slot V"
+        unlocked-by-default: true
+    6:
+        name: "&aSkill Slot VI"
+        unlocked-by-default: true
+    7:
+        name: "&aSkill Slot VII"
+        unlocked-by-default: true

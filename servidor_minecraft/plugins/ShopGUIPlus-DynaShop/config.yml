@@ -1,0 +1,405 @@
+config-version: 1.0  # Configuration file version - don't change this
+
+# Database Configuration
+database:
+  type: FLATFILE  # Storage type: MYSQL or FLATFILE
+  mysql:          # MySQL settings (only used if type is MYSQL)
+    host: "localhost"
+    port: 3306
+    name: "dynashop"     # Database name
+    table-prefix: "dynashop"  # Prefix for all tables
+    username: "root"
+    password: ""
+
+web-dashboard:
+  enabled: false  # Enable or disable the web interface
+  port: 7070      # Port for the web interface
+
+# Configuration Discord
+discord:
+  enabled: false
+  
+  channels:
+    announcements: "CHANNEL_ID_FOR_ANNOUNCEMENTS"  # Canal pour les annonces automatiques
+    commands: "CHANNEL_ID_FOR_COMMANDS"            # Canal pour les commandes utilisateur
+  
+  # Notifications automatiques
+  notifications:
+    restock: true                    # Annoncer les restocks automatiques
+    restock-threshold: 5.0           # Pourcentage minimum pour annoncer un restock
+    low-stock: true                  # Annoncer les stocks faibles
+    low-stock-threshold: 10.0        # Pourcentage minimum pour annoncer un stock faible
+    price-changes: true              # Annoncer les changements de prix
+    price-change-threshold: 5.0      # Pourcentage minimum pour annoncer un changement de prix
+  
+  # Configuration des permissions
+  permissions:
+    # Rôles ayant accès aux commandes d'administration
+    admin-roles:
+      - "Admin"
+      - "Moderator"
+      - "Staff"
+    
+    # Rôles ayant accès aux commandes de consultation
+    user-roles:
+      - "Player"
+      - "Member"
+      - "@everyone"
+  
+  # Configuration des limites pour éviter le spam
+  limits:
+    max-search-results: 15           # Nombre maximum de résultats pour les recherches
+    max-top-items: 10                # Nombre maximum d'items dans le classement
+    command-cooldown: 3              # Cooldown entre les commandes (en secondes)
+    max-compare-shops: 20            # Nombre maximum de shops dans une comparaison
+  
+  # Configuration des embeds Discord
+  embeds:
+    default-color: "#3498db"         # Couleur par défaut (bleu)
+    success-color: "#2ecc71"         # Couleur succès (vert)
+    error-color: "#e74c3c"           # Couleur erreur (rouge)
+    warning-color: "#f39c12"         # Couleur avertissement (orange)
+    info-color: "#9b59b6"            # Couleur information (violet)
+    
+    # Footer personnalisé
+    footer:
+      text: "DynaShop v1.6.0"        # Texte du footer
+      icon: ""                       # URL de l'icône (optionnel)
+  
+  # Configuration des fonctionnalités avancées
+  features:
+    search-suggestions: true         # Activer les suggestions de commandes
+    fuzzy-search: true              # Recherche floue pour les corrections
+    trend-analysis: true            # Analyse des tendances de prix
+    statistics-tracking: true       # Suivi des statistiques d'utilisation
+    admin-logging: true             # Logs des actions d'administration
+  
+  # Messages de debug et logs
+  debug:
+    enabled: false                  # Activer les messages de debug
+    log-commands: true              # Logger les commandes utilisées
+    log-errors: true                # Logger les erreurs Discord
+  
+  # Alias pour les commandes Discord (optionnel)
+  aliases:
+    enabled: true                   # Activer les alias de commandes
+    commands:
+      "!ds": "!dynashop"           # Alias court pour !dynashop
+      "!shop": "!dynashop"         # Alias alternatif
+      "!prix": "!dynashop prix"    # Alias français pour prix
+      "!stock": "!dynashop stock"  # Alias français pour stock
+      "!recherche": "!dynashop search"  # Alias français pour search
+      "!boutiques": "!dynashop shops"   # Alias français pour shops
+  
+  # Configuration des filtres et modération
+  moderation:
+    rate-limiting: true             # Limitation du taux de commandes
+    max-commands-per-minute: 10     # Nombre max de commandes par minute par utilisateur
+    blacklisted-users: []          # Liste des utilisateurs bannis (IDs Discord)
+    whitelist-mode: false          # Mode liste blanche (seuls les utilisateurs autorisés)
+    whitelisted-users: []          # Liste des utilisateurs autorisés (si whitelist-mode: true)
+  
+  # Configuration des réponses automatiques
+  auto-responses:
+    enabled: true                   # Activer les réponses automatiques
+    welcome-message: true           # Message de bienvenue pour les nouveaux utilisateurs
+    help-on-error: true            # Proposer l'aide en cas d'erreur de commande
+    command-suggestions: true       # Suggestions de commandes similaires
+
+history:
+  retention-days: 90     # Number of days to keep historical data
+  auto-purge: true       # Enable automatic purging of old data
+  save-interval: 15      # Automatic save interval (minutes)
+
+limit:
+  sound: "ENTITY_VILLAGER_NO"
+  # Time reference type for transaction limit calculations
+  # "first" = use the first transaction (oldest timestamp)
+  # "last" = use the last transaction (most recent timestamp)
+  time-reference: "first"
+
+# Dynamic store configuration
+recipe:
+  # Recipe type multipliers
+  shaped: 1.25      # Multiplier for shaped crafting recipes
+  shapeless: 1.25   # Multiplier for shapeless crafting recipes
+  furnace: 1.1      # Multiplier for furnace recipes
+  stonecutter: 1.5  # Multiplier for stonecutter recipes
+  smithing: 1.5     # Multiplier for smithing table recipes
+  
+  # Enhanced recipe validation
+  use-minecraft-validation: true       # Use Minecraft recipe validation
+  enforce-minecraft-compliance: false  # Force use of Minecraft recipes over config
+  prefer-vanilla: true                 # Prefer vanilla recipes when multiple options exist
+  allow-custom: true                   # Allow custom recipes not found in Minecraft
+  vanilla-bonus: 1.0                   # Bonus multiplier for vanilla-compliant recipes
+  min-profit-margin: 0.1               # Minimum profit margin for recipe selection
+  
+  # Recipe selection criteria
+  optimization-criteria: "balanced"    # "minimum_cost", "maximum_availability", "balanced", "profit_maximization"
+
+time-period: 15 # Duration of dynamic pricing period (in minutes)
+
+pricing:
+  # Mode de calcul des prix pour les grandes quantités
+  # "simple": prix unitaire × quantité (recommandé)
+  # "progressive": calcul progressif avec moyenne
+  calculation-mode: "simple"
+
+default:
+  price-min-multiply: 0.5 # Minimum multiplier for dynamic pricing
+  price-max-multiply: 2.0 # Maximum multiplier for dynamic pricing
+
+  price-min: 0.01 # Minimum price for dynamic pricing
+  price-max: 1000000.0 # Maximum price for dynamic pricing
+  price-margin: 0.1 # Price margin for dynamic pricing
+
+  buy-growth-rate: 1.00005 # Growth rate for dynamic pricing
+  buy-decay-rate: 0.99998 # Decline rate for dynamic pricing
+  sell-growth-rate: 1.00002 # Growth rate for dynamic pricing
+  sell-decay-rate: 0.99995 # Decline rate for dynamic pricing
+
+  price-increase: 1.0001 # Price increase for dynamic pricing
+  price-decrease: 0.9999 # Price decrease for dynamic pricing
+
+  stock-min: 0 # Minimum stock for dynamic pricing
+  stock-max: 1000000 # Maximum stock for dynamic pricing
+  # stock-buy-modifier: 0.5 # Stock modifier for dynamic pricing # REMOVED
+  # stock-sell-modifier: 2.0 # Stock modifier for dynamic pricing # REMOVED
+  stock-modifier: 0.5 # Stock modifier for dynamic pricing
+
+gui:
+  refresh:
+    default-items: 1000 # Default refresh time for the GUI in milliseconds (1000 ms = 1 second)
+    critical-items: 300 # Refresh time for critical items in milliseconds (300 ms = 0.3 seconds)
+
+# Cache settings
+cache:
+  mode: "full"  # "full" (performance) or "realtime" (fresh data)
+  
+  # Items that should always have up-to-date prices
+  critical-items:
+    - "shop2:item3"  # Format: shopID:itemID
+  
+  # Cache durations in seconds
+  durations:
+    price: 30        # Price cache duration
+    display: 10      # Display elements cache duration
+    recipe: 300      # Recipe calculation cache duration
+    stock: 20        # Stock level cache duration
+    calculated: 60   # Calculated price cache duration
+
+# Taxation system configuration
+tax:
+  enabled: false
+  # Destination mode for taxes: "player", "system" or "remove"
+  # player: Sends the tax to a real player (must have played on the server)
+  # system: Sends the tax to a system account (works even if it's not a real player)
+  # remove: Simply removes the money from the economy (does not assign it to anyone)
+  mode: "system"
+  # Name of the player who will receive the taxes (if mode is "player" or "system"), if mode is "remove", this field is ignored
+  receiver: "DynaShopBank"
+  # Percentage of tax applied on purchases
+  buy-rate: 5.0
+  # Percentage of tax applied on sales
+  sell-rate: 0.0
+  # Log transactions in the console
+  log-transactions: false
+
+# Inflation system configuration
+inflation:
+  enabled: false                     # Enable or disable inflation
+  base-rate: 0.5                     # Base inflation rate (% per day)
+  transaction-multiplier: 0.001      # Inflation factor per transaction
+  money-threshold: 1000000           # Money supply threshold
+  money-rate: 0.1                    # Inflation rate based on money supply (% per million over the threshold)
+  deflation-rate: 0.05               # Automatic deflation rate (% per day)
+  update-interval: 24                # Inflation update interval (hours)
+  max-factor: 5.0                    # Maximum inflation factor
+
+  # Category-specific inflation rates
+  categories:
+    food: 0.3                          # Food items inflate slower
+    minerals: 0.8                      # Minerals inflate faster
+    rare_items: 1.2                    # Rare items inflate even faster
+
+  # Item-specific inflation rates
+  items:
+    resource:diamond: 1.5               # Diamonds inflate very quickly
+    farm:wheat: 0.2                      # Wheat inflates very slowly
+
+# Enchants value multipliers, for every level (if the item has this enchant, its value will be multiplied by the specified multiplier)
+# Those values are cumulative if an item has multiples enchants ; they'll be applied after the value of the item stack was calculated ; they won't apply if the item value already has that enchantment
+enchant_multipliers:
+  AQUA_AFFINITY:
+    1: 1.2
+  BANE_OF_ARTHROPODS:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+    4: 2.5
+    5: 3.0
+  BLAST_PROTECTION:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+    4: 2.5
+  BREACH:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+    4: 2.5
+  CHANNELING:
+    1: 1.2
+  CURSE_OF_BINDING:
+    1: 1.0
+  CURSE_OF_VANISHING:
+    1: 1.0
+  DENSITY:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+    4: 2.5
+    5: 3.0
+  DEPTH_STRIDER:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+  EFFICIENCY:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+    4: 2.5
+    5: 3.0
+  FEATHER_FALLING:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+    4: 2.5
+  FIRE_ASPECT:
+    1: 1.2
+    2: 1.5
+  FIRE_PROTECTION:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+    4: 2.5
+  FLAME:
+    1: 1.2
+  FORTUNE:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+  FROST_WALKER:
+    1: 1.2
+    2: 1.5
+  IMPALING:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+    4: 2.5
+    5: 3.0
+  INFINITY:
+    1: 1.2
+  KNOCKBACK:
+    1: 1.2
+    2: 1.5
+  LOOTING:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+  LOYALTY:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+  LUCK_OF_THE_SEA:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+  LURE:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+  MENDING:
+    1: 1.2
+  MULTISHOT:
+    1: 1.2
+  PIERCING:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+    4: 2.5
+  POWER:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+    4: 2.5
+    5: 3.0
+  PROJECTILE_PROTECTION:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+    4: 2.5
+  PROTECTION:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+    4: 2.5
+  PUNCH:
+    1: 1.2
+    2: 1.5
+  QUICK_CHARGE:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+  RESPIRATION:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+  RIPTIDE:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+  SHARPNESS:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+    4: 2.5
+    5: 3.0
+  SILK_TOUCH:
+    1: 1.2
+  SMITE:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+    4: 2.5
+    5: 3.0
+  SOUL_SPEED:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+  SWEEPING_EDGE:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+  SWIFT_SNEAK:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+  THORNS:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+  UNBREAKING:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+    4: 2.5
+    5: 3.0
+  WIND_BURST:
+    1: 1.2
+    2: 1.5
+    3: 1.9
+
+
+# For translations/ > https://github.com/toxicity188/all-minecraft-language

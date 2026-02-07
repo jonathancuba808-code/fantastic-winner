@@ -1,0 +1,231 @@
+bahamut_helmet:
+  displayname: <white>Bahamut Helmet
+  material: LEATHER_HELMET
+  color: 204,135,142
+  Pack:
+    parent_model: item/generated
+    texture: elitecreatures/bahamut_animated_weapon_set/bahamut_helmet
+    custom_model_data: 1000
+  Components:
+    equippable:
+      slot: HEAD
+      asset_id: nexo:bahamut
+bahamut_chestplate:
+  displayname: <white>Bahamut Chestplate
+  material: LEATHER_CHESTPLATE
+  color: 204,135,142
+  Pack:
+    parent_model: item/generated
+    texture: elitecreatures/bahamut_animated_weapon_set/bahamut_chestplate
+    custom_model_data: 1000
+  Components:
+    equippable:
+      slot: CHEST
+      asset_id: nexo:bahamut
+bahamut_leggings:
+  displayname: <white>Bahamut Leggings
+  material: LEATHER_LEGGINGS
+  color: 204,135,142
+  Pack:
+    parent_model: item/generated
+    texture: elitecreatures/bahamut_animated_weapon_set/bahamut_leggings
+    custom_model_data: 1000
+  Components:
+    equippable:
+      slot: LEGS
+      asset_id: nexo:bahamut
+bahamut_boots:
+  displayname: <white>Bahamut Boots
+  material: LEATHER_BOOTS
+  color: 204,135,142
+  Pack:
+    parent_model: item/generated
+    texture: elitecreatures/bahamut_animated_weapon_set/bahamut_boots
+    custom_model_data: 1000
+  Components:
+    equippable:
+      slot: FEET
+      asset_id: nexo:bahamut
+bahamut_animated_weapon_set_helmet_2:
+  displayname: <white>Bahamut Helmet
+  Mechanics:
+    hat:
+      enabled: true
+  Pack:
+    model: elitecreatures/undefined
+    custom_model_data: 1012
+bahamut_animated_weapon_set_chestplate:
+  displayname: <white>Bahamut Chestplate
+  Mechanics:
+    furniture:
+      limited_placing:
+        roof: false
+        floor: true
+        wall: false
+      properties:
+        display_transform: NONE
+  Pack:
+    model: elitecreatures/undefined
+    custom_model_data: 1012
+bahamut_animated_weapon_set_leggings:
+  displayname: <white>Bahamut Leggings
+  Pack:
+    model: elitecreatures/undefined
+    custom_model_data: 1012
+bahamut_animated_weapon_set_boots:
+  displayname: <white>Bahamut Boots
+  Pack:
+    model: elitecreatures/undefined
+    custom_model_data: 1012
+bahamut_animated_weapon_set_axe:
+  displayname: <white>Axe
+  material: IRON_AXE
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/axe
+    custom_model_data: 1000
+bahamut_animated_weapon_set_big_sword:
+  displayname: <white>Big Sword
+  material: IRON_SWORD
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/big_sword
+    custom_model_data: 1000
+bahamut_animated_weapon_set_bow:
+  displayname: <white>Bow
+  material: BOW
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/bow
+    pulling_models:
+    - elitecreatures/bahamut_animated_weapon_set/bow_0
+    - elitecreatures/bahamut_animated_weapon_set/bow_1
+    - elitecreatures/bahamut_animated_weapon_set/bow_2
+    custom_model_data: 1000
+bahamut_animated_weapon_set_chest:
+  displayname: <white>Chest
+  material: PAPER
+  Mechanics:
+    furniture:
+      limited_placing:
+        roof: false
+        floor: true
+        wall: false
+      properties:
+        display_transform: NONE
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/chest
+    custom_model_data: 1013
+bahamut_animated_weapon_set_club:
+  displayname: <white>Club
+  material: IRON_SWORD
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/club
+    custom_model_data: 1001
+bahamut_animated_weapon_set_dagger:
+  displayname: <white>Dagger
+  material: IRON_SWORD
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/dagger
+    custom_model_data: 1002
+bahamut_animated_weapon_set_fishing_rod:
+  displayname: <white>Fishing Rod
+  material: FISHING_ROD
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/fishing_rod
+    cast_model: elitecreatures/bahamut_animated_weapon_set/fishing_rod_cast
+    custom_model_data: 1000
+bahamut_animated_weapon_set_gauntlet:
+  displayname: <white>Gauntlet
+  material: PAPER
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/gauntlet
+    custom_model_data: 1014
+bahamut_animated_weapon_set_halberd:
+  displayname: <white>Halberd
+  material: IRON_SWORD
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/halberd
+    custom_model_data: 1003
+bahamut_animated_weapon_set_hammer:
+  displayname: <white>Hammer
+  material: IRON_AXE
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/hammer
+    custom_model_data: 1001
+bahamut_animated_weapon_set_hat:
+  displayname: <white>Hat
+  material: PAPER
+  Mechanics:
+    hat:
+      enabled: true
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/hat
+    custom_model_data: 1015
+bahamut_animated_weapon_set_helmet:
+  displayname: <white>Helmet
+  material: PAPER
+  Mechanics:
+    hat:
+      enabled: true
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/helmet
+    custom_model_data: 1016
+bahamut_animated_weapon_set_hoe:
+  displayname: <white>Hoe
+  material: IRON_HOE
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/hoe
+    custom_model_data: 1000
+bahamut_animated_weapon_set_key:
+  displayname: <white>Key
+  material: PAPER
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/key
+    custom_model_data: 1017
+bahamut_animated_weapon_set_mace:
+  displayname: <white>Mace
+  material: IRON_AXE
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/mace
+    custom_model_data: 1002
+bahamut_animated_weapon_set_pickaxe:
+  displayname: <white>Pickaxe
+  material: IRON_PICKAXE
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/pickaxe
+    custom_model_data: 1000
+bahamut_animated_weapon_set_shield:
+  displayname: <white>Shield
+  material: SHIELD
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/shield
+    blocking_model: elitecreatures/bahamut_animated_weapon_set/shield_blocking
+    custom_model_data: 1001
+bahamut_animated_weapon_set_shovel:
+  displayname: <white>Shovel
+  material: IRON_SHOVEL
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/shovel
+    custom_model_data: 1000
+bahamut_animated_weapon_set_spear:
+  displayname: <white>Spear
+  material: IRON_SWORD
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/spear
+    custom_model_data: 1004
+bahamut_animated_weapon_set_staff:
+  displayname: <white>Staff
+  material: IRON_SWORD
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/staff
+    custom_model_data: 1005
+bahamut_animated_weapon_set_sword:
+  displayname: <white>Sword
+  material: IRON_SWORD
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/sword
+    custom_model_data: 1006
+bahamut_animated_weapon_set_wing:
+  displayname: <white>Wing
+  material: PAPER
+  Pack:
+    model: elitecreatures/bahamut_animated_weapon_set/wing
+    custom_model_data: 1018

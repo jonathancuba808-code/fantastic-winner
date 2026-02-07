@@ -1,0 +1,428 @@
+
+# ~Written by RopeFire~
+
+#                                                                           ~Mobs~
+
+#Enderling
+enderling:
+  Type: ENDERMAN
+  Display: 'Enderling'
+  Faction: ENDER
+  Health: 24
+  Damage: 0
+  DamageModifiers:
+  - SUFFOCATION 0
+  - FALL 0
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - movetowardstarget
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Drops:
+  - ender_pearl 1 1
+  - oraxen void_fabric 1 0.4
+  - oraxen ender_carapace 1 0.15
+  - oraxen heart_of_ender 1 0.05
+  Modules:
+    ThreatTable: true
+  Options:
+    NoDamageTicks: 10
+    MovementSpeed: 0.2
+    FollowRange: 24
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: false
+    Invincible: false
+    PreventSunburn: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventJockeyMounts: true
+    MaxCombatDistance: 24
+  Skills: 
+  - skill{s=CancelEvent} @self ~onAttack
+  - model{mid=enderling;n=false;step=1;usm=true} @self ~onSpawn
+  - model{mid=enderling;n=false;step=1;usm=true} @self ~onLoad
+  - randomskill{skills=enderling_right_attack,enderling_left_attack} @self ~onTimer:20
+  - skill{s=enderling_chase} @self ~onEnterCombat
+  - skill{s=enderling_walk} @self ~onDropCombat
+#SOUNDS
+  - skill{s=enderling_aggro_sound} @self ~onTimer:1000
+  - sound{s=entity.enderman.hurt;v=2;p=<random.float.0.9to1.1>} @self ~onDamaged
+  - randomskill{skills=enderling_idle_sound_1,enderling_idle_sound_2,enderling_idle_sound_3} @self ~onTimer:600
+  - skill{s=enderling_death} @self ~onDeath
+
+#Enderbruiser
+enderbruiser:
+  Type: VINDICATOR
+  Display: 'Enderbruiser'
+  Faction: ENDER
+  Health: 50
+  Damage: 0
+  DamageModifiers:
+  - SUFFOCATION 0
+  - FALL 0
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - movetowardstarget
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Drops:
+  - ender_pearl 1 1
+  - oraxen void_fabric 1 0.6
+  - oraxen heart_of_ender 1 0.6
+  - oraxen ender_carapace 1 0.4
+  Modules:
+    ThreatTable: true
+  Options:
+    NoDamageTicks: 10
+    MovementSpeed: 0.2
+    FollowRange: 24
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: false
+    Invincible: false
+    PreventSunburn: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventJockeyMounts: true
+    MaxCombatDistance: 24
+  Skills: 
+  - skill{s=CancelEvent} @self ~onAttack
+  - model{mid=enderbruiser;n=false;step=1;usm=true} @self ~onSpawn
+  - model{mid=enderbruiser;n=false;step=1;usm=true} @self ~onLoad
+  - randomskill{skills=enderbruiser_smash,enderbruiser_toss,enderbruiser_right_attack,enderbruiser_left_attack} @self ~onTimer:20
+#SOUNDS
+  - skill{s=enderbruiser_aggro_sound} @self ~onTimer:1000
+  - sound{s=entity.enderman.hurt;v=2;p=<random.float.0.9to1.1>} @self ~onDamaged
+  - randomskill{skills=enderbruiser_idle_sound_1,enderbruiser_idle_sound_2,enderbruiser_idle_sound_3} @self ~onTimer:600
+  - skill{s=enderbruiser_death} @self ~onDeath
+  
+#Ender Crawler
+ender_crawler:
+  Type: ENDERMAN
+  Display: 'Ender Crawler'
+  Faction: ENDER
+  Health: 40
+  Damage: 0
+  DamageModifiers:
+  - SUFFOCATION 0
+  - FALL 0
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - movetowardstarget
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Drops:
+  - ender_pearl 1 1
+  - oraxen ender_carapace 1 0.8
+  - oraxen void_fabric 1 0.6
+  - oraxen void_claw 1 0.4
+  - oraxen heart_of_ender 1 0.4
+  - oraxen void_growth 1 0.15
+  Modules:
+    ThreatTable: true
+  Options:
+    NoDamageTicks: 10
+    MovementSpeed: 0.2
+    FollowRange: 32
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: false
+    Invincible: false
+    PreventSunburn: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventJockeyMounts: true
+    MaxCombatDistance: 32
+  Skills: 
+  - skill{s=CancelEvent} @self ~onAttack
+  - model{mid=ender_crawler;n=false;step=1;usm=true} @self ~onSpawn
+  - model{mid=ender_crawler;n=false;step=1;usm=true} @self ~onLoad
+  - skill{s=ender_crawler_chase} @self ~onEnterCombat
+  - skill{s=ender_crawler_walk} @self ~onDropCombat
+  - randomskill{skills=ender_crawler_fang_attack,ender_crawler_horn_attack,ender_crawler_jump_attack} @self ~onTimer:20
+#SOUNDS
+  - skill{s=ender_crawler_aggro_sound} @self ~onTimer:1000
+  - sound{s=entity.enderman.hurt;v=2;p=<random.float.0.9to1.1>} @self ~onDamaged
+  - randomskill{skills=ender_crawler_idle_sound_1,ender_crawler_idle_sound_2,ender_crawler_idle_sound_3} @self ~onTimer:600
+  - skill{s=ender_crawler_death} @self ~onDeath
+
+#Ender Watchman
+ender_watchman:
+  Type: VINDICATOR
+  Display: 'Ender Watchman'
+  Faction: ENDER
+  Health: 64
+  Damage: 0
+  DamageModifiers:
+  - SUFFOCATION 0
+  - FALL 0
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - movetowardstarget
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Drops:
+  - ender_pearl 1-3 1
+  - oraxen void_fabric 1 0.8
+  - oraxen void_growth 1 0.6
+  - oraxen phantasmal_eye_of_ender 1 0.15
+  - oraxen heart_of_ender 1 0.15
+  - oraxen end_soul 1 0.05
+  Modules:
+    ThreatTable: true
+  Options:
+    NoDamageTicks: 10
+    MovementSpeed: 0.2
+    FollowRange: 32
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: false
+    Invincible: false
+    PreventSunburn: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventJockeyMounts: true
+    MaxCombatDistance: 32
+  Skills: 
+  - skill{s=CancelEvent} @self ~onAttack
+  - model{mid=ender_watchman;n=false;step=1;usm=true} @self ~onSpawn
+  - model{mid=ender_watchman;n=false;step=1;usm=true} @self ~onLoad
+  - randomskill{skills=ender_watchman_lantern_smack,ender_watchman_summon_wraiths,ender_watchman_lantern_push} @self ~onTimer:20
+#SOUNDS
+  - skill{s=ender_watchman_aggro_sound} @self ~onTimer:1000
+  - sound{s=tugkandeman.ender_idle_watcher;v=2;p=1} @self ~onTimer:600
+  - sound{s=entity.enderman.hurt;v=2;p=<random.float.0.9to1.1>} @self ~onDamaged
+  - skill{s=ender_watchman_death} @self ~onDeath
+
+#End Wraith
+end_wraith:
+  Type: ENDERMAN
+  Display: 'End Wraith'
+  Faction: ENDER
+  Health: 16
+  Damage: 0
+  DamageModifiers:
+  - SUFFOCATION 0
+  - FALL 0
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - movetowardstarget
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Modules:
+    ThreatTable: true
+  Options:
+    NoDamageTicks: 10
+    MovementSpeed: 0.2
+    FollowRange: 32
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: false
+    Invincible: false
+    PreventSunburn: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventJockeyMounts: true
+    MaxCombatDistance: 32
+  Skills: 
+  - skill{s=CancelEvent} @self ~onAttack
+  - model{mid=end_wraith;n=false;step=1;usm=true} @self ~onSpawn
+  - model{mid=end_wraith;n=false;step=1;usm=true} @self ~onLoad
+  - randomskill{skills=end_wraith_right_slash,end_wraith_left_slash,
+                       end_wraith_spin_slash,end_wraith_wraith_dash} @self ~onTimer:20
+  - skill{s=end_wraith_summoned} @self ~onSpawn
+#SOUNDS
+  - skill{s=end_wraith_aggro_sound} @self ~onTimer:1000
+  - sound{s=entity.enderman.hurt;v=2;p=<random.float.0.9to1.1>} @self ~onDamaged
+  - randomskill{skills=end_wraith_idle_sound_1,end_wraith_idle_sound_2,end_wraith_idle_sound_3} @self ~onTimer:600
+  
+#Endermauler
+endermauler:
+  Type: VINDICATOR
+  Display: 'Endermauler'
+  Faction: ENDER
+  Health: 160
+  Damage: 0
+  BossBar:
+    Enabled: true
+    Title: "✱         "
+    Range: 50
+    Color: PURPLE
+    Style: SEGMENTED_10
+  DamageModifiers:
+  - SUFFOCATION 0
+  - FALL 0
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - movetowardstarget
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Drops:
+  - ender_pearl 1-3 1
+  - oraxen void_fabric 1 0.6
+  - oraxen ender_carapace 1 0.6
+  - oraxen heart_of_ender 1 0.6
+  - oraxen phantasmal_eye_of_ender 1 0.6
+  - oraxen void_claw 1 0.6
+  - oraxen void_growth 1 0.6
+  - oraxen third_eye_of_ender 1-2 0.4
+  Modules:
+    ThreatTable: true
+  Options:
+    NoDamageTicks: 10
+    MovementSpeed: 0.4
+    FollowRange: 32
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: false
+    Invincible: false
+    PreventSunburn: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventJockeyMounts: true
+    MaxCombatDistance: 32
+  Skills: 
+  - skill{s=CancelEvent} @self ~onAttack
+  - model{mid=endermauler;n=false;step=1;usm=true} @self ~onSpawn
+  - model{mid=endermauler;n=false;step=1;usm=true} @self ~onLoad
+  - skill{s=endermauler_teleport} @self ~onTimer:400
+  - randomskill{skills=endermauler_right_slash,endermauler_left_slash,endermauler_dash_bite_startup,
+                       endermauler_scream_of_ender,endermauler_teleport_maul,endermauler_close_slashes,
+                       endermauler_close_slashes} @self ~onTimer:20
+#SOUNDS
+  - skill{s=endermauler_aggro_sound} @self ~onTimer:1000
+  - sound{s=tugkandeman.ender_idle_mauler;v=2;p=1} @self ~onTimer:600
+  - sound{s=tugkandeman.endermauler_hurt;v=2;p=1} @self ~onDamaged
+  - stopsound{s=tugkandeman.endermauler_scream} @PIR{r=50} ~onDeath
+  - stopsound{s=tugkandeman.ender_ringing} @PIR{r=50} ~onDeath
+  - sound{s=tugkandeman.endermauler_death;v=2;p=1} @self ~onDeath
+#SEGMENTS
+  - segment{m=endermauler;angle=50;extend=0.25}
+  - segment{m=endermauler;p=root1;bounded=false}
+  - segment{m=endermauler;p=lace;em=false;roll=true;angle=80;extend=0.1}
+  - renderinit{m=endermauler}
+
+#End Strider
+end_strider:
+  Type: VINDICATOR
+  Display: 'Ender Strider'
+  Faction: ENDER
+  Health: 240
+  Damage: 0
+  DamageModifiers:
+  - SUFFOCATION 0
+  - FALL 0
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - attacker
+  Drops:
+  - ender_pearl 1-3 1
+  - oraxen void_fabric 16-24 1
+  - oraxen ender_carapace 8-12 1
+  - oraxen void_growth 8-12 1
+  - oraxen heart_of_ender 1 0.6
+  - oraxen phantasmal_eye_of_ender 1 0.4
+  - oraxen void_claw 1 0.4
+  - oraxen third_eye_of_ender 1 0.05
+  Options:
+    NoDamageTicks: 10
+    MovementSpeed: 0.175
+    FollowRange: 10
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: false
+    Invincible: false
+    PreventSunburn: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventJockeyMounts: true
+    MaxCombatDistance: 10
+  Skills: 
+  - skill{s=CancelEvent} @self ~onAttack
+  - model{mid=end_strider;n=false;step=1;usm=true;ride=true;drive=true} @self ~onSpawn
+  - model{mid=end_strider;n=false;step=1;usm=true;ride=true;drive=true} @self ~onLoad
+  - partvis{mid=end_strider;p=saddle;v=false} @self ~onSpawn
+  - partvis{mid=end_strider;p=saddle;v=false} @self ~onLoad
+  - skill{s=end_strider_tame} @trigger ~onInteract
+  - skill{s=end_strider_mount} @trigger ~onInteract
+  - skill{s=end_strider_mount_passenger} @trigger ~onInteract
+  - skill{s=end_strider_slow} @self ~onTimer:5
+  - skill{s=end_strider_scout} @self ~onTimer:40
+  - randomskill{skills=end_strider_right_slash,end_strider_left_slash} @self ~onTimer:20
+#SOUNDS
+  - sound{s=tugkandeman.ender_idle_strider;v=6;p=1} @self ~onTimer:1000
+  - sound{s=entity.enderman.hurt;v=2;p=<random.float.0.9to1.1>} @self ~onDamaged
+  - skill{s=end_strider_death} @self ~onDeath
+  
+#                                                                           ~VFX~
+
+#VFX End Teleport
+vfx_end_teleport:
+  Type: WOLF
+  Display: 'VFX End Teleport'
+  Faction: ENDER
+  Health: 200
+  Damage: 0
+  DamageModifiers:
+  - SUFFOCATION 0
+  - FALL 0
+  AIGoalSelectors:
+  - clear
+  AITargetSelectors:
+  - clear
+  Options:
+    NoDamageTicks: 10
+    MovementSpeed: 0
+    FollowRange: 1
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: true
+    Invincible: true
+    Collidable: false
+    PreventSunburn: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventJockeyMounts: true
+    MaxCombatDistance: 1
+  Skills: 
+  - skill{s=CancelEvent} @self ~onAttack
+  - model{mid=vfx_end_teleport;n=false;step=1;usm=true} @self ~onSpawn
+  - model{mid=vfx_end_teleport;n=false;step=1;usm=true} @self ~onLoad
+  - skill{s=vfx_end_teleport_summoned} @self ~onSpawn

@@ -1,0 +1,36 @@
+name: Purging Light
+lore:
+- "&a•--"
+- ""
+- "&7Release a flash of cleansing energy. Enemies are pushed back,"
+- "&7and all negative effects are removed from allies in the area."
+- "&a•--"
+- "&e⌛ {cooldown}s Cooldown"
+- ""
+- "&a•--"
+material: 'COAL:1943'
+timer:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 8
+  per-level: -0.5
+  min: 7
+  max: 8

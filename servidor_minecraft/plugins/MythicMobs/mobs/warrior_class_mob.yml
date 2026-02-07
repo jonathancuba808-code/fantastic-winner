@@ -1,0 +1,167 @@
+vfx_warrior_furiousslash1:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=warrior_furiousslash1;lockpitch=true;scale=1} @self ~onSpawn
+  - brightness{mid=warrior_furiousslash1;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=11} @self ~onSpawn
+  
+vfx_warrior_furiousslash2:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=warrior_furiousslash2;lockpitch=true;scale=1} @self ~onSpawn
+  - brightness{mid=warrior_furiousslash2;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=11} @self ~onSpawn
+  
+vfx_warrior_furiousslash3:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=warrior_furiousslash3;lockpitch=true;scale=1} @self ~onSpawn
+  - brightness{mid=warrior_furiousslash3;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=11} @self ~onSpawn
+  
+vfx_warrior_leaping_slash_jump:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=warrior_leaping_slash_jump;lockpitch=true;scale=1} @self ~onSpawn
+  - brightness{mid=warrior_leaping_slash_jump;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=24} @self ~onSpawn
+
+vfx_warrior_leaping_slash_downslash:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=warrior_leaping_slash_downslash;lockpitch=true;scale=1} @self ~onSpawn
+  - brightness{mid=warrior_leaping_slash_downslash;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=11} @self ~onSpawn
+
+vfx_warrior_leaping_slash_impact:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=warrior_leaping_slash_impact;lockpitch=true;scale=1} @self ~onSpawn
+  - brightness{mid=warrior_leaping_slash_impact;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=44} @self ~onSpawn
+
+vfx_warrior_whirlwind:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=warrior_whirlwind;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=idle;speed=1} @self ~onSpawn
+  
+vfx_warrior_rage:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=warrior_rage;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=spawn;speed=1} @self ~onSpawn
+  
+vfx_warrior_rage_dust:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=warrior_rage_dust;lockpitch=true;scale=1} @self ~onSpawn
+  - brightness{mid=warrior_rage_dust;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=21} @self ~onSpawn
+  
+vfx_warrior_furious_strike_knockup:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=warrior_furious_strike_knockup;lockpitch=true;scale=1} @self ~onSpawn
+  - brightness{mid=warrior_furious_strike_knockup;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=11} @self ~onSpawn  
+  
+vfx_warrior_furious_strike_whirl:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=warrior_furious_strike_whirl;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=idle;speed=1} @self ~onSpawn
+  
+vfx_warrior_hellblade:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=warrior_hellblade;lockpitch=true;scale=1} @self ~onSpawn
+  - brightness{mid=warrior_hellblade;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=102} @self ~onSpawn  

@@ -1,0 +1,187 @@
+cprowler_em:
+  Type: skeleton
+  Display: 'Corrupted Prowler'
+  AIGoalSelectors:
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 SpecificFaction FallenHero
+  - 2 players
+  - 3 attacker
+  Health: 30
+  Faction: CorruptedFlesh
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 1.1
+  - PROJECTILE 0.25
+  Damage: 6 #This is the BASE damage. Applies for ALL skills Setting it to 12 will DOUBLE damage. Setting it to 3 will REDUCE damage in 50% from the original.
+  KillMessages:
+  - '<target.name> was killed by a Corrupted Prowler.'
+  - 'A Corrupted Prowler shattered <target.name>.'
+  - "<target.name> was devoured by a Corrupted Prowler"
+  - "A Corrupted Prowler minced <target.name>'s remains."
+  - '<target.name> was consumed by the Corrupted Flesh.'
+  Equipment:
+  - air HEAD
+  - imboots_cprowler FEET
+  - AIR HAND
+  - air OFFHAND
+  Drops:
+  - exp 10-25 1
+  - exp 10-25 1
+  - exp 10-25 1
+  - exp 10-25 1
+  LevelModifiers:
+    Health: 0.5
+    Damage: 0.03
+  Skills:
+  - message{m="Hitrec <caster.var.hitrec> STACKS"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+#====== MODEL ASSIGNEMENT =============
+  - model{mid=em_darklurker;s=idle;n=false} @self ~onSpawn 1
+  - submodel{mid=em_darklurker;partid=head_decapit;submodelid=em_darklurker;subpartid=head_decapit;remove=true} @self ~onSpawn 1
+  - submodel{mid=em_darklurker;partid=hip2;submodelid=em_darklurker;subpartid=hip2;remove=true} @self ~onSpawn 1
+  - partvisibility{m=em_darklurker;p=sword;v=false;delay=0} @self ~onSpawn
+  - setlevel{a=set;l=0} ~onSpawn
+  - bindhitbox{m=em_darklurker;p=ob_headbox;t=cprowler_headbox;delay=2} @self ~onSpawn
+  - hitboxconfig{m=em_darklurker;p=ob_headbox;pass=0.8;delay=2} @self ~onSpawn
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ~onSpawn
+  - skill{s=cprowler_hp_check} @Self ~onSpawn
+  - setvariable{var=caster.eichpee;value="<caster.mhp>";t=integer} @Self ~onSpawn
+#============ DISGUISE =================
+  - changepart{m=em_darklurker;pid=head;nm=em_darklurker2;npid=head} @self ~onSpawn
+
+# MOVEMENT MANAGERS:
+  - DefaultState{type=WALK;state=walk_combat;li=3;lo=2} @self ~onEnterCombat
+  - DefaultState{type=IDLE;state=idle_combat;li=3;lo=2} @self ~onEnterCombat
+  - DefaultState{type=WALK;state=walk;li=3;lo=2} @self ~onDropCombat
+  - DefaultState{type=IDLE;state=idle;li=3;lo=2} @self ~onDropCombat
+  - setspeed{speed=0.8;type=walking;delay=1} @self ~onSpawn
+  - setspeed{speed=1;type=walking} @self ~onEnterCombat
+  - setspeed{speed=0.8;type=walking} @self ~onDropCombat 
+#============ ATTACK =================
+  
+  - skill{s=decapitate_cprowler} @Trigger ~onSignal:DEBUG_TEST 1
+  - CancelEvent{sync=true} @self ~onAttack 1 #CANCEL ATTACKS
+  
+  - skill{s=meleecprowlertrigger;sync=false} @Target ~onAttack ?incombat
+  - skill{s=meleecprowlertrigger;sync=false} @LivingInCone{a=110.0;r=4.5;rot=0.0;ignore=samefaction} ~onTimer:12 0.85 ?incombat
+  
+  - setvariable{var=caster.combor;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.comboa;value="0";t=integer} @Self ~onSpawn
+
+  - skill{s=decapitate_cprowler;cooldown=2;sync=true} @self ~onSignal:DECAPITATE 0.55 <30%
+#================ RIP IN PEPSI PROTOCOL (DEATH PROTOCOL)
+  - sound{s=emforgottenprowler:custom.corruptedprowler.hurtedbad;p=<random.float.0.9to1.1>;v=1.5} ~onDeath
+
+  - sound{s=entity.skeleton.hurt;p=0.9;v=1.5} @selflocation ~onDeath 1
+  - sound{s=entity.skeleton.death;p=0.9;v=1.5;delay=10} @selflocation ~onDeath 1
+  - effect:particles{particle=cloud;amount=150;hS=1.1;vS=0.55;speed=0;size=4.5;repeat=0;repeatinterval=1;sideOffset=0;delay=60} @ModelPart{m=em_darklurker;p=hip;offset=GLOBAL;y=0.2} ~onDeath
+  - effect:particles{particle=cloud;amount=60;hS=0.6;vS=0.2;speed=0;size=4.5;repeat=0;repeatinterval=1;sideOffset=0;delay=60} @ModelPart{m=em_darklurker;p=head;offset=GLOBAL;y=0.2} ~onDeath
+  - changepart{m=em_darklurker;pid=head;nm=em_darklurker;npid=head2;delay=20} @self ~onDeath
+  - changepart{m=em_darklurker;pid=jaw;nm=em_darklurker;npid=jaw2;delay=20} @self ~onDeath
+  - changepart{m=em_darklurker;pid=hip;nm=em_darklurker;npid=hip2;delay=20} @self ~onDeath
+  - effect:particles{p=reddust;c=#BEF8E5;a=8;s=20;hs=0.35;vs=0.3;y=0;sideOffset=0;Size=1.1;delay=20;repeat=4;repeatinterval=1} @ModelPart{m=em_darklurker;p=head;offset=GLOBAL;y=0.3;z=0.5} ~onDeath
+  - effect:particles{p=reddust;c=#BEF8E5;a=8;s=20;hs=0.35;vs=0.3;y=0;sideOffset=0;Size=1.1;delay=20;repeat=4;repeatinterval=1} @ModelPart{m=em_darklurker;p=hip;offset=LOCAL;y=0.8;z=0.3}  ~onDeath
+#  
+#============== HURT PROTOCOL
+  - skill{s=hurt_cprowler_em} @self ~onDamaged 0.92 #Hurtmechanic
+  - randomskill{s=hurtfxcprowler;sync=false} @self ~onDamaged ?DamageAmount{damageamount=>3}
+  - velocity{m=set;x=0;y=0;z=0} @self ~onDamaged
+  - setvariable{var=caster.vulnerable;value="0";t=integer} @Self ~onSpawn
+
+# ========= Counter-attack protocol
+  # - message{m="COUNTERATTACKED"} @PlayersNearOrigin{r=75} ~onSignal:COUNTERATTACK 0 #DEBUGMESSAGE
+  - skill{s=countertacked_cprowler_A;sync=false} @self ~onDamaged ?DamageAmount{damageamount=>2} ?!hasaura{n=nule_parry}
+  - skill{s=countertacked_cprowler_A;cooldown=0.3;sync=false} @self ~onSignal:COUNTERATTACK 
+  - skill{s=meleecprowlertrigger2;cooldown=1;sync=false} @Trigger ~onSignal:COUNTERATTACK 0.45 ?variableEquals{var=caster.parrying;value="1"}
+  
+#
+
+# ========= Anti-ranged protocol
+  - skill{s=hurtgencprowler;sync=true} @self ~onDamaged 1 #Hurtmechanic ANTIARROW
+  - skill{s=hurtgencprowler2;sync=true} @self ~onDamaged 1 #Hurtmechanic ANTIMMSkills
+  - setvariable{var=caster.rollumterr;value="0";t=integer} @Self ~OnSpawn #Hurtmechanic ANTIARROW
+  - setvariable{var=caster.projrec;value="0";t=integer} @Self ~OnSpawn #Hurtmechanic ANTIARROW
+  - setvariable{var=caster.running;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.runstacks;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.hurtened;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.parrying;value="0";t=integer} @Self ~onSpawn
+
+#======== RUNNER PROTOCOL (you can remove the aura line if you don't wish them to try to run when far away)
+  - Aura{auraName=checkruncprowler;onTick=cprowler_runprotocolcheck;interval=30;duration=99999} @self ~onSpawn 0.5 #=============== RUN MECHANICUS
+  - setvariable{var=caster.hitrec;value="0";t=integer} @Self ~OnSpawn #Hurtmechanic ANTIARROW
+  - message{m="Hitrec <caster.var.hitrec>"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+  - message{m="&eCOMBOR &a<caster.var.combor>"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+
+# ======== Dodger Protocol (activate here if you remove statue pose)
+  - sound{s=entity.skeleton.hurt;p=1;v=1} @selflocation ~onDamaged 1 #Hurtmechanic SOUND
+  - setstance{stance=normal} @self ~onSpawn
+#  - message{m="<caster.var.runstacks>"} @PlayersNearOrigin{r=35} ~onTimer:40 0
+
+  Options:
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.21
+    Interactable: true
+    PreventOtherDrops: true
+    KnockbackResistance: 0.9
+    PreventSunburn: true
+
+#HITBOXES
+
+cprowler_headbox:
+  Hidden: true
+  Type: vex
+  Display: ''
+  Faction: CorruptedFlesh
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 1500
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  Damage: 0
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - air:1
+  - air:0
+  Skills:
+  - setvariable{var=caster.headbox;value="1";t=integer;delay=1} @Self ~onSpawn
+  - setvariable{var=caster.headhits;value="0";t=integer;delay=1} @Self ~onSpawn
+  - cancelEvent{sync=true} @Trigger ~onDamaged
+  - variableadd{var=caster.headhits;amount=1} @self ~onDamaged ?damageamount{amount=>2}
+  - cancelEvent{sync=true} @parent ~onDamaged
+  - message{m="&aHEadbox Damaged"} @PlayersNearOrigin{r=75} ~onDamaged 0 ?damageamount{amount=>2} #DEBUGMESSAGE
+  - message{m="&aHEadbox Spawned"} @PlayersNearOrigin{r=75} ~onSpawn 0 #DEBUGMESSAGE
+  - signal{s=COUNTERATTACK} @parent ~onDamaged ?DamageAmount{damageamount=>2}
+  - signal{s=DECAPITATE} @parent ~onDamaged 0.12 ?variableInRange{var=caster.headhits;value=5to12}
+  - signal{s=DECAPITATE} @parent ~onDamaged 0.45 ?variableInRange{var=caster.headhits;value=>12}
+  - randomskill{s=[
+      - state{state=block_trigger1;li=0;lo=8;n=false;speed=1} @parent
+    ],
+      [
+      - state{state=block_trigger2;li=0;lo=8;n=false;speed=1} @parent
+    ];sync=true} @parent ~onDamaged
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.01
+    MaxCombatDistance: 60
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: true
+    Interactable: true
+    KnockbackResistance: 0
+    Collidable: false
+    NoGravity: true
+
+
+#123123
+# YeG/VsUkQXrMZRzKMkz5cgrj5dcrRGjqScdTxOLLXzEUjam3aSG3CTBj8TT3GxxIics8eJ1EZ/LyZsfIHxPbxqLUm8k7fPpntDYxE5UBNgQ=

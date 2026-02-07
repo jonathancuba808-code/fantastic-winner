@@ -1,0 +1,18 @@
+MobName:
+  MobName: ''
+World: QueenBeeWorld
+X: 17
+Y: -17
+Z: 21
+Radius: 3
+Yaw: 0.0
+Pitch: 0.0
+MobLevel: '1'
+Cooldown: 30
+Warmup: 120
+MaxMobs: '4'
+WarmupTimer: 1
+ActivationRange: 200.0
+CooldownTimer: 6
+
+# eyJ1c2VyLW5hbWUiOiJGYXp6ZXIiLCJ1c2VyLWlkIjoiNzI4MSIsImRhdGUiOiIyMDI2LTAxLTMxIDE3OjQ4Iiwic2l0ZSI6Imh0dHBzOi8vZ2xlYWtzLnBybyJ9

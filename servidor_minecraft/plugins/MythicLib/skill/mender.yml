@@ -1,0 +1,38 @@
+MENDER_LIFEBOUND:
+    mythicmobs-skill-id: mender_lifebound
+    passive-type: TIMER
+
+MENDER_SPIRITBOLT:
+    mythicmobs-skill-id: mender_spiritbolt
+    modifiers:
+    - duration
+    - damage
+    - skillcooldown
+
+MENDER_CASCADEBOLT:
+    mythicmobs-skill-id: mender_cascadebolt
+    modifiers:
+    - duration
+    - damage
+    - skillcooldown
+
+MENDER_PURGING_LIGHT:
+    mythicmobs-skill-id: mender_purging_light
+    modifiers:
+    - duration
+    - damage
+    - skillcooldown
+
+MENDER_VITAL_BEAM:
+    mythicmobs-skill-id: mender_vital_beam
+    modifiers:
+    - duration
+    - damage
+    - skillcooldown
+
+MENDER_LIFEWEAVERS_GRACE:
+    mythicmobs-skill-id: mender_lifeweavers_grace
+    modifiers:
+    - duration
+    - damage
+    - skillcooldown

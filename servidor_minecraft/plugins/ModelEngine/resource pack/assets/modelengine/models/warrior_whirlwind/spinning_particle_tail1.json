@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/warrior_whirlwind","particle":"#0"},"elements":[{"from":[8.0,5.5,8.0],"to":[8.0,10.5,29.0],"faces":{"east":{"uv":[8.0,0.0,10.625,0.625],"tintindex":0,"rotation":0,"texture":"#0"},"west":{"uv":[8.0,0.625,10.625,1.25],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

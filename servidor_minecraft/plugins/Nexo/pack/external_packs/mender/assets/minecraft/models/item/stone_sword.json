@@ -1,0 +1,1 @@
+{"parent":"item/handheld","textures":{"layer0":"item/stone_sword"},"overrides":[{"predicate":{"custom_model_data":4597},"model":"models/mender_lifecane"}]}

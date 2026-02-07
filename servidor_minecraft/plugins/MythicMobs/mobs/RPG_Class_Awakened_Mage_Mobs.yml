@@ -1,0 +1,563 @@
+VFX_AwakenedMage_Impact:
+  Type: text_display
+  DisplayOptions:
+    Text: ""
+    BlockLight: 15
+    SkyLight: 15
+    Scale: 1,1,1
+    Billboard: CENTER
+    BackgroundColor: 0,0,0,0
+    Translation: 0,0,0
+    ViewRange: 5
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - settextdisplay{text="ក";delay=0} @self ~onSpawn
+  - settextdisplay{text="ខ";delay=1} @self ~onSpawn
+  - settextdisplay{text="គ";delay=2} @self ~onSpawn
+  - settextdisplay{text="ឃ";delay=3} @self ~onSpawn
+  - settextdisplay{text="ង";delay=4} @self ~onSpawn
+  - settextdisplay{text="ច";delay=5} @self ~onSpawn
+  - settextdisplay{text="ឆ";delay=6} @self ~onSpawn
+  - remove{delay=7} @self ~onSpawn
+
+VFX_AwakenedMage_Fireball2:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=fireball;delay=2} @self ~onSpawn
+  - brightness{b=15;s=15;delay=2} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0;delay=2} @self ~onSpawn
+  - state{s=animation3;speed=1;delay=2} @self ~onSpawn
+  - particles{p=small_flame;amount=5;hS=0.05;vS=0.05;y=0;size=1;speed=0.05;delay=2} @self ~onTimer:1
+VFX_AwakenedMage_Fireball3:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=fireball;delay=2} @self ~onSpawn
+  - brightness{b=15;s=15;delay=2} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0;delay=2} @self ~onSpawn
+  - state{s=animation4;speed=1;delay=2} @self ~onSpawn
+  - particles{p=small_flame;amount=5;hS=0.05;vS=0.05;y=0;size=1;speed=0.05;delay=2} @self ~onTimer:1
+VFX_AwakenedMage_Fireball:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=fireball;delay=2} @self ~onSpawn
+  - brightness{b=15;s=15;delay=2} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0;delay=2} @self ~onSpawn
+  - state{s=animation;speed=1;delay=2} @self ~onSpawn
+  - particles{p=small_flame;amount=10;hS=0.1;vS=0.1;y=0;size=1;speed=0.05;delay=2} @self ~onTimer:1
+VFX_AwakenedMage_Fireball_Explosion:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=fireball_explosion_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation;speed=1} @self ~onSpawn
+  
+  - aura{delay=1;d=8;i=1;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - remapmodel{m=fireball_explosion_1;n=fireball_explosion_<caster.var.iteration>}
+    ];
+    oe=[ - remove{delay=1} @self ]} @self ~onSpawn
+VFX_AwakenedMage_Fireball_Explosion2:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=fireball_explosion_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation2;speed=1} @self ~onSpawn
+  
+  - aura{delay=1;d=8;i=1;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - remapmodel{m=fireball_explosion_1;n=fireball_explosion_<caster.var.iteration>}
+    ];
+    oe=[ - remove{delay=1} @self ]} @self ~onSpawn
+
+VFX_AwakenedMage_Fireball_Explosion_FULL:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - summon{type=VFX_AwakenedMage_Fireball_Explosion;amount=1;radius=0;yRadius=0;onSurface=true} @selflocation ~onSpawn
+  - summon{type=VFX_AwakenedMage_Fireball_Explosion2;amount=1;radius=0;yRadius=0;onSurface=true} @selflocation ~onSpawn
+  - particles{p=campfire_cosy_smoke;amount=5;hS=0.6;vS=0.6;y=0;size=1;speed=0.1} @selflocation ~onSpawn
+  
+VFX_AwakenedMage_Glacial_Spikes:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=glacial_spike} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation;speed=1} @self ~onSpawn
+  - remove{delay=20} @self ~onSpawn
+VFX_AwakenedMage_Thunder_Strike1:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=thunder_strike_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation2;speed=1} @self ~onSpawn
+  
+  - aura{delay=1;d=9;i=1;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - remapmodel{m=thunder_strike_1;n=thunder_strike_<caster.var.iteration>}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_AwakenedMage_Thunder_Strike2:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=thunder_strike_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation3;speed=1} @self ~onSpawn
+  
+  - aura{delay=1;d=9;i=1;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - remapmodel{m=thunder_strike_1;n=thunder_strike_<caster.var.iteration>}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_AwakenedMage_Thunder_Strike3:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=thunder_strike_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation4;speed=1} @self ~onSpawn
+  
+  - aura{delay=1;d=9;i=1;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - remapmodel{m=thunder_strike_1;n=thunder_strike_<caster.var.iteration>}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+
+VFX_AwakenedMage_Thunder_Teleport:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=thunder_teleport_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation;speed=1} @self ~onSpawn
+  
+  - aura{delay=1;d=10;i=1;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - remapmodel{m=thunder_teleport_1;n=thunder_teleport_<caster.var.iteration>}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_AwakenedMage_Thunder_Explosion:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=thunder_explosion_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation;speed=1} @self ~onSpawn
+  
+  - aura{delay=3;d=14;i=1;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - remapmodel{m=thunder_explosion_1;n=thunder_explosion_<caster.var.iteration>}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+
+
+VFX_AwakenedMage_Rupture_Small:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=vfx_earthquake_rupture_1;lockpitch=true} @self ~onSpawn
+  - brightness{mid=vfx_earthquake_rupture_1;b=15;s=15} @self ~onSpawn
+  - brightness{mid=vfx_earthquake_rupture_1;b=13;s=13;delay=22} @self ~onSpawn
+  - brightness{mid=vfx_earthquake_rupture_1;b=11;s=11;delay=26} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=skill2} @self ~onSpawn
+  - tint{m=vfx_earthquake_rupture_1;c=a229ff;em=false} @self ~onSpawn
+  - tint{m=vfx_earthquake_rupture_1;c=5c00c4;em=false;delay=22} @self ~onSpawn
+  - tint{m=vfx_earthquake_rupture_1;c=2c007d;em=false;delay=24} @self ~onSpawn
+  - tint{m=vfx_earthquake_rupture_1;c=0d004d;em=false;delay=26} @self ~onSpawn
+  - tint{m=vfx_earthquake_rupture_1;c=040026;em=false;delay=30} @self ~onSpawn
+  - tint{m=vfx_earthquake_rupture_1;c=000000;em=false;delay=32} @self ~onSpawn
+  
+  - changepart{m=vfx_earthquake_rupture_1;p=body;nm=vfx_earthquake_rupture_2;np=body;delay=44} @self ~onSpawn
+  - changepart{m=vfx_earthquake_rupture_1;p=body;nm=vfx_earthquake_rupture_3;np=body;delay=46} @self ~onSpawn
+  - changepart{m=vfx_earthquake_rupture_1;p=body;nm=vfx_earthquake_rupture_4;np=body;delay=48} @self ~onSpawn
+  - changepart{m=vfx_earthquake_rupture_1;p=body;nm=vfx_earthquake_rupture_5;np=body;delay=50} @self ~onSpawn
+  - remove{delay=52} @self ~onSpawn
+VFX_AwakenedMage_Rubbles_Small:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=vfx_rubbles;lockpitch=true} @self ~onSpawn
+  - setrotation{relative=true;yaw=<random.0to359>} @self ~onSpawn
+  - brightness{b=12;s=12} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=skill;speed=1} @self ~onSpawn
+  - remove{delay=45} @self ~onSpawn
+
+
+VFX_AwakenedMage_Cryo_Prison:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=cryo_prison;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation;speed=1} @self ~onSpawn
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.ice_break;volume=0.7;pitch=<random.float.0.9to1.1>;delay=80} @self ~onSpawn
+  - remove{delay=111} @self ~onSpawn
+  
+  - particles{p=block_crack;m=ICE;amount=90;hS=1.6;vS=1.5;y=4;size=1;speed=0;delay=80} @self ~onSpawn
+  - particles{p=block_crack;m=ICE;amount=90;hS=2.5;vS=1.5;y=1;size=1;speed=0;delay=80} @self ~onSpawn
+VFX_AwakenedMage_Cryo_Prison_Cage:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=cryo_prison_cage;lockpitch=true} @self ~onSpawn
+  - lockmodel @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=crystal_the_enemy;speed=1} @self ~onSpawn
+
+
+VFX_AwakenedMage_Hailpiercer_Inhale:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=hailpiercer_inhale_breath;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation;speed=1} @self ~onSpawn
+  - remove{delay=28} @self ~onSpawn
+VFX_AwakenedMage_Hailpiercer0:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=hailpiercer;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=ice_spike_o;speed=1} @self ~onSpawn
+  - remove{delay=42} @self ~onSpawn
+
+  - particles{p=block_crack;m=ICE;amount=10;hS=0.3;vS=0.3;y=0;size=1;speed=0;delay=33} @modelpart{pid=bone;location=0,0,0;em=false} ~onSpawn
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.ice_break;volume=0.7;pitch=<random.float.0.9to1.1>;delay=31} @self ~onSpawn
+VFX_AwakenedMage_Hailpiercer1:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=hailpiercer;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=ice_spike;speed=1} @self ~onSpawn
+  - remove{delay=42} @self ~onSpawn
+
+  - particles{p=block_crack;m=ICE;amount=10;hS=0.3;vS=0.3;y=0;size=1;speed=0;delay=33} @modelpart{pid=bone;location=0,0,0;em=false} ~onSpawn
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.ice_break;volume=0.7;pitch=<random.float.0.9to1.1>;delay=31} @self ~onSpawn
+VFX_AwakenedMage_Hailpiercer2:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=hailpiercer;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=ice_spike2;speed=1} @self ~onSpawn
+  - remove{delay=42} @self ~onSpawn
+
+  - particles{p=block_crack;m=ICE;amount=10;hS=0.3;vS=0.3;y=0;size=1;speed=0;delay=33} @modelpart{pid=bone;location=0,0,0;em=false} ~onSpawn
+  - effect:sound{s=awakened_mage_sounds:samus.awakened_mage.ice_break;volume=0.7;pitch=<random.float.0.9to1.1>;delay=31} @self ~onSpawn
+
+VFX_AwakenedMage_Fireblast:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=big_fireball_charge;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation;speed=1} @self ~onSpawn
+  - remove{delay=57} @self ~onSpawn
+VFX_AwakenedMage_FireCircle1:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=magic_fire_circle;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation6;speed=1} @self ~onSpawn
+  - remove{delay=28} @self ~onSpawn
+VFX_AwakenedMage_FireCircle2:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=magic_fire_circle;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation7;speed=1} @self ~onSpawn
+  - remove{delay=28} @self ~onSpawn
+VFX_AwakenedMage_FireCircle3:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=magic_fire_circle;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation4;speed=1} @self ~onSpawn
+  - remove{delay=28} @self ~onSpawn
+VFX_AwakenedMage_FireCircle4:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=magic_fire_circle;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation5;speed=1} @self ~onSpawn
+  - remove{delay=28} @self ~onSpawn
+VFX_AwakenedMage_FireCircle5:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=magic_fire_circle;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation2;speed=1} @self ~onSpawn
+  - remove{delay=28} @self ~onSpawn
+VFX_AwakenedMage_FireCircle6:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=magic_fire_circle;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation3;speed=1} @self ~onSpawn
+  - remove{delay=28} @self ~onSpawn
+
+
+
+VFX_AwakenedMage_Meteor_Create:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=meteor_of_doom;lockpitch=true} @self ~onSpawn
+  - brightness{b=9;s=9;p=bone;em=true;c=true} @self ~onSpawn
+  - brightness{b=9;s=9;p=allef_stone;em=true;c=true} @self ~onSpawn
+  - brightness{b=15;s=15;p=all_asset_meteor;em=true;c=true} @self ~onSpawn
+  - brightness{b=15;s=15;p=allef_circle_flame;em=false;c=true} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=charge_meteor;speed=1} @self ~onSpawn
+  - remove{delay=40} @self ~onSpawn
+VFX_AwakenedMage_Meteor:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=meteor_of_doom;lockpitch=true} @self ~onSpawn
+  - brightness{b=9;s=9;p=bone;em=true;c=true} @self ~onSpawn
+  - brightness{b=9;s=9;p=allef_stone;em=true;c=true} @self ~onSpawn
+  - brightness{b=15;s=15;p=all_asset_meteor;em=true;c=true} @self ~onSpawn
+  - brightness{b=15;s=15;p=allef_circle_flame;em=false;c=true} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=meteor_impact;speed=1} @self ~onSpawn
+  - remove{delay=40} @self ~onSpawn
+
+  
+VFX_AwakenedMage_Meteor_Cross:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=meteor_of_doom_cross;lockpitch=true;lockyaw=true} @self ~onSpawn
+  - brightness{b=15;s=15;p=blazing_fire;em=true;c=true} @self ~onSpawn
+  - brightness{b=15;s=15;p=allef_meteor_hit;em=true;c=true} @self ~onSpawn
+  - brightness{b=15;s=15;p=allef_impact;em=true;c=true} @self ~onSpawn
+  - brightness{b=15;s=15;p=allef_circle_impact;em=true;c=true} @self ~onSpawn
+  - brightness{b=15;s=15;p=allef_circle_flame;em=true;c=true} @self ~onSpawn
+  - brightness{b=9;s=9;p=allef_stone;em=true;c=true} @self ~onSpawn
+  - brightness{b=9;s=9;p=allef_floor;em=false;c=true} @self ~onSpawn
+  - brightness{b=15;s=15;p=blazing_fire;em=false;c=true} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=meteor_impact;speed=1} @self ~onSpawn
+  - particlering{p=dust_color_transition;color1=#ffa216;color2=#ff0000;size=1.2;radius=8.5;points=170;amount=1;hS=0;vS=0;y=0.1} @self ~onTimer:2
+  - particlering{p=dust_color_transition;color1=#ffa216;color2=#ff0000;size=1;radius=9;points=185;amount=1;hS=0;vS=0;y=0.1} @self ~onTimer:2
+  - particlering{p=dust_color_transition;color1=#ffa216;color2=#ff0000;size=0.85;radius=9.5;points=200;amount=1;hS=0;vS=0;y=0.1} @self ~onTimer:2
+  - remove{delay=97} @self ~onSpawn

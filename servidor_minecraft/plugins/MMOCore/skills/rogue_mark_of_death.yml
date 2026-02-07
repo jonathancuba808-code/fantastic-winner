@@ -1,0 +1,38 @@
+name: Mark of Death
+lore:
+- "&4•--"
+- ""
+- "&7Mark a target for execution, gaining 3 stacks of deadly strikes."
+- "&7Each strike teleports you to the enemy and dashes through them."
+- "&7When the timer ends, the mark detonates in a bloody explosion, dealing massive damage."
+- "&4•--"
+- "&c🗡 {damage} Damage"
+- "&e⌛ {cooldown}s Cooldown"
+- ""
+- "&4•--"
+material: 'COAL:1933'
+timer:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 20
+  per-level: 0.5
+  min: 20
+  max: 25
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 0.3
+  per-level: 0
+  min: 0.3
+  max: 0.3

@@ -1,0 +1,38 @@
+graveyard_hud:
+  layouts:
+    1:
+      name: hud_under
+      x: 50
+      y: 90
+    2:
+      name: hud_top_left
+      x: 0
+      y: 0
+    3:
+      name: hud_top_right
+      x: 100
+      y: 0
+    4:
+      name: outline_head
+      x: 0
+      y: 0
+    5:
+      name: health
+      x: 50
+      y: 90
+    6:
+      name: armor
+      x: 50
+      y: 90
+    7:
+      name: air
+      x: 50
+      y: 90
+    8:
+      name: hunger
+      x: 50
+      y: 90
+    9:
+      name: hud_under_exp
+      x: 50
+      y: 90

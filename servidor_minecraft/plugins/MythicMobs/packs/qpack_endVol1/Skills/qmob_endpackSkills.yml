@@ -1,0 +1,737 @@
+
+######### Ambient #############
+
+endermiteTP:
+  Conditions:
+  Cooldown: 0.5
+  Skills:
+  - sound{s=entity.breeze.land;p=2;v=1} @origin
+  - sound{s=block.conduit.attack.target;p=2;v=1} @origin
+  - teleport{spreadh=5;spreadv=0} @origin
+  - particlesphere{p=portal;a=12;r=0.5;y=0;hs=0;vs=0;speed=0} @origin
+
+snailjarEnd:
+  Skills:
+  - sound{s=item.bucket.fill_tadpole;sc=master;p=<random.float.0.85to0.95>;v=1} @self
+  - sound{s=block.glass.place;sc=master;p=<random.float.1.95to2.0>;v=1} @self
+  - sudoskill{s=[ - removeHeldItem{amount=1} @self ]} @trigger
+  - giveitem{i=qitem_snailjar_end;fl=true} @trigger
+  - remove{} 
+
+ghostfishtwinkle:
+  Skills:
+  - brightness{p=torso;b=15;s=15} @self
+  - brightness{p=tail;b=15;s=15} @self
+  - brightness{p=torso;b=5;s=5;delay=10} @self
+  - brightness{p=tail;b=5;s=5;delay=10} @self
+  
+########## Neutral #################
+
+#### Shulkrab #####
+
+# Misc #
+
+shulkrabStep:
+  Cooldown: 0
+  Conditions:
+  - onground{} true
+  Skills:
+  - sound{s=minecraft:block.copper_bulb.turn_off;sc=master;p=<random.float.0.5to0.6>;v=0.2} @self
+  - sound{s=entity.goat.step;sc=master;p=<random.float.1.2to1.3>;v=0.5} @self
+
+shulkrabAmbient:
+  Cooldown: 0.3
+  Skills:
+  - sound{s=block.sculk_sensor.clicking;sc=master;p=<random.float.1.95to2.0>;v=0.} @self
+  - sound{s=entity.strider.ambient;sc=master;p=<random.float.0.65to0.7>;v=0.7} @self
+
+shulkrabHurt:
+  Conditions:
+  Cooldown: 0.3
+  Skills:
+  - sound{s=entity.strider.hurt;sc=master;p=<random.float.0.65to0.7>;v=0.3} @self
+  - sound{s=block.sculk_sensor.clicking;sc=master;p=<random.float.1.95to2.0>;v=0.8} @self
+  - sound{s=entity.dolphin.attack;sc=master;p=<random.float.1.55to1.65>;v=0.3} @self
+  - sound{s=item.crop.plant;p=2.0;v=1.18;sc=master;sync=true} @self
+  - sound{s=block.candle.extinguish;p=0.8;v=2.0;sc=master;sync=true} @self
+  - sound{s=block.sand.place;p=0.66;v=0.88;sc=master;sync=true} @self
+  - sound{s=block.honey_block.place;p=2.0;v=0.46;sc=master;sync=true} @self
+  - sound{s=block.beehive.drop;p=1.22;v=1.22;sc=master;sync=true} @self
+  - sound{s=block.composter.ready;p=2.0;v=0.16;sc=master;sync=true} @self
+  - sound{s=block.coral_block.break;p=2.0;v=0.26;sc=master;sync=true} @self
+  - sound{s=block.frogspawn.hatch;p=2.0;v=0.82;sc=master;sync=true} @self
+
+shulkrabDeath:
+  Cooldown: 0.3
+  Skills:
+  - sound{s=entity.strider.death;sc=master;p=<random.float.0.65to0.7>;v=0.7} @self
+  - sound{s=block.sculk_sensor.clicking;sc=master;p=<random.float.1.95to2.0>;v=0.8} @self
+  - sound{s=entity.dolphin.attack;sc=master;p=<random.float.1.95to2.0>;v=0.2} @self
+  - sound{s=entity.goat.step;sc=master;p=<random.float.0.7to0.8>;v=1.0;delay=11;repeat=1;repeatInterval=4} @self
+  - sound{s=block.fire.extinguish;sc=master;p=<random.float.0.85to0.95>;v=2.0;delay=18} @self
+  - particlesphere{p=cloud;a=20;r=1.5;y=0;hs=0.2;vs=0.1;speed=0;delay=18} @self
+
+
+# Attacks #
+
+shulkrabAttack: # melee attack
+  Cooldown: 2.0
+  Conditions:
+  - stance{s=attacking} false
+  - stance{s=hiding} false
+  Skills:
+  - CancelEvent @self
+  - setstance{stance=attacking} @self
+  - look{immediately=true} @target
+  - state{state=attack;li=4;lo=2;speed=1.2} @self
+  - setspeed{speed=0;type=walking} @self
+  - setspeed{speed=1.0;type=walking;delay=20} @self
+  - delay 12
+  - sound{s=entity.breeze.slide;p=<random.float.1.95to2.0>;sc=master;v=0.5} @self
+  - sound{s=block.sculk_sensor.clicking;sc=master;p=<random.float.1.95to2.0>;v=0.8} @self
+  - damage{a=<random.6to10>;pi=true;pk=true} @EIC{a=160.0;r=4.65;rot=0.0}
+  - sound{s=entity.goat.ram_impact;p=<random.float.0.85to0.9>;sc=master;v=0.5} @EIC{a=160.0;r=4.65;rot=0.0}
+  - sound{s=entity.shulker.hurt_closed;sc=master;p=<random.float.1.95to2.0>;v=0.8} @EIC{a=160.0;r=4.65;rot=0.0}
+  - sound{s=entity.player.attack.crit;sc=master;p=<random.float.0.75to0.85>;v=0.8} @EIC{a=160.0;r=4.65;rot=0.0}
+  - sound{s=item.shield.block;sc=master;p=<random.float.1.75to1.85>;v=0.8} @EIC{a=160.0;r=4.65;rot=0.0}
+  - throw{vy=3.0;v=5.0} @EIC{a=160.0;r=4.55;rot=0.0}
+  - leap{velocity=30} @targetlocation
+  - setstance{stance=idle;delay=20} @self
+
+shulkrabBonkAttack: # melee attack
+  Cooldown: 2.0
+  Conditions:
+  - stance{s=attacking} false
+  - stance{s=hiding} false
+  - inCombat{} true
+  - onGround{} true
+  Skills:
+  - CancelEvent @self
+  - setstance{stance=attacking} @self
+  - look{immediately=true} @target
+  - state{state=bonk;li=4;lo=2;speed=1.2} @self
+  - setspeed{speed=0;type=walking} @self
+  - setspeed{speed=1.0;type=walking;delay=20} @self
+  - sound{s=block.sculk_sensor.clicking;sc=master;p=<random.float.1.95to2.0>;v=0.8} @self
+  - delay 12
+shulkrabBonk:
+  Skills:
+  - sound{s=entity.breeze.slide;p=<random.float.1.95to2.0>;sc=master;v=0.5} @self
+  - sound{s=entity.breeze.wind_burst;p=<random.float.1.95to2.0>;sc=master;v=0.5} @self
+  - skill{s= [
+    - damage{a=<random.6to8>;pi=true;pk=true} @EIC{a=200.0;r=5.35;rot=0.0}
+    - sound{s=entity.shulker.hurt_closed;sc=master;p=<random.float.1.95to2.0>;v=0.8} @EIC{a=200.0;r=5.35;rot=0.0}
+    - sound{s=item.shield.block;sc=master;p=<random.float.1.75to1.85>;v=0.8} @EIC{a=200.0;r=5.35;rot=0.0}
+    - throw{vy=5.0;v=12.0} @EIR{r=6.15}
+    - breakblock{forcesync=true} @BNO{r=5;s=cube;blocktypes=CHORUS_FLOWER,CHORUS_PLANT,DIRT,COBBLESTONE,GRAVEL,SAND,COARSE_DIRT,ROOTED_DIRT,TWISTING_VINES}
+    - potion{type=CONFUSION;duration=<random.170to200>;level=1;p=true} @EIC{a=200.0;r=5.35;rot=0.0}
+    - sound{s=entity.player.attack.crit;sc=master;p=<random.float.0.75to0.85>;v=0.8} @EIC{a=160.0;r=4.65;rot=0.0}]} @self
+  - sound{s=entity.hoglin.step;p=0.5;sc=master;v=1.5} @self
+  - sound{s=entity.breeze.shoot;p=0.5;sc=master;v=1.5} @self
+  - sound{s=entity.generic.explode;p=2.0;sc=master;v=0.1} @self
+  - particles{p=gust_dust;a=20;y=0.5;hs=1.0;vs=0.0;speed=0;sfo=2.0} @self
+  - particles{p=gust;a=4;y=0.1;hs=1.0;vs=0.0;speed=0;sfo=2.0} @self
+  - effect:particlering{particle=dust_plume;radius=3.5;points=24;a=1;hS=0.2;vS=0;y=0.0;s=0.0} @origin
+  - setstance{stance=idle;delay=20} @self
+shulkrabHide:
+  Cooldown: 5.0
+  Conditions:
+  - stance{s=attacking} false
+  - stance{s=hiding} false
+  Skills:
+  - setstance{stance=hiding} @self
+  - state{state=hide;li=4;lo=2;speed=1.0} @self
+  - setspeed{speed=0;type=walking} @self
+  - lockmodel{l=true} @self
+  - sound{s=entity.shulker.close;p=<random.float.0.7to0.8>;v=1.0} @self 
+  - sound{s=item.armor.equip_turtle;p=<random.float.0.7to0.8>;v=1.0} @self
+  - sound{s=block.sculk_sensor.clicking;sc=master;p=<random.float.1.95to2.0>;v=0.8} @self
+  - sound{s=entity.dolphin.attack;sc=master;p=<random.float.0.55to0.6>;v=0.7} @self
+  - velocity{x=0.0;y=0.0;z=0.0;m=SET;repeat=170;repeatInterval=1} @self
+  - potion{type=REGENERATION;duration=170;level=1;p=true} @self
+  - potion{type=FIRE_RESISTANCE;duration=170;level=1;p=true} @self
+  - delay 170
+  - sound{s=entity.shulker.open;p=<random.float.0.7to0.8>;v=1.0} @self
+  - sound{s=entity.sniffer.drop_seed;p=<random.float.0.7to0.8>;v=1.0} @self   
+  - sound{s=block.sculk_sensor.clicking;sc=master;p=<random.float.1.95to2.0>;v=0.8} @self
+shulkrabHideEnd:
+  Skills:
+  - setspeed{speed=1.0;type=walking} @self
+  - setstance{stance=idle} @self
+  - lockmodel{l=false} @self
+shulkrabProtect:
+  Conditions:
+  - stance{s=hiding} true
+  Skills:
+  - CancelEvent @self
+  - sound{s=entity.shulker.hurt_closed;p=<random.float.0.7to0.8>;v=1.0;cd=0.2} @self 
+  - sound{s=item.shield.block;p=<random.float.1.7to1.8>;v=0.5;cd=0.2} @self 
+
+##### swapper #####
+
+swapperHurt:
+  Cooldown: 0.3
+  Skills:
+  - sound{s=entity.creeper.hurt;p=<random.float.0.7to0.8>;v=0.8} @self
+  - sound{s=particle.soul_escape;p=1.0;v=1.0;repeat=6;repeatInterval=1;sc=master} @self
+  - sound{s=entity.breeze.hurt;p=<random.float.1.5to1.6>;v=0.8} @self 
+  - sound{s=block.stone.place;p=<random.float.1.5to1.6>;v=1.2} @self 
+
+swapperDeath:
+  Cooldown: 999
+  Skills:
+  - sound{s=entity.creeper.death;p=<random.float.0.7to0.8>;v=1.0} @self
+  - sound{s=particle.soul_escape;p=1.0;v=1.0;repeat=6;repeatInterval=1;sc=master} @self
+  - sound{s=entity.breeze.death;p=<random.float.1.5to1.6>;v=1.0} @self
+  - sound{s=block.stone.break;p=<random.float.1.5to1.6>;v=1.2} @self 
+
+swapperPrimed:
+  Cooldown: 999
+  Conditions:
+  - stance{s=dying} false
+  Skills:
+  - setstance{s=dying} @self
+  - CancelEvent{} @self
+  - sound{s=entity.warden.sonic_charge;p=1.6;v=0.5;sc=master} @self
+  - delay 8
+  - state{state=puff;li=4;lo=2;speed=0.5} @self 
+  - setspeed{speed=0;type=walking} @self
+  - delay 20
+  - sound{s=entity.warden.sonic_boom;sc=master;p=<random.float.1.35to1.45>;v=2.0} @self
+  - sound{s=block.beacon.deactivate;sc=master;p=2.0;v=2.0} @self
+  - sound{s=block.conduit.attack.target;sc=master;p=2.0;v=2.0} @self
+  - sound{s=entity.breeze.wind_burst;sc=master;p=0.65;v=2.0} @self
+  - effect:particles{particle=sonic_boom;a=1;hs=0.0;vs=0.0} @self
+  - effect:particles{particle=gust_emitter;a=1;hs=0.0;vs=0.0} @self
+  - effect:particlesphere{particle=reddust;color=#c242f5;r=1.4;a=40;hs=0.1;vs=0.1} @self
+  - damage{a=<random.5to8>;pi=true;ia=true} @EIR{r=5.9} 
+  - sudoskill{s=swapperForceTeleporter} @EIR{r=5.95} 
+  - delay 1
+  - remove{} @self
+
+swapperForceTeleporter:
+  Skills:
+  - skill{s=swapperForceTP;repeat=<random.3to6>;repeatInterval=3} @self
+
+swapperForceTP:
+  Conditions:
+  - hasenchantment{e=BINDING_CURSE;l=>0} false
+  Skills:
+  - potion{type=CONFUSION;duration=<random.130to170>;level=1;p=true} @self
+  - teleport{spreadh=5;spreadv=5} @origin                                                  # you can change the value here to make players teleport less or more
+  - sound{s=entity.enderman.teleport;p=<random.float.1.55to1.6>;sc=master;v=0.8} @self
+  - sound{s=entity.illusioner.mirror_move;p=<random.float.1.55to1.6>;sc=master;v=0.5} @self
+  - sound{s=block.conduit.attack.target;p=<random.float.1.85to2.0>;sc=master;v=1.0} @self
+  - effect:particles{particle=sonic_boom;a=1;hs=0.05;vs=0.05} @self
+
+swapperSpooked:
+  TriggerConditions:
+  - entitytype PLAYER true
+  Conditions:
+  - stance{s=scared} false
+  Skills:
+  - setstance{s=scared} @self
+  - state{state=scared;li=4;lo=2;speed=1.0} @self 
+  - look{} @trigger
+  - setspeed{speed=0;type=walking} @self
+  - sound{s=entity.allay.item_thrown;p=<random.float.0.85to0.9>;sc=master;v=1.0} @self
+  - sound{s=entity.creeper.hurt;p=<random.float.0.85to0.9>;sc=master;v=1.0} @self
+  - sound{s=particle.soul_escape;p=1.0;v=1.0;repeat=6;repeatInterval=1;sc=master} @self
+  - velocity{x=0.0;y=<random.float.0.8to0.9>;z=0.0;m=ADD} @self
+  - delay 20
+  - defaultstate{t=walk;s=walk;speed=3.0;li=0;lo=0} @self
+  - setspeed{speed=1.5;type=walking} @self
+  - runaigoalselector{goal=fleeplayers}
+  - delay <random.180to260>
+  - runaigoalselector{goal=clear}
+  - defaultstate{s=walk;t=walk;speed=1.0;li=0;lo=0} @self
+  - setstance{s=idle} @self
+
+swapperCaution:
+  Conditions:
+  - stance{s=scared} false
+  - playerswithin{d=8} true
+  Skills:
+  - setstance{s=scared} @self
+  - state{state=scared;li=4;lo=2;speed=1.0} @self 
+  - look{} @trigger
+  - setspeed{speed=0;type=walking} @self
+  - sound{s=entity.allay.item_thrown;p=<random.float.0.85to0.9>;sc=master;v=1.0} @self
+  - sound{s=entity.creeper.hurt;p=<random.float.0.85to0.9>;sc=master;v=1.0} @self
+  - sound{s=particle.soul_escape;p=1.0;v=1.0;repeat=6;repeatInterval=1;sc=master} @self
+  - velocity{x=0.0;y=<random.float.0.4to0.6>;z=0.0;m=ADD} @self
+  - delay 20
+  - defaultstate{t=walk;s=walk;speed=3.0;li=0;lo=0} @self
+  - setspeed{speed=1.5;type=walking} @self
+  - runaigoalselector{goal=fleeplayers}
+  - delay <random.180to260>
+  - runaigoalselector{goal=clear}
+  - defaultstate{s=walk;t=walk;speed=1.0;li=0;lo=0} @self
+  - setstance{s=idle} @self
+
+swapperSwap:
+  Conditions:
+  - stance{s=scared} true
+  Skills:
+  - swap{} @PIR{r=24;limit=1;sort=NEAREST}
+  - skill{s=swapperForceTP} @PIR{r=24;limit=1;sort=NEAREST}
+
+############### Hostile #################
+
+##### Void Ooze #######
+
+voidoozeHop:
+  Conditions:
+  - onGround{} true
+  - stance{s=dead} false
+  - stance{s=attacking} false
+  Skills:
+  - delay <random.0to20>
+  - state{state=jump;li=4;lo=2;speed=1.4} @self
+  - delay 10
+  - sound{s=entity.slime.jump;p=<random.float.1.0to1.1>;v=1.0} @self 
+  - particles{p=block;material=MAGENTA_STAINED_GLASS;a=<random.3to5>;y=0.1;hs=0.3;vs=0.1;s=0.0} @self
+  - velocity{x=0.0;y=<random.float.0.3to0.5>;z=0.0;m=ADD} @self
+  - lunge{v=<random.float.0.3to0.5>;vy=<random.float.0.3to0.5>} @self
+
+voidoozeBackstep:
+  Cooldown: 1
+  Conditions:
+  - onGround{} true
+  - stance{s=dead} false
+  - stance{s=attacking} false
+  Skills:
+  - state{state=jump;li=4;lo=2;speed=1.6} @self
+  - delay 8
+  - sound{s=entity.slime.jump;p=<random.float.1.0to1.1>;v=1.0} @self 
+  - particles{p=block;material=MAGENTA_STAINED_GLASS;a=<random.3to5>;y=0.1;hs=0.3;vs=0.1;s=0.0} @self
+  - velocity{x=0.0;y=<random.float.0.3to0.5>;z=0.0;m=ADD} @self
+  - leap{velocity=<random.-200to-150>} @targetlocation
+
+voidoozeAttack:
+  Cooldown: 1.0
+  Conditions:
+  - stance{s=dead} false
+  - stance{s=attacking} false
+  - targetwithin{d=3} true
+  Skills:
+  - CancelEvent{sync=true} @self
+  - setstance{stance=attacking} @self
+  - sound{s=entity.slime.attack;sc=master;p=<random.float.0.95to1.2>;v=1.0} @self
+  - damage{a=<random.3to6>;pi=true;pkb=true} @trigger
+  - mounttarget{} @trigger
+  - potion{type=SLOW;duration=<random.100to130>;level=1;p=true} @trigger
+  - setstance{stance=idle;delay=20} @self
+
+voidoozeDeath:
+  Conditions:
+  - stance{s=dead} false
+  TriggerConditions:
+  - hasenchantment{e=VANISHING_CURSE;l=>0} orElseCast voidoozeStasis # can only be killed with things that have curse of vanishing on them
+  Skills:
+  - sound{s=entity.magma_cube.death;sc=master;p=<random.float.0.95to1.2>;v=1.0} @self
+  - sound{s=block.fire.extinguish;sc=master;p=<random.float.0.85to0.95>;v=2.0;delay=24} @self
+  - particles{p=cloud;a=20;y=0.2;hs=0.4 ;vs=0.05;speed=0;delay=24} @self
+
+voidoozeStasis:
+  Conditions:
+  - stance{s=dead} false
+  Skills:
+  - CancelEvent{sync=true} @self
+  - setstance{s=dead} @self
+  - state{state=death;li=4;lo=2;speed=1.6} @self
+  - defaultstate{s=deathidle;t=idle;li=0;lo=0;speed=1.0} @self
+  - lockmodel{l=true} @self
+  - dismount{} @self
+  - delay <random.200to220>
+  - remove{} @self
+  - summon{t=qmob_voidooze;a=1;r=0;yr=0} @self
+
+
+####### Mobulus  ######
+
+## SFX ##
+mobulusHurt:
+  TriggerConditions:
+  - hasenchantment{e=VANISHING_CURSE;l=>0} orElseCast mobulusSafe # does this if the attacker isn't using something with curse of vanishing on it
+  Cooldown: 0.3
+  Skills:
+  - sound{s=entity.vex.hurt;sc=master;p=<random.float.1.95to2.0>;v=0.4} @self
+  - sound{s=entity.phantom.hurt;sc=master;p=<random.float.0.85to0.95>;v=0.3} @self
+  - sound{s=entity.warden.hurt;sc=master;p=<random.float.1.9to2.0>;v=0.05} @self
+  - sound{s=item.crop.plant;p=2.0;v=1.18;sc=master;sync=true} @self
+  - sound{s=block.candle.extinguish;p=0.8;v=2.0;sc=master;sync=true} @self
+  - sound{s=block.sand.place;p=0.66;v=0.88;sc=master;sync=true} @self
+  - sound{s=block.honey_block.place;p=2.0;v=0.46;sc=master;sync=true} @self
+  - sound{s=block.beehive.drop;p=1.22;v=1.22;sc=master;sync=true} @self
+  - sound{s=block.composter.ready;p=2.0;v=0.16;sc=master;sync=true} @self
+  - sound{s=block.coral_block.break;p=2.0;v=0.26;sc=master;sync=true} @self
+  - sound{s=block.frogspawn.hatch;p=2.0;v=0.82;sc=master;sync=true} @self
+
+mobulusSafe:
+  Cooldown: 0.3
+  Skills:
+  - sound{s=block.nether_wart.break;p=2.0;v=2.0;sc=master;sync=true} @self
+  - sound{s=entity.breeze.slide;p=2.0;v=2.0;sc=master;sync=true} @self
+  - sound{s=item.book.put;p=0.5;v=2.0;sc=master;sync=true} @self
+
+
+mobulusDeath:
+  Cooldown: 0.3
+  Skills:
+  - sound{s=entity.vex.death;sc=master;p=<random.float.1.35to1.45>;v=0.4} @self
+  - sound{s=entity.phantom.death;sc=master;p=<random.float.0.95to1.05>;v=0.4} @self
+  - sound{s=block.fire.extinguish;sc=master;p=<random.float.0.85to0.95>;v=2.0;delay=18} @self
+  - particlesphere{p=cloud;a=12;r=0.5;y=0;hs=0;vs=0;speed=0;delay=18} @self
+
+
+### Dash attack ####
+
+mobulusDashStart:   # startup animation
+  Cooldown: 1.0
+  Conditions:
+  - inCombat{} true
+  - stance{s=attacking} false
+  - inside{} false
+  - inBlock{b=AIR} true
+  - altitude{h=2to7} true # makes sure mob is at least 2 blocks above the ground and not too high
+  Skills:
+  - CancelEvent @self
+  - stance{s=attacking} @self
+  - state{state=dash;li=4;lo=4;speed=1.0} @self
+  - sound{s=entity.breeze.charge;sc=master;p=<random.float.0.75to0.85>;v=1.75;delay=10} @self
+  - effect:particlesphere{particle=spell_mob_ambient;a=3;hs=0.05;vs=0.05;r=0.5;repeat=20;repeatInterval=1} @self
+  - effect:particles{particle=sonic_boom;a=1;hs=0.0;vs=0.0;delay=14} @self
+mobulusDash:
+  Skills:
+  - propel{v=1.5} @target
+  - hide{d=20} @Server
+  - damage{a=<random.8to10>;repeat=20;repeatInterval=1} @eir{r=2.15;ignoresamefacton=true} # end mobs are end game, recommended to spawn near endships
+  - potion{t=WEAKNESS;d=<random.100to160>;p=true;force=true;repeat=20;repeatInterval=1} @eir{r=2.15;ignoresamefacton=true} # also gives debuffs
+  - potion{t=CONFUSION;d=<random.100to160>;p=true;force=true;repeat=20;repeatInterval=1} @eir{r=2.15;ignoresamefacton=true} # also gives debuffs
+  - effect:particlesphere{particle=sneeze;a=10;hs=0.05;vs=0.05;r=0.5;repeat=20;repeatInterval=1} @self
+  - sound{s=entity.phantom.flap;sc=master;p=<random.float.1.35to1.45>;v=1.75} @self
+  - sound{s=entity.breeze.shoot;sc=master;p=<random.float.0.75to0.85>;v=1.75} @self
+  - sound{s=entity.blaze.shoot;sc=master;p=<random.float.1.75to1.85>;v=0.45} @self
+mobulusDashEnd:
+  Skills:
+  - effect:particlesphere{particle=spell_mob_ambient;a=10;hs=0.05;vs=0.05;r=0.5} @self
+  - stance{s=idle} @self
+  - sound{s=entity.breeze.land;sc=master;p=<random.float.0.75to0.85>;v=1.75} @self
+
+###### Purpur Sentry ########
+
+## SFX ##
+purpursentryHurt:
+  Conditions:
+  - damagecause{cause=ENTITY_ATTACK} orElseCast purpursentrySafe # prevents offhanding bow
+  TriggerConditions:
+  - (holding{m=WOODEN_PICKAXE} || holding{m=STONE_PICKAXE} || holding{m=IRON_PICKAXE} || holding{m=GOLD_PICKAXE} || holding{m=DIAMOND_PICKAXE} || holding{m=NETHERITE_PICKAXE}) orElseCast purpursentrySafe # does this if the attacker isn't using a pickaxe
+  Cooldown: 0.3
+  Skills:
+  - sound{s=entity.vex.hurt;sc=master;p=<random.float.0.55to0.65>;v=0.85} @self
+  - sound{s=entity.iron_golem.hurt;sc=master;p=<random.float.1.25to1.35>;v=0.85} @self
+  - sound{s=entity.warden.hurt;sc=master;p=<random.float.1.25to1.35>;v=0.35} @self
+  - particles{p=block;material=PURPUR_BLOCK;a=<random.4to8>;y=1.85;hs=0.8;vs=0.5;speed=0.01} @self
+purpursentrySafe:
+  Cooldown: 0.0
+  Skills:
+  - CancelEvent{sync=true} @self
+  - sound{s=entity.player.attack.nodamage;sc=master;p=<random.float.1.05to1.10>;v=1.15;cd=0.3} @self
+  - sound{s=item.shield.block;sc=master;p=<random.float.1.95to2.0>;v=0.25;cd=0.3} @self
+  
+purpursentryDeath:
+  Cooldown: 0.3
+  Skills:
+  - sound{s=entity.iron_golem.death;sc=master;p=<random.float.1.15to1.25>;v=1.4} @self
+  - sound{s=entity.warden.death;sc=master;p=<random.float.1.55to1.65>;v=0.4} @self
+  - sound{s=block.sculk_sensor.break;sc=master;p=<random.float.0.55to0.65>;v=1.4} @self
+  - sound{s=entity.iron_golem.step;sc=master;p=<random.float.0.65to0.70>;v=2.0;delay=14;repeat=1;repeatInterval=3} @self
+  - sound{s=entity.hoglin.step;sc=master;p=<random.float.0.55to0.60>;v=2.0;delay=14;repeat=1;repeatInterval=3} @self
+  - sound{s=block.fire.extinguish;sc=master;p=<random.float.0.85to0.95>;v=2.0;delay=28} @self
+  - particles{p=cloud;a=60;y=0;hs=1.4;vs=0.2;speed=0;delay=28;sfo=-2.0} @self
+
+purpursentryStep:
+  Conditions:
+  - onGround{}
+  Skills:
+  - sound{s=entity.iron_golem.step;sc=master;p=<random.float.0.95to1.05>;v=1.0} @self
+
+
+### Normal attack ####
+
+purpursentryAttack:
+  Cooldown: 1.0
+  Conditions:
+  - inCombat{} true
+  - stance{s=attacking} false
+  Skills:
+  - CancelEvent{sync=true} @self
+  - setstance{s=attacking} @self
+  - state{state=attack<random.1to2>;li=4;lo=4;speed=1.0} @self
+  - sound{s=entity.iron_golem.attack;sc=master;p=<random.float.0.95to1.05>;v=1.0;delay=10} @self
+  - sound{s=entity.warden.listening_angry;sc=master;p=<random.float.0.75to0.85>;v=1.0} @self
+  - sound{s=entity.breeze.slide;sc=master;p=<random.float.0.95to1.05>;v=1.0;delay=8} @self
+  - damage{a=<random.8to10>;delay=14} @EIC{a=150.0;r=3.15;rot=0.0;ignore=samefaction}
+  - throw{v=12;vy=8;delay=14} @EIC{a=150.0;r=3.15;rot=0.0;ignore=samefaction}
+  - sound{s=entity.player.attack.knockback;sc=master;p=<random.float.0.65to0.75>;v=1.0;delay=12} @EIC{a=150.0;r=3.15;rot=0.0;ignore=samefaction}
+  - sound{s=entity.player.attack.strong;sc=master;p=<random.float.0.65to0.75>;v=1.0;delay=12} @EIC{a=150.0;r=3.15;rot=0.0;ignore=samefaction}
+  - sound{s=entity.player.attack.crit;sc=master;p=<random.float.0.65to0.75>;v=1.0;delay=12} @EIC{a=150.0;r=3.15;rot=0.0;ignore=samefaction}
+  - setstance{s=idle;delay=20} @self
+
+### Ranged attack ####
+
+purpursentryShoot:
+  Cooldown: 3.0
+  Conditions:
+  - inCombat{} true
+  - stance{s=attacking} false
+  - targetnotwithin{d=5}
+  - onGround{} true
+  Skills:
+  - setstance{s=attacking} @self
+  - state{state=shoot;li=4;lo=4;speed=1.0} @self
+  - sound{s=entity.breeze.charge;sc=master;p=<random.float.0.75to0.85>;v=1.0} @self
+  - sound{s=entity.warden.listening_angry;sc=master;p=<random.float.0.75to0.85>;v=1.0} @self
+  - setAI{ai=true;delay=40} @self
+  - setstance{s=idle;delay=40} @self
+purpursentryShootS:
+  Skills:
+  - setAI{ai=false} @self
+  - look{immediately=true;repeat=15;repeatInterval=1} @target
+  - sound{s=entity.warden.sonic_boom;sc=master;p=<random.float.1.35to1.45>;v=2.0} @self
+  - sound{s=block.beacon.deactivate;sc=master;p=2.0;v=2.0} @self
+  - sound{s=block.conduit.attack.target;sc=master;p=2.0;v=2.0} @self
+  - sound{s=entity.breeze.wind_burst;sc=master;p=0.65;v=2.0} @self
+  - projectile{ot=purpursentryShootT;oh=purpursentryShootH;v=72;i=1;hR=0.3;vR=0.3;highaccuracymode=true;tickInterpolation=10;fromOrigin=true;origin=@ModelPart{p=eye};syo=0;sfo=0;repeat=10;repeatInterval=1;sE=false;hnp=true;mR=100;mD=100} @forward{f=60}
+purpursentryShootT:
+  Cooldown: 0.0
+  Skills:
+  - effect:particlesphere{particle=reddust;color=#ca7aff;size=0.5;a=1;hs=0.05;vs=0.05;r=0.05} @origin
+  - effect:particlesphere{particle=reddust;color=#ceb8ff;size=0.5;a=1;hs=0.05;vs=0.05;r=0.05} @origin
+purpursentryShootH:
+  Cooldown: 0.0
+  Skills:
+  - damage{a=<random.1to3>;pi=true;pk=true}
+  - sound{s=entity.turtle.egg_crack;sc=master;p=2.0;v=0.8}
+  - sound{s=item.bone_meal.use;sc=master;p=2.0;v=1.1}
+  - potion{t=SLOW_DIGGING;l=1;force=true;p=true;d=<random.120to180>}
+
+
+
+####### Defiled Watcher ###########
+
+## FX ##
+
+defiledwatcherAmbient:
+  Cooldown: 1.0
+  Skills:
+  - sound{s=entity.enderman.ambient;p=0.8;v=1.0;sc=master;delay=10} @self
+  - sound{s=entity.vex.ambient;p=0.5;v=0.6;sc=master} @self
+  - sound{s=entity.warden.agitated;p=1.5;v=0.3;sc=master} @self
+  - sound{s=particle.soul_escape;p=1.0;v=1.0;repeat=6;repeatInterval=1;sc=master} @self
+defiledwatcherAngry:
+  Cooldown: 1.0
+  Skills:
+  - sound{s=entity.enderman.scream;p=0.8;v=1.0;sc=master;delay=10} @self
+  - sound{s=entity.warden.angry;p=1.6;v=0.5;sc=master} @self
+  - sound{s=entity.vex.ambient;p=0.5;v=0.6;sc=master} @self
+  - sound{s=particle.soul_escape;p=1.0;v=1.0;repeat=6;repeatInterval=1;sc=master} @self
+defiledwatcherHurt:
+  Cooldown: 0.3
+  Skills:
+  - sound{s=entity.enderman.hurt;p=0.8;v=1.0;sc=master} @self
+  - sound{s=entity.warden.hurt;p=1.3;v=0.5;sc=master} @self
+  - sound{s=particle.soul_escape;p=1.0;v=1.0;repeat=6;repeatInterval=1;sc=master} @self
+defiledwatcherDeath:
+  Skills:
+  - sound{s=entity.enderman.death;p=1.0;v=1.0;sc=master} @self
+  - particles{p=sneeze;a=3;y=2.2;hs=0.2;vs=0.2;s=0;delay=20} @self
+  - particles{p=reddust;color=#6bffa4;size=0.6;a=10;y=2.2;hs=0.2;vs=0.2;s=0;delay=20} @self
+  - sound{s=entity.warden.sonic_charge;p=1.6;v=0.5;sc=master} @self
+  - sound{s=block.fire.extinguish;sc=master;p=<random.float.0.85to0.95>;v=2.0;delay=20} @self
+  - sound{s=particle.soul_escape;p=1.0;v=2.0;repeat=22;repeatInterval=1;sc=master} @self
+
+## Attack ##
+defiledAttack:
+  Cooldown: 1.0
+  Conditions:
+  - inCombat{} true
+  - stance{s=attacking} false
+  Skills:
+  - setstance{s=attacking} @self
+  - look{immediately=true} @target
+  - randomskill{s= [
+    - state{s=attack_right;li=4;lo=4;speed=1.4}],[
+    - state{s=attack_left;li=4;lo=4;speed=1.4}
+    ]} @self
+  - potion{type=SLOW;duration=<random.20to30>;level=3;p=true} @self
+defiledPunch:
+  Skills:
+  - skill{s= [
+    - damage{a=<random.6to10>;pi=true;pk=true} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction}
+    - sound{s=entity.shulker.hurt_closed;sc=master;p=<random.float.1.95to2.0>;v=0.8} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction}
+    - sound{s=item.shield.block;sc=master;p=<random.float.1.75to1.85>;v=0.8} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction}
+    - throw{vy=2.0;v=5.0} @EIC{a=120.0;r=3.65;rot=0.0lignore=samefaction}
+    - sound{s=entity.breeze.slide;p=<random.float.1.95to2.0>;sc=master;v=0.5} @self
+    - sound{s=entity.witch.throw;p=<random.float.0.55to0.6>;sc=master;v=0.5} @self
+    ]} @self
+  - sound{s=entity.player.attack.crit;sc=master;p=<random.float.0.75to0.85>;v=1.0} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction}
+  - sound{s=entity.goat.ram_impact;p=<random.float.0.85to0.9>;sc=master;v=1.0} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction}
+  - sound{s=entity.warden.attack_impact;sc=master;p=<random.float.1.25to1.3>;v=1.0} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction} 
+  - sudoskill{s=defiledPunchTP;delay=2} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction} # teleports targets that are hit without curse of binding items/armour
+  - sudoskill{s=defiledPunchConvert} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction} # converts the target if an enderman is hit
+  - takeexperiencelevels{a=1} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction;target=players}
+  - setstance{s=idle;delay=5} @self
+defiledPunchTP:
+  Conditions:
+  - hasenchantment{e=BINDING_CURSE;l=>0} false
+  Skills:
+  - teleport{spreadh=10;spreadv=10} @origin                                                  # you can change the value here to make players teleport less or more
+  - sound{s=entity.enderman.teleport;p=<random.float.1.55to1.6>;sc=master;v=0.8} @self
+  - sound{s=entity.illusioner.mirror_move;p=<random.float.1.55to1.6>;sc=master;v=0.5} @self
+  - sound{s=block.conduit.attack.target;p=<random.float.1.85to2.0>;sc=master;v=1.0} @self
+  - effect:particles{particle=sonic_boom;a=1;hs=0.05;vs=0.05} @self
+defiledPunchConvert:
+  Conditions:
+  - entitytype{t=ENDERMAN} true
+  Skills:
+  - summon{a=1;r=0;type=qmob_defiledwatcher} @self
+  - sound{s=block.conduit.attack.target;p=<random.float.1.85to2.0>;sc=master;v=1.0} @self
+  - effect:particles{particle=sonic_boom;a=1;hs=0.05;vs=0.05} @self
+  - remove{} @self
+
+
+####### Distorted Watcher ###########
+
+## FX ##
+
+distortedwatcherAmbient:
+  Cooldown: 1.0
+  Skills:
+  - sound{s=entity.vex.ambient;p=0.5;v=0.6;sc=master} @self
+  - sound{s=entity.warden.agitated;p=1.5;v=0.3;sc=master} @self
+  - sound{s=particle.soul_escape;p=1.0;v=1.0;repeat=12;repeatInterval=1;sc=master} @self
+distortedwatcherAngry:
+  Cooldown: 1.0
+  Skills:
+  - sound{s=entity.warden.angry;p=1.6;v=0.5;sc=master} @self
+  - sound{s=entity.vex.ambient;p=0.5;v=0.6;sc=master} @self
+  - sound{s=particle.soul_escape;p=1.0;v=1.0;repeat=12;repeatInterval=1;sc=master} @self
+distortedwatcherHurt:
+  Cooldown: 0.3
+  Skills:
+  - sound{s=entity.vex.hurt;p=0.8;v=1.0;sc=master} @self
+  - sound{s=entity.warden.hurt;p=1.3;v=0.5;sc=master} @self
+  - sound{s=particle.soul_escape;p=1.0;v=1.0;repeat=12;repeatInterval=1;sc=master} @self
+distortedwatcherDeath:
+  Skills:
+  - sound{s=entity.vex.death;p=1.0;v=0.3;sc=master} @self
+  - sound{s=entity.blaze.death;p=1.3;v=0.3;sc=master} @self
+  - sound{s=entity.warden.death;p=1.3;v=0.7;sc=master} @self
+  - particles{p=sneeze;a=3;y=1.6;hs=0.2;vs=0.2;s=0;delay=20} @self
+  - particles{p=reddust;color=#6bffa4;size=0.6;a=12;y=1.6;hs=0.3;vs=0.3;s=0.01;delay=18;repeat=4;repeatInterval=1} @self
+  - sound{s=entity.warden.sonic_charge;p=1.6;v=0.5;sc=master} @self
+  - sound{s=block.fire.extinguish;sc=master;p=<random.float.0.85to0.95>;v=2.0;delay=20} @self
+  - sound{s=particle.soul_escape;p=1.0;v=2.0;repeat=22;repeatInterval=1;sc=master} @self
+
+distortedHurtTP:
+  TriggerConditions:
+  - hasenchantment{e=VANISHING_CURSE;l=>0} castInstead distortedwatcherHurt
+  Skills:
+  - CancelEvent{sync=true} @self
+  - teleport{spreadh=8;spreadv=8;cd=0.2} @origin                                        
+  - sound{s=entity.enderman.teleport;p=<random.float.1.55to1.6>;sc=master;v=0.8;cd=0.2} @self
+  - sound{s=entity.illusioner.mirror_move;p=<random.float.1.55to1.6>;sc=master;v=0.5;cd=0.2} @self
+  - sound{s=block.conduit.attack.target;p=<random.float.1.85to2.0>;sc=master;v=1.0;cd=0.2} @self
+  - effect:particles{particle=sonic_boom;a=1;hs=0.05;vs=0.05;cd=0.2} @self 
+distortedTP:
+  Skills:
+  - teleport{spreadh=4;spreadv=4} @origin                                              
+  - sound{s=entity.enderman.teleport;p=<random.float.1.55to1.6>;sc=master;v=0.8} @self
+  - sound{s=entity.illusioner.mirror_move;p=<random.float.1.55to1.6>;sc=master;v=0.5} @self
+  - sound{s=block.conduit.attack.target;p=<random.float.1.85to2.0>;sc=master;v=1.0} @self
+  - effect:particles{particle=sonic_boom;a=1;hs=0.05;vs=0.05} @self 
+
+## Attacks ##
+distortedShoot:
+  Cooldown: 1.0
+  Conditions:
+  - inCombat{} true
+  - stance{s=attacking} false
+  Skills:
+  - setstance{s=attacking} @self
+  - look{immediately=true} @target
+  - state{s=shoot;li=4;lo=4;speed=1.0} @self
+  - sound{s=particle.soul_escape;p=2.0;v=2.0;repeat=10;repeatInterval=1;sc=master} @self
+  - sound{s=entity.warden.listening_angry;sc=master;p=<random.float.1.75to1.85>;v=0.8} @self
+distortedwatcherShootS:
+  Skills:
+  - missile{interactable=true;onInteract=[ 
+    - sudoskill{s=distortedShootK}];bullettype=mob;mm=qmob_distortedball;bspin=2;bk=true;byo=0.2;bfo=0.5;hr=0.3;vr=0.3;oh=distortedShootH;distortedShootE;v=<random.6to9>;i=1;hR=0.8;vR=0.8;in=15;md=64;mr=64;fromorigin=true;origin=@ModelPart{p=mouth};syo=0;sfo=0;sso=0;highaccuracymode=true;tickinterpolation=10} @target
+  - sound{s=entity.zombie.infect;sc=master;p=1.85;v=1.1} @self
+  - sound{s=entity.breeze.shoot;sc=master;p=1.85;v=1.1} @self
+  - sound{s=item.glow_ink_sac.use;sc=master;p=1.85;v=1.1} @self
+  - sound{s=entity.breeze.wind_burst;sc=master;p=2.0;v=1.1} @self
+  - sound{s=entity.blaze.shoot;sc=master;p=2.0;v=0.2} @self
+  - setstance{s=idle;delay=10} @self
+distortedShootH:
+  Cooldown: 0.0
+  Skills:
+  - takeexperiencelevels{a=1}
+  - damage{a=<random.4to6>;pi=true;pk=true}
+  - sound{s=entity.warden.attack_impact;sc=master;p=2.0;v=1.1}
+  - sound{s=entity.shulker_bullet.hit;sc=master;p=2.0;v=1.1}
+  - sudoskill{s=distortedShootTP}
+distortedShootTP:
+  Conditions:
+  - hasenchantment{e=BINDING_CURSE;l=>0} false
+  Skills:
+  - teleport{spreadh=3;spreadv=3} @origin                                                  # you can change the value here to make players teleport less or more
+  - sound{s=entity.enderman.teleport;p=<random.float.1.55to1.6>;sc=master;v=0.8} @self
+  - sound{s=entity.illusioner.mirror_move;p=<random.float.1.55to1.6>;sc=master;v=0.5} @self
+  - sound{s=block.conduit.attack.target;p=<random.float.1.85to2.0>;sc=master;v=1.0} @self
+  - effect:particles{particle=sonic_boom;a=1;hs=0.05;vs=0.05} @self 
+distortedShootE:
+  Cooldown: 0.0
+  Skills:
+  - sound{s=entity.breeze.wind_burst;p=<random.float.1.55to1.6>;sc=master;v=0.8} @self
+  - sound{s=entity.breeze.land;p=<random.float.1.55to1.6>;sc=master;v=0.8} @self
+  - effect:particles{particle=sonic_boom;a=1;hs=0.05;vs=0.05} @self 
+  - effect:particlesphere{particle=reddust;color=#6bffa4;a=1;hs=0.05;vs=0.05;r=0.03} @origin
+  - effect:particles{particle=sneeze;a=1;hs=0.05;vs=0.05} @origin
+distortedShootK:
+  Conditions:
+  - hasenchantment{e=VANISHING_CURSE;l=>0} true
+  Cooldown: 0.0
+  Skills:
+  - endprojectile
+  - sound{s=entity.breeze.deflect;p=<random.float.1.55to1.6>;sc=master;v=0.8;}
+  - sound{s=block.candle.extinguish;p=<random.float.1.55to1.6>;sc=master;v=2.0}
+
+distortedAttack:
+  Cooldown: 1.0
+  Conditions:
+  - inCombat{} true
+  - stance{s=attacking} false
+  Skills:
+  - setstance{s=attacking} @self
+  - look{immediately=true} @target
+  - state{s=melee_attack<random.1to2>;li=4;lo=4;speed=1.0} @self
+distortedPunch:
+  Skills:
+  - skill{s= [
+    - damage{a=<random.6to8>;pi=true;pk=true} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction}
+    - sound{s=entity.shulker.hurt_closed;sc=master;p=<random.float.1.95to2.0>;v=0.8} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction}
+    - sound{s=item.shield.block;sc=master;p=<random.float.1.75to1.85>;v=0.8} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction}
+    - sound{s=entity.breeze.slide;p=<random.float.1.95to2.0>;sc=master;v=0.5} @self
+    - sound{s=entity.witch.throw;p=<random.float.0.55to0.6>;sc=master;v=0.5} @self
+    ]} @self
+  - sound{s=entity.player.attack.crit;sc=master;p=<random.float.0.75to0.85>;v=1.0} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction}
+  - sound{s=entity.goat.ram_impact;p=<random.float.0.85to0.9>;sc=master;v=1.0} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction}
+  - takeexperiencelevels{a=1} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction;target=players}
+  - sound{s=entity.warden.attack_impact;sc=master;p=<random.float.1.25to1.3>;v=1.0} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction} 
+  - sudoskill{s=defiledPunchTP;delay=2} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction} # teleports targets that are hit without curse of binding items/armour
+  - sudoskill{s=defiledPunchConvert} @EIC{a=120.0;r=3.65;rot=0.0;ignore=samefaction} # converts the target if an enderman is hit
+  - setstance{s=idle;delay=5} @self
+# tIgFAsp/C4gPrWxgh65YP2M9oWNyrnuccgmeHknPd4Z55uACVEOout/+Ui9f/tgO9XACScsbT7Vt6XAyCwn/b9O5kX5AlvQIdPLxV0wTBvg=

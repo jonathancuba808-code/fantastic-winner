@@ -1,0 +1,450 @@
+
+cpbrute_em:
+  Type: skeleton
+  Display: 'Corrupted Brute'
+  AIGoalSelectors:
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 SpecificFaction FallenHero
+  - 2 players
+  - 3 attacker
+  Health: 200
+  Faction: CorruptedFlesh
+  BossBar:
+    Enabled: true
+    Title: '&BCorrupted Brute'
+    Range: 30
+    Color: BLUE
+    Style: SEGMENTED_20
+  DamageModifiers:
+  - FIRE -0.01
+  - FIRE_TICK -0.01
+  - MAGIC 1.6
+  - PROJECTILE 0.14
+  Damage: 10 #This is the BASE damage. Applies for ALL skills Setting it to 20 will DOUBLE damage. Setting it to 5 will REDUCE damage in 50% from the original.
+  KillMessages:
+  - '<target.name> was crushed by a Corrupted Brute.'
+  - 'A Corrupted Brute violently obliterated <target.name>.'
+  - "<target.name> was shredded to pieces by a Corrupted Brute."
+  - "A Corrupted Brute minced <target.name>'s remains."
+  - '<target.name> was consumed by the Corrupted Flesh.'
+  Equipment:
+  - air HEAD
+  - imboots_cpbrute FEET
+  - AIR HAND
+  - air OFFHAND
+  Drops:
+  - exp 20-35 1
+  - exp 20-35 1
+  - exp 20-35 1
+  - exp 20-35 1
+  LevelModifiers:
+    Health: 1
+    Damage: 0.03
+  Skills:
+  
+#====== MODEL ASSIGNEMENT =============
+  - model{mid=em_corruptedbrute;s=idle;invisible=true} @self ~onSpawn 1
+  - model{mid=em_corruptedbrute;s=idle;invisible=true} @self ~onLoad 1
+  - submodel{mid=em_corruptedbrute;partid=head_decapit;submodelid=em_corruptedbrute;subpartid=head_decapit;remove=true} @self ~onSpawn 1
+  - submodel{mid=em_corruptedbrute;partid=body_fire;submodelid=em_corruptedbrute;subpartid=body_fire;remove=true} @self ~onSpawn 1
+  - submodel{mid=em_corruptedbrute;partid=hip2;submodelid=em_corruptedbrute;subpartid=hip2;remove=true} @self ~onSpawn 1
+  - submodel{mid=em_corruptedbrute;partid=head_decapit;submodelid=em_corruptedbrute;subpartid=head_decapit;remove=true} @self ~onLoad
+  - submodel{mid=em_corruptedbrute;partid=body_fire;submodelid=em_corruptedbrute;subpartid=body_fire;remove=true} @self ~onLoad
+  - submodel{mid=em_corruptedbrute;partid=hip2;submodelid=em_corruptedbrute;subpartid=hip2;remove=true} @self ~onLoad
+  - partvisibility{m=em_corruptedbrute;p=sword;v=false;delay=0} @self ~onSpawn
+  - setlevel{a=set;l=0} ~onSpawn
+  - bindhitbox{m=em_corruptedbrute;p=ob_headbox;t=cpbrute_headbox;delay=2} @self ~onSpawn
+  - hitboxconfig{m=em_corruptedbrute;p=ob_headbox;pass=0.8;delay=2} @self ~onSpawn
+  - lockmodel{l=false} @Self ~onDropCombat
+
+  - bindhitbox{m=em_corruptedbrute;p=ob_ricostilla;t=cpbrute_ricostilla;delay=2} @self ~onSpawn
+  - hitboxconfig{m=em_corruptedbrute;p=ob_ricostilla;pass=2;delay=2} @self ~onSpawn
+
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ~onSpawn
+  - setvariable{var=caster.eichpee;value="<caster.mhp>";t=integer} @Self ~onSpawn
+  - skill{s=cpbrute_hp_check} @Self ~onSpawn
+#============ SOUNDS =================
+  - skill{s=cpbrute_idlesounds} @Self ~onTimer:70 0.6 ?incombat
+  - skill{s=cpbrute_idlesounds} @Self ~onTimer:110 0.45 ?!incombat
+#============ ATTACK =================
+
+  - skill{s=bruttack5_cpbrute} @Trigger ~onSignal:DEBUG_TEST 1
+
+  - CancelEvent{sync=true} @self ~onAttack 1 #CANCEL ATTACKS
+
+  - skill{s=meleecpbrutetrigger;sync=false} @LivingInCone{a=110.0;r=6;rot=0.0;ignore=samefaction} ~onTimer:30 0.65 ?!variableEquals{var=caster.rage;value="1"} ###### 0.6
+  - skill{s=meleecpbrutetrigger2;sync=false} @LivingInCone{a=110.0;r=5.5;rot=0.0;ignore=samefaction} ~onTimer:16 0.75 ?variableEquals{var=caster.rage;value="1"}
+  
+  - skill{s=meleecpbrutetrigger;sync=false} @LivingInCone{a=110.0;r=6;rot=0.0;ignore=samefaction} ~onAttack 0.3
+
+  - randomskill{s=bruttack5_cpbrute,bruttack6_cpbrute,bruttack6_cpbrute;sync=false} @LivingInCone{a=120.0;r=12;rot=0.0;ignore=samefaction} ~onTimer:45 <40% 0.35 ?!variableEquals{var=caster.rage;value="1"}
+  - randomskill{s=bruttack5_cpbrute,bruttack6_cpbrute,bruttack6_cpbrute;sync=false} @LivingInCone{a=120.0;r=12;rot=0.0;ignore=samefaction} ~onTimer:45 <40% 0.65 ?variableEquals{var=caster.rage;value="1"}
+  
+  - setvariable{var=caster.combor;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.comboa;value="0";t=integer} @Self ~onSpawn
+
+  - skill{s=decapitate_cpbrute;cooldown=2;sync=true} @self ~onSignal:DECAPITATE 0.65 <30%
+#================ RIP IN PEPSI PROTOCOL #==============))))))))))))))))))))))))))
+  - skill{s=cpbrute_death;sync=false} ~onDeath 1
+  - setrotation{relative=false;pitch=0} @Self ~onDeath 1
+
+  - sound{s=entity.skeleton.hurt;p=0.9;v=1.5} @selflocation ~onDeath 1
+  - sound{s=entity.skeleton.hurt;p=0.7;v=1.5;delay=16} @selflocation ~onDeath 1
+  - sound{s=entity.skeleton.death;p=0.9;v=1.5;delay=40} @selflocation ~onDeath 1
+  - effect:particles{particle=cloud;amount=150;hS=1.1;vS=0.55;speed=0;size=4.5;repeat=0;repeatinterval=1;sideOffset=0;delay=100} @ModelPart{m=em_corruptedbrute;p=hip;offset=GLOBAL;y=0.2} ~onDeath
+  - effect:particles{particle=cloud;amount=60;hS=0.6;vS=0.2;speed=0;size=4.5;repeat=0;repeatinterval=1;sideOffset=0;delay=100} @ModelPart{m=em_corruptedbrute;p=head;offset=GLOBAL;y=0.2} ~onDeath
+  - changepart{m=em_corruptedbrute;pid=head;nm=em_corruptedbrute;npid=head2;delay=20} @self ~onDeath
+  - changepart{m=em_corruptedbrute;pid=jaw;nm=em_corruptedbrute;npid=jaw2;delay=20} @self ~onDeath
+  - changepart{m=em_corruptedbrute;pid=hip;nm=em_corruptedbrute;npid=hip2;delay=20} @self ~onDeath
+  - effect:particles{p=reddust;c=#BEF8E5;a=12;s=20;hs=0.25;vs=0.2;y=0;sideOffset=0;Size=0.8;delay=1;repeat=70;repeatinterval=1} @ModelPart{m=em_corruptedbrute;p=back_costillums;offset=LOCAL;y=0.2;z=-0.2} ~onDeath
+  - effect:particles{p=reddust;c=#BEF8E5;a=8;s=20;hs=0.35;vs=0.3;y=0;sideOffset=0;Size=1.1;delay=20;repeat=4;repeatinterval=1} @ModelPart{m=em_corruptedbrute;p=head;offset=GLOBAL;y=0.3;z=0.5} ~onDeath
+  - effect:particles{p=reddust;c=#BEF8E5;a=8;s=20;hs=0.35;vs=0.3;y=0;sideOffset=0;Size=1.1;delay=20;repeat=4;repeatinterval=1} @ModelPart{m=em_corruptedbrute;p=hip;offset=LOCAL;y=0.8;z=0.3}  ~onDeath
+#  
+#==============
+  - skill{s=hurt1cpbrute;sync=true} @self ~onDamaged 0.92 ?!damagecause{c=FIRE_TICK} #Hurtmechanic
+  - randomskill{s=hurtfxcpbrute;sync=false} @self ~onDamaged ?!damagecause{c=FIRE_TICK}
+#  - skill{s=cpbrute_firedamage} @self ~onDamaged ?!hasaura{n=firecpbrute}
+  - velocity{m=set;x=0;y=0;z=0} @self ~onDamaged ?!damagecause{c=FIRE_TICK}
+  - setvariable{var=caster.vulnerable;value="0";t=integer} @Self ~onSpawn
+
+#=========== COSTILLUM
+  - skill{s=hurt_ricostilla_cpbrute;cooldown=0.3;sync=false} @self ~onSignal:RICOSTILLA
+
+# ========= Anti-ranged protocol
+  - message{m="COUNTERATTACKED"} @PlayersNearOrigin{r=75} ~onSignal:COUNTERATTACK 0 #DEBUGMESSAGE
+  - skill{s=countertacked_cpbrute_A;sync=false} @self ~onDamaged 0
+  - skill{s=countertacked_cpbrute_A;cooldown=0.3;sync=false} @self ~onSignal:COUNTERATTACK
+  - skill{s=meleecpbrutetrigger2;cooldown=1;sync=false} @Trigger ~onSignal:COUNTERATTACK 0.45 ?variableEquals{var=caster.parrying;value="1"}
+  
+#
+
+# ========= Anti-ranged protocol
+  - skill{s=hurtgencpbrute;sync=true} @self ~onDamaged 1 ?!damagecause{c=FIRE_TICK} #Hurtmechanic ANTIARROW
+  - skill{s=hurtgencpbrute2;sync=true} @self ~onDamaged 1 ?!damagecause{c=FIRE_TICK} #Hurtmechanic ANTIMMSkills
+  - setvariable{var=caster.rollumterr;value="0";t=integer} @Self ~OnSpawn #Hurtmechanic ANTIARROW
+  - setvariable{var=caster.projrec;value="0";t=integer} @Self ~OnSpawn #Hurtmechanic ANTIARROW
+  - setvariable{var=caster.running;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.runstacks;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.hurtened;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.parrying;value="0";t=integer} @Self ~onSpawn
+#======== RUNNER PROTOCOL (Activate if you remove statue pose)
+  - Aura{auraName=checkruncpbrute;onTick=cpbrute_runprotocolcheck;interval=30;duration=99999} @self ~onSpawn 0.5 #=============== RUN MECHANICUS
+  - setvariable{var=caster.hitrec;value="0";t=integer} @Self ~OnSpawn #Hurtmechanic ANTIARROW
+  - message{m="Hitrec <caster.var.hitrec>"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+  - message{m="&eCOMBOR &a<caster.var.combor>"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+
+  - setstance{stance=normal} @self ~onDropCombat
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ~onDropCombat
+
+# ======== Dodger Protocol (activate here if you remove statue pose)
+  - sound{s=entity.skeleton.hurt;p=1;v=1} @selflocation ~onDamaged 1 ?!damagecause{c=FIRE_TICK} #Hurtmechanic SOUND
+  - setstance{stance=normal} @self ~onSpawn
+#  - message{m="<caster.var.runstacks>"} @PlayersNearOrigin{r=35} ~onTimer:40 0
+
+  Options:
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.18
+    Interactable: true
+    PreventOtherDrops: true
+    KnockbackResistance: 0.9
+    PreventSunburn: true
+
+#HITBOXES
+
+cpbrute_headbox:
+  Hidden: true
+  Type: vex
+  Display: ''
+  Faction: CorruptedFlesh
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 1500
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  Damage: 0
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - air:1
+  - air:0
+  Skills:
+  - setvariable{var=caster.headbox;value="1";t=integer;delay=1} @Self ~onSpawn
+  - setvariable{var=caster.headhits;value="0";t=integer;delay=1} @Self ~onSpawn
+  - cancelEvent{sync=true} @Trigger ~onDamaged
+  - variableadd{var=caster.headhits;amount=1} @self ~onDamaged ?damageamount{amount=>2}
+  - cancelEvent{sync=true} @parent ~onDamaged
+  - message{m="&aHEadbox Damaged"} @PlayersNearOrigin{r=75} ~onDamaged 0 ?damageamount{amount=>2} #DEBUG MESSAGE
+  - message{m="&aHEadbox Spawned"} @PlayersNearOrigin{r=75} ~onSpawn 0 #DEBUG MESSAGE
+  - signal{s=COUNTERATTACK} @parent ~onDamaged
+  - signal{s=DECAPITATE} @parent ~onDamaged 0.12 ?variableInRange{var=caster.headhits;value=8to16}
+  - signal{s=DECAPITATE} @parent ~onDamaged 0.4 ?variableInRange{var=caster.headhits;value=>16}
+  - randomskill{s=[
+      - state{state=block_trigger1;li=0;lo=8;n=false;speed=1} @parent
+    ],
+      [
+      - state{state=block_trigger2;li=0;lo=8;n=false;speed=1} @parent
+    ];sync=true} @parent ~onDamaged
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.01
+    MaxCombatDistance: 60
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: true
+    Interactable: true
+    KnockbackResistance: 0
+    Collidable: false
+    NoGravity: true
+
+cpbrute_ricostilla:
+  Hidden: true
+  Type: vex
+  Display: ''
+  Faction: CorruptedFlesh
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 1500
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  Damage: 0
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - air:1
+  - air:0
+  Skills:
+  - setvariable{var=caster.ricostilla;value="1";t=integer;delay=1} @Self ~onSpawn
+  - setvariable{var=caster.costillahits;value="0";t=integer;delay=1} @Self ~onSpawn
+  - cancelEvent{sync=true} @Trigger ~onDamaged
+  - variableadd{var=caster.costillahits;amount=1} @self ~onDamaged ?damageamount{amount=>2} ?!damagecause{c=FIRE_TICK}
+  - cancelEvent{sync=true} @parent ~onDamaged
+#  - message{m="&bRicostilla Damaged"} @PlayersNearOrigin{r=75} ~onDamaged 1 #?damageamount{amount=>2} #DEBUG MESSAGE
+  - message{m="&bRicostilla Spawned"} @PlayersNearOrigin{r=75} ~onSpawn 0 #DEBUG MESSAGE
+  - signal{s=RICOSTILLA} @parent ~onDamaged ?!damagecause{c=FIRE_TICK} #?damageamount{amount=>1}
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.01
+    MaxCombatDistance: 60
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: true
+    Interactable: true
+    KnockbackResistance: 0
+    Collidable: false
+    NoGravity: true
+
+############
+###########
+#
+#   VFX ======= VFX ======= VFX ======= VFX ======= VFX ======= VFX
+#
+###########
+############
+
+
+cpblood_dustmarker1:
+  Hidden: true
+  Template: vfx_ForgottenTerrors_template
+  Skills:
+   - model{mid=cpblood_dusthit;s=idle;n=false} @self ~onSpawn
+   - cullconfig{vc=false;bkc=false;blc=false;alod=NO_CULL} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=cpblood_dusthit;pid=dusthit1;nm=corruptblood_resources;npid=dusthit1;delay=1} @self
+    - changepart{m=cpblood_dusthit;pid=dusthit1;nm=corruptblood_resources;npid=dusthit2;delay=2} @self
+    - changepart{m=cpblood_dusthit;pid=dusthit1;nm=corruptblood_resources;npid=dusthit3;delay=3} @self
+    - changepart{m=cpblood_dusthit;pid=dusthit1;nm=corruptblood_resources;npid=dusthit4;delay=4} @self
+    - changepart{m=cpblood_dusthit;pid=dusthit1;nm=corruptblood_resources;npid=dusthit5;delay=5} @self
+    - changepart{m=cpblood_dusthit;pid=dusthit1;nm=corruptblood_resources;npid=dusthit6;delay=6} @self
+    - changepart{m=cpblood_dusthit;pid=dusthit1;nm=corruptblood_resources;npid=dusthit7;delay=7} @self
+    - changepart{m=cpblood_dusthit;pid=dusthit1;nm=corruptblood_resources;npid=dusthit8;delay=8} @self
+    - changepart{m=cpblood_dusthit;pid=dusthit1;nm=corruptblood_resources;npid=dusthit9;delay=9} @self
+    - changepart{m=cpblood_dusthit;pid=dusthit1;nm=corruptblood_resources;npid=dusthit10;delay=10} @self];sync=false;delay=1} @self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=12} @Self ~onSpawn
+
+cpblood_supershockwave1:
+  Hidden: true
+  Template: vfx_ForgottenTerrors_template
+  Skills:
+   - model{mid=cpblood_supershockwave;s=idle;n=false;damagetint=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;alod=NO_CULL} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=cpblood_supershockwave;pid=rswa_1;nm=cpblood_shockwaveresources;npid=rswb_1;delay=1} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_2;nm=cpblood_shockwaveresources;npid=rswb_2;delay=1} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_3;nm=cpblood_shockwaveresources;npid=rswb_3;delay=1} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_4;nm=cpblood_shockwaveresources;npid=rswb_4;delay=1} @self
+
+    - changepart{m=cpblood_supershockwave;pid=rswa_1;nm=cpblood_shockwaveresources;npid=rswc_1;delay=2} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_2;nm=cpblood_shockwaveresources;npid=rswc_2;delay=2} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_3;nm=cpblood_shockwaveresources;npid=rswc_3;delay=2} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_4;nm=cpblood_shockwaveresources;npid=rswc_4;delay=2} @self
+
+    - changepart{m=cpblood_supershockwave;pid=rswa_1;nm=cpblood_shockwaveresources;npid=rswd_1;delay=3} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_2;nm=cpblood_shockwaveresources;npid=rswd_2;delay=3} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_3;nm=cpblood_shockwaveresources;npid=rswd_3;delay=3} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_4;nm=cpblood_shockwaveresources;npid=rswd_4;delay=3} @self
+
+    - changepart{m=cpblood_supershockwave;pid=rswa_1;nm=cpblood_shockwaveresources;npid=rswe_1;delay=4} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_2;nm=cpblood_shockwaveresources;npid=rswe_2;delay=4} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_3;nm=cpblood_shockwaveresources;npid=rswe_3;delay=4} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_4;nm=cpblood_shockwaveresources;npid=rswe_4;delay=4} @self
+
+    - changepart{m=cpblood_supershockwave;pid=rswa_1;nm=cpblood_shockwaveresources;npid=rswf_1;delay=5} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_2;nm=cpblood_shockwaveresources;npid=rswf_2;delay=5} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_3;nm=cpblood_shockwaveresources;npid=rswf_3;delay=5} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_4;nm=cpblood_shockwaveresources;npid=rswf_4;delay=5} @self
+    
+    - changepart{m=cpblood_supershockwave;pid=rswa_1;nm=cpblood_shockwaveresources;npid=rswg_1;delay=6} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_2;nm=cpblood_shockwaveresources;npid=rswg_2;delay=6} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_3;nm=cpblood_shockwaveresources;npid=rswg_3;delay=6} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_4;nm=cpblood_shockwaveresources;npid=rswg_4;delay=6} @self
+    
+    - changepart{m=cpblood_supershockwave;pid=rswa_1;nm=cpblood_shockwaveresources;npid=rswh_1;delay=7} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_2;nm=cpblood_shockwaveresources;npid=rswh_2;delay=7} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_3;nm=cpblood_shockwaveresources;npid=rswh_3;delay=7} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_4;nm=cpblood_shockwaveresources;npid=rswh_4;delay=7} @self
+    
+    - changepart{m=cpblood_supershockwave;pid=rswa_1;nm=cpblood_shockwaveresources;npid=rswi_1;delay=8} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_2;nm=cpblood_shockwaveresources;npid=rswi_2;delay=8} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_3;nm=cpblood_shockwaveresources;npid=rswi_3;delay=8} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_4;nm=cpblood_shockwaveresources;npid=rswi_4;delay=8} @self
+    
+    - changepart{m=cpblood_supershockwave;pid=rswa_1;nm=cpblood_shockwaveresources;npid=rswj_1;delay=9} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_2;nm=cpblood_shockwaveresources;npid=rswj_2;delay=9} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_3;nm=cpblood_shockwaveresources;npid=rswj_3;delay=9} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_4;nm=cpblood_shockwaveresources;npid=rswj_4;delay=9} @self
+    
+    - changepart{m=cpblood_supershockwave;pid=rswa_1;nm=cpblood_shockwaveresources;npid=rswk_1;delay=10} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_2;nm=cpblood_shockwaveresources;npid=rswk_2;delay=10} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_3;nm=cpblood_shockwaveresources;npid=rswk_3;delay=10} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_4;nm=cpblood_shockwaveresources;npid=rswk_4;delay=10} @self
+
+    - changepart{m=cpblood_supershockwave;pid=rswa_1;nm=cpblood_shockwaveresources;npid=rswl_1;delay=11} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_2;nm=cpblood_shockwaveresources;npid=rswl_2;delay=11} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_3;nm=cpblood_shockwaveresources;npid=rswl_3;delay=11} @self
+    - changepart{m=cpblood_supershockwave;pid=rswa_4;nm=cpblood_shockwaveresources;npid=rswl_4;delay=11} @self ];sync=false} @self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=13} @Self ~onSpawn 1
+
+cpblood_shockerwave1:
+  Hidden: true
+  Template: vfx_ForgottenTerrors_template
+  Skills:
+   - model{mid=cpblood_ravagemarker;s=idle;n=false;damagetint=false} @self ~onSpawn
+   - cullconfig{vc=false;bkc=false;blc=false;alod=NO_CULL} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=cpblood_ravagemarker;pid=rswa_1;nm=corruptblood_resources;npid=shocking1;delay=1} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_2;nm=corruptblood_resources;npid=shocking1;delay=1} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_3;nm=corruptblood_resources;npid=shocking1;delay=1} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_4;nm=corruptblood_resources;npid=shocking1;delay=1} @self
+
+    - changepart{m=cpblood_ravagemarker;pid=rswa_1;nm=corruptblood_resources;npid=shocking2;delay=2} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_2;nm=corruptblood_resources;npid=shocking2;delay=2} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_3;nm=corruptblood_resources;npid=shocking2;delay=2} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_4;nm=corruptblood_resources;npid=shocking2;delay=2} @self
+
+    - changepart{m=cpblood_ravagemarker;pid=rswa_1;nm=corruptblood_resources;npid=shocking3;delay=3} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_2;nm=corruptblood_resources;npid=shocking3;delay=3} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_3;nm=corruptblood_resources;npid=shocking3;delay=3} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_4;nm=corruptblood_resources;npid=shocking3;delay=3} @self
+
+    - changepart{m=cpblood_ravagemarker;pid=rswa_1;nm=corruptblood_resources;npid=shocking4;delay=4} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_2;nm=corruptblood_resources;npid=shocking4;delay=4} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_3;nm=corruptblood_resources;npid=shocking4;delay=4} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_4;nm=corruptblood_resources;npid=shocking4;delay=4} @self
+
+    - changepart{m=cpblood_ravagemarker;pid=rswa_1;nm=corruptblood_resources;npid=shocking5;delay=5} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_2;nm=corruptblood_resources;npid=shocking5;delay=5} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_3;nm=corruptblood_resources;npid=shocking5;delay=5} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_4;nm=corruptblood_resources;npid=shocking5;delay=5} @self
+    
+    - changepart{m=cpblood_ravagemarker;pid=rswa_1;nm=corruptblood_resources;npid=shocking6;delay=6} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_2;nm=corruptblood_resources;npid=shocking6;delay=6} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_3;nm=10corruptblood_resources;npid=shocking6;delay=6} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_4;nm=corruptblood_resources;npid=shocking6;delay=6} @self
+    
+    - changepart{m=cpblood_ravagemarker;pid=rswa_1;nm=corruptblood_resources;npid=shocking7;delay=7} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_2;nm=corruptblood_resources;npid=shocking7;delay=7} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_3;nm=corruptblood_resources;npid=shocking7;delay=7} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_4;nm=corruptblood_resources;npid=shocking7;delay=7} @self
+    
+    - changepart{m=cpblood_ravagemarker;pid=rswa_1;nm=corruptblood_resources;npid=shocking8;delay=8} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_2;nm=corruptblood_resources;npid=shocking8;delay=8} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_3;nm=corruptblood_resources;npid=shocking8;delay=8} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_4;nm=corruptblood_resources;npid=shocking8;delay=8} @self
+    
+    - changepart{m=cpblood_ravagemarker;pid=rswa_1;nm=corruptblood_resources;npid=shocking9;delay=9} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_2;nm=corruptblood_resources;npid=shocking9;delay=9} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_3;nm=corruptblood_resources;npid=shocking9;delay=9} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_4;nm=corruptblood_resources;npid=shocking9;delay=9} @self
+    
+    - changepart{m=cpblood_ravagemarker;pid=rswa_1;nm=corruptblood_resources;npid=shocking10;delay=10} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_2;nm=corruptblood_resources;npid=shocking10;delay=10} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_3;nm=corruptblood_resources;npid=shocking10;delay=10} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_4;nm=corruptblood_resources;npid=shocking10;delay=10} @self
+
+    - changepart{m=cpblood_ravagemarker;pid=rswa_1;nm=corruptblood_resources;npid=shocking11;delay=11} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_2;nm=corruptblood_resources;npid=shocking11;delay=11} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_3;nm=corruptblood_resources;npid=shocking11;delay=11} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_4;nm=corruptblood_resources;npid=shocking11;delay=11} @self
+    
+    - changepart{m=cpblood_ravagemarker;pid=rswa_1;nm=corruptblood_resources;npid=shocking12;delay=12} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_2;nm=corruptblood_resources;npid=shocking12;delay=12} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_3;nm=corruptblood_resources;npid=shocking12;delay=12} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_4;nm=corruptblood_resources;npid=shocking12;delay=12} @self
+    
+    - changepart{m=cpblood_ravagemarker;pid=rswa_1;nm=corruptblood_resources;npid=shocking13;delay=13} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_2;nm=corruptblood_resources;npid=shocking13;delay=13} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_3;nm=corruptblood_resources;npid=shocking13;delay=13} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_4;nm=corruptblood_resources;npid=shocking13;delay=13} @self
+
+    - changepart{m=cpblood_ravagemarker;pid=rswa_1;nm=corruptblood_resources;npid=shocking14;delay=14} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_2;nm=corruptblood_resources;npid=shocking14;delay=14} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_3;nm=corruptblood_resources;npid=shocking14;delay=14} @self
+    - changepart{m=cpblood_ravagemarker;pid=rswa_4;nm=corruptblood_resources;npid=shocking14;delay=14} @self ];sync=false} @self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=17} @Self ~onSpawn 1
+
+cpblood_ravagemarker2:
+  Hidden: true
+  Template: vfx_ForgottenTerrors_template
+  Skills:
+   - model{mid=cpblood_dustplosionmarker;n=false;damagetint=false} @self ~onSpawn
+   - cullconfig{vc=false;bkc=false;blc=false;alod=NO_CULL} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=cpblood_dustplosionmarker;pid=frame1;nm=corruptblood_resources;npid=ravage1;delay=1} @self
+    - changepart{m=cpblood_dustplosionmarker;pid=frame1;nm=corruptblood_resources;npid=ravage2;delay=2} @self
+    - changepart{m=cpblood_dustplosionmarker;pid=frame1;nm=corruptblood_resources;npid=ravage3;delay=3} @self
+    - changepart{m=cpblood_dustplosionmarker;pid=frame1;nm=corruptblood_resources;npid=ravage4;delay=4} @self
+    - changepart{m=cpblood_dustplosionmarker;pid=frame1;nm=corruptblood_resources;npid=ravage5;delay=5} @self
+    - changepart{m=cpblood_dustplosionmarker;pid=frame1;nm=corruptblood_resources;npid=ravage6;delay=6} @self
+    - changepart{m=cpblood_dustplosionmarker;pid=frame1;nm=corruptblood_resources;npid=ravage7;delay=7} @self
+    - changepart{m=cpblood_dustplosionmarker;pid=frame1;nm=corruptblood_resources;npid=ravage8;delay=8} @self
+    - changepart{m=cpblood_dustplosionmarker;pid=frame1;nm=corruptblood_resources;npid=ravage9;delay=9} @self
+    - changepart{m=cpblood_dustplosionmarker;pid=frame1;nm=corruptblood_resources;npid=ravage10;delay=10} @self
+    - changepart{m=cpblood_dustplosionmarker;pid=frame1;nm=corruptblood_resources;npid=ravage11;delay=11} @self
+    - changepart{m=cpblood_dustplosionmarker;pid=frame1;nm=corruptblood_resources;npid=ravage12;delay=12} @self
+    - changepart{m=cpblood_dustplosionmarker;pid=frame1;nm=corruptblood_resources;npid=ravage13;delay=13} @self
+    - changepart{m=cpblood_dustplosionmarker;pid=frame1;nm=corruptblood_resources;npid=ravage14;delay=14} @self];sync=false} @self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=16} @Self ~onSpawn
+  
+#123123

@@ -1,0 +1,89 @@
+{
+  "rogue.cutthroat.combo.dash": {
+    "category": "master",
+    "sounds": [
+      "rogue_cutthroat_combo_dash"
+    ],
+    "subtitle": "subtitles.custom.name"
+  },
+
+  "rogue.cutthroat.combo.spindash": {
+    "category": "master",
+    "sounds": [
+      "rogue_cutthroat_combo_spindash"
+    ],
+    "subtitle": "subtitles.custom.name"
+  },
+
+  "rogue.cutthroat.combo.xslash": {
+    "category": "master",
+    "sounds": [
+      "rogue_cutthroat_combo_xslash"
+    ],
+    "subtitle": "subtitles.custom.name"
+  },
+
+  "rogue.grappling.hook.in": {
+    "category": "master",
+    "sounds": [
+      "rogue_grappling_hook_in"
+    ],
+    "subtitle": "subtitles.custom.name"
+  },
+
+  "rogue.grappling.hook.out": {
+    "category": "master",
+    "sounds": [
+      "rogue_grappling_hook_out"
+    ],
+    "subtitle": "subtitles.custom.name"
+  },
+
+  "rogue.mark.of.death": {
+    "category": "master",
+    "sounds": [
+      "rogue_mark_of_death"
+    ],
+    "subtitle": "subtitles.custom.name"
+  },
+
+  "rogue.mark.of.death.disappear": {
+    "category": "master",
+    "sounds": [
+      "rogue_mark_of_death_disappear"
+    ],
+    "subtitle": "subtitles.custom.name"
+  },
+
+  "rogue.slice.and.dice.1": {
+    "category": "master",
+    "sounds": [
+      "rogue_slice_and_dice_1"
+    ],
+    "subtitle": "subtitles.custom.name"
+  },
+
+  "rogue.slice.and.dice.2": {
+    "category": "master",
+    "sounds": [
+      "rogue_slice_and_dice_2"
+    ],
+    "subtitle": "subtitles.custom.name"
+  },
+
+  "rogue.slice.and.dice.3": {
+    "category": "master",
+    "sounds": [
+      "rogue_slice_and_dice_3"
+    ],
+    "subtitle": "subtitles.custom.name"
+  },
+
+  "rogue.smokebomb": {
+    "category": "master",
+    "sounds": [
+      "rogue_smokebomb"
+    ],
+    "subtitle": "subtitles.custom.name"
+  }
+}

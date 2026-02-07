@@ -1,0 +1,3 @@
+minecraft_font:
+  file: minecraft_font.ttf #Optional. defines your ttf location.
+  scale: 16

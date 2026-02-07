@@ -1,0 +1,16 @@
+Id: bs_vm_armadillo # <-- ID MCPets uses
+MythicMob: BS_Vote_Armadillo # <-- MythicMob of the pet
+Permission: bisectstudios.pet.bs_vm_armadillo # Change or give this permission to players
+Mountable: false
+Distance: 6 # <-- Distance (radius) from the owner before the pet moves toward them
+SpawnRange: 2 # <-- radius it will spawn
+ComingBackRange: 2 # <-- Similar to Distance, but is the distance (radius) the pet will stop away from it's owner when coming back
+Icon:
+  Name: §x§e§6§7§f§5§2V§x§e§7§8§4§5§5o§x§e§7§8§a§5§8t§x§e§8§8§f§5§be §x§e§8§9§4§5§eA§x§e§9§9§9§6§1r§x§e§a§9§f§6§4m§x§e§a§a§4§6§7a§x§e§b§a§9§6§ad§x§e§b§a§e§6§di§x§e§c§b§4§7§0l§x§e§c§b§9§7§3l§x§e§d§b§e§7§6o
+  # <-- Name, has to be in console - I use https://rgb.birdflop.com
+
+  TextureBase64: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2U0ZDUwZTViZTM1MjE2ZjkxNTliODdiNmEzMzU2MzA5ZjU3NGE1NDE5NzY4NTg4NDhmY2FiYjI3YjY3Y2YxYyJ9fX0=
+  # TextureBase64 is the head it uses - use https://minecraft-heads.com . When you find the head use want, copy the 'Other' > 'Value'
+  Description:
+  - §eVote Mob Special
+# 64324e02f907af9bae721b1a57f34c13

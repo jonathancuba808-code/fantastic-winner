@@ -1,0 +1,1 @@
+{"parent":"item/handheld","textures":{"layer0":"item/stone_sword"},"overrides":[{"predicate":{"custom_model_data":4572},"model":"models/warrior_battleblade"}],"mcmodels":"fd151a492020237c6c24be9beed48bce"}

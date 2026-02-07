@@ -1,0 +1,205 @@
+statue_fallenMauler_em_generic:
+  Type: vindicator
+  Display: ''
+  Health: 30
+  Faction: FallenHero
+  AIGoalSelectors:
+  - 0 clear
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  - PROJECTILE 0.6
+  Drops:
+  Damage: 10
+  Skills:
+  - model{mid=fallen_mauler_statue;damagetint=false;initrender=false} @self ~onSpawn
+  - model{mid=fallen_mauler_statue;damagetint=false;initrender=false} @self ~onLoad
+  - bodyclamp{m=statue_fallenMauler_em;c=360;delay=1} @self ~onSpawn
+  - cancelEvent{sync=true} ~onAttack
+  - stance{stance=statue} @self ~onSpawn
+  
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=1;v=1} @selflocation ~onDamaged 1 ?!damagecause{c=PROJECTILE}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=1.6;v=1} @selflocation ~onDamaged 1 ?damagecause{c=PROJECTILE}
+  - skill{s=[
+    - sound{s=emaginationfallenravager:custom.fallenravager.statuefall;p=1;v=1.5} @selflocation
+    - model{mid=fallen_mauler_statue;remove=true;killowner=false;delay=2} @self
+    - bodyclamp{m=statue_fallenMauler_em;c=0} @self
+    - summon{mob=statue_fallenMauler_em_death;amount=1;noise=0;r=0;yr=0} @SelfLocation];sync=true} @Self ~onDeath
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.01 #0.27
+    Interactable: true
+    Invincible: false
+    NoGravity: false
+    NoAi: false
+    FollowRange: 2
+    KnockbackResistance: 1
+    PreventOtherDrops: true
+
+statue_fallenMauler_em_n:
+  Template: statue_fallenMauler_em_generic
+  Display: ''
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=180} @Self ~onSpawn
+  - spin{auraName=spin;d=9999999;v=0} @self
+  - renderinit{mid=fallen_mauler_statue} @self ~onSpawn
+
+statue_fallenMauler_em_s:
+  Template: statue_fallenMauler_em_generic
+  Display: ''
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=0} @Self ~onSpawn
+  - spin{auraName=spin;d=9999999;v=0} @self
+  - renderinit{mid=fallen_mauler_statue} @self ~onSpawn
+
+
+statue_fallenMauler_em_w:
+  Template: statue_fallenMauler_em_generic
+  Display: ''
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=90} @Self ~onSpawn
+  - spin{auraName=spin;d=9999999;v=0} @self
+  - renderinit{mid=fallen_mauler_statue} @self ~onSpawn
+
+statue_fallenMauler_em_e:
+  Template: statue_fallenMauler_em_generic
+  Display: ''
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=-90} @Self ~onSpawn
+  - spin{auraName=spin;d=9999999;v=0} @self
+  - renderinit{mid=fallen_mauler_statue} @self ~onSpawn
+
+statue_fallenMauler_em_death:
+  Type: vindicator
+  Display: ''
+  Health: 5
+  Faction: FallenHero
+  AIGoalSelectors:
+  - 0 clear
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  - PROJECTILE 0.6
+  Drops:
+  - exp 20-40 1
+  Damage: 10
+  Skills:
+  - cancelEvent{sync=true} ~onAttack
+  - stance{stance=statue} @self ~onSpawn
+  - model{mid=fallen_mauler3;killowner=false;damagetint=false} @self ~onSpawn 
+  - model{mid=fallen_mauler3;killowner=false;damagetint=false} @self ~onLoad
+  - state{s=death;li=0;lo=3;frame=0} @self ~onSpawn
+  - skill{s=[
+    - changeparent{model=fallen_mauler3;parent=left_leg_death;child=left_leg} @self
+    - changeparent{model=fallen_mauler3;parent=left_shin_death;child=left_shin} @self
+    - changeparent{model=fallen_mauler3;parent=right_leg_death;child=right_leg} @self
+    - changeparent{model=fallen_mauler3;parent=right_shin_death;child=right_shin} @self
+    - changeparent{model=fallen_mauler3;parent=left_forearm_death;child=left_forearm} @self
+    - changeparent{model=fallen_mauler3;parent=right_forearm_death;child=right_forearm} @self
+    - changeparent{model=fallen_mauler3;parent=head_death;child=head} @self
+    - changeparent{model=fallen_mauler3;parent=hip_death;child=hip} @self
+    - changeparent{model=fallen_mauler3;parent=chest_death;child=chest} @self
+    - changeparent{model=fallen_mauler3;parent=weapon_death;child=superior_right_weapon_control} @self]} ~onSpawn
+  - bodyclamp{m=statue_fallenMauler_em;c=0;delay=1} @self ~onSpawn
+  - effect:particles{particle=cloud;amount=60;hS=1.1;vS=0.55;speed=0;size=4.5;delay=59} @ModelPart{p=hip;offset=LOCAL;y=0} ~onSpawn
+  - effect:particles{particle=cloud;amount=30;hS=0.6;vS=0.2;speed=0;size=4.5;delay=59} @ModelPart{p=right_weapon;offset=LOCAL;y=0} ~onSpawn
+  - effect:particles{particle=cloud;amount=15;hS=0.3;vS=0.3;speed=0;size=4.5;delay=59} @ModelPart{p=head;offset=LOCAL;y=0} ~onSpawn
+  - remove{delay=60} @Self ~onSpawn
+  
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.01 #0.27
+    Interactable: false
+    Invincible: true
+    NoGravity: false
+    NoAi: false
+    FollowRange: 2
+    KnockbackResistance: 1
+    PreventOtherDrops: true
+
+
+statue_fallenMauler_em_generic_activable:
+  Template: statue_fallenMauler_em_generic
+  Health: 30
+  Skills:
+  - skill{s=[
+    - summon{mob=fallenMauler_em_revived;amount=1;noise=0;r=0;yr=0} @SelfLocation
+    - signal{s=RAMPAGE_ACTIVATE;delay=1} @LivingEntitiesInRadius{r=5;limit=1;sort=NEAREST;conditions=[  - mythicmobtype{t=fallenMauler_em_revived} true ]}
+    - remove{delay=1} @self];sync=true} ~onDamaged >20% 0.14
+
+statue_fallenMauler_em_activable_n:
+  Template: statue_fallenMauler_em_generic_activable
+  Display: ''
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=180} @Self ~onSpawn
+  - renderinit{mid=fallen_mauler_statue} @self ~onSpawn
+
+statue_fallenMauler_em_activable_s:
+  Template: statue_fallenMauler_em_generic_activable
+  Display: ''
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=0} @Self ~onSpawn
+  - spin{auraName=spin;d=9999999;v=0} @self
+  - renderinit{mid=fallen_mauler_statue} @self ~onSpawn
+
+statue_fallenMauler_em_activable_w:
+  Template: statue_fallenMauler_em_generic_activable
+  Display: ''
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=90} @Self ~onSpawn
+  - spin{auraName=spin;d=9999999;v=0} @self
+  - renderinit{mid=fallen_mauler_statue} @self ~onSpawn
+
+statue_fallenMauler_em_activable_e:
+  Template: statue_fallenMauler_em_generic_activable
+  Display: ''
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=-90} @Self ~onSpawn
+  - spin{auraName=spin;d=9999999;v=0} @self
+  - renderinit{mid=fallen_mauler_statue} @self ~onSpawn
+
+
+statue_fallenMauler_em_generic_activable_resist:
+  Template: statue_fallenMauler_em_generic
+  Health: 70
+  Skills:
+  - skill{s=[
+    - summon{mob=fallenMauler_em_revived;amount=1;noise=0;r=0;yr=0} @SelfLocation
+    - setvariable{var=caster.reviving;value="1";t=integer} @Self
+    - signal{s=RAMPAGE_ACTIVATE;delay=1} @LivingEntitiesInRadius{r=5;limit=1;sort=NEAREST;conditions=[  - mythicmobtype{t=fallenMauler_em_revived} true ]}
+    - remove{delay=1} @self];sync=true} ~onDamaged >10% 0.09 
+statue_fallenMauler_em_activable_resist_n:
+  Template: statue_fallenMauler_em_generic_activable_resist
+  Display: ''
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=180} @Self ~onSpawn
+  - spin{auraName=spin;d=9999999;v=0} @self
+  - renderinit{mid=fallen_mauler_statue} @self ~onSpawn
+
+statue_fallenMauler_em_activable_resist_s:
+  Template: statue_fallenMauler_em_generic_activable_resist
+  Display: ''
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=0} @Self ~onSpawn
+  - spin{auraName=spin;d=9999999;v=0} @self
+  - renderinit{mid=fallen_mauler_statue} @self ~onSpawn
+
+statue_fallenMauler_em_activable_resist_w:
+  Template: statue_fallenMauler_em_generic_activable_resist
+  Display: ''
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=90} @Self ~onSpawn
+  - spin{auraName=spin;d=9999999;v=0} @self
+  - renderinit{mid=fallen_mauler_statue} @self ~onSpawn
+
+statue_fallenMauler_em_activable_resist_e:
+  Template: statue_fallenMauler_em_generic_activable_resist
+  Display: ''
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=-90} @Self ~onSpawn
+  - spin{auraName=spin;d=9999999;v=0} @self
+  - renderinit{mid=fallen_mauler_statue} @self ~onSpawn

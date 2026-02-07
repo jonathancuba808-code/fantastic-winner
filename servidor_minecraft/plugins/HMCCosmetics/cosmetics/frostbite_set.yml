@@ -1,0 +1,37 @@
+frostbite_cosmetics_wings:
+  height: 4
+  permission: cosmetics.frostbite_cosmetics_wings
+  dyeable: false
+  slot: BACKPACK
+  item:
+    material: POTION
+    model-data: 9923486
+    color: '#ffffff'
+    unbreakable: true
+    glow: false
+    amount: 1
+    item-flags:
+    - HIDE_ATTRIBUTES
+  firstperson-item:
+    material: POTION
+    model-data: 9923485
+    color: '#ffffff'
+    unbreakable: true
+    glow: false
+    amount: 1
+    item-flags:
+    - HIDE_ATTRIBUTES
+frostbite_cosmetics_helmet:
+  height: 0
+  permission: cosmetics.frostbite_cosmetics_helmet
+  dyeable: false
+  slot: HELMET
+  item:
+    material: POTION
+    model-data: 9923482
+    color: '#ffffff'
+    unbreakable: true
+    glow: false
+    amount: 1
+    item-flags:
+    - HIDE_ATTRIBUTES

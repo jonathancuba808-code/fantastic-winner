@@ -1,0 +1,14 @@
+dark_elegance-layout:
+  layouts:
+    1:
+      name: dark_elegance-hotbar
+      x: 50.0
+      y: 100
+    2:
+      name: dark_elegance-hotbar-top
+      x: 0.0
+      y: 0.0
+    3:
+      name: dark_elegance-hotbar-top-mmocore
+      x: 0.0
+      y: 0.0

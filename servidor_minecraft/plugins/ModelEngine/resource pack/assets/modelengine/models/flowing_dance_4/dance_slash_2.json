@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/flowing_dance_4","particle":"#0"},"elements":[{"from":[-8.0,8.0,-2.75],"to":[24.0,8.0,18.75],"faces":{"up":{"uv":[0.0,4.125,7.875,7.625],"tintindex":0,"rotation":180,"texture":"#0"},"down":{"uv":[0.0,7.625,7.875,4.125],"tintindex":0,"rotation":180,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

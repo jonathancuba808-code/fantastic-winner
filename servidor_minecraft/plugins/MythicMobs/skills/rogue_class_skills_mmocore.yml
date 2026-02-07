@@ -1,0 +1,257 @@
+rogue_vicious_cuts:
+  Conditions:
+  - crouching true
+  - hasaura{auraName=rogue_vicious_cuts_active} false
+  Skills:
+  - Aura{auraName=rogue_vicious_cuts_active;duration=100} @self
+  - particles{p=dust_color_transition;color1=#34141c;color2=#501f26;amount=3;hS=0.4;vS=0.4;y=0.5;size=0.75;speed=0.3;repeat=9;repeati=10} @self
+  
+rogue_vicious_cuts_apply:
+  Conditions:
+  - hasaura{auraName=rogue_vicious_cuts_active} true
+  Skills:
+  - sound{s=rogue.slice.and.dice.1;pitch=0.8} @self
+  - orbital{bulletType=MOB;mob=vfx_rogue_vicious_cuts;points=1;hr=1;vr=1;r=0;i=1;duration=100;oy=1.4;hp=false;hnp=false}
+  - damage{a=1.5;pkb=true;hnp=true;hp=true;preventimmunity=true;repeat=3;repeati=25;delay=4}
+  
+rogue_vicious_cuts_apply_mod_execute:
+  Skills:
+  - orbital{bulletType=MOB;mob=vfx_rogue_vicious_cuts;points=1;hr=1;vr=1;r=0;i=1;duration=100;oy=1.4;hp=false;hnp=false}
+  - damage{a=1.5;pkb=false;hnp=true;hp=true;preventimmunity=true;repeat=3;repeati=25;delay=4}
+
+rogue_slice_and_dice:
+  Skills:
+  - skill{s=rogue_slice_and_dice_skill}
+  
+rogue_slice_and_dice_skill:
+  Skills:
+  - skill{s=rogue_slice_and_dice_slash1}
+  - skill{s=rogue_slice_and_dice_slash2}
+  - skill{s=rogue_slice_and_dice_stab}
+  
+rogue_slice_and_dice_slash1:
+  Conditions:
+  - hasaurastacks{auraName=rogue_slice_and_dice_stack;stacks=1} false
+  - hasaurastacks{auraName=rogue_slice_and_dice_stack;stacks=2} false
+  - hasaurastacks{auraName=rogue_slice_and_dice_stack;stacks=3} false
+  Skills:
+  - sound{s=rogue.slice.and.dice.1} @self
+  - Aura{auraName=rogue_slice_and_dice_stack;duration=15;maxStacks=3;delay=1} @self
+  - totem{md=2;c=1;oH=rogue_slice_and_dice_damage1;hnp=true;hp=true;hR=1.7;vR=2;i=1;drawhitbox=false;delay=1} @forward{f=1.1;lockpitch=true}
+  - summon{type=vfx_rogue_slice_and_dice_slash1;amount=1;radius=0;yRadius=0;onSurface=false} @forward{f=1;lockpitch=true;yo=1.4}
+  
+rogue_slice_and_dice_slash2:
+  Conditions:
+  - hasaurastacks{auraName=rogue_slice_and_dice_stack;stacks=1} true
+  - hasaurastacks{auraName=rogue_slice_and_dice_stack;stacks=2} false
+  - hasaurastacks{auraName=rogue_slice_and_dice_stack;stacks=3} false
+  Skills:
+  - sound{s=rogue.slice.and.dice.2} @self
+  - Aura{auraName=rogue_slice_and_dice_stack;duration=15;maxStacks=3;delay=1} @self
+  - totem{md=2;c=1;oH=rogue_slice_and_dice_damage2;hnp=true;hp=true;hR=1.7;vR=2;i=1;drawhitbox=false;delay=1} @forward{f=1.1;lockpitch=true}
+  - summon{type=vfx_rogue_slice_and_dice_slash2;amount=1;radius=0;yRadius=0;onSurface=false} @forward{f=1;lockpitch=true;yo=1.4}
+  
+rogue_slice_and_dice_stab:
+  Conditions:
+  - hasaurastacks{auraName=rogue_slice_and_dice_stack;stacks=1} false
+  - hasaurastacks{auraName=rogue_slice_and_dice_stack;stacks=2} true
+  - hasaurastacks{auraName=rogue_slice_and_dice_stack;stacks=3} false
+  Skills:
+  - sound{s=rogue.slice.and.dice.3} @self
+  - summon{type=vfx_rogue_slice_and_dice_stab;amount=1;radius=0;yRadius=0;onSurface=false} @self
+  - totem{md=2;c=1;oH=rogue_slice_and_dice_damage3;hnp=true;hp=true;hR=1.9;vR=2;i=1;drawhitbox=false;delay=2} @forward{f=3;lockpitch=true}
+  - lunge{velocity=0.3;velocityY=0} @self
+  - auraremove{auraName=rogue_slice_and_dice_stack} @self
+  
+rogue_slice_and_dice_damage1:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  Skills:
+  - damage{a=<modifier.damage>;pkb=false;hnp=true;hp=true;preventimmunity=true}
+  - summon{type=vfx_rogue_slash_effect_slash1;amount=1;onSurface=false}
+  - skill{s=rogue_vicious_cuts_apply}
+  
+rogue_slice_and_dice_damage2:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  Skills:
+  - damage{a=<modifier.damage>+2;pkb=false;hnp=true;hp=true;preventimmunity=true}
+  - summon{type=vfx_rogue_slash_effect_slash2;amount=1;onSurface=false}
+  - skill{s=rogue_vicious_cuts_apply}
+  
+rogue_slice_and_dice_damage3:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  Skills:
+  - damage{a=<modifier.damage>+3;pkb=false;hnp=true;hp=true;preventimmunity=true}
+  - summon{type=vfx_rogue_slash_effect_slash1;amount=1;onSurface=false}    
+  - summon{type=vfx_rogue_slash_effect_slash2;amount=1;onSurface=false}
+  - skill{s=rogue_vicious_cuts_apply}
+  
+rogue_cutthroat_combo:
+  Conditions:
+  - crouching false
+  Skills:
+  - skill{s=rogue_cutthroat_combo_skill}
+  
+rogue_cutthroat_combo_skill:
+  Skills:
+  - skill{s=rogue_cutthroat_combo_part1}
+  - skill{s=rogue_cutthroat_combo_part2}
+  - skill{s=rogue_cutthroat_combo_part3}
+  
+rogue_cutthroat_combo_part1:
+  Conditions:
+  - hasaurastacks{auraName=rogue_cutthroat_combo_stack;stacks=1} false
+  - hasaurastacks{auraName=rogue_cutthroat_combo_stack;stacks=2} false
+  - hasaurastacks{auraName=rogue_cutthroat_combo_stack;stacks=3} false
+  - hasaura{auraName=rogue_cutthroat_combo_stagger3} false
+  Skills:
+  - sound{s=rogue.cutthroat.combo.dash} @self
+  - Aura{auraName=rogue_cutthroat_combo_stack;duration=15;maxStacks=3;delay=1} @self
+  - Aura{auraName=rogue_cutthroat_combo_stagger1;duration=3;delay=1} @self
+  - Aura{auraName=rogue_cutthroat_combo_stagger3;duration=80;delay=1} @self
+  - lunge{velocity=2;velocityY=0} @forward{lockpitch=true}
+  - skill{s=rogue_cutthroat_combo_damage1} @Forward{f=8;lockpitch=true}
+  - summon{type=vfx_rogue_cutthroat_combo_part1;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=3;lockpitch=true}
+  - summon{type=vfx_rogue_cutthroat_combo_dash;amount=1;radius=0;yRadius=0;onSurface=true} @self
+  
+rogue_cutthroat_combo_damage1:  
+  Skills:
+  - damage{a=<modifier.damage>;pkb=true;hnp=true;hp=true;preventimmunity=true} @LivingInLine{r=2;fo=true;lockpitch=true}
+  
+rogue_cutthroat_combo_part2:
+  Conditions:
+  - hasaurastacks{auraName=rogue_cutthroat_combo_stack;stacks=1} true
+  - hasaurastacks{auraName=rogue_cutthroat_combo_stack;stacks=2} false
+  - hasaurastacks{auraName=rogue_cutthroat_combo_stack;stacks=3} false
+  - hasaura{auraName=rogue_cutthroat_combo_stagger1} false
+  - onground true
+  Skills:
+  - sound{s=rogue.cutthroat.combo.xslash} @self
+  - Aura{auraName=rogue_cutthroat_combo_stack;duration=25;maxStacks=3;delay=1} @self
+  - Aura{auraName=rogue_cutthroat_combo_stagger2;duration=4;delay=1} @self
+  - Aura{auraName=rogue_cutthroat_combo_stagger3;duration=80;delay=1} @self
+  - skill{s=rogue_cuttroat_combo_lunge;delay=1} @forward{f=-7;y=0;lockpitch=true}
+  - damage{a=<modifier.damage>;pkb=false;hnp=true;hp=true;preventimmunity=true} @EIR{r=3}
+  - summon{type=vfx_rogue_cutthroat_combo_part2;amount=1;radius=0;yRadius=0;onSurface=true} @self
+  
+rogue_cuttroat_combo_lunge:
+  Skills:
+  - lunge{velocity=1;velocityY=0.4}
+  
+rogue_cutthroat_combo_part3:
+  Conditions:
+  - hasaurastacks{auraName=rogue_cutthroat_combo_stack;stacks=1} false
+  - hasaurastacks{auraName=rogue_cutthroat_combo_stack;stacks=2} true
+  - hasaurastacks{auraName=rogue_cutthroat_combo_stack;stacks=3} false
+  - hasaura{auraName=rogue_cutthroat_combo_stagger2} false
+  Skills:
+  - sound{s=rogue.cutthroat.combo.spindash} @self
+  - Aura{auraName=rogue_cutthroat_combo_stack;duration=15;maxStacks=3;delay=1} @self
+  - Aura{auraName=rogue_cutthroat_combo_stagger3;duration=80;delay=1} @self
+  - lunge{velocity=3;velocityY=-0.4} @forward{f=15;lockpitch=true}
+  - summon{type=vfx_rogue_cutthroat_combo_dust;amount=1;radius=0;yRadius=0;onSurface=true} @self
+  - skill{s=rogue_cutthroat_combo_damage1} @forward{f=8;lockpitch=true}
+  - orbital{bulletType=MOB;mob=vfx_rogue_cutthroat_combo_part3_slash1;hr=1;vr=1;hp=false;hnp=false;r=0;points=1;i=1;oy=2.3;duration=17} @self
+  - orbital{bulletType=MOB;mob=vfx_rogue_cutthroat_combo_part3_slash2;hr=1;vr=1;hp=false;hnp=false;r=0;points=1;i=1;oy=2.3;duration=17} @self
+  
+rogue_smokebomb:
+  Skills:
+  - sound{s=rogue.smokebomb} @self
+  - summon{type=vfx_rogue_smokebomb;amount=1;radius=0;yRadius=0;onSurface=true} @self
+  - skill{s=rogue_smokebomb_effects} @selflocation
+  - damage{a=<modifier.damage>;pkb=true;hnp=true;hp=true;preventimmunity=true} @EIR{r=8}
+  
+rogue_smokebomb_effects:
+  Skills:
+  - potion{type=SLOW;duration=15;level=2;hasParticles=false;repeat=20;repeati=5} @ENO{r=8}
+  - particles{p=dust_color_transition;color1=#501f26;color2=#240d16;radius=1.5;points=20;amount=5;hS=0.3;vS=0.3;y=0;size=0.8;repeat=20;repeati=5} @ENO{r=8}
+
+rogue_grappling_hook:
+  Skills:
+  - sound{s=rogue.grappling.hook.in} @self
+  - sound{s=rogue.grappling.hook.out;delay=10} @self
+  - summon{type=vfx_rogue_grappling_hook;amount=1;radius=0;yRadius=0;onSurface=false} @self
+  - summon{type=vfx_rogue_grappling_hook_smoke;amount=1;radius=0;yRadius=0;onSurface=false} @self
+  - skill{s=rogue_grappling_hook_start;origin=@SelfEyeLocation{fo=-0.5;yo=-0.2}} @forward{f=12;uel=true}
+  
+rogue_grappling_hook_start:
+  Skills:
+    - projectile{tickinterpolation=3;onHit=rogue_grappling_hook_execute_entity;onHitBlockSkill=rogue_grappling_hook_execute_block;v=100;i=1;hR=0.8;vR=0.8;mr=8;hnp=true;hO=0;sE=true;sB=true;hs=false;hfs=0;sfo=0;syo=0;tyo=0;sso=0;fo=true;byo=0;drawhitbox=false;ham=true} 
+
+rogue_grappling_hook_execute_entity:
+  Skills:
+  - skill{s=rogue_grappling_hook_lunge_mob;delay=10} @forward{f=7;y=0;lockpitch=false}
+  
+rogue_grappling_hook_lunge_mob:
+  Skills:
+  - leap{velocity=100} @origin
+  - jump{velocity=-1} @origin
+  - potion{type=SLOW_FALLING;duration=20;level=1;hasParticles=false} @self
+  - pull{v=20;to=false} @EntitiesNearOrigin{r=2;limit=3}
+  - damage{a=<damage.modifier>;hp=true;preventimmunity=true;pkb=false;hnp=true} @EntitiesNearOrigin{r=2;limit=3}
+  
+rogue_grappling_hook_execute_block:
+  Skills:
+  - skill{s=rogue_grappling_hook_lunge_block;delay=10} @forward{f=7;y=0;lockpitch=false}
+  
+rogue_grappling_hook_lunge_block:
+  Skills:
+  - leap{velocity=250} @origin
+  - potion{type=SLOW_FALLING;duration=20;level=1;hasParticles=false} @self
+  
+rogue_mark_of_death:
+  Skills:
+  - skill{s=rogue_mark_of_death_skill}
+  
+rogue_mark_of_death_skill:
+  Skills:
+  - skill{s=rogue_mark_of_death_stacks}
+  - skill{s=rogue_mark_of_death_start}
+  
+rogue_mark_of_death_stacks:
+  Cooldown: 15
+  Skills:
+  - sound{s=universal.ultimate.sfx} @self
+  - Aura{auraName=rogue_mark_of_death_stack;stack=1;maxStacks=3;delay=1;duration=200} @self
+  - Aura{auraName=rogue_mark_of_death_stack;stack=1;maxStacks=3;delay=2;duration=200} @self
+  - Aura{auraName=rogue_mark_of_death_stack;stack=1;maxStacks=3;delay=3;duration=200} @self
+  
+rogue_mark_of_death_start:
+  Conditions:
+  - hasaura{auraName=rogue_mark_of_death_stack} true
+  Skills:
+  - skill{s=rogue_mark_of_death_projectile} @forward{f=12;uel=true}
+  
+rogue_mark_of_death_projectile:
+  Skills:
+  - projectile{onHitSkill=rogue_mark_of_death_hit;v=80;i=1;hR=0.5;vR=0.5;mr=20;hnp=true;hs=false;fo=true;drawhitbox=false;ham=true;tickinterpolation=5}   
+  
+rogue_mark_of_death_hit:
+  Skills:
+  - skill{s=rogue_mark_of_death_execute} @EntitiesNearOrigin{r=2.5;limit=1;sort=NEAREST}
+  - auraremove{auraName=rogue_mark_of_death_stack;stacks=1} @self
+  
+rogue_mark_of_death_execute:
+  Skills:
+  - summon{type=vfx_rogue_mark_of_death_mark;amount=1}
+  - delay 9
+  - summon{type=vfx_rogue_mark_of_death_disappear;amount=1} @self
+  - skill{s=damage_prevent;duration=2} @self
+  - delay 1
+  - sound{s=rogue.mark.of.death.disappear} @self
+  - teleport{spreadh=0;spreadv=0}
+  - delay 1
+  - lunge{velocity=1;velocityY=0} @self
+  - sound{s=rogue.mark.of.death} @self
+  - orbital{bulletType=MOB;mob=vfx_rogue_mark_of_death_indicator;points=1;hr=1;vr=1;r=0;i=1;duration=15;oy=1.4;hp=false;hnp=false}
+  - delay 15
+  - summon{type=vfx_rogue_mark_of_death;amount=1}
+  - potion{type=SLOW;duration=60;level=2;hasParticles=false}
+  - skill{s=rogue_vicious_cuts_apply_mod_execute}
+  - damage{a=<modifier.damage>;pkb=false;hnp=true;hp=true;preventimmunity=true}
+  
+damage_prevent:
+  Skills:
+  - onDamaged{cE=true;d=10} @self  

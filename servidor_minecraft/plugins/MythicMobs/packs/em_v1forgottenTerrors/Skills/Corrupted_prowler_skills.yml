@@ -1,0 +1,1932 @@
+em_cprowler_stepsound:
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="none"} true
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="decapitation"} false
+  - variableEquals{var=caster.casting;value="1"} false
+  - onground true
+  Skills:
+  - sound{s=entity.skeleton.step;p=0.85;v=0.5} @selflocation 
+em_cprowler_stepsound_run:
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="decapitation"} false
+  - onground true
+  Skills:
+  - sound{s=entity.skeleton.step;p=0.85;v=0.5} @selflocation 
+
+cprowler_hp_check:
+  Cooldown: 9999
+  Conditions:
+  - playersinradius{a=>2;r=60} true
+  Skills:
+  - delay 5
+  - skill{s=cprowler_hp_checkB} @pir{r=80} #MODIFY THE RANGE TO CHECK FOR PLAYERS
+# GUIDE TO CUSTOMIZE HEALTH SCALING
+cprowler_hp_checkB:
+  Conditions:
+  Skills:
+  - setvariable{var=skill.amount_targets;val=<skill.targets>}
+  - setmaxhealth{amount=<caster.var.eichpee>+2*<skill.var.amount_targets>;mode=SCALE} @self
+# AMOUNT = (BASE HEALTH, modified in mob's hp) + (ADDITIONAL NET HEALTH PER PLAYER IN RANGE) * <skill.var.amount_targets>
+# (The last argument is just the variable for number of players, don't touch it.)
+
+
+# HURTSKILLS hurt1: hurt:
+hurtfxcprowler:
+  Conditions:
+  - damagecause{c=FIRE_TICK,CAMPFIRE,FIRE,CRAMMING,CONTACT} false
+  - DamageAmount{damageamount=>2} true
+  Skills:
+  - randomskill{s=[
+      - summon{mob=darkbloodspill_1;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-2.2}
+    ],
+      [
+      - summon{mob=darkbloodspill_2;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-1.2}
+    ],
+      [
+      - summon{mob=darkbloodspill_2a;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-1.2}
+    ],
+      [
+      - summon{mob=darkbloodspill_2b;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-1.2}
+    ],
+      [
+      - summon{mob=darkbloodspill_2c;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-1.2}
+    ],
+      [
+      - summon{mob=darkbloodspill_2d;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-1.2}
+    ]}
+hurt_cprowler_em:
+  Cooldown: 0.5
+  Skills:
+  - Aura{auraName=nule_parry;duration=12;delay=1;mergeSameCaster=true;refreshduration=true} @self 0.9 ?!hasaura{n=nule_parry}
+  - Aura{auraName=nule_parry;duration=30;delay=1;mergeSameCaster=true;refreshduration=true} @self 0.9 ?hasaura{n=nule_parry} ?!hasaura{n=parried}
+
+  - skill{s=cprowler_backhurtCLEAR;sync=true} @Trigger 0.25
+  - variableadd{var=caster.hitrec;amount=1} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=hurt1;lo=6;remove=true} @self
+  - state{state=hurt2;lo=6;remove=true} @self
+  - state{state=hurt3;lo=6;remove=true} @self
+  - state{state=hurt4;lo=6;remove=true} @self
+  - randomskill{s=[
+      - state{state=hurt1;li=0;lo=0} @self
+    ],
+      [
+      - state{state=hurt2;li=0;lo=0} @self
+    ],
+      [
+      - state{state=hurt4;li=0;lo=0} @self
+    ],
+      [
+      - state{state=hurt3;li=0;lo=0} @self
+    ]}
+  - skill{s=countertacked_cprowler_A;cooldown=2;sync=true} @self ?!hasaura{n=nule_parry} ?variableEquals{var=caster.vulnerable;value="1"} ?DamageAmount{damageamount=>2}
+  - skill{s=countertacked_cprowler_A;cooldown=2;sync=true} @self 0.3 ?hasaura{n=nule_parry} ?variableEquals{var=caster.vulnerable;value="1"} ?DamageAmount{damageamount=>2}
+  
+  - Aura{auraName=shieldercprowler;onTick=cprowler_sdppcheck;interval=7;duration=40;mergeSameCaster=true} @self 0.15 ?variableInRange{var=caster.hitrec;value=5to8}
+  - Aura{auraName=shieldercprowler;onTick=cprowler_sdppcheck;interval=7;duration=40;mergeSameCaster=true} @self 0.28 ?variableInRange{var=caster.hitrec;value=>8}
+  - sound{s=emforgottenprowler:custom.corruptedprowler.hurt;p=<random.float.0.9to1.1>;v=1.5} @selflocation 0.85
+  - skill{s=hurtbad2_cprowler} @self 0.25 ?!hasaura{n=nule_parry} ?hasaura{n=hurtedbad} ?DamageAmount{damageamount=>2} ?!damagecause{c=FIRE_TICK,CAMPFIRE,FIRE,CRAMMING,CONTACT}
+  - skill{s=hurtbad2_cprowler} @self 0.08 ?hasaura{n=nule_parry} ?hasaura{n=hurtedbad} ?DamageAmount{damageamount=>2} ?!damagecause{c=FIRE_TICK,CAMPFIRE,FIRE,CRAMMING,CONTACT}
+
+  - skill{s=cprowler_hurtbad} @self <60% 0.1 ?!hasaura{n=parried} ?!hasaura{n=nule_parry} ?DamageAmount{damageamount=>2} ?!damagecause{c=FIRE_TICK,CAMPFIRE,FIRE,CRAMMING,CONTACT}
+  - skill{s=cprowler_hurtbad} @self <60% 0.04 ?!hasaura{n=parried} ?hasaura{n=nule_parry} ?DamageAmount{damageamount=>2} ?!damagecause{c=FIRE_TICK,CAMPFIRE,FIRE,CRAMMING,CONTACT}
+
+  - skill{s=cprowler_hurtbad} @self >60% 0.07 ?!hasaura{n=parried} ?!hasaura{n=nule_parry} ?DamageAmount{damageamount=>2} ?!damagecause{c=FIRE_TICK,CAMPFIRE,FIRE,CRAMMING,CONTACT}
+  - skill{s=cprowler_hurtbad} @self >60% 0.025 ?!hasaura{n=parried} ?hasaura{n=nule_parry} ?DamageAmount{damageamount=>2} ?!damagecause{c=FIRE_TICK,CAMPFIRE,FIRE,CRAMMING,CONTACT}
+  
+  - skill{s=cprowler_hurtbad} @self 0.25 ?hasaura{n=parried} ?!hasaura{n=nule_parry} ?!damagecause{c=FIRE_TICK,CAMPFIRE,FIRE,CRAMMING,CONTACT}
+  - skill{s=cprowler_hurtbad} @self 0.08 ?hasaura{n=parried} ?hasaura{n=nule_parry} ?!damagecause{c=FIRE_TICK,CAMPFIRE,FIRE,CRAMMING,CONTACT}
+
+#HURTBAD
+cprowler_hurtbad:
+  Cooldown: 6
+  Conditions:
+  - variableEquals{var=caster.casting;value="1"} false
+  - variableEquals{var=caster.running;value="2"} false
+  - hasaura{n=hurtedbad} false
+  - hasaura{n=hurtenedbad} false
+  Skills:
+  - setvariable{var=caster.skillxd;value="hurtb";t=string} @Self
+  - setstance{stance=casting} @self ?stance{s=normal}
+  - skill{s=cprowler_hurtCLEAR;sync=true} 0.35
+  - variableadd{var=caster.hitrec;amount=2} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - variableadd{var=caster.combor;amount=1} @self 0.5
+  - setvariable{var=caster.casting;value="1";t=integer} @Self ?variableEquals{var=caster.casting;value="0"} 
+  - summon{mob=darkbloodspill_1;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-2.2}
+  - randomskill{s=[
+      - state{state=hurtbad1;li=3;lo=8} @self
+    ],
+      [
+      - state{state=hurtbad2;li=3;lo=8} @self
+    ],
+      [
+      - state{state=hurtbad3;li=3;lo=8} @self
+    ],
+      [
+      - state{state=hurtbad4;li=3;lo=8} @self
+    ];sync=true}
+  - setvariable{var=caster.hurtened;value="1";t=integer} @Self
+  - potion{type=SLOW;duration=1;level=0;p=false;force=true} @Self
+  - potion{type=SLOW;duration=9;level=7;p=false;force=true;delay=1} @Self
+  - potion{type=SLOW;duration=10;level=7;p=false;force=true;delay=9} @Self
+  - potion{type=SLOW;duration=10;level=7;p=false;force=true;delay=19} @Self
+  - potion{type=SLOW;duration=12;level=3;p=false;force=true;delay=29} @Self ?variableEquals{var=caster.rage;value="1"} 
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.hurt;p=0.84;v=1.5;cooldown=2} @selflocation ############SOUND
+  - sound{s=emforgottenprowler:custom.corruptedprowler.hurtedbad;p=<random.float.0.9to1.1>;v=1.5} @selflocation
+#STATEREMOVE
+  - state{remove=true;s=attack;lo=3;n=false} @self
+  - state{remove=true;s=attack1;lo=3;n=false} @self
+  - state{remove=true;s=attack2;lo=3;n=false} @self
+  - state{remove=true;s=attack3;lo=3;n=false} @self
+  - state{remove=true;s=attack3b;lo=3;n=false} @self
+  - state{remove=true;s=attack3c;lo=3;n=false} @self
+  - state{remove=true;state=attack5;lo=3} @self
+  - state{remove=true;state=attack5_fast;lo=3} @self
+  - state{remove=true;state=attack4;lo=3} @self
+  - state{remove=true;state=attack4b;lo=3} @self
+  - state{remove=true;state=attack4b_corrector;lo=3} @self
+  - state{remove=true;state=attack6_cast;lo=3} @self
+  - state{remove=true;state=attack7_cast;lo=3} @self
+  - state{remove=true;state=attack7;lo=3} @self
+  - state{remove=true;state=attack8;lo=3} @self
+  - state{state=attackb1;li=0;lo=0;remove=true} @self
+  - state{state=attackb2;li=0;lo=0;remove=true} @self
+  - state{state=attackb3_a;li=0;lo=0;remove=true} @self
+  - state{state=attackb3_b;li=0;lo=0;remove=true} @self
+  - state{remove=true;state=attack6_channel;lo=3} @self
+#
+  - Aura{auraName=hurtedbad;duration=36} @self
+  - delay 12
+  - skill{s=[
+    - Aura{auraName=shieldercprowler;onTick=cprowler_sdppcheck;interval=7;duration=60;mergeSameCaster=true} @self
+    - setvariable{var=caster.hurtened;value="0";t=integer} @Self
+    - setstance{stance=normal} @self ?stance{s=casting}
+    - setvariable{var=caster.casting;value="0";t=integer} @Self
+    - Aura{auraName=bruttackrest;duration=20} @self];sync=false} @Self 0.4 ?!variableEquals{var=caster.skillxd;value="hurtedvbad"} ?variableEquals{var=caster.skillxd;value="none"}
+  - randomskill{s=bruttack4_cprowler,bruttack2_cprowler_starter;repeat=2;repeatinterval=5} @LivingInCone{a=110.0;r=6.5;rot=0.0;ignore=samefaction}
+  - skill{s=cprowler_rage_trigger} @Self =60%-95% 0.45 ?!variableEquals{var=caster.skillxd;value="hurtedvbad"} ?variableEquals{var=caster.skillxd;value="none"}
+  - skill{s=cprowler_rage_trigger} @Self =30%-60% 0.55 ?!variableEquals{var=caster.skillxd;value="hurtedvbad"} ?variableEquals{var=caster.skillxd;value="none"}
+  - skill{s=cprowler_rage_trigger} @Self <30% 0.65 ?!variableEquals{var=caster.skillxd;value="hurtedvbad"} ?variableEquals{var=caster.skillxd;value="none"}
+  - delay 21
+  - setvariable{var=caster.hurtened;value="0";t=integer} @Self ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - setstance{stance=normal} @self ?stance{s=casting} ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?variableEquals{var=caster.casting;value="1"} ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ?variableEquals{var=caster.skillxd;value="hurtb"}
+  - skill{s=meleecprowlertrigger2;cooldown=1;sync=false} @Trigger 0.6
+  - skill{s=cprowler_rage_trigger} @Self =60%-95% 0.65 ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - skill{s=cprowler_rage_trigger} @Self =30%-60% 0.75 ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - skill{s=cprowler_rage_trigger} @Self <30% 0.85 ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+
+####
+
+hurtedbad_antilunge1:
+  Conditions:
+  - variableEquals{var=caster.hurtened;value="1"} true
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} true
+  Skills:
+  - lunge{v=-0.15} @forward{f=-10}
+hurtedbad_antilunge2:
+  Conditions:
+  - variableEquals{var=caster.hurtened;value="1"} true
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} true
+  Skills:
+  - lunge{v=-0.07} @forward{f=-10}
+
+#HURTVERYBAD
+
+hurtbad2_cprowler:
+  Cooldown: 4
+  Conditions:
+  - hasaura{n=hurtedbad} true
+  Skills:
+  - Aura{auraName=hurtenedbad;duration=50} @self
+  - message{m="Casted &eHurtedBad"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - setstance{stance=casting} @self
+  - setvariable{var=caster.skillxd;value="hurtedvbad";t=string} @Self
+  - sound{s=emaginationfallenknights:custom.forgottenterrors.swordclash;p=<random.float.1.5to2>;v=2} @selflocation
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.hurt;p=1;v=1.5} @selflocation 
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.hitmetal;p=<random.float.1.5to2>;v=1.5} @selflocation
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.hitmetal;p=<random.float.1.5to2>;v=1} @selflocation
+  - variableadd{var=caster.hitrec;amount=4} @self
+  - randomskill{s=[
+      - state{state=hurtverybad1;li=3;lo=8} @self
+    ],
+      [
+      - state{state=hurtverybad2;li=3;lo=8} @self
+    ],
+      [
+      - state{state=hurtverybad3;li=3;lo=8} @self
+    ],
+      [
+      - state{state=hurtverybad4;li=3;lo=8} @self
+    ];sync=true}
+  - Aura{auraName=parried;duration=45} @self
+  - summon{mob=darkbloodspill_1;amount=1;noise=0.5;r=0.6;yr=0} @Forward{y=-2.4;f=0.2;sideOffset=0.7}
+  - summon{mob=darkbloodspill_1;amount=1;noise=1.5;r=1.3;yr=0.5;delay=1} @Forward{y=-2.4;f=0.1;sideOffset=0.4}
+  - summon{mob=darkbloodspill_1;amount=1;noise=2.5;r=1.2;yr=0.5;delay=2} @Forward{y=-2.4;f=0;sideOffset=0.4}
+  - summon{mob=darkbloodspill_1;amount=1;noise=3.5;r=1.2;yr=0.5;delay=3} @Forward{y=-2.4;f=0;sideOffset=0.4}
+  #
+  - potion{type=SLOW;duration=58;level=15;p=false;force=true} @Self
+  - state{remove=true;s=attack1;lo=3;n=false} @self
+  - state{remove=true;s=attack2;lo=3;n=false} @self
+  - state{remove=true;s=attack3;lo=3;n=false} @self
+  - state{remove=true;s=attack2_start;lo=3;n=false} @self
+  - state{remove=true;s=attack1_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack3_parrying;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad4;lo=3;n=false} @self
+  #
+  - setvariable{var=caster.hurtened;value="1";t=integer} @Self
+  - setvariable{var=caster.countered;value="1";t=integer} @Self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - skill{s=hurtedbad_antilunge1;delay=1;repeat=14;repeatInterval=1} @Self
+  - skill{s=hurtedbad_antilunge2;repeat=5;repeatInterval=1;delay=15} @Self
+  - delay 20
+  - Aura{auraName=shieldercprowler;onTick=cprowler_sdppcheck;interval=7;duration=60;mergeSameCaster=true} @self 0.4
+  - skill{s=[
+    - setvariable{var=caster.hurtened;value="0";t=integer} @Self
+    - setstance{stance=normal} @self ?stance{s=casting}
+    - setvariable{var=caster.casting;value="0";t=integer} @Self
+    - Aura{auraName=bruttackrest;duration=30} @self
+    - setvariable{var=caster.skillxd;value="none";t=string} @Self];sync=false} @Self 0.25
+  - skill{s=meleecprowlertrigger2;cooldown=1;sync=false} @Trigger 0.6
+  - skill{s=cprowler_rage_trigger} @Self =60%-95% 0.56
+  - skill{s=cprowler_rage_trigger} @Self =30%-60% 0.65
+  - skill{s=cprowler_rage_trigger} @Self <30% 0.75
+  - delay 25
+  - skill{s=[
+    - setvariable{var=caster.hurtened;value="0";t=integer} @Self
+    - setstance{stance=normal} @self
+    - setvariable{var=caster.casting;value="0";t=integer} @Self
+    - setvariable{var=caster.skillxd;value="none";t=string} @Self];sync=false} @Self ?variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - skill{s=meleecprowlertrigger2;cooldown=1;sync=false} @Trigger 0.6
+  - skill{s=cprowler_rage_trigger} @Self =60%-95% 0.35
+  - skill{s=cprowler_rage_trigger} @Self =30%-60% 0.4
+  - skill{s=cprowler_rage_trigger} @Self <30% 0.5
+
+
+#DECAPITATION
+
+decapitate_cprowler:
+  Skills:
+  - sound{s=emforgottenprowler:custom.corruptedprowler.death;p=<random.float.0.9to1.1>;v=1.4} @Self
+  - sound{s=entity.skeleton.hurt;p=1.7;v=1.5;delay=0} @selflocation
+  - randomskill{s=[
+      - summon{mob=darkbloodspill_1;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-0.1}
+    ],
+      [
+      - summon{mob=darkbloodspill_2;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-0.1}
+    ],
+      [
+      - summon{mob=darkbloodspill_2a;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-0.1}
+    ],
+      [
+      - summon{mob=darkbloodspill_2b;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-0.1}
+    ],
+      [
+      - summon{mob=darkbloodspill_2c;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-0.1}
+    ],
+      [
+      - summon{mob=darkbloodspill_2d;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-0.1}
+    ];sync=true;repeat=1;repeatinterval=1}
+  - summon{mob=darkbloodspill_1;amount=1;noise=1;r=0.8;yr=0.3;repeat=3;repeatinterval=1} @SelfLocation{y=-2.2}
+  - lunge{v=-0.0000000001;repeat=60;repeatInterval=1} @forward{f=0;y=-5} 0
+  - RunAIGoalSelector{goal=clear} @self ~onSpawn
+  - setAI{ai=false}
+  - sound{s=entity.skeleton.hurt;p=1.1;v=1.5;delay=13} @selflocation
+  - sound{s=entity.skeleton.hurt;p=0.82;v=1.5;delay=22} @selflocation
+
+  - sound{s=entity.skeleton.death;p=0.9;v=1.5;delay=36} @selflocation
+  - summon{mob=darkbloodspill_1;amount=1;noise=1;r=0.8;yr=0.3;repeat=6;repeatinterval=2;delay=36} @ModelPart{m=em_darklurker;p=decapitation_marker;offset=GLOBAL;y=-4;z=0.5}
+  - dropitem{i=cprowler_drops;delay=36} @self
+  - setstance{stance=casting} @self
+  - setvariable{var=caster.skillxd;value="decapitation";t=string} @Self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - setvariable{var=caster.hurtened;value="1";t=integer} @Self
+  - lockmodel{l=true;delay=0} @Self
+  - effect:particles{p=block_crack;m=black_wool;a=60;hs=0.3;y=1.85;vs=0.3;s=0.2} @Self
+  - effect:particles{p=block_crack;m=black_wool;a=3;hs=0.1;y=0;vs=0.1;s=0.2;repeat=40;repeatInterval=1} @ModelPart{m=em_darklurker;p=decapitation_marker;offset=LOCAL;y=0}
+  - potion{type=SLOW;duration=80;level=20;p=false;force=true} @Self
+  - potion{type=DAMAGE_RESISTANCE;duration=80;level=20;p=false;force=true} @Self
+  - state{s=decapitation;li=1;lo=3;n=false} @self
+  - submodel{mid=em_darklurker;partid=head_decapitation_control;submodelid=em_darklurker;subpartid=head_decapit;remove=false} @self
+  - submodel{mid=em_darklurker;partid=head;submodelid=em_darklurker;subpartid=head;remove=true} @self
+  - changepart{m=em_darklurker;pid=head_decapit;nm=em_darklurker;npid=head2;delay=20} @self
+  - changepart{m=em_darklurker;pid=jaw_decapit;nm=em_darklurker;npid=jaw2;delay=20} @self
+  - changepart{m=em_darklurker;pid=hip;nm=em_darklurker;npid=hip2;delay=20} @self
+  - effect:particles{p=reddust;c=#BEF8E5;a=8;s=20;hs=0.35;vs=0.3;y=0;sideOffset=0;Size=1.1;delay=20;repeat=4;repeatinterval=1} @ModelPart{m=em_darklurker;p=head_decapit;offset=GLOBAL;y=0.3;z=0.5}
+  - effect:particles{p=reddust;c=#BEF8E5;a=12;s=20;hs=0.25;vs=0.2;y=0;sideOffset=0;Size=1.2;delay=20;repeat=4;repeatinterval=1} @ModelPart{m=em_darklurker;p=hip;offset=LOCAL;y=0.8;z=0.3}
+  - effect:particles{particle=cloud;amount=150;hS=1.1;vS=0.55;speed=0;size=4.5;sideOffset=0;delay=59} @ModelPart{m=em_darklurker;p=hip;offset=LOCAL;y=0}
+  - effect:particles{particle=cloud;amount=60;hS=0.6;vS=0.2;speed=0;size=4.5;sideOffset=0;delay=59} @ModelPart{m=em_darklurker;p=head_decapit;offset=LOCAL;y=0}
+  - delay 60
+  - model{mid=em_darklurker;s=idle;remove=true} @self ~onSpawn 1
+  - remove @Self
+#######
+
+
+
+cprowler_backhurtCLEAR:
+  Cooldown: 9
+  Conditions:
+  - hasaura{n=changedThreat} false
+  TriggerConditions:
+  - FieldOfView{angle=120;r=0} false
+  Skills:
+  - Aura{auraName=changedThreat;duration=220} @self
+  - clearThreat{} @self
+  - threat{amount=150} @TargetedTarget
+cprowler_hurtCLEAR:
+  Cooldown: 6
+  Conditions:
+  - hasaura{n=changedThreat} false
+  TriggerConditions:
+  - FieldOfView{angle=30;r=0} false
+  Skills:
+  - Aura{auraName=changedThreat;duration=200} @self
+  - clearThreat{} @self
+  - threat{amount=100} @TargetedTarget
+
+hurtgencprowler:
+  Cooldown: 0
+  Conditions:
+  - damagecause{c=PROJECTILE} true
+  Skills:
+  - skill{s=hurtgencprowlerCLEAR;sync=true} @Trigger 0.15
+  - onShoot{auraName=cprowler_arrowWarning;onShoot=signalcheckWarning_cprowler;interval=3;duration=200;charges=5;cooldown=5} @trigger 0.5
+  - variableadd{var=caster.projrec;amount=1} @self
+  - variableadd{var=caster.projrec;amount=1} @self 0.5
+  - variableadd{var=caster.runstacks;amount=1} @self
+  - skill{s=hurtgencprowler_addstacksd1} @Trigger
+  - message{m="Runstacks <caster.var.runstacks> STACKS"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - velocity{m=set;x=0;y=0;z=0;repeat=2;Repeatinterval=1} @self
+  - variableadd{var=caster.combor;amount=2} @self
+  - randomskill{s=cprowler_rage_trigger;sync=true} @Trigger 0.3
+  - stun{d=1;f=false;stopai=false} @Self
+hurtgencprowler_addstacksd1:
+  TriggerConditions:
+  - distance{d=5to13} true
+  - distance{d=>13} castinstead hurtgencprowler_addstacksd2
+  Skills:
+  - variableadd{var=caster.runstacks;amount=1} @self
+  - variableadd{var=caster.runstacks;amount=1} @self 0.5
+hurtgencprowler_addstacksd2:
+  TriggerConditions:
+  - distance{d=>12} true
+  Skills:
+  - variableadd{var=caster.runstacks;amount=1} @self
+  - variableadd{var=caster.runstacks;amount=1} @self 0.9
+  - variableadd{var=caster.runstacks;amount=1} @self 0.7
+  - variableadd{var=caster.runstacks;amount=1} @self 0.5
+hurtgencprowlerCLEAR:
+  Skills:
+  - clearThreat{} @self
+  - threat{amount=100} @Trigger
+hurtgencprowler2:
+  Cooldown: 0
+  Conditions:
+  - damagecause{c=PROJECTILE} false
+  TriggerConditions:
+  - distance{d=>5} true
+  Skills:
+  - skill{s=hurtgencprowlerCLEAR;sync=true} @Trigger 0.25
+  - variableadd{var=caster.projrec;amount=1} @self
+  - variableadd{var=caster.projrec;amount=1} @self 0.5
+  
+  - variableadd{var=caster.runstacks;amount=2} @self
+  - skill{s=hurtgencprowler_addstacksd1} @Trigger
+  - velocity{m=set;x=0;y=0;z=0;repeat=2;Repeatinterval=1} @self
+  - variableadd{var=caster.combor;amount=2} @self
+  - skill{s=cprowler_rage_trigger;sync=false} @Trigger 0.3
+  - stun{d=1;f=false;stopai=false} @Self
+
+outrun_discharge_cprowler:
+  Cooldown: 8
+  TargetConditions:
+  - lineofsight true
+  Skills:
+  - variablesubtract{var=caster.hitrec;amount=1} @self ?variableInRange{var=caster.hitrec;value=>0}
+  - variablesubtract{var=caster.hitrec;amount=1} @self 0.7 ?variableInRange{var=caster.hitrec;value=>0}
+  - variablesubtract{var=caster.hitrec;amount=1} @self 0.4 ?variableInRange{var=caster.hitrec;value=>0}
+  - message{m="FallenPirobo Hitrec: <caster.var.hitrec>"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+outrun_aleviate_cprowler:
+  TargetConditions:
+  - lineofsight true
+  Skills:
+  - variablesubtract{var=caster.hitrec;amount=1} @self 0.8 ?variableInRange{var=caster.hitrec;value=>0}
+  - message{m="Hitrec <caster.var.projrec> SUBTRACT-1"} @PlayersNearOrigin{r=75}  0 #DEBUGMESSAGE
+
+## MELEE TRIGGERS
+
+meleecprowlertrigger:
+  Cooldown: 2
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - variableEquals{var=caster.rage;value="1"} CastInstead meleecprowlertrigger2
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="decapitation"} false
+  - variableEquals{var=caster.casting;value="1"} false
+  Skills:
+  - delay <random.1to8>
+#  - randomskill{s=bruttack1_cprowler,bruttack1_cprowler,bruttack2_cprowler_starter;sync=false} @LivingInCone{a=110.0;r=6.5;rot=0.0;ignore=samefaction}
+  - randomskill{s=bruttack1_cprowler,bruttack1_cprowler,bruttack1_cprowler,bruttack2_cprowler_starter,bruttack2_cprowler_starter,bruttack4_cprowler;sync=false} @LivingInCone{a=110.0;r=4.5;rot=0.0;ignore=samefaction}
+
+meleecprowlertrigger2:
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - variableEquals{var=caster.rage;value="1"} true
+  Skills:
+  - delay <random.1to6>
+  - randomskill{s=bruttack1_cprowler,bruttack1_cprowler,bruttack2_cprowler_starter,bruttack4_cprowler;sync=false} @LivingInCone{a=110.0;r=5.5;rot=0.0;ignore=samefaction}
+
+###################################################
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+cprowler_sdppcheck:
+  Cooldown: 0.3
+  Conditions:
+  - playersinradius{a=>0;r=7}
+  - variableEquals{var=caster.statueform;value="1"} false
+  - variableEquals{var=caster.running;value="2"} false
+  Skills:
+  - effect:particles{particle=reddust;color=#03c982;amount=2;hS=0.01;vS=0.01;size=0.75;forwardOffset=0.4;y=1.5} @Self 0 #DEBUGPARTICLES
+  - skill{s=cprowler_sdpcheckB;sync=true;delay=6;repeat=0;repeatinterval=3} @PlayersInRadius{r=7;limit=2;Sort=NEAREST;conditions=[  - distance{d=4to7}]}
+  - skill{s=cprowler_sdpcheckA;sync=true;delay=4;repeat=2;repeatinterval=3} @PlayersInRadius{r=4;limit=2;Sort=NEAREST;conditions=[  - distance{d=2to4}  - Moving{} true  - targetinlineofsight{} true]}
+cprowler_sdpcheckB:
+  Conditions:
+  - hasaura{n=ShieldennblockA} false
+  TargetConditions:
+  - isSprinting{} true
+  - distance{d=0to5}
+  Skills:
+  - skill{s=[
+    - look{headOnly=false;immediately=true;repeat=5;repeatInterval=1} @TargetedTarget 0
+    - randomskill{s=[  - skill{s=cprowler_bstpcheck_secondary1;sync=true} @Forward{f=-6;sideOffset=-2;y=-2.2}],[  - skill{s=cprowler_bstpcheck_secondary2;sync=true} @Forward{f=-6;sideOffset=2;y=-2.2}]} 0
+    - skill{s=cprowlercommuterdefense;sync=false} @TargetedTarget
+    - message{m="&e<caster.name> &bcast &ccprowler_sdppcheckB &e@<target.name>"} @PlayersNearOrigin{r=75} 0
+    - Aura{auraName=ShieldennblockA;duration=20} @self];sync=true} @TargetedTarget{limit=1;Sort=NEAREST} 1 #DEBUGSPECIAL
+  - effect:particles{particle=reddust;color=#1dd7ee;amount=105;hS=0.1;vS=0.1;size=0.8;repeat=1;repeatinterval=1} @Self 0 #DEBUGPARTICLES
+cprowler_sdpcheckA:
+  Conditions:
+  - hasaura{n=backstepB} false
+  - hasaura{n=ShieldennblockB} false
+  TargetConditions:
+  - distance{d=0to3}
+  Skills:
+  - skill{s=[
+    - look{headOnly=false;immediately=true;repeat=5;repeatInterval=1} @TargetedTarget 0
+    - randomskill{s=[  - skill{s=cprowler_bstpcheck_secondary1;sync=true} @Forward{f=-6;sideOffset=-2;y=-2.2}],[  - skill{s=cprowler_bstpcheck_secondary2;sync=true} @Forward{f=-6;sideOffset=2;y=-2.2}]} 0
+    - skill{s=cprowlercommuterdefense;sync=false} @TargetedTarget
+    - message{m="&e<caster.name> &bcast &ccprowler_sdppcheckA &e@<target.name>"} @TargetedTarget 0
+    - Aura{auraName=ShieldennblockB;duration=15} @self];sync=true} @TargetedTarget{limit=1;Sort=NEAREST} 1 #DEBUGSPECIAL
+  - effect:particles{particle=reddust;color=#1dd7ee;amount=105;hS=0.1;vS=0.1;size=0.8;repeat=1;repeatinterval=1} @Self 0 #DEBUGPARTICLES
+
+
+# COMMUTER
+
+cprowlercommuterdefense:
+  Conditions:
+  - variableEquals{var=caster.parrying;value="1"} castinstead cprowlercommuterdefenseparryien
+  TargetConditions:
+  - FieldOfView{angle=110;r=0} orElseCast cprowlercommuterdefenseRear
+  Skills:
+  - message{m="&e<caster.name> &bcast &ccprowlercommuterdefense &e@<target.name>"} @TargetedTarget 0 #DEBUGMESSAGE
+  - randomskill{s=cprowler_quickblock2,[  - skill{s=cprowler_bstpcheck_secondary1;sync=true} @Forward{f=-6;sideOffset=-2;y=-2.2}],[  - skill{s=cprowler_bstpcheck_secondary2;sync=true} @Forward{f=-6;sideOffset=2;y=-2.2}]} @TargetedTarget
+cprowlercommuterdefenseRear:
+  Skills:
+  - randomskill{s=cprowler_quickblock1,[  - skill{s=cprowler_bstpcheck_secondary1;sync=true} @Forward{f=-6;sideOffset=-2;y=-2.2}],[  - skill{s=cprowler_bstpcheck_secondary2;sync=true} @Forward{f=-6;sideOffset=2;y=-2.2}]} @TargetedTarget
+  - skill{s=commutercprowlerCLEAR;sync=true} @TargetedTarget 0.45
+
+cprowlercommuterdefenseparryien:
+  Conditions:
+  - variableEquals{var=caster.parrying;value="1"} true
+  TargetConditions:
+  - FieldOfView{angle=110;r=0} orElseCast cprowlercommuterdefenseRearParryien
+  Skills:
+  - randomskill{s=cprowler_quickblock2,cprowler_quickblock2,cprowler_quickblock2,[  - skill{s=cprowler_bstpcheck_secondary1;sync=true} @Forward{f=-6;sideOffset=-2;y=-2.2}],[  - skill{s=cprowler_bstpcheck_secondary2;sync=true} @Forward{f=-6;sideOffset=2;y=-2.2}]} @TargetedTarget
+cprowlercommuterdefenseRearParryien:
+  Skills:
+  - randomskill{s=cprowler_quickblock1,cprowler_quickblock1,[  - skill{s=cprowler_bstpcheck_secondary1;sync=true} @Forward{f=-6;sideOffset=-2;y=-2.2}],[  - skill{s=cprowler_bstpcheck_secondary2;sync=true} @Forward{f=-6;sideOffset=2;y=-2.2}]} @TargetedTarget
+  - skill{s=commutercprowlerCLEAR;sync=true} @TargetedTarget 0.45
+
+commutercprowlerCLEAR:
+  Skills:
+  - clearThreat{} @self
+  - threat{amount=150} @TargetedTarget
+
+# QUICKBLOCKS
+
+cprowler_quickblock1:
+  Cooldown: 2
+  Conditions:
+  - targetwithin{d=4.9}
+  - variableEquals{var=caster.running;value="1"} castinstead meleecprowlertrigger
+  - hasaura{n=backstepB} false
+  - stance{s=normal} true
+  - stance{s=casting} false
+  TargetConditions:
+  - distance{d=0to5}
+  Skills:
+  - message{m="&e<caster.name> &bcast &ccprowler_quickblock1 &e@<target.name>"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - setstance{stance=casting} @self
+  - bodyclamp{m=em_darklurker;c=0} @self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - Aura{auraName=backstepA;interval=10;duration=60} @self
+  - Aura{auraName=ShieldennblockA;refreshDuration=true;duration=60} @self
+  - state{state=quickparry1;li=3;lo=6;speed=1;delay=0} @self ?variableEquals{var=caster.parrying;value="1"}
+  - state{state=quickparry2;li=2;lo=6;speed=1;delay=0} @self ?!variableEquals{var=caster.parrying;value="1"}
+  # QUICKBLOCK STATE REMOVE
+  - state{remove=true;s=attack1;lo=3;n=false} @self
+  - state{remove=true;s=attack2;lo=3;n=false} @self
+  - state{remove=true;s=attack2_start;lo=3;n=false} @self
+  - state{remove=true;s=attack3;lo=3;n=false} @self
+  - state{remove=true;s=attack1_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying_start;lo=3;n=false} @self
+  - state{remove=true;s=attack3_parrying;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad4;lo=3;n=false} @self
+  #
+  - potion{type=SLOW;duration=20;level=5;p=false;force=true} @Self
+  - spin{d=1;v=90} @self
+  - look{headOnly=false;immediately=true;repeat=40;repeatInterval=1} @Target
+  - delay 30
+  - bodyclamp{m=em_darklurker;c=50} @self
+  - setstance{stance=normal} @self ?stance{s=casting}
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?variableEquals{var=caster.casting;value="1"}
+cprowler_quickblock2:
+  Cooldown: 2
+  Conditions:
+  - targetwithin{d=4.9}
+  - variableEquals{var=caster.running;value="1"} castinstead meleecprowlertrigger
+  - hasaura{n=backstepB} false
+  - stance{s=normal} true
+  - stance{s=casting} false
+  TargetConditions:
+  - distance{d=0to5}
+  Skills:
+  - message{m="&e<caster.name> &bcast &ccprowler_quickblock1 &e@<target.name>"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - setstance{stance=casting} @self
+  - bodyclamp{m=em_darklurker;c=0} @self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - Aura{auraName=backstepA;interval=10;duration=60} @self
+  - Aura{auraName=ShieldennblockA;refreshDuration=true;duration=60} @self
+  - state{state=quickparry1;li=3;lo=6;speed=1;delay=0} @self ?variableEquals{var=caster.parrying;value="1"}
+  - state{state=quickparry2;li=2;lo=6;speed=1;delay=0} @self ?!variableEquals{var=caster.parrying;value="1"}
+  # QUICKBLOCK STATE REMOVE
+  - state{remove=true;s=attack1;lo=3;n=false} @self
+  - state{remove=true;s=attack2;lo=3;n=false} @self
+  - state{remove=true;s=attack2_start;lo=3;n=false} @self
+  - state{remove=true;s=attack3;lo=3;n=false} @self
+  - state{remove=true;s=attack1_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying_start;lo=3;n=false} @self
+  - state{remove=true;s=attack3_parrying;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad4;lo=3;n=false} @self
+  #
+  - spin{d=1;v=0} @self
+  - potion{type=SLOW;duration=20;level=5;p=false;force=true} @Self
+  - look{headOnly=false;immediately=true;repeat=40;repeatInterval=1} @Target
+  - delay 30
+  - bodyclamp{m=em_darklurker;c=50} @self
+  - setstance{stance=normal} @self ?stance{s=casting}
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?variableEquals{var=caster.casting;value="1"}
+
+
+#====== BACKSTEPS
+
+cprowler_bstpcheck_secondary1:
+  Cooldown: 4
+  Conditions:
+  - targetwithin{d=4.9}
+  - variableEquals{var=caster.running;value="1"} castinstead meleecprowlertrigger2
+  - variableEquals{var=caster.casting;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="decapitation"} false
+  - hasaura{n=backstepB} false
+  - stance{s=normal} true
+  - stance{s=casting} false
+  TargetConditions:
+  - inblock{b=AIR} false
+  - isSprinting{} true
+  Skills:
+  - setstance{stance=casting} @self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - Aura{auraName=backstepA;interval=10;duration=60} @self
+  - state{state=backstep;li=0;lo=6;speed=1;delay=1} @self ?!variableEquals{var=caster.parrying;value="1"}
+  - state{state=backstep_parrying;li=0;lo=6;speed=1;delay=1} @self ?variableEquals{var=caster.parrying;value="1"}
+  #REMOVESTATES
+  - state{remove=true;s=hurtbad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad4;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad4;lo=3;n=false} @self
+  - spin{d=1;v=45} @self
+  - delay 3
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.reffortc;p=1;v=1.4} 0.7 @SelfLocation
+  - spin{d=5;v=-3} @self
+  - effect:sound{s=entity.skeleton.step;v=2;repeat=0;repeatInterval=6} @self
+  - lunge{v=-0.75;repeat=5;repeatInterval=1} @forward{f=-10}
+  - delay 13
+  - potion{type=SLOW;duration=12;lvl=5;p=false} @Self
+  - effect:sound{s=entity.skeleton.step;v=2} @self
+  - look{headOnly=false;immediately=true;repeat=5;repeatInterval=1} @Target
+  - setstance{stance=normal} @self ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+cprowler_bstpcheck_secondary2:
+  Cooldown: 4
+  Conditions:
+  - targetwithin{d=4.9}
+  - variableEquals{var=caster.running;value="1"} castinstead meleecprowlertrigger2
+  - variableEquals{var=caster.casting;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="decapitation"} false
+  - hasaura{n=backstepB} false
+  - stance{s=normal} true
+  - stance{s=casting} false
+  TargetConditions:
+  - inblock{b=AIR} false
+  - isSprinting{} true
+  Skills:
+  - setstance{stance=casting} @self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - Aura{auraName=backstepA;interval=10;duration=60} @self
+  - effect:particles{particle=reddust;color=#1dd7ee;amount=105;hS=0.1;vS=0.1;size=0.8;repeat=1;repeatinterval=1} @Forward{f=-6;sideOffset=-2;y=1} 0
+  - state{state=backstep;li=0;lo=6;speed=1;delay=1} @self ?!variableEquals{var=caster.parrying;value="1"}
+  - state{state=backstep_parrying;li=0;lo=6;speed=1;delay=1} @self ?variableEquals{var=caster.parrying;value="1"}
+  #REMOVESTATES
+  - state{remove=true;s=hurtbad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad4;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad4;lo=3;n=false} @self
+  - spin{d=1;v=-45} @self
+  - delay 3
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.reffortc;p=1;v=1.4} 0.7 @SelfLocation
+  - spin{d=5;v=-3} @self
+  - effect:sound{s=entity.skeleton.step;v=2;repeat=0;repeatInterval=6} @self
+  - lunge{v=-0.75;repeat=5;repeatInterval=1} @forward{f=-10}
+  - delay 13
+  - potion{type=SLOW;duration=12;lvl=5;p=false} @Self
+  - effect:sound{s=entity.skeleton.step;v=2} @self
+  - look{headOnly=false;immediately=true;repeat=5;repeatInterval=1} @Target
+  - setstance{stance=normal} @self ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+
+
+#COUNTERATTACKCS ===
+
+
+
+
+#
+
+#
+
+
+#
+
+
+
+countertacked_cprowler_A:
+  Conditions:
+  - variableEquals{var=caster.vulnerable;value="1"} true
+  - variableEquals{var=caster.skillxd;value="bruttack1"} castinstead cakd_cprowler_cattack1
+  - variableEquals{var=caster.skillxd;value="bruttack2"} castinstead cakd_cprowler_cattack2
+  - variableEquals{var=caster.skillxd;value="bruttack3"} castinstead cakd_cprowler_cattack3
+  - variableEquals{var=caster.skillxd;value="bruttack4"} castinstead cakd_cprowler_cattack3
+  Skills:
+  - message{m="Casted &ecountertacked_cprowler_A"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+countertacked_cprowler_B:
+  Conditions:
+  - variableEquals{var=caster.parrying;value="1"} true
+  Skills:
+  - randomskill{s=[
+      - state{state=parry_trigger1;li=0;lo=8;speed=1} @self
+    ],
+      [
+      - state{state=parry_trigger2;li=0;lo=8;speed=1} @self
+    ];sync=false}
+  - summon{mob=cpblood_expFXmarker1;amount=1;noise=0.9;r=0.4;yr=0} @Forward{y=-1.5;f=1.45;sideOffset=-0.3}
+cakd_antilunge1:
+  Conditions:
+  - variableEquals{var=caster.hurtened;value="1"} true
+  Skills:
+  - lunge{v=-0.1} @forward{f=-10}
+  - propel{v=0.15;repeat=4;repeatInterval=1} @forward{f=10} 0
+  - message{m="Saltum 1"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+cakd_cprowler_cattack1:
+  Conditions:
+  - hasaura{n=nule_parry} false
+  Skills:
+  - sound{s=emforgottenprowler:custom.corruptedprowler.hurtedbad;p=<random.float.0.9to1.1>;v=1.5} @selflocation 0.9
+  - message{m="Casted &eCountered attack 1"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - setstance{stance=casting} @self ?stance{s=normal}
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self
+  - variableadd{var=caster.hitrec;amount=3} @self
+  - state{s=attack1_parried;li=1;lo=3;n=false} @self
+  - Aura{auraName=parried;duration=35} @self
+  - summon{mob=darkbloodspill_1;amount=1;noise=0.5;r=0.6;yr=0} @Forward{y=-2.4;f=1;sideOffset=0.7}
+  #
+  - potion{type=SLOW;duration=22;level=8;p=false;force=true} @Self
+  - state{remove=true;s=attack1;lo=3;n=false} @self
+  - state{remove=true;s=attack2;lo=3;n=false} @self
+  - state{remove=true;s=attack3;lo=3;n=false} @self
+  - state{remove=true;s=attack2_start;lo=3;n=false} @self
+  - state{remove=true;s=attack1_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack3_parrying;lo=3;n=false} @self
+  #
+  - setvariable{var=caster.hurtened;value="1";t=integer} @Self
+  - setvariable{var=caster.countered;value="1";t=integer} @Self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - skill{s=cakd_antilunge1;delay=2;repeat=7;repeatInterval=1} @Self
+  - delay 8
+  - Aura{auraName=shieldercprowler;onTick=cprowler_sdppcheck;interval=7;duration=60;mergeSameCaster=true} @self 0.4
+  - skill{s=[
+    - setvariable{var=caster.hurtened;value="0";t=integer} @Self
+    - setstance{stance=normal} @self ?stance{s=casting}
+    - setvariable{var=caster.casting;value="0";t=integer} @Self
+    - Aura{auraName=bruttackrest;duration=30} @self];sync=false} @Self 0.4
+  - delay 25
+  - skill{s=[
+    - setvariable{var=caster.hurtened;value="0";t=integer} @Self
+    - setstance{stance=normal} @self
+    - setvariable{var=caster.casting;value="0";t=integer} @Self];sync=false} @Self ?!variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.skillxd;value="bruttack4"} ?!variableEquals{var=caster.skillxd;value="bruttack5"} ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+
+cakd_cprowler_cattack2:
+  Conditions:
+  - hasaura{n=nule_parry} false
+  Skills:
+  - sound{s=emforgottenprowler:custom.corruptedprowler.hurtedbad;p=<random.float.0.9to1.1>;v=1.5} @selflocation 0.9
+  - message{m="Casted &eCountered attack 2"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - setstance{stance=casting} @self ?stance{s=normal}
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self
+  - variableadd{var=caster.hitrec;amount=3} @self
+  - state{s=attack2_parried;li=1;lo=3;n=false} @self ?!variableEquals{var=caster.parrying;value="1"}
+  - state{s=attack2_parried_parrying;li=1;lo=3;n=false} @self ?variableEquals{var=caster.parrying;value="1"}
+  - Aura{auraName=parried;duration=35} @self
+  - summon{mob=darkbloodspill_1;amount=1;noise=0.5;r=0.6;yr=0} @Forward{y=-2.4;f=1;sideOffset=-0.7}
+  #
+  - potion{type=SLOW;duration=22;level=8;p=false;force=true} @Self
+  - state{remove=true;s=attack1;lo=3;n=false} @self
+  - state{remove=true;s=attack2;lo=3;n=false} @self
+  - state{remove=true;s=attack2_start;lo=3;n=false} @self
+  - state{remove=true;s=attack3;lo=3;n=false} @self
+  - state{remove=true;s=attack1_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack3_parrying;lo=3;n=false} @self
+  #
+  - setvariable{var=caster.hurtened;value="1";t=integer} @Self
+  - setvariable{var=caster.countered;value="1";t=integer} @Self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - skill{s=cakd_antilunge1;delay=2;repeat=7;repeatInterval=1} @Self
+  - delay 8
+  - Aura{auraName=shieldercprowler;onTick=cprowler_sdppcheck;interval=7;duration=60;mergeSameCaster=true} @self 0.4
+  - skill{s=[
+    - setvariable{var=caster.hurtened;value="0";t=integer} @Self
+    - setstance{stance=normal} @self ?stance{s=casting}
+    - setvariable{var=caster.casting;value="0";t=integer} @Self
+    - Aura{auraName=bruttackrest;duration=30} @self];sync=false} @Self 0.4
+  - delay 25
+  - skill{s=[
+    - setvariable{var=caster.hurtened;value="0";t=integer} @Self
+    - setstance{stance=normal} @self
+    - setvariable{var=caster.casting;value="0";t=integer} @Self];sync=false} @Self ?!variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.skillxd;value="bruttack4"} ?!variableEquals{var=caster.skillxd;value="bruttack5"} ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  
+
+cakd_cprowler_cattack3:
+  Conditions:
+  - hasaura{n=nule_parry} false
+  Skills:
+  - message{m="Casted &eCountered attack 3"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - setstance{stance=casting} @self ?stance{s=normal}
+  - sound{s=emforgottenprowler:custom.corruptedprowler.hurtedbad;p=<random.float.0.9to1.1>;v=1.5} @selflocation 0.9
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self
+  - variableadd{var=caster.hitrec;amount=4} @self
+  - state{s=attack3_parried;li=1;lo=3;n=false} @self ?!variableEquals{var=caster.parrying;value="1"}
+  - state{s=attack3_parried_parrying;li=1;lo=3;n=false} @self ?variableEquals{var=caster.parrying;value="1"}
+  - Aura{auraName=parried;duration=50} @self
+  - summon{mob=darkbloodspill_1;amount=1;noise=0.5;r=0.6;yr=0} @Forward{y=-2.4;f=1.3;sideOffset=0.7}
+  #
+  - potion{type=SLOW;duration=32;level=8;p=false;force=true} @Self
+  - state{remove=true;s=attack1;lo=3;n=false} @self
+  - state{remove=true;s=attack2;lo=3;n=false} @self
+  - state{remove=true;s=attack2_start;lo=3;n=false} @self
+  - state{remove=true;s=attack3;lo=3;n=false} @self
+  - state{remove=true;s=attack1_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack3_parrying;lo=3;n=false} @self
+  #
+  - setvariable{var=caster.hurtened;value="1";t=integer} @Self
+  - setvariable{var=caster.countered;value="1";t=integer} @Self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - skill{s=cakd_antilunge1;delay=2;repeat=7;repeatInterval=1} @Self
+  - delay 8
+  - Aura{auraName=shieldercprowler;onTick=cprowler_sdppcheck;interval=7;duration=60;mergeSameCaster=true} @self 0.4
+  - skill{s=[
+    - setvariable{var=caster.hurtened;value="0";t=integer} @Self
+    - setstance{stance=normal} @self ?stance{s=casting}
+    - setvariable{var=caster.casting;value="0";t=integer} @Self
+    - Aura{auraName=bruttackrest;duration=30} @self
+    - Aura{auraName=bruttackrest2;duration=30} @self];sync=false} @Self 0.4
+  - delay 25
+  - skill{s=[
+    - setvariable{var=caster.hurtened;value="0";t=integer} @Self
+    - setstance{stance=normal} @self
+    - setvariable{var=caster.casting;value="0";t=integer} @Self];sync=false} @Self ?!variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.skillxd;value="bruttack4"} ?!variableEquals{var=caster.skillxd;value="bruttack5"} ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+
+# NORMAL COMBO ATTACKS
+#Bruttack1:
+bruttack1_cprowler:
+  Cooldown: 4
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="decapitation"} false
+#  - variableInRange{var=caster.hitrec;value=>2} true
+  - variableEquals{var=caster.casting;value="1"} false
+  - hasaura{n=bruttackrest} false
+  TargetConditions:
+  - distance{d=0to7} true
+  - fieldofview{angle=40} true
+  Skills:
+  - setstance{stance=casting} @self
+  - setvariable{var=caster.skillxd;value="bruttack1";t=string} @Self
+  - bodyclamp{m=em_darklurker;c=0} @self
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.channelstun;p=<random.float.1.3to6>;v=1} @selflocation
+  - state{remove=true;s=run_roll;lo=1;n=false;frame=0} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack1;li=1;lo=10} @self 
+  #
+  - state{remove=true;s=attack2;lo=3;n=false} @self
+  - state{remove=true;s=attack2_start;lo=3;n=false} @self
+  - state{remove=true;s=attack3;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack3_parrying;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad4;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad4;lo=3;n=false} @self
+  
+  #
+  - setvariable{var=caster.comboa;value="1";t=integer} @Self ?variableEquals{var=caster.comboa;value="0"}
+  
+  - potion{type=SLOW;duration=18;level=7;p=false;force=false} @Self
+  - potion{type=SLOW;duration=20;level=7;p=false;force=true;delay=18} @Self ?!variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - potion{type=SLOW;duration=8;level=2;p=false;force=true;delay=38} @Self ?!variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - potion{type=SLOW;duration=5;level=7;p=false;force=true;delay=46} @Self ?!variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - spin{d=25;v=0;delay=2} @self
+  - message{m="VULNERABLE &dMADE BY &bENDESMAN";delay=13} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - setvariable{var=caster.vulnerable;value="1";t=integer;delay=13} @Self
+  - setvariable{var=caster.vulnerable;value="0";t=integer;delay=18} @Self
+  - message{m="NOVULNERABLE";delay=18} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - delay 10
+  - sound{s=emforgottenprowler:custom.corruptedprowler.efforta;p=<random.float.0.9to1.1>;v=1.5} @selflocation 0.7 ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - delay 3
+  - skill{s=cprowler_em_bruttack1_recoverylunge;lungeintensity=0.28704;repeat=1;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack1"}
+
+  # - skill{s=bruttack1_adaptivelunge;delay=0} @LivingInCone{a=160.0;r=7;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - delay 1
+  - setvariable{var=caster.casting;value="1";t=integer;delay=2} @Self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.herostun;p=2;v=1} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - skill{s=cprowler_atk1FX_A;delay=1} @self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest} ### EFFECTENN
+  - delay 1
+  - skill{s=cprowler_em_bruttack1_adaptivelunge;lungeintensity=0.35;repeat=2;repeatInterval=1} @Targeted ?variableEquals{var=caster.skillxd;value="bruttack1"} ?!variableEquals{var=caster.hurtened;value="1"}
+  - delay 2
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.attackwindup;p=1;v=1} @selflocation ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - skill{s=bruttack1_cripple_cprowler;sync=true} @LivingInCone{a=160.0;r=3.9;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  
+  - skill{s=outrun_aleviate_cprowler;sync=true} @LivingInCone{a=160.0;r=3.9;rot=0.0;ignore=samefaction} 0.8 ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - basedamage{m=1.9;ignorearmor=false} @LivingInCone{a=160.0;r=3.9;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - sudoskill{s=[
+    - summon{mob=cpblood_expFXmarker1;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-1.5;ForwardOffset=0.3}];sync=true} @LivingInCone{a=160.0;r=3.9;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.slashhitb;p=1.6;v=1} @LivingInCone{a=160.0;r=3.9;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - skill{s=cprowler_atk1FX_B} @self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest} ### EFFECTENN
+  - delay 1
+  - skill{s=cprowler_em_bruttack1_recoverylunge;lungeintensity=0.016848;repeat=3;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack1"}
+  - delay 4
+  - skill{s=cprowler_em_bruttack1_recoverylunge;lungeintensity=0.00637866666;repeat=8;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack1"}
+  - delay 9
+  - skill{s=cprowler_em_bruttack1_recoverylunge;lungeintensity=0.05105454545;repeat=10;repeatInterval=1} @forward{f=10;y=-2} ?variableEquals{var=caster.skillxd;value="bruttack1"}
+  - delay 1
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?variableEquals{var=caster.skillxd;value="bruttack1"}
+  - setstance{stance=normal} @self ?variableEquals{var=caster.skillxd;value="bruttack1"}
+  
+  - randomskill{s=bruttack2_cprowler,bruttack2_cprowler,bruttack2_cprowler;repeat=2;repeatinterval=4} @LivingInCone{a=100.0;r=5.5;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  
+  - delay 10
+  - bodyclamp{m=em_darklurker;c=50} @self ?variableEquals{var=caster.skillxd;value="bruttack1"}
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ?variableEquals{var=caster.skillxd;value="bruttack1"}
+
+#BRUTTACK1 MOVEMENT MANAGERS
+cprowler_em_bruttack1_recoverylunge:
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="bruttack1"} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  Skills:
+  - skill{s=cprowler_em_bruttack1_recoverylunge_sensor} @forward{forward=0;y=-0.2;lockpitch=true}
+
+# RECOVERY LUNGE SENSORS (Generic) lungesensor:
+# Checks for falling, and acts accordingly.
+
+cprowler_em_bruttack1_recoverylunge_sensor:
+  TargetConditions: 
+  - inblock{types=AIR,LIGHT} orElseCast cprowler_em_bruttack1_recoverylunge_land
+  Skills:
+  - propel{v=1;vy=-2} @forward{y=-4;lockpitch=true}
+
+cprowler_em_bruttack1_recoverylunge_land:
+  Skills:
+  - propel{v=<skill.lungeintensity>} @forward{f=10;y=-2}
+
+
+cprowler_em_bruttack1_adaptivelunge:
+  TargetConditions:
+  - distance{d=0to1} castinstead cprowler_em_bruttack1_adaptivelunge_reach
+  - fieldOfView{angle=270;rotation=180} castinstead cprowler_em_bruttack1_recoverylunge
+  Conditions:
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  Skills:
+  # - message{m="Bömes fvmer <target.name>"} @Targeted 1 #DEBUGMESSAGE
+  # - effect:particles{particle=reddust;color=#c3fe04;amount=2;hS=0.2;vS=0.21;size=0.75;forwardOffset=0.4;y=1.5;repeat=10;repeatinterval=4} @Targeted 1 #DEBUGPARTICLES
+  - propel{v=<skill.lungeintensity>} @forward{f=10}
+
+cprowler_em_bruttack1_adaptivelunge_reach:
+  Cooldown: 2
+  TargetConditions:
+  - distance{d=0to1} true 
+  Conditions:
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  Skills:
+  - propel{v=-0.0006} @forward{f=10} 
+
+# bruttack2:
+bruttack2_cprowler:
+  Cooldown: 4
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="decapitation"} false
+#  - variableInRange{var=caster.hitrec;value=>2} true
+  - variableEquals{var=caster.casting;value="1"} false
+  - hasaura{n=bruttackrest} false
+  TargetConditions:
+  - distance{d=0to7} true
+  - fieldofview{angle=40} true
+  Skills:
+  - setstance{stance=casting} @self
+  - setvariable{var=caster.skillxd;value="bruttack2";t=string} @Self
+  - bodyclamp{m=em_darklurker;c=0} @self
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.channelstun;p=<random.float.1.7to2>;v=1} @selflocation
+  - state{remove=true;s=run_roll;lo=1;n=false;frame=0} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack2;li=1;lo=10} @self
+  - state{state=attack2_parrying;li=1;lo=10} @self ?variableEquals{var=caster.parrying;value="1"}
+  #
+  - state{remove=true;s=attack1;lo=3;n=false} @self
+  - state{remove=true;s=attack2_start;lo=3;n=false} @self
+  - state{remove=true;s=attack3;lo=3;n=false} @self
+  - state{remove=true;s=attack1_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying_start;lo=3;n=false} @self
+  - state{remove=true;s=attack3_parrying;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad4;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad4;lo=3;n=false} @self
+  #
+  - setvariable{var=caster.comboa;value="1";t=integer} @Self ?variableEquals{var=caster.comboa;value="0"}
+  
+  - potion{type=SLOW;duration=18;level=7;p=false;force=false} @Self
+  - potion{type=SLOW;duration=18;level=7;p=false;force=true;delay=18} @Self ?!variableEquals{var=caster.skillxd;value="bruttack1"} ?variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - potion{type=SLOW;duration=10;level=0;p=false;force=true;delay=36} @Self ?!variableEquals{var=caster.skillxd;value="bruttack1"} ?variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - potion{type=SLOW;duration=5;level=7;p=false;force=true;delay=46} @Self ?!variableEquals{var=caster.skillxd;value="bruttack1"} ?variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.skillxd;value="hurtedvbad"}
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - spin{d=25;v=0;delay=2} @self
+  - setvariable{var=caster.vulnerable;value="1";t=integer;delay=14} @Self
+  - setvariable{var=caster.vulnerable;value="0";t=integer;delay=19} @Self
+  - delay 10
+  - sound{s=emforgottenprowler:custom.corruptedprowler.efforta;p=<random.float.0.9to1.1>;v=1.5} @selflocation 0.7 ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - skill{s=bruttack1_adaptivelunge;delay=1} @LivingInCone{a=160.0;r=7;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - delay 4
+  - setvariable{var=caster.casting;value="1";t=integer;delay=2} @Self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.herostun;p=1.8;v=1} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - skill{s=cprowler_atk2FX_A;delay=2} @self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest} ### EFFECTENN
+  - delay 3
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.attackwindup;p=1;v=1} @selflocation ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - skill{s=bruttack1_cripple_cprowler;sync=true} @LivingInCone{a=160.0;r=3.9;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  
+  - skill{s=outrun_aleviate_cprowler;sync=true} @LivingInCone{a=160.0;r=3.9;rot=0.0;ignore=samefaction} 0.8 ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - basedamage{m=1.9;ignorearmor=false} @LivingInCone{a=160.0;r=3.9;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - sudoskill{s=[
+    - summon{mob=cpblood_expFXmarker1;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-1.5;ForwardOffset=0.3}];sync=true} @LivingInCone{a=160.0;r=3.9;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.slashhitb;p=1;v=1} @LivingInCone{a=160.0;r=3.9;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - skill{s=cprowler_atk2FX_B} @self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest} ### EFFECTENN
+  - delay 14
+  - randomskill{s=bruttack3_cprowler,bruttack3_cprowler,bruttack3_cprowler;sync=true;repeat=2;repeatinterval=4} @LivingInCone{a=100.0;r=7;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - setstance{stance=normal} @self ?variableEquals{var=caster.skillxd;value="bruttack2"}
+
+  - bodyclamp{m=em_darklurker;c=50} @self ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ?variableEquals{var=caster.skillxd;value="bruttack2"}
+bruttack2_cprowler_starter:
+  Cooldown: 4
+  Conditions:
+  - stance{s=casting} false
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - stance{s=normal} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="decapitation"} false
+#  - variableInRange{var=caster.hitrec;value=>2} true
+  - variableEquals{var=caster.casting;value="1"} false
+  - hasaura{n=bruttackrest} false
+  TargetConditions:
+  - distance{d=0to7} true
+  - fieldofview{angle=40} true
+  Skills:
+  - setstance{stance=casting} @self
+  - setvariable{var=caster.skillxd;value="bruttack2";t=string} @Self
+  - bodyclamp{m=em_darklurker;c=0} @self
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.channelstun;p=1.2;v=1} ######SOUND
+  - state{remove=true;s=run_roll;lo=1;n=false;frame=0} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack2_start;li=1;lo=10} @self ?!variableEquals{var=caster.parrying;value="1"}
+  - state{state=attack2_parrying_start;li=1;lo=10} @self ?variableEquals{var=caster.parrying;value="1"}
+  #
+  - state{remove=true;s=attack1;lo=3;n=false} @self
+  - state{remove=true;s=attack2;lo=3;n=false} @self
+  - state{remove=true;s=attack3;lo=3;n=false} @self
+  - state{remove=true;s=attack1_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack3_parrying;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad4;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad4;lo=3;n=false} @self
+  #
+  - setvariable{var=caster.comboa;value="1";t=integer} @Self ?variableEquals{var=caster.comboa;value="0"}
+  
+  - potion{type=SLOW;duration=18;level=7;p=false;force=false} @Self
+  - potion{type=SLOW;duration=20;level=7;p=false;force=true;delay=18} @Self ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - potion{type=SLOW;duration=18;level=2;p=false;force=true;delay=38} @Self ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - spin{d=25;v=0;delay=2} @self
+  - message{m="VULNERABLE";delay=9} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - setvariable{var=caster.vulnerable;value="1";t=integer;delay=14} @Self
+  - setvariable{var=caster.vulnerable;value="0";t=integer;delay=19} @Self
+  - message{m="NOVULNERABLE";delay=16} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - delay 10
+  - sound{s=emforgottenprowler:custom.corruptedprowler.efforta;p=<random.float.0.9to1.1>;v=1.5} @selflocation 0.7 ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - skill{s=bruttack1_adaptivelunge;delay=1} @LivingInCone{a=180.0;r=7;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - delay 4
+  - setvariable{var=caster.casting;value="1";t=integer;delay=2} @Self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.herostun;p=1.2;v=1} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - skill{s=cprowler_atk2FX_A;delay=2} @self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest} ### EFFECTENN
+  - delay 2
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.attackwindup;p=1;v=1} @selflocation ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - skill{s=bruttack1_cripple_cprowler;sync=true} @LivingInCone{a=180.0;r=4.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  
+  - skill{s=outrun_aleviate_cprowler;sync=true} @LivingInCone{a=180.0;r=4.8;rot=0.0;ignore=samefaction} 0.8 ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - basedamage{m=1.9;ignorearmor=false} @LivingInCone{a=180.0;r=4.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - sudoskill{s=[
+    - summon{mob=cpblood_expFXmarker1;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-1.5;ForwardOffset=0.3}];sync=true} @LivingInCone{a=180.0;r=4.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.slashhitb;p=1;v=1} @LivingInCone{a=180.0;r=4.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest}
+  - skill{s=cprowler_atk2FX_B} @self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest} ### EFFECTENN
+  - delay 14
+  - randomskill{s=bruttack3_cprowler,bruttack3_cprowler,bruttack3_cprowler;sync=true;repeat=2;repeatinterval=4} @LivingInCone{a=100.0;r=6.5;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - setstance{stance=normal} @self ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  
+  - bodyclamp{m=em_darklurker;c=50} @self ?variableEquals{var=caster.skillxd;value="bruttack2"}
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ?variableEquals{var=caster.skillxd;value="bruttack2"}
+bruttack3_cprowler:
+  Cooldown: 4
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="decapitation"} false
+#  - variableInRange{var=caster.hitrec;value=>2} true
+  - variableEquals{var=caster.casting;value="1"} false
+  - hasaura{n=bruttackrest} false
+  TargetConditions:
+  - distance{d=0to7} true
+  - fieldofview{angle=40} true
+  Skills:
+  - setstance{stance=casting} @self
+  - setvariable{var=caster.skillxd;value="bruttack3";t=string} @Self
+  - bodyclamp{m=em_darklurker;c=0} @self
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.channelstun;p=<random.float.1.1to1.3>;v=1} @selflocation
+  - state{remove=true;s=run_roll;lo=1;n=false;frame=0} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack3;li=1;lo=10} @self
+  #STATEREMOTION
+  - state{remove=true;s=hurtbad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad4;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad4;lo=3;n=false} @self
+  #
+  - setvariable{var=caster.comboa;value="1";t=integer} @Self ?variableEquals{var=caster.comboa;value="0"}
+  - potion{type=SLOW;duration=18;level=7;p=false;force=false} @Self
+  - potion{type=SLOW;duration=20;level=7;p=false;force=true;delay=18} @Self ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - potion{type=SLOW;duration=18;level=2;p=false;force=true;delay=38} @Self ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - look{headOnly=false;immediately=false;repeat=6;repeatInterval=1} @Target
+  - spin{d=25;v=0;delay=10} @self
+  - lockmodel{l=true;delay=10} @Self #LOCKMODEL
+  - sound{s=emforgottenprowler:custom.corruptedprowler.effortb;p=<random.float.0.9to1.1>;v=1.5} @selflocation 0.7 ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - message{m="VULNERABLE";delay=16} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - setvariable{var=caster.vulnerable;value="1";t=integer;delay=16} @Self
+  - setvariable{var=caster.vulnerable;value="0";t=integer;delay=20} @Self
+  - message{m="NOVULNERABLE";delay=20} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - delay 12
+  - Aura{auraName=bruttackrest;duration=60} @self
+  - skill{s=bruttack1_adaptivelunge;delay=1} @LivingInCone{a=180.0;r=7;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - delay 4
+  - setvariable{var=caster.casting;value="1";t=integer} @Self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest2}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.herostun;p=<random.float.1.3to1.6>;v=1} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest2} 0
+  - skill{s=cprowler_atk3FX_A;delay=3} @Self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - delay 2
+  
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.attack4reaper;p=<random.float.1to1.4>;v=1.5;cooldown=2} @selflocation ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest2}
+  - delay 1
+  - skill{s=cprowler_atk3FX_B;delay=0} @Self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  #
+  - projectile{onTick=cprowlerattack3tick;onHit=cprowlerattack3hit;mr=4;v=30;i=1;hR=1.6;vR=0.8;hp=true;hnp=true;sB=false;sE=false;hs=false;d=150;syo=1;sso=0.5} @Forward{f=5;y=0.0} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest2}
+  - projectile{onTick=cprowlerattack3tick2;mr=4;v=30;i=3;hR=1.6;hp=true;hnp=true;vR=3;sB=false;sE=false;hs=true;d=150;syo=0;hfs=0.1;sso=0.5} @Forward{f=5;y=0.0} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest2}
+  #
+
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.attackwindup;p=1;v=1} @selflocation ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest2}
+  - skill{s=bruttack1_cripple_cprowler;sync=true} @LivingInCone{a=40.0;r=4.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest2}
+  
+  - skill{s=outrun_aleviate_cprowler;sync=true} @LivingInCone{a=40.0;r=5.5;rot=0.0;ignore=samefaction} 0.8 ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest2}
+  - basedamage{m=1.9;ignorearmor=false} @LivingInCone{a=40.0;r=5.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest2}
+  - sudoskill{s=[
+    - summon{mob=cpblood_expFXmarker1;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-1.5;ForwardOffset=0.3}];sync=true} @LivingInCone{a=40.0;r=5.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest2}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.slashhitb;p=1;v=1} @LivingInCone{a=40.0;r=5.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} ?!hasaura{n=bruttackrest2}
+  - delay 20
+  - lockmodel{l=false;delay=1} @Self
+#  - randomskill{s=attack2cprowler,bruttack2_cprowler,bruttack2_cprowler,bruttack2_cprowler;sync=true;repeat=2;repeatinterval=4} @LivingInCone{a=100.0;r=5.5;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - bodyclamp{m=em_darklurker;c=50} @self
+  - setvariable{var=caster.casting;value="0";t=integer} @Self
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self
+  - setstance{stance=normal} @self
+cprowlerattack3tick:
+  Skills:
+  - effect:particles{p=reddust;c=#BEF8E5;a=15;s=20;hs=0.45;vs=0.3;y=0;sideOffset=0;Size=1.4;delay=0} @origin
+  - effect:particles{p=reddust;c=#BEF8E5;a=5;s=20;hs=0.1;vs=0.1;y=0;sideOffset=0.5.0625;Size=1.7;delay=0} @origin 0
+  - effect:particles{p=reddust;c=#BEF8E5;a=5;s=20;hs=0.1;vs=0.1;y=0;sideOffset=-0.5.0625;Size=1.7;delay=0} @origin 0
+cprowlerattack3tick2:
+  Skills:
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.slashhitb;pitch=2;v=0.7} @Origin
+cprowlerattack3hit:
+  TargetConditions:
+  - samefaction false
+  Skills:
+  - summon{mob=cpblood_expFXmarker1;amount=1;noise=0.5;r=0.1;yr=0} @ProjectileForward{y=-1.7;f=0.9}
+  - skill{s=outrun_discharge_cprowler} @EntitiesNearOrigin{r=3;limit=1;sort=NEAREST;ignore=samefaction}
+  - basedamage{m=2.2;ignorearmor=false}
+  - basedamage{m=0.07;ignorearmor=true;preventknockback=true}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.slashhitb;p=1;v=1}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.grandslashcast;pitch=2;v=2}
+  - throw{velocity=2;velocityY=1} 
+  - potion{type=LEVITATION;duration=9;level=1;p=false;delay=0} 
+  - potion{type=LEVITATION;duration=5;level=0;p=false;delay=9}
+  - potion{type=SLOW_FALLING;duration=5;level=0;p=false;delay=14}
+  - potion{type=SLOW;duration=16;lvl=7;particles=false}
+  - potion{type=SLOW;duration=40;lvl=4;delay=16;p=false}
+  - potion{type=SLOW;duration=20;lvl=3;delay=56;p=false}
+  - potion{type=SLOW;duration=20;lvl=2;delay=76;p=false} 0.5
+  - randomskill{s=cprowler_rage_trigger;delay=0;repeat=4;repeatinterval=8} @LivingInCone{a=110.0;r=5;rot=0.0;ignore=samefaction} 0.35
+
+bruttack4_cprowler:
+  Cooldown: 4
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="decapitation"} false
+#  - variableInRange{var=caster.hitrec;value=>2} true
+  - variableEquals{var=caster.casting;value="1"} false
+  - hasaura{n=bruttackrest} false
+  TargetConditions:
+  - distance{d=0to7} true
+  - fieldofview{angle=40} true
+  Skills:
+  - setstance{stance=casting} @self
+  - setvariable{var=caster.skillxd;value="bruttack4";t=string} @Self
+  - bodyclamp{m=em_darklurker;c=0} @self
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.channelstun;p=<random.float.0.9to1.1>;v=1} @selflocation
+  - state{remove=true;s=run_roll;lo=1;n=false;frame=0} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack4;li=1;lo=10} @self
+  #STATEREMOTION
+  - state{remove=true;s=attack1;lo=3;n=false} @self
+  - state{remove=true;s=attack2;lo=3;n=false} @self
+  - state{remove=true;s=attack2_start;lo=3;n=false} @self
+  - state{remove=true;s=backstep;lo=3;n=false} @self
+  - state{remove=true;s=attack3;lo=3;n=false} @self
+  - state{remove=true;s=attack1_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack3_parrying;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad4;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad4;lo=3;n=false} @self
+  #
+  - setvariable{var=caster.comboa;value="1";t=integer} @Self ?variableEquals{var=caster.comboa;value="0"}
+
+  - potion{type=SLOW;duration=18;level=7;p=false;force=false} @Self
+  - potion{type=SLOW;duration=20;level=7;p=false;force=true;delay=18} @Self ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - potion{type=SLOW;duration=18;level=2;p=false;force=true;delay=38} @Self ?variableEquals{var=caster.skillxd;value="bruttack3"}
+  - look{headOnly=false;immediately=false;repeat=6;repeatInterval=1} @Target
+  - spin{d=25;v=0;delay=10} @self
+  - lockmodel{l=true;delay=10} @Self #LOCKMODEL
+  - sound{s=emforgottenprowler:custom.corruptedprowler.effortb;p=<random.float.0.9to1.1>;v=1.5} @selflocation 0.7 ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - message{m="VULNERABLE";delay=16} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - setvariable{var=caster.vulnerable;value="1";t=integer;delay=16} @Self
+  - setvariable{var=caster.vulnerable;value="0";t=integer;delay=20} @Self
+  - message{m="NOVULNERABLE";delay=20} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - delay 12
+  - Aura{auraName=bruttackrest;duration=60} @self
+  - skill{s=bruttack1_adaptivelunge;delay=1} @LivingInCone{a=180.0;r=7;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - delay 4
+  - setvariable{var=caster.casting;value="1";t=integer} @Self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.herostun;p=<random.float.1.3to1.6>;v=1} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} 0
+  - skill{s=cprowler_atk4FX_A;delay=3} @Self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - delay 3
+  
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.attack4reaper;p=<random.float.1to1.4>;v=1.5;cooldown=2} @selflocation ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - skill{s=cprowler_atk4FX_B;delay=0} @Self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  #
+  - projectile{onTick=cprowlerattack3tick;onHit=cprowlerattack3hit;mr=4;v=30;i=1;hR=1.6;vR=0.8;hp=true;hnp=true;sB=false;sE=false;hs=false;d=150;syo=1;sso=0.5} @Forward{f=5;y=0.0} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - projectile{onTick=cprowlerattack3tick2;mr=4;v=30;i=3;hR=1.6;hp=true;hnp=true;vR=3;sB=false;sE=false;hs=true;d=150;syo=0;hfs=0.1;sso=0.5} @Forward{f=5;y=0.0} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  #
+
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.attackwindup;p=1;v=1} @selflocation ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - skill{s=bruttack1_cripple_cprowler;sync=true} @LivingInCone{a=40.0;r=4.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  
+  - skill{s=outrun_aleviate_cprowler;sync=true} @LivingInCone{a=40.0;r=5.5;rot=0.0;ignore=samefaction} 0.8 ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - basedamage{m=1.9;ignorearmor=false} @LivingInCone{a=40.0;r=5.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - sudoskill{s=[
+    - summon{mob=cpblood_expFXmarker1;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-1.5;ForwardOffset=0.3}];sync=true} @LivingInCone{a=40.0;r=5.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.slashhitb;p=1;v=1} @LivingInCone{a=40.0;r=5.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - delay 20
+  - lockmodel{l=false;delay=1} @Self
+#  - randomskill{s=attack2cprowler,bruttack2_cprowler,bruttack2_cprowler,bruttack2_cprowler;sync=true;repeat=2;repeatinterval=4} @LivingInCone{a=100.0;r=5.5;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - bodyclamp{m=em_darklurker;c=50} @self
+  - setvariable{var=caster.casting;value="0";t=integer} @Self
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self
+  - setstance{stance=normal} @self
+
+bruttack1_adaptivelunge:
+  Conditions:
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="decapitation"} false
+  - targetwithin{d=4} orElseCast bruttack1_adaptivelunge2
+  Skills:
+  - lunge{v=0.42;repeat=4;repeatInterval=1} @forward{f=10} 0
+  - propel{v=0.1;repeat=4;repeatInterval=1} @forward{f=10}
+  - message{m="Saltum 1"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+bruttack1_adaptivelunge2:
+  Conditions:
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="decapitation"} false
+  - targetwithin{d=8} true
+  Skills:
+  - lunge{v=0.58;repeat=7;repeatInterval=1} @forward{f=10} 0
+  - propel{v=0.25;repeat=7;repeatInterval=1} @forward{f=10}
+  - message{m="Saltum 2"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+bruttack1_cripple_cprowler:
+  Skills:
+  - actionmessage{m="&E&LKNOCKED AIRBORNE!";delay=0}
+  - potion{type=LEVITATION;duration=2;level=4;p=false;delay=0}
+  - throw{velocity=1;velocityY=2} ?distance{d=0to3}
+  - potion{type=LEVITATION;duration=2;level=2;p=false;delay=2}
+  - potion{type=LEVITATION;duration=1;level=1;p=false;delay=4}
+  - potion{type=SLOW_FALLING;duration=5;level=0;p=false;delay=5}
+  - potion{type=SLOW;duration=10;lvl=7}
+  - potion{type=SLOW;duration=20;level=0;p=false;force=true;delay=10}
+
+#
+#
+#
+#
+#################################################
+#################################################
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#RAGETRIGGERS
+
+cprowler_rage_trigger:
+  Cooldown: 10
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="decapitation"} false
+  - variableEquals{var=caster.casting;value="1"} false
+  - variableInRange{var=caster.runstacks;value=>5} castinstead cprowler_rage_trigger_runner
+  Skills:
+  - setstance{stance=casting} @self
+  - setAI{ai=false} @Self
+  - sound{s=emforgottenprowler:custom.corruptedprowler.rage;p=<random.float.0.9to1.1>;v=1.5;delay=14} @SelfLocation
+  - potion{type=SLOW;duration=1;level=0;p=false;force=true} @Self
+  - potion{type=SLOW;duration=35;level=55;p=false;force=true} @Self
+  - potion{type=SLOW;duration=12;level=3;p=false;force=true;delay=35} @Self
+  - state{state=rage;li=3;lo=10} @self 
+  - bodyclamp{m=em_darklurker;c=0} @self
+
+  - setvariable{var=caster.skillxd;value="rage1";t=string;delay=0} @Self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - setvariable{var=caster.casting;value="0";t=integer;delay=12} @Self
+
+  - look{headOnly=false;immediately=false;repeat=10;repeatInterval=1} @TargetedTarget
+
+  #
+  - state{remove=true;s=attack2;lo=3;n=false} @self
+  - state{remove=true;s=attack1;lo=3;n=false} @self
+  - state{remove=true;s=attack2_start;lo=3;n=false} @self
+  - state{remove=true;s=attack3;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack3_parrying;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad4;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad4;lo=3;n=false} @self
+  - delay 10
+  - Aura{auraName=shieldercprowler;onTick=cprowler_sdppcheck;interval=7;duration=140;mergeSameCaster=true} @self 0.8
+  - DefaultState{type=WALK;state=walk_fast;li=3;lo=2} @self ?!variableEquals{var=caster.running;value="2"} ?!variableEquals{var=caster.running;value="1"}
+  - setspeed{speed=1.27;type=walking} @Self ?!variableEquals{var=caster.running;value="2"} ?!variableEquals{var=caster.running;value="1"}
+  - Aura{desot=true;auraName=checkragecprowler;onTick=cprowler_rageproximitycheck;onEnd=cprowler_rageproximitycheckEND;interval=15;duration=400} @self
+  - setvariable{var=caster.ragestacks;value="11";t=integer} @Self ?variableInRange{var=caster.ragestacks;value=<10}
+  - setvariable{var=caster.rage;value="1";t=integer} @Self
+  - delay 34
+  - setAI{ai=true} @Self
+  - randomskill{s=bruttack1_cprowler,bruttack1_cprowler,bruttack1_cprowler,bruttack2_cprowler_starter,bruttack2_cprowler_starter,bruttack4_cprowler;sync=false} @LivingInCone{a=110.0;r=5;rot=0.0;ignore=samefaction} 0.5
+  - bodyclamp{m=em_darklurker;c=50} @self ?!variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.skillxd;value="bruttack4"} ?!variableEquals{var=caster.skillxd;value="bruttack1"}
+  - setvariable{var=caster.casting;value="0";t=integer} @Self ?!variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.skillxd;value="bruttack4"} ?!variableEquals{var=caster.skillxd;value="bruttack1"}
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ?!variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.skillxd;value="bruttack4"} ?!variableEquals{var=caster.skillxd;value="bruttack1"}
+  - setstance{stance=normal} @self ?!variableEquals{var=caster.skillxd;value="bruttack2"} ?!variableEquals{var=caster.skillxd;value="bruttack3"} ?!variableEquals{var=caster.skillxd;value="bruttack4"} ?!variableEquals{var=caster.skillxd;value="bruttack1"}
+
+# blinkpik123 , Excited.Workable.Cyst.Full.Ladder , 123123 , 2126 , 10445
+cprowler_rageproximitycheck:
+  Conditions:
+  - targetwithin{d=4} castinstead cprowler_rageproximitycheckb
+  - incombat orElseCast cprowler_rageproximitycheck_nocombat
+  - variableInRange{var=caster.ragestacks;value=<1} castinstead cprowler_rageproximitycheckc
+  Skills:
+  - variablesubtract{var=caster.ragestacks;amount=1} @self 0.7
+  - message{m="ragestax <caster.var.ragestacks> STACKS"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+cprowler_rageproximitycheck_nocombat:
+  Conditions:
+  - variableEquals{var=caster.parrying;value="1"} true
+  - incombat false
+  Skills:
+  - auraremove{aura=checkragecprowler} @self
+  - auraremove{aura=checkragecprowler1b} @self
+  - Aura{auraName=ragecooldown;duration=40} @self
+  - effect:particles{particle=reddust;color=#e2eb32;amount=15;hS=0.1;vS=0.1;size=0.8;repeat=2;repeatinterval=1} @Origin{y=2.4} 0 #DEBUG
+  - setvariable{var=caster.parrying;value="0";t=integer} @Self
+  - state{state=parrying_to_normal;li=2;lo=3} @self
+  - potion{type=SLOW;duration=8;level=5;p=false;force=true} @Self
+  - DefaultState{type=WALK;state=walk;li=3;lo=2} @self ?!variableEquals{var=caster.running;value="2"} ?!variableEquals{var=caster.running;value="1"}
+  - DefaultState{type=IDLE;state=idle;li=3;lo=2;delay=1} @self
+  - setspeed{speed=1;type=walking} @self
+cprowler_rageproximitycheckb:
+  Conditions:
+  - targetwithin{d=4} true
+  - variableEquals{var=caster.running;value="2"} false
+  Skills:
+  - variablesubtract{var=caster.ragestacks;amount=1} @self 1
+  - variablesubtract{var=caster.ragestacks;amount=1} @self 0.55
+  - variablesubtract{var=caster.ragestacks;amount=1} @self 0.3
+  - skill{s=[
+    - auraremove{aura=checkragecprowler} @self
+    - auraremove{aura=checkragecprowler1b} @self
+    - setvariable{var=caster.parrying;value="0";t=integer} @Self
+    - Aura{auraName=ragecooldown;duration=120} @self
+    - setvariable{var=caster.ragestacks;value="0";t=integer} @Self
+    - potion{type=SLOW;duration=8;level=5;p=false;force=true} @Self
+    - state{state=parrying_to_normal;li=2;lo=3} @self
+    - DefaultState{type=WALK;state=walk;li=3;lo=2} @self
+    - DefaultState{type=IDLE;state=idle;li=3;lo=2;delay=1} @self
+    - setspeed{speed=1;type=walking} @self];sync=true} @self 0.16 ############## 0.25
+
+cprowler_rageproximitycheckc:
+  Conditions:
+  - variableEquals{var=caster.parrying;value="1"} true
+  Skills:
+  - auraremove{aura=checkragecprowler} @self
+  - auraremove{aura=checkragecprowler1b} @self
+  - Aura{auraName=ragecooldown;duration=120} @self
+  - effect:particles{particle=reddust;color=#e2eb32;amount=15;hS=0.1;vS=0.1;size=0.8;repeat=2;repeatinterval=1} @Origin{y=2.4} 0 #DEBUG
+  - setvariable{var=caster.parrying;value="0";t=integer} @Self
+  - setvariable{var=caster.ragestacks;value="0";t=integer} @Self
+  - potion{type=SLOW;duration=8;level=5;p=false;force=true} @Self
+  - state{state=parrying_to_normal;li=2;lo=3} @self
+  - DefaultState{type=WALK;state=walk;li=3;lo=2} @self ?!variableEquals{var=caster.running;value="2"} ?!variableEquals{var=caster.running;value="1"}
+  - DefaultState{type=IDLE;state=idle;li=3;lo=2;delay=1} @self
+  - setspeed{speed=1;type=walking} @self
+cprowler_rageproximitycheckEND:
+  Conditions:
+  - variableEquals{var=caster.parrying;value="1"} true
+  Skills:
+  - Aura{auraName=ragecooldown;duration=120} @self
+  - effect:particles{particle=reddust;color=#e2eb32;amount=15;hS=0.1;vS=0.1;size=0.8;repeat=2;repeatinterval=1} @Origin{y=2.4} 0 #DEBUG
+  - setvariable{var=caster.parrying;value="0";t=integer} @Self
+  - setvariable{var=caster.ragestacks;value="0";t=integer} @Self
+  - potion{type=SLOW;duration=8;level=5;p=false;force=true} @Self
+  - state{state=parrying_to_normal;li=2;lo=3} @self
+  - DefaultState{type=WALK;state=walk_combat;li=3;lo=2} @self ?!variableEquals{var=caster.running;value="2"} ?!variableEquals{var=caster.running;value="1"}
+  - DefaultState{type=IDLE;state=idle;li=3;lo=2;delay=1} @self
+  - setspeed{speed=1;type=walking} @self
+
+
+####RUNNER PROTOCOL
+
+cprowler_runprotocolcheck:
+  Conditions:
+  - incombat true
+  - targetwithin{d=5} false
+  - variableEquals{var=caster.running;value="2"} false
+  Skills:
+  - skill{s=cprowler_runprotocol_addstacks;sync=true} 
+  - randomskill{s=cprowler_rage_trigger_runner;sync=true} @Target 0.6 ?variableInRange{var=caster.runstacks;value=>10} true
+cprowler_runprotocol_addstacks:
+  Conditions:
+  - hasaura{n=rageprotocoled} false
+  Skills:
+  - variableadd{var=caster.runstacks;amount=1} @self 0.9
+  - variableadd{var=caster.runstacks;amount=1} @self 0.4 ?variableInRange{var=caster.runstacks;value=>4}
+  - variableadd{var=caster.runstacks;amount=1} @self 0.7 ?targetnotwithin{d=12}
+  - variableadd{var=caster.runstacks;amount=1} @self 0.56 ?targetnotwithin{d=18}
+
+cprowler_rage_trigger_runner:
+  Cooldown: 4
+  Conditions:
+  - hasaura{n=rageprotocoled} false
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.casting;value="1"} false  
+  - stance{s=casting} false
+  - stance{s=normal} true
+  Skills:
+  - Aura{auraName=rageprotocoled;duration=200} @self
+  - message{m="&cProwler &bcasting &acprowler_rage_trigger_runner&f. Checking..."} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - skill{s=cprowler_rageprotocol_execute;sync=true} @Target 0.8
+#DEBUG #REMOVE
+
+cprowler_rage_trigger_runner2:
+  Cooldown: 4
+  Conditions:
+  - hasaura{n=rageprotocoled} false
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.casting;value="1"} false  
+  - stance{s=casting} false
+  - stance{s=normal} true
+  Skills:
+  - variableadd{var=caster.runstacks;amount=10}
+  - Aura{auraName=rageprotocoled;duration=1} @self
+  - message{m="&cProwler &bcasting &acprowler_rage_trigger_runner&f. Checking..."} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - skill{s=cprowler_rageprotocol_execute;sync=true} @Target
+
+
+cprowler_rageprotocolb:
+  Cooldown: 12
+  Conditions:
+  - hasaura{n=rageprotocoled} false
+  - variableInRange{var=caster.combor;value=>30} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.casting;value="1"} false
+  - stance{s=casting} false
+  - stance{s=normal} true
+  Skills:
+  - Aura{auraName=rageprotocoled;duration=200} @self
+  - threat{amount=300} @Trigger
+  - message{m="&cFallen &bcasting &acprowler_rageprotocol&f. Checking..."} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - skill{s=cprowler_rageprotocol_execute;sync=true} @trigger
+cprowler_rageprotocol_execute:
+  Conditions:
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.casting;value="1"} false
+  - stance{s=casting} false
+  - stance{s=normal} true
+  TargetConditions:
+  - distance{d=0to4} castinstead run_attack_cprowler
+  Skills:
+  - setvariable{var=caster.running;value="2";t=integer} @Self #RUNNING STATE 2
+  - message{m="&cFallen &bcasting &acprowler_rageprotocol&c_execute&f. EXECUTING"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - state{state=run_stop;coldown=4;li=1;lo=4.3} @self ?variableEquals{var=caster.running;value="0"}
+  - setstance{stance=casting} @self
+  - sound{s=emforgottenprowler:custom.corruptedprowler.frenzy;p=<random.float.0.9to1.1>;v=1.5;delay=14} @SelfLocation
+  - potion{type=SLOW;duration=35;level=45;p=false;force=true} @Self
+  - potion{type=SLOW;duration=10;level=3;p=false;force=true;delay=35} @Self
+  - state{state=rage_run;li=3;lo=0} @self
+  - state{state=run;li=0;lo=10;n=false;delay=47} @self 
+  - bodyclamp{m=em_darklurker;c=0} @self
+
+  - setvariable{var=caster.skillxd;value="rage2";t=string;delay=0} @Self
+  - setvariable{var=caster.casting;value="1";t=integer} @Self
+  - setvariable{var=caster.casting;value="0";t=integer;delay=35} @Self
+
+  - look{headOnly=false;immediately=false;repeat=10;repeatInterval=1} @TargetedTarget
+
+  #
+  - state{remove=true;s=attack2;lo=3;n=false} @self
+  - state{remove=true;s=attack1;lo=3;n=false} @self
+  - state{remove=true;s=attack2_start;lo=3;n=false} @self
+  - state{remove=true;s=attack3;lo=3;n=false} @self
+  - state{remove=true;s=attack4;lo=3;n=false} @self
+  - state{remove=true;s=backstep;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack3_parrying;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad4;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad4;lo=3;n=false} @self
+  - delay 10
+  - setvariable{var=caster.ragestacks;value="11";t=integer} @Self ?variableInRange{var=caster.ragestacks;value=<10}
+  - setvariable{var=caster.rage;value="1";t=integer} @Self
+  # REMOVE STATES
+  # xd
+  - delay 12
+  - Aura{auraName=particles_cprowler_rvgprotocol;onTick=pfx_cprowler_rvgprotocol;interval=1;duration=99999} @self
+  - Aura{auraName=runstance2_cprowler_trigger;onTick=cprowler_rageprotocol_checktfront;interval=2;duration=99999} @self
+  - setspeed{speed=1.85;type=walking} @Self
+  - delay 80
+  - skill{s=run_attack_cprowler;sync=true} @LivingInCone{a=56.0;r=4;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} 0.6 ?variableEquals{var=caster.running;value="2"}
+  - delay 20
+  - skill{s=cprowler_ravagerun_stop;sync=true} @Self 0.8 ?variableEquals{var=caster.running;value="2"}
+  - delay 20
+  - skill{s=cprowler_ravagerun_stop;sync=true} @Self 1 ?variableEquals{var=caster.running;value="2"}
+pfx_cprowler_rvgprotocol:
+  Skills:
+  - effect:particles{particle=reddust;color=#BEF8E5;amount=2;hS=0.01;vS=0.01;size=0.75;forwardOffset=0.4} @ModelPart{m=em_darklurker;p=eye1;offset=LOCAL;y=0}
+  - effect:particles{particle=reddust;color=#BEF8E5;amount=2;hS=0.01;vS=0.01;size=0.75;forwardOffset=0.4} @ModelPart{m=em_darklurker;p=eye2;offset=LOCAL;y=0}
+  - effect:particles{particle=reddust;color=#BEF8E5;amount=4;hS=0.1;vS=0.1;size=1.1} @ModelPart{m=em_darklurker;p=right_clawmarker;offset=LOCAL;y=0}
+  - effect:particles{particle=reddust;color=#BEF8E5;amount=2;hS=0.1;vS=0.1;size=0.9} @ModelPart{m=em_darklurker;p=left_clawmarker;offset=LOCAL;y=0}
+
+cprowler_rageprotocol_checktfront:
+  Skills:
+  - skill{s=cprowler_rageprotocol_checktfrontFOV;sync=true} @LivingInCone{a=45.0;r=7;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST}
+  - skill{s=cprowler_rageprotocol_checktfrontFOV;sync=true} @LivingInCone{a=160.0;r=4;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST}
+  - skill{s=cprowler_rageprotocol_checktfrontFOV;sync=true} @LivingEntitiesInRadius{r=2;ignore=samefaction;limit=1;sort=NEAREST}
+cprowler_rageprotocol_checktfrontFOV:
+  Conditions:
+  - hasaura{n=ravagingxd} false
+  TargetConditions:
+  - fieldofview{angle=160} true
+  - distance{d=4to9} true
+  - distance{d=0to4} castinstead run_attack_cprowler  
+  Skills:
+  - state{state=run_arm_catch;li=1;lo=4} @self
+  - Aura{auraName=ravagingxd;duration=60} @self
+  - setstance{s=casting} @Self
+  - bodyclamp{m=em_darklurker;c=0} @self
+  - auraremove{aura=runstance2_cprowler_trigger} @self
+  - clearThreat{} @self
+  - threat{amount=100}
+#  - look{headOnly=false;immediately=false;repeat=9;repeatInterval=1} @Target
+  - message{m="&cFallen &bcasting &acprowler_rageprotocol_checktfrontFOV &5RAVAGING"} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - delay 5
+  - potion{type=SLOW;duration=20;level=7;p=false;force=false} @Self
+  - effect:particles{p=reddust;color=#b0e0e6;a=13;speed=0.00;hs=0.15;vs=0.1;y=0;forwardOffset=0.0000;Size=0.9;sideOffset=0.0000;repeat=9;repeatinterval=1} @Self{y=2} 0 #DEBUGPARTICLES
+  - skill{s=lunge_cprowler_checktfrontFOV;sync=false;repeat=20;repeatinterval=1}
+  - lockmodel{l=true;delay=0} @Self #LOCKMODEL
+  - spin{d=20;v=0} @self
+  - delay 6
+  - skill{s=run_attack_cprowler;sync=true;repeat=5;repeatinterval=3} @LivingInCone{a=56.0;r=4;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST}
+  - delay 14
+  - skill{s=cprowler_ravagerun_stop;sync=true;repeat=1;repeatinterval=3} ?!variableEquals{var=caster.skillxd;value="bruttack5"}
+lunge_cprowler_checktfrontFOV:
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - variableEquals{var=caster.skillxd;value="bruttack5"} false
+  - variableEquals{var=caster.running;value="2"}
+  Skills:
+  - lunge{v=0.24;vy=0.002} @forward{f=10;y=1} 1
+lunge_cprowler_checktfrontFOV2:
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - variableEquals{var=caster.skillxd;value="bruttack5"} true
+  Skills:
+  - lunge{v=0.54;vy=0.002} @forward{f=10;y=1} 1
+run_attack_cprowler:
+  Cooldown: 4
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - stance{s=casting} orElseCast run_attack_cprowlerB
+  - stance{s=normal} false
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="decapitation"} false
+  - variableEquals{var=caster.casting;value="1"} false
+  TargetConditions:
+  - distance{d=0to6} true
+  - fieldofview{angle=140} true
+  Skills:
+  - setstance{stance=casting} @self
+  - bodyclamp{m=em_darklurker;c=0} @self
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.channelstun;p=1.2;v=1} ######SOUND
+  - state{remove=true;s=run_roll;lo=1;n=false;frame=0} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - auraremove{aura=runstance2_cprowler_trigger} @self #Removes ravager protocol
+  - setvariable{var=caster.running;value="0";t=integer} @Self
+  - setvariable{var=caster.runstacks;value="0";t=integer} @Self
+  - spin{d=26;v=0;delay=5} @self
+  - lockmodel{l=false;delay=15} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @TargetedTarget
+
+  - state{state=run_hit;li=1;lo=10} @self
+  - state{remove=true;s=run;lo=1;n=false;frame=0} @self
+  - state{remove=true;s=run_arm_catch;lo=1;n=false;frame=0} @self
+  - skill{s=lunge_cprowler_checktfrontFOV2;repeat=4;repeatinterval=1} @LivingInCone{a=120.0;r=6;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  
+  #STATEREMOTION
+  - state{remove=true;s=attack1;lo=3;n=false} @self
+  - state{remove=true;s=attack2;lo=3;n=false} @self
+  - state{remove=true;s=attack2_start;lo=3;n=false} @self
+  - state{remove=true;s=backstep;lo=3;n=false} @self
+  - state{remove=true;s=attack3;lo=3;n=false} @self
+  - state{remove=true;s=attack1_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack3_parrying;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad4;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad4;lo=3;n=false} @self
+  - setspeed{speed=1;type=walking} @Self
+  #
+  - setvariable{var=caster.comboa;value="1";t=integer} @Self ?variableEquals{var=caster.comboa;value="0"}
+  - setvariable{var=caster.skillxd;value="bruttack5";t=string;delay=0} @Self
+  - potion{type=SLOW;duration=18;level=7;p=false;force=false} @Self
+  - potion{type=SLOW;duration=20;level=7;p=false;force=true;delay=18} @Self ?variableEquals{var=caster.skillxd;value="bruttack5"}
+  - potion{type=SLOW;duration=18;level=2;p=false;force=true;delay=38} @Self ?variableEquals{var=caster.skillxd;value="bruttack5"}
+  
+  - spin{d=25;v=0;delay=10} @self
+  - lockmodel{l=true;delay=10} @Self #LOCKMODEL
+  - sound{s=emforgottenprowler:custom.corruptedprowler.effortb;p=<random.float.0.9to1.1>;v=1.5} @selflocation 0.7 ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - message{m="VULNERABLE";delay=0} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - setvariable{var=caster.vulnerable;value="1";t=integer;delay=0} @Self
+  - setvariable{var=caster.vulnerable;value="0";t=integer;delay=4} @Self
+  - message{m="NOVULNERABLE";delay=4} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - Aura{auraName=bruttackrest;duration=40} @self
+  - delay 4
+  - setvariable{var=caster.casting;value="1";t=integer} @Self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.herostun;p=<random.float.1.3to1.6>;v=1} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} 0
+  - skill{s=cprowler_atk1FX_A;delay=3} @Self
+  - delay 2
+  - state{remove=true;s=run;lo=1;n=false} @self
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.attack4reaper;p=<random.float.1to1.4>;v=1.5;cooldown=2} @selflocation ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - delay 1
+  - skill{s=cprowler_atk1FX_B;delay=0} @Self
+  #
+  - projectile{onTick=cprowlerattack3tick;onHit=cprowlerattack3hit;mr=4;v=30;i=1;hR=1.6;vR=0.8;hp=true;hnp=true;sB=false;sE=false;hs=false;d=150;syo=1;sso=0.5} @Forward{f=5;y=0.0} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - projectile{onTick=cprowlerattack3tick2;mr=4;v=30;i=3;hR=1.6;hp=true;hnp=true;vR=3;sB=false;sE=false;hs=true;d=150;syo=0;hfs=0.1;sso=0.5} @Forward{f=5;y=0.0} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  #
+
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.attackwindup;p=1;v=1} @selflocation ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - skill{s=bruttack1_cripple_cprowler;sync=true} @LivingInCone{a=180.0;r=4.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  
+  - skill{s=outrun_aleviate_cprowler;sync=true} @LivingInCone{a=180.0;r=5.5;rot=0.0;ignore=samefaction} 0.8 ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - basedamage{m=1.9;ignorearmor=false} @LivingInCone{a=180.0;r=5.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - sudoskill{s=[
+    - summon{mob=cpblood_expFXmarker1;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-1.5;ForwardOffset=0.3}];sync=true} @LivingInCone{a=180.0;r=5.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.slashhitb;p=1;v=1} @LivingInCone{a=180.0;r=5.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - delay 20
+  - state{remove=true;s=run;lo=1;n=false} @self
+  - auraremove{aura=particles_cprowler_rvgprotocol} @self
+  - lockmodel{l=false;delay=1} @Self
+#  - randomskill{s=attack2cprowler,bruttack2_cprowler,bruttack2_cprowler,bruttack2_cprowler;sync=true;repeat=2;repeatinterval=4} @LivingInCone{a=100.0;r=5.5;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - bodyclamp{m=em_darklurker;c=50} @self
+  - setvariable{var=caster.casting;value="0";t=integer} @Self
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self
+  - setstance{stance=normal} @self
+
+run_attack_cprowlerB:
+  Cooldown: 4
+  Conditions:
+  - variableEquals{var=caster.skillxd;value="hurtedvbad"} false
+  - stance{s=normal} true
+  - variableEquals{var=caster.hurtened;value="1"} false
+  - variableEquals{var=caster.skillxd;value="decapitation"} false
+  - variableEquals{var=caster.casting;value="1"} false
+  TargetConditions:
+  - distance{d=0to6} true
+  - fieldofview{angle=140} true
+  Skills:
+  - setstance{stance=casting} @self
+  - bodyclamp{m=em_darklurker;c=0} @self
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.channelstun;p=1.2;v=1} ######SOUND
+  - state{remove=true;s=run_roll;lo=1;n=false;frame=0} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - auraremove{aura=runstance2_cprowler_trigger} @self #Removes ravager protocol
+  - setvariable{var=caster.running;value="0";t=integer} @Self
+  - setvariable{var=caster.runstacks;value="0";t=integer} @Self
+  - spin{d=26;v=0;delay=5} @self
+  - lockmodel{l=false;delay=15} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @TargetedTarget
+
+  - state{state=run_hit;li=1;lo=10} @self
+  - state{remove=true;s=run;lo=1;n=false} @self
+  - state{remove=true;s=run_arm_catch;lo=1;n=false;frame=0} @self
+  - skill{s=lunge_cprowler_checktfrontFOV2;repeat=4;repeatinterval=1} @LivingInCone{a=120.0;r=6;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  
+  #STATEREMOTION
+  - state{remove=true;s=attack1;lo=3;n=false} @self
+  - state{remove=true;s=attack2;lo=3;n=false} @self
+  - state{remove=true;s=attack2_start;lo=3;n=false} @self
+  - state{remove=true;s=backstep;lo=3;n=false} @self
+  - state{remove=true;s=attack3;lo=3;n=false} @self
+  - state{remove=true;s=attack1_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack2_parrying;lo=3;n=false} @self
+  - state{remove=true;s=attack3_parrying;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtbad4;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad1;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad2;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad3;lo=3;n=false} @self
+  - state{remove=true;s=hurtverybad4;lo=3;n=false} @self
+  - setspeed{speed=1;type=walking} @Self
+  #
+  - setvariable{var=caster.comboa;value="1";t=integer} @Self ?variableEquals{var=caster.comboa;value="0"}
+  - setvariable{var=caster.skillxd;value="bruttack5";t=string;delay=0} @Self
+  - potion{type=SLOW;duration=18;level=7;p=false;force=false} @Self
+  - potion{type=SLOW;duration=20;level=7;p=false;force=true;delay=18} @Self ?variableEquals{var=caster.skillxd;value="bruttack5"}
+  - potion{type=SLOW;duration=18;level=2;p=false;force=true;delay=38} @Self ?variableEquals{var=caster.skillxd;value="bruttack5"}
+  
+  - spin{d=25;v=0;delay=10} @self
+  - lockmodel{l=true;delay=10} @Self #LOCKMODEL
+  - sound{s=emforgottenprowler:custom.corruptedprowler.effortb;p=<random.float.0.9to1.1>;v=1.5} @selflocation 0.7 ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - message{m="VULNERABLE";delay=0} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - setvariable{var=caster.vulnerable;value="1";t=integer;delay=0} @Self
+  - setvariable{var=caster.vulnerable;value="0";t=integer;delay=4} @Self
+  - message{m="NOVULNERABLE";delay=4} @PlayersNearOrigin{r=75} 0 #DEBUGMESSAGE
+  - Aura{auraName=bruttackrest;duration=40} @self
+  - delay 4
+  - setvariable{var=caster.casting;value="1";t=integer} @Self ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.herostun;p=<random.float.1.3to1.6>;v=1} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2} 0
+  - skill{s=cprowler_atk1FX_A;delay=3} @Self
+  - delay 2
+  - state{remove=true;s=run;lo=1;n=false} @self
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.attack4reaper;p=<random.float.1to1.4>;v=1.5;cooldown=2} @selflocation ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - delay 1
+  - skill{s=cprowler_atk1FX_B;delay=0} @Self
+  #
+  - projectile{onTick=cprowlerattack3tick;onHit=cprowlerattack3hit;mr=4;v=30;i=1;hR=1.6;vR=0.8;hp=true;hnp=true;sB=false;sE=false;hs=false;d=150;syo=1;sso=0.5} @Forward{f=5;y=0.0} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - projectile{onTick=cprowlerattack3tick2;mr=4;v=30;i=3;hR=1.6;hp=true;hnp=true;vR=3;sB=false;sE=false;hs=true;d=150;syo=0;hfs=0.1;sso=0.5} @Forward{f=5;y=0.0} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  #
+
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.attackwindup;p=1;v=1} @selflocation ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - skill{s=bruttack1_cripple_cprowler;sync=true} @LivingInCone{a=180.0;r=4.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  
+  - skill{s=outrun_aleviate_cprowler;sync=true} @LivingInCone{a=180.0;r=5.5;rot=0.0;ignore=samefaction} 0.8 ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - basedamage{m=1.9;ignorearmor=false} @LivingInCone{a=180.0;r=5.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - sudoskill{s=[
+    - summon{mob=cpblood_expFXmarker1;amount=1;noise=0.5;r=0.6;yr=0} @SelfLocation{y=-1.5;ForwardOffset=0.3}];sync=true} @LivingInCone{a=180.0;r=5.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - sound{s=emforgottenterrorsv1:custom.forgottenterrors.slashhitb;p=1;v=1} @LivingInCone{a=180.0;r=5.5;rot=0.0;ignore=samefaction} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - delay 20
+  - state{remove=true;s=run;lo=1;n=false} @self
+  - auraremove{aura=particles_cprowler_rvgprotocol} @self
+  - lockmodel{l=false;delay=1} @Self
+#  - randomskill{s=attack2cprowler,bruttack2_cprowler,bruttack2_cprowler,bruttack2_cprowler;sync=true;repeat=2;repeatinterval=4} @LivingInCone{a=100.0;r=5.5;rot=0.0;ignore=samefaction;limit=1;sort=NEAREST} ?!variableEquals{var=caster.hurtened;value="1"} ?!hasaura{n=bruttackrest2}
+  - bodyclamp{m=em_darklurker;c=50} @self
+  - setvariable{var=caster.casting;value="0";t=integer} @Self
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self
+  - setstance{stance=normal} @self
+
+cprowler_ravagerun_stop:
+  Cooldown: 5
+  Conditions:
+  - variableEquals{var=caster.running;value="2"} true
+  - stance{s=casting} true
+  Skills:
+  - setstance{stance=casting} @self
+  - auraremove{aura=runstance2_cprowler_trigger} @self #Removes ravager protocol
+  - setvariable{var=caster.running;value="0";t=integer} @Self
+  - setvariable{var=caster.runstacks;value="0";t=integer} @Self
+  - spin{d=26;v=0} @self
+  - lunge{v=0.14;vy=0.002;repeat=6;repeatinterval=1} @forward{f=10;y=1} 1
+  - lockmodel{l=false;delay=26} @Self
+  - setspeed{speed=1;type=walking} @Self
+  - auraremove{aura=particles_cprowler_rvgprotocol} @self
+  - state{remove=true;s=run;lo=1;n=false;frame=0} @self
+  - state{remove=true;s=run_arm_catch;lo=1;n=false;frame=0} @self
+  - state{state=run_fail;li=1;lo=4} @self
+  - potion{type=SLOW;duration=24;level=7;p=false;force=true} @Self
+  - delay 26
+  - state{remove=true;s=run;lo=1;n=false} @self
+  - setstance{s=normal} @Self ?stance{s=casting}
+
+
+#
+#
+#
+#
+#
+########################################
+#     #           #         #          #
+#     #           #         #          #
+#     #                                #
+#     #                                #
+#     #                                # ########################
+#     #                                ############################################################
+#     #                                #
+#     #                                #
+#     #                                #
+########################################
+#
+#
+#
+#
+#
+#
+#
+
+
+
+#123123

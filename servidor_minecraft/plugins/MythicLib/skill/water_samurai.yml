@@ -1,0 +1,36 @@
+SPLASHING_WATER_FLOW_TURBULENT:
+    mythicmobs-skill-id: Splashing_Water_Flow_Turbulent
+    passive-type: TIMER
+
+WATER_SURFACE_SLASH:
+    mythicmobs-skill-id: Water_Surface_Slash
+    modifiers:
+    - damage
+    
+WATER_WHEEL:
+    mythicmobs-skill-id: Water_Wheel
+    modifiers:
+    - damage
+
+FLOWING_DANCE:
+    mythicmobs-skill-id: Flowing_Dance
+    modifiers:
+    - damage
+    - skillcooldown
+
+WHIRLPOOL:
+    mythicmobs-skill-id: Whirlpool
+    passive-type: TIMER
+    modifiers:
+    - damage
+    - skillcooldown
+    
+STRIKING_TIDE:
+    mythicmobs-skill-id: Striking_Tide
+    modifiers:
+    - damage
+    
+CONSTANT_FLUX:
+    mythicmobs-skill-id: Constant_Flux
+    modifiers:
+    - damage

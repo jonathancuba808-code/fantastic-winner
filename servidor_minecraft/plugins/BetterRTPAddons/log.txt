@@ -1,0 +1,345 @@
+2026-02-03 18:18:00 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-03 18:18:00 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-03 18:18:00 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-03 18:18:00 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-03 18:18:02 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-03 18:18:02 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-03 18:18:02 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-03 18:18:02 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-03 18:18:02 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-03 18:18:02 [BetterRTP]: Database COOLDOWN:spawn configured and loaded!
+2026-02-03 18:18:02 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-03 18:18:03 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-03 18:18:11 [BetterRTP]: Queue position generated: id= default_world, database_ID= 1, location= x: 377, y: 71, z: -729, world: world
+2026-02-03 18:18:14 [BetterRTP]: Queue position generated: id= default_world, database_ID= 2, location= x: -431, y: 66, z: -82, world: world
+2026-02-03 18:18:18 [BetterRTP]: Queue position generated: id= default_world, database_ID= 3, location= x: 500, y: 75, z: 408, world: world
+2026-02-03 18:18:21 [BetterRTP]: Queue position generated: id= default_world, database_ID= 4, location= x: 864, y: 68, z: 423, world: world
+2026-02-03 18:18:26 [BetterRTP]: Queue position generated: id= default_world, database_ID= 5, location= x: -277, y: 65, z: 163, world: world
+2026-02-03 18:18:29 [BetterRTP]: Queue position generated: id= default_world, database_ID= 6, location= x: -559, y: 71, z: -950, world: world
+2026-02-03 18:18:32 [BetterRTP]: Queue position generated: id= default_world, database_ID= 7, location= x: -581, y: 164, z: 950, world: world
+2026-02-03 18:18:35 [BetterRTP]: Queue position generated: id= default_world, database_ID= 8, location= x: -952, y: 88, z: -231, world: world
+2026-02-03 18:18:38 [BetterRTP]: Queue position generated: id= default_world, database_ID= 9, location= x: 384, y: 104, z: 405, world: world
+2026-02-03 18:18:40 [BetterRTP]: Queue position generated: id= default_world, database_ID= 10, location= x: -565, y: 95, z: -127, world: world
+2026-02-03 18:18:43 [BetterRTP]: Queue position generated: id= default_world, database_ID= 11, location= x: 828, y: 65, z: -906, world: world
+2026-02-03 18:18:45 [BetterRTP]: Queue position generated: id= default_world, database_ID= 12, location= x: 897, y: 101, z: 184, world: world
+2026-02-03 18:18:47 [BetterRTP]: Queue position generated: id= default_world, database_ID= 13, location= x: 643, y: 68, z: -327, world: world
+2026-02-03 18:18:50 [BetterRTP]: Queue position generated: id= default_world, database_ID= 14, location= x: -511, y: 67, z: -902, world: world
+2026-02-03 18:18:51 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-03 18:35:46 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-03 18:35:46 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-03 18:35:46 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-03 18:35:46 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-03 18:35:47 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-03 18:35:47 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-03 18:35:47 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-03 18:35:47 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-03 18:35:47 [BetterRTP]: Database COOLDOWN:spawn configured and loaded!
+2026-02-03 18:35:47 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-03 18:35:47 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-03 18:35:50 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-03 18:35:53 [BetterRTP]: Queue position generated: id= default_world_the_end, database_ID= 15, location= x: 962, y: 58, z: 480, world: world_the_end
+2026-02-03 18:35:58 [BetterRTP]: Queue position generated: id= default_world_the_end, database_ID= 16, location= x: 950, y: 59, z: 834, world: world_the_end
+2026-02-03 18:36:06 [BetterRTP]: Queue position generated: id= default_world_the_end, database_ID= 17, location= x: -989, y: 57, z: 498, world: world_the_end
+2026-02-03 18:36:24 [BetterRTP]: Queue position generated: id= default_world_the_end, database_ID= 18, location= x: 440, y: 61, z: -977, world: world_the_end
+2026-02-03 18:36:27 [BetterRTP]: Queue position generated: id= default_world_the_end, database_ID= 19, location= x: -595, y: 57, z: 951, world: world_the_end
+2026-02-03 18:36:29 [BetterRTP]: Queue position generated: id= default_world_the_end, database_ID= 20, location= x: -972, y: 64, z: 941, world: world_the_end
+2026-02-03 18:36:45 [BetterRTP]: Queue position generated: id= default_world_the_end, database_ID= 21, location= x: 940, y: 57, z: -872, world: world_the_end
+2026-02-03 18:37:03 [BetterRTP]: Max attempts to create a Queue reached for default_world_the_end (amount: 7)
+2026-02-03 18:37:03 [BetterRTP]: Seems like the world `spawn` does not have a `WorldType` declared. Please add/fix this in the config.yml file! This world will be treated as an overworld! If this world is a nether world, configure it to NETHER (example: `- spawn: NETHER`
+2026-02-03 18:37:46 [BetterRTP]: Queue position generated: id= default_spawn, database_ID= 22, location= x: -13, y: 47, z: -321, world: spawn
+2026-02-03 18:37:57 [BetterRTP]: Max attempts to create a Queue reached for default_spawn (amount: 1)
+2026-02-03 18:37:59 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 23, location= x: -404, y: 104, z: -218, world: world_nether
+2026-02-03 18:38:02 [BetterRTP]: Queue position generated: id= default_spawn, database_ID= 24, location= x: 23, y: 36, z: 108, world: spawn
+2026-02-03 18:38:42 [BetterRTP]: Queue position generated: id= default_spawn, database_ID= 25, location= x: 192, y: 37, z: -181, world: spawn
+2026-02-03 18:38:53 [BetterRTP]: Max attempts to create a Queue reached for default_spawn (amount: 3)
+2026-02-03 18:38:55 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 26, location= x: -637, y: 125, z: -790, world: world_nether
+2026-02-03 18:38:58 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 27, location= x: 933, y: 120, z: -528, world: world_nether
+2026-02-03 18:39:00 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 28, location= x: -757, y: 37, z: 97, world: world_nether
+2026-02-03 18:39:02 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 29, location= x: 657, y: 40, z: 669, world: world_nether
+2026-02-03 18:39:04 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 30, location= x: -662, y: 52, z: 536, world: world_nether
+2026-02-03 18:39:06 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 31, location= x: -528, y: 122, z: 597, world: world_nether
+2026-02-03 18:39:08 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 32, location= x: -701, y: 34, z: -194, world: world_nether
+2026-02-03 18:39:12 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 33, location= x: -918, y: 50, z: -186, world: world_nether
+2026-02-03 18:39:15 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 34, location= x: -270, y: 64, z: -167, world: world_nether
+2026-02-03 18:39:17 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 35, location= x: -935, y: 35, z: 437, world: world_nether
+2026-02-03 18:39:20 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 36, location= x: 884, y: 88, z: 838, world: world_nether
+2026-02-03 18:39:22 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 37, location= x: 189, y: 33, z: -576, world: world_nether
+2026-02-03 18:39:25 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 38, location= x: -84, y: 47, z: -730, world: world_nether
+2026-02-03 18:39:28 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 39, location= x: -128, y: 194, z: -491, world: world_nether
+2026-02-03 18:39:30 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 40, location= x: -554, y: 38, z: 969, world: world_nether
+2026-02-03 18:39:32 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 41, location= x: -295, y: 58, z: -104, world: world_nether
+2026-02-03 18:39:34 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 42, location= x: 985, y: 73, z: 169, world: world_nether
+2026-02-03 18:39:36 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 43, location= x: -962, y: 39, z: 487, world: world_nether
+2026-02-03 18:39:38 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 44, location= x: -60, y: 105, z: 607, world: world_nether
+2026-02-03 18:39:41 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 45, location= x: -126, y: 64, z: 716, world: world_nether
+2026-02-03 18:39:43 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 46, location= x: -996, y: 142, z: -645, world: world_nether
+2026-02-03 18:39:45 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 47, location= x: -275, y: 97, z: 685, world: world_nether
+2026-02-03 18:39:48 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 48, location= x: 262, y: 97, z: 491, world: world_nether
+2026-02-03 18:39:50 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 49, location= x: 738, y: 56, z: -565, world: world_nether
+2026-02-03 18:39:52 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 50, location= x: 126, y: 35, z: 450, world: world_nether
+2026-02-03 18:39:55 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 51, location= x: -817, y: 73, z: 529, world: world_nether
+2026-02-03 18:39:58 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 52, location= x: 825, y: 89, z: 181, world: world_nether
+2026-02-03 18:40:02 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 53, location= x: -156, y: 174, z: -408, world: world_nether
+2026-02-03 18:40:04 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 54, location= x: 196, y: 35, z: -941, world: world_nether
+2026-02-03 18:40:06 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 55, location= x: -479, y: 87, z: -186, world: world_nether
+2026-02-03 18:40:09 [BetterRTP]: Queue position generated: id= default_world_nether, database_ID= 56, location= x: 64, y: 67, z: 209, world: world_nether
+2026-02-03 18:40:10 [BetterRTP]: Max queue reached for default_world_nether (amount: 32) lastCount: 1
+2026-02-03 18:40:10 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-05 20:04:20 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-05 20:04:20 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-05 20:04:20 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-05 20:04:20 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-05 20:04:22 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-05 20:04:22 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-05 20:04:22 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-05 20:04:22 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-05 20:04:22 [BetterRTP]: Database COOLDOWN:spawn configured and loaded!
+2026-02-05 20:04:22 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-05 20:04:22 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-05 20:04:24 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-05 20:04:24 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-05 20:04:50 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-05 22:36:34 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-05 22:36:34 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-05 22:36:34 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-05 22:36:34 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-05 22:36:35 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-05 22:36:35 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-05 22:36:35 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-05 22:36:35 [BetterRTP]: Database COOLDOWN:spawn configured and loaded!
+2026-02-05 22:36:35 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-05 22:36:35 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-05 22:36:35 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-05 22:36:37 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-05 23:54:01 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-05 23:54:01 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-05 23:54:01 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-05 23:54:01 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-05 23:54:02 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-05 23:54:02 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-05 23:54:02 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-05 23:54:02 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-05 23:54:02 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-05 23:54:02 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-05 23:54:02 [BetterRTP]: Database COOLDOWN:spawn configured and loaded!
+2026-02-05 23:54:04 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-05 23:54:04 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-06 00:03:15 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-06 00:04:50 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-06 00:04:50 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-06 00:04:50 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-06 00:04:50 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-06 00:04:52 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-06 00:04:52 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-06 00:04:52 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-06 00:04:52 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-06 00:04:52 [BetterRTP]: Database COOLDOWN:spawn configured and loaded!
+2026-02-06 00:04:52 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-06 00:04:52 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-06 00:04:54 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-06 00:04:54 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-06 01:14:51 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-06 01:16:48 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-06 01:16:48 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-06 01:16:48 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-06 01:16:48 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-06 01:16:49 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-06 01:16:49 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-06 01:16:49 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-06 01:16:49 [BetterRTP]: Database COOLDOWN:spawn configured and loaded!
+2026-02-06 01:16:49 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-06 01:16:49 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-06 01:16:49 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-06 01:16:51 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-06 01:16:51 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-06 01:36:57 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-06 01:38:51 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-06 01:38:51 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-06 01:38:51 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-06 01:38:51 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-06 01:38:52 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-06 01:38:52 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-06 01:38:52 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-06 01:38:52 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-06 01:38:52 [BetterRTP]: Database COOLDOWN:spawn configured and loaded!
+2026-02-06 01:38:52 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-06 01:38:52 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-06 01:38:54 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-06 01:38:54 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-06 01:55:52 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-06 23:10:57 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-06 23:10:58 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-06 23:10:58 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-06 23:10:58 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-06 23:11:00 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-06 23:11:00 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-06 23:11:00 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-06 23:11:00 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-06 23:11:00 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-06 23:11:00 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-06 23:11:02 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-06 23:11:02 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-06 23:12:36 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-06 23:49:46 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-06 23:49:46 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-06 23:49:46 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-06 23:49:46 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-06 23:49:49 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-06 23:49:49 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-06 23:49:49 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-06 23:49:49 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-06 23:49:49 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-06 23:49:49 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-06 23:49:52 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-06 23:49:53 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-07 00:04:23 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-07 00:17:17 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-07 00:17:17 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-07 00:17:17 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-07 00:17:17 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-07 00:17:19 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-07 00:17:19 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-07 00:17:19 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-07 00:17:19 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-07 00:17:19 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-07 00:17:19 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-07 00:17:24 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-07 00:17:25 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-07 00:45:38 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-07 00:47:56 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-07 00:47:56 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-07 00:47:56 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-07 00:47:56 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-07 00:47:57 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-07 00:47:57 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-07 00:47:57 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-07 00:47:57 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-07 00:47:57 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-07 00:47:57 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-07 00:48:02 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-07 00:48:03 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-07 02:05:35 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-07 02:26:52 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-07 02:26:52 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-07 02:26:52 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-07 02:26:52 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-07 02:26:55 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-07 02:26:55 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-07 02:26:55 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-07 02:26:55 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-07 02:26:55 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-07 02:26:55 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-07 02:27:04 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-07 02:27:05 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-07 05:32:22 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-07 14:12:56 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-07 14:12:56 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-07 14:12:56 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-07 14:12:56 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-07 14:12:58 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-07 14:12:58 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-07 14:12:58 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-07 14:12:58 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-07 14:12:58 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-07 14:12:58 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-07 14:13:14 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-07 14:13:14 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-07 14:13:25 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-07 16:10:53 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-07 16:10:53 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-07 16:10:53 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-07 16:10:53 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-07 16:10:55 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-07 16:10:55 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-07 16:10:55 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-07 16:10:55 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-07 16:10:55 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-07 16:10:55 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-07 16:11:11 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-07 16:11:12 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-07 16:15:57 [BetterRTP]: New world `spawn` detected! Reloaded Databases!
+2026-02-07 16:15:57 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-07 16:15:57 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-07 16:15:57 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-07 16:15:57 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-07 16:15:57 [BetterRTP]: Database COOLDOWN:spawn configured and loaded!
+2026-02-07 16:15:57 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-07 16:15:57 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-07 16:16:09 [BetterRTP]: New world `QueenBeeWorld` detected! Reloaded Databases!
+2026-02-07 16:16:09 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-07 16:16:09 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-07 16:16:09 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-07 16:16:09 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-07 16:16:09 [BetterRTP]: Database COOLDOWN:spawn configured and loaded!
+2026-02-07 16:16:09 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-07 16:16:09 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-07 16:16:09 [BetterRTP]: Database COOLDOWN:QueenBeeWorld configured and loaded!
+2026-02-07 16:21:27 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-07 16:31:55 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-07 16:31:55 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-07 16:31:55 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-07 16:31:55 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-07 16:31:57 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-07 16:31:57 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-07 16:31:57 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-07 16:31:57 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-07 16:31:57 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-07 16:31:57 [BetterRTP]: Database COOLDOWN:spawn configured and loaded!
+2026-02-07 16:31:57 [BetterRTP]: Database COOLDOWN:QueenBeeWorld configured and loaded!
+2026-02-07 16:31:57 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-07 16:32:13 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-07 16:32:24 [BetterRTP]: Seems like the world `QueenBeeWorld` does not have a `WorldType` declared. Please add/fix this in the config.yml file! This world will be treated as an overworld! If this world is a nether world, configure it to NETHER (example: `- QueenBeeWorld: NETHER`
+2026-02-07 16:32:24 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 57, location= x: 998, y: 68, z: -519, world: QueenBeeWorld
+2026-02-07 16:32:33 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 58, location= x: -977, y: 68, z: 556, world: QueenBeeWorld
+2026-02-07 16:32:37 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 59, location= x: -914, y: 70, z: 648, world: QueenBeeWorld
+2026-02-07 16:32:40 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 60, location= x: -867, y: 72, z: -197, world: QueenBeeWorld
+2026-02-07 16:32:45 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 61, location= x: -757, y: 80, z: 991, world: QueenBeeWorld
+2026-02-07 16:32:50 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 62, location= x: -464, y: 78, z: -727, world: QueenBeeWorld
+2026-02-07 16:32:52 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 63, location= x: -526, y: 75, z: 920, world: QueenBeeWorld
+2026-02-07 16:33:10 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 64, location= x: 878, y: 69, z: 462, world: QueenBeeWorld
+2026-02-07 16:33:13 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 65, location= x: -463, y: 107, z: -973, world: QueenBeeWorld
+2026-02-07 16:33:18 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 66, location= x: 750, y: 70, z: -869, world: QueenBeeWorld
+2026-02-07 16:33:20 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 67, location= x: -470, y: 72, z: 783, world: QueenBeeWorld
+2026-02-07 16:33:25 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 68, location= x: -989, y: 62, z: -885, world: QueenBeeWorld
+2026-02-07 16:33:32 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 69, location= x: 934, y: 73, z: -494, world: QueenBeeWorld
+2026-02-07 16:33:36 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 70, location= x: -830, y: 64, z: -131, world: QueenBeeWorld
+2026-02-07 16:33:40 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 71, location= x: 843, y: 74, z: -531, world: QueenBeeWorld
+2026-02-07 16:33:43 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 72, location= x: -607, y: 64, z: 947, world: QueenBeeWorld
+2026-02-07 16:33:47 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 73, location= x: 774, y: 72, z: -670, world: QueenBeeWorld
+2026-02-07 16:33:49 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 74, location= x: -802, y: 91, z: -836, world: QueenBeeWorld
+2026-02-07 16:33:51 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 75, location= x: 997, y: 62, z: -457, world: QueenBeeWorld
+2026-02-07 16:33:56 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 76, location= x: -551, y: 92, z: -895, world: QueenBeeWorld
+2026-02-07 16:34:04 [BetterRTP]: Queue position generated: id= default_QueenBeeWorld, database_ID= 77, location= x: 536, y: 70, z: 818, world: QueenBeeWorld
+2026-02-07 16:34:13 [BetterRTP]: Max attempts to create a Queue reached for default_QueenBeeWorld (amount: 21)
+2026-02-07 16:34:13 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-07 17:44:35 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-07 22:06:56 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-07 22:06:56 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-07 22:06:56 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-07 22:06:56 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-07 22:06:58 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-07 22:06:58 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-07 22:06:58 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-07 22:06:58 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-07 22:06:58 [BetterRTP]: Database COOLDOWN:spawn configured and loaded!
+2026-02-07 22:06:58 [BetterRTP]: Database COOLDOWN:QueenBeeWorld configured and loaded!
+2026-02-07 22:06:58 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-07 22:06:58 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-07 22:07:17 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-07 22:07:18 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-07 22:07:30 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10
+2026-02-07 22:09:16 [BetterRTP]: Addon LOGGER has been enabled!
+2026-02-07 22:09:16 [BetterRTP]: Addon PORTALS has been enabled!
+2026-02-07 22:09:16 [BetterRTP]: Addon EXTRAEFFECTS has been enabled!
+2026-02-07 22:09:16 [BetterRTP]: Addon PARTY_RTP has been enabled!
+2026-02-07 22:09:18 [BetterRTP]: Database COOLDOWN:world configured and loaded!
+2026-02-07 22:09:18 [BetterRTP]: Database COOLDOWN:world_nether configured and loaded!
+2026-02-07 22:09:18 [BetterRTP]: Database PLAYERS:Players configured and loaded!
+2026-02-07 22:09:18 [BetterRTP]: Database CHUNK_DATA:ChunkData configured and loaded!
+2026-02-07 22:09:18 [BetterRTP]: Database QUEUE:Queue configured and loaded!
+2026-02-07 22:09:18 [BetterRTP]: Database COOLDOWN:world_the_end configured and loaded!
+2026-02-07 22:09:18 [BetterRTP]: Database COOLDOWN:QueenBeeWorld configured and loaded!
+2026-02-07 22:09:18 [BetterRTP]: Database COOLDOWN:spawn configured and loaded!
+2026-02-07 22:09:33 [BetterRTP]: Attempting to queue up some more safe locations...
+2026-02-07 22:09:34 [BetterRTP]: Queueing paused, max queue limit reached!
+2026-02-07 22:11:49 [BetterRTPAddons]: Disabling BetterRTPAddons v1.8.10

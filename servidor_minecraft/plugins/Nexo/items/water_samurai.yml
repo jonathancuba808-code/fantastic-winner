@@ -1,0 +1,56 @@
+icon_constant_flux:
+  Pack:
+    custom_model_data: 2273
+    model: water_samurai_model/icon_constant_flux
+  displayname: icon_constant_flux
+  material: COAL
+  permission: icon_constant_flux
+icon_flowing_dance:
+  Pack:
+    custom_model_data: 2274
+    model: water_samurai_model/icon_flowing_dance
+  displayname: icon_flowing_dance
+  material: COAL
+  permission: icon_flowing_dance
+icon_splashing_water_flow:
+  Pack:
+    custom_model_data: 2275
+    model: water_samurai_model/icon_splashing_water_flow
+  displayname: icon_splashing_water_flow
+  material: COAL
+  permission: icon_splashing_water_flow
+icon_striking_tide:
+  Pack:
+    custom_model_data: 2276
+    model: water_samurai_model/icon_striking_tide
+  displayname: icon_striking_tide
+  material: COAL
+  permission: icon_striking_tide
+icon_water_surface_slash:
+  Pack:
+    custom_model_data: 2277
+    model: water_samurai_model/icon_water_surface_slash
+  displayname: icon_water_surface_slash
+  material: COAL
+  permission: icon_water_surface_slash
+icon_water_wheel:
+  Pack:
+    custom_model_data: 2278
+    model: water_samurai_model/icon_water_wheel
+  displayname: icon_water_wheel
+  material: COAL
+  permission: icon_water_wheel
+icon_whirlpool:
+  Pack:
+    custom_model_data: 2279
+    model: water_samurai_model/icon_whirlpool
+  displayname: icon_whirlpool
+  material: COAL
+  permission: icon_whirlpool
+water_samurai_katana:
+  Pack:
+    custom_model_data: 2084
+    model: water_samurai_model/water_samurai_katana
+  displayname: water_samurai_katana
+  material: STONE_SWORD
+  permission: water_samurai_katana

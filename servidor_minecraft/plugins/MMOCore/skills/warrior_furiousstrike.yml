@@ -1,0 +1,37 @@
+name: Furious Strike
+lore:
+- "&1&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+- ""
+- "&7Launch enemies into the air, slice through them mid-air,"
+- "&7then slam them down with force, stunning on impact."
+- "&c🗡 {damage} Damage"
+- "&e⌛ {cooldown}s Cooldown"
+- ""
+- "&1&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+material: 'COAL:1911'
+timer:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 4
+  per-level: 1
+  min: 4
+  max: 6
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 0.2
+  per-level: 0
+  min: 0.2
+  max: 0.2
+#smeOVTSs1kYax2Q1Z1RH9UVRFDZYpFSjNkQuVleONzYXJFMUx2M5UFNzUjWCJ2cwZ1VSZnM

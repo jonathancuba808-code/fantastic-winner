@@ -1,0 +1,33 @@
+training_dummy:
+  Type: HUSK
+  Display: 'Taining Dummy'  
+  Faction: TRAIN
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - clear
+  - movetowardstarget
+  AITargetSelectors:
+  - clear
+  - players
+  - OtherFaction
+  Health: 400
+  Damage: 0 
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    LockPitch: true
+    Invincible: false
+    Collidable: false
+    PreventRandomEquipment: true
+    PreventJockeyMounts: true
+    MovementSpeed: 0.001
+    KnockbackResistance: 1
+  Skills:
+  - model{mid=training_dummy} @self ~onSpawn
+  - skill{s=dummy_hit} @Self ~onDamaged
+  - skill{s=rotate} @Trigger ~onInteract
+  - skill{s=remove} @Trigger ~onInteract
+  - heal{amount=400} @self ~onDamaged
+#dbbd3a5bdd8b6fdf7ee284ead0fa3306
+# hHNotSTTrufOUT/LiF5aSa71vvq+L5cosoTHSaZcHlQjrhS7n88nCgtSKc+tIfzdG0oGjqtqSXPpgBsPg+ax4BqGXs4h7mUTZeolNLvrYQ8=

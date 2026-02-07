@@ -1,0 +1,15 @@
+vd_historical_infantry1_set_damage:
+  Skills:
+  - setVariable{var=caster.bleed_damage;val=2}
+  - setVariable{var=caster.pike_hit_damage;val=7}
+  - setVariable{var=caster.sword_hit_damage;val=10}
+  - setVariable{var=caster.hammer_hit_damage;val=10}
+  - setVariable{var=caster.flail_hit_damage;val=8}
+  - setVariable{var=caster.halberd_hit_damage;val=13}
+  - setVariable{var=caster.hammer_spike_damage;val=7}
+  - setVariable{var=caster.hammer_combo_damage;val=15}
+  - setVariable{var=caster.hammer_combo_bleed_damage;val=4}
+  - setVariable{var=caster.halberd_pick_damage;val=7}
+  - setVariable{var=caster.axe_kick_damage;val=3}
+  - setVariable{var=caster.axe_combo_damage;val=10}
+  - setVariable{var=caster.axe_combo_2_damage;val=12}

@@ -1,0 +1,32 @@
+name: Fire Meteor
+lore:
+- Unleash the fury of hell with
+- this devasting meteor strike
+- ''
+- '&e{cooldown}s Cooldown'
+- '&9Costs {mana} {mana_name}'
+material: FIRE_CHARGE
+
+parameters:
+  timer: 0
+  delay: 0
+  mana:
+    base: 9
+    per-level: 1
+  stamina: 0
+  cooldown:
+    base: 2
+    per-level: 1
+
+  # Damage dealt on-hit
+  damage:
+    base: 2
+    per-level: 1
+  # Knockback force of projectile explosion
+  knockback:
+    base: 2
+    per-level: 1
+  # Radius of explosion
+  radius:
+    base: 5
+    per-level: 2

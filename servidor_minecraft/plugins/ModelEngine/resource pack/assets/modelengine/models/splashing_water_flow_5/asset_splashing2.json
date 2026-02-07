@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/splashing_water_flow_5","particle":"#0"},"elements":[{"from":[6.5,5.0,8.0],"to":[9.5,11.0,8.0],"faces":{"south":{"uv":[3.375,3.125,2.5,5.375],"tintindex":0,"rotation":0,"texture":"#0"},"north":{"uv":[2.5,3.125,3.375,5.375],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

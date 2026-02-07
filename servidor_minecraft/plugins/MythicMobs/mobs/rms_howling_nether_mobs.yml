@@ -1,0 +1,390 @@
+######## created by samus2002 #########
+
+# Lava Mite #
+
+Lava_Mite:
+  Type: ZOMBIFIED_PIGLIN
+  Display: '&fLava Mite'
+  Health: 15
+  Damage: 2
+  Options:
+    MovementSpeed: 0.2
+    ShowHealth: false
+    PreventRandomEquipment: true
+    AlwaysShowName: false
+    Persistent: false
+    Despawn: true
+    PreventOtherDrops: true
+    FollowRange: 20
+    Silent: true
+    KnockbackResistance: 1
+    PreventSunburn: true
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 movetowardstarget
+  - 3 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  DamageModifiers:
+  - LAVA 0
+  - FIRE 0
+  - FIRE_TICK 0
+  - HOT_FLOOR 0
+  Skills:
+  - model{mid=lava_mite;n=false;step=1} @self ~onSpawn
+  - effect:sound{s=rms_howling_nether_sounds:samus.lava_mite_idle;volume=0.65;pitch=1} @self ~onTimer:140 0.35
+  - effect:sound{s=rms_howling_nether_sounds:samus.lava_mite_idle;volume=0.65;pitch=1.2} @self ~onDeath
+  - skill{s=Changetarget} ~onTimer:160 <99%
+  - skill{s=Cancelattack;sync=true} ~onAttack
+  - skill{s=Lava_Mite_Attack} ~onTimer:10 0.45
+  - skill{s=Lava_Mite_Hit} ~onDamaged
+  
+# Lava Piranha #
+
+Lava_Piranha:
+  Type: STRIDER
+  Display: '&fLava Piranha'
+  Health: 20
+  Damage: 2
+  Options:
+    MovementSpeed: 0.3
+    ShowHealth: false
+    PreventRandomEquipment: true
+    AlwaysShowName: false
+    Persistent: false
+    Despawn: true
+    PreventOtherDrops: true
+    FollowRange: 20
+    Silent: true
+    KnockbackResistance: 1
+    PreventSunburn: true
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 movetowardstarget
+  - 3 randomstroll
+  - 4 float
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  DamageModifiers:
+  - LAVA 0
+  - FIRE 0
+  - FIRE_TICK 0
+  - HOT_FLOOR 0
+  Skills:
+  - model{mid=lava_piranha;n=false;step=1} @self ~onSpawn
+  - effect:sound{s=rms_howling_nether_sounds:samus.piranha_bite;volume=0.65;pitch=1.3} @self ~onDeath
+  - skill{s=Changetarget} ~onTimer:160 <99%
+  - skill{s=Cancelattack;sync=true} ~onAttack
+  - skill{s=Lava_Piranha_Attack_LAVA} ~onTimer:10 0.45
+  - skill{s=Lava_Piranha_Hit} ~onDamaged
+  - skill{s=Lava_Piranha_notinlava} ~onTimer:30
+  - skill{s=Lava_Piranha_inlava} ~onTimer:30
+  - skill{s=Lava_Piranha_DAMAGED} ~onTimer:40
+  
+# Fire Imp #
+
+Fire_Imp:
+  Type: PARROT
+  Display: '&fFire Imp'
+  Health: 25
+  Damage: 3
+  Options:
+    MovementSpeed: 0.22
+    ShowHealth: false
+    PreventRandomEquipment: true
+    AlwaysShowName: false
+    Persistent: false
+    Despawn: true
+    PreventOtherDrops: true
+    FollowRange: 20
+    Silent: true
+    KnockbackResistance: 1
+    PreventSunburn: true
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 movetowardstarget
+  - 3 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  DamageModifiers:
+  - LAVA 0
+  - FIRE 0
+  - FIRE_TICK 0
+  - HOT_FLOOR 0
+  Skills:
+  - effect:particles{particle=flame;amount=6;hS=0.3;vS=0.5;y=1;speed=0;forwardOffset=0;sideOffset=0} @self ~onTimer:15
+  - model{mid=fire_imp;n=false;step=1} @self ~onSpawn
+  - effect:sound{s=rms_howling_nether_sounds:samus.fire_imp_attack;volume=0.65;pitch=1.2} @self ~onDeath
+  - skill{s=Changetarget} ~onTimer:160 <99%
+  - skill{s=Cancelattack;sync=true} ~onAttack
+  - skill{s=Fire_Imp_Attack} ~onTimer:10 0.45
+  - skill{s=Fire_Imp_Hit} ~onDamaged
+  
+# Nether Mushroom #
+
+Nether_Mushroom:
+  Type: ZOMBIFIED_PIGLIN
+  Display: '&fNether Mushroom'
+  Health: 15
+  Damage: 2
+  Options:
+    MovementSpeed: 0.01
+    ShowHealth: false
+    PreventRandomEquipment: true
+    AlwaysShowName: false
+    Persistent: false
+    Collidable: false
+    Despawn: true
+    PreventOtherDrops: true
+    FollowRange: 20
+    Silent: true
+    KnockbackResistance: 1
+    PreventSunburn: true
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  DamageModifiers:
+  - LAVA 0
+  - FIRE 0
+  - FIRE_TICK 0
+  - HOT_FLOOR 0
+  Skills:
+  - model{mid=nether_mushroom;n=false;step=1} @self ~onSpawn
+  - skill{s=Changetarget} ~onTimer:160 <99%
+  - skill{s=Cancelattack;sync=true} ~onAttack
+  - skill{s=Nether_Mushroom_Attack} ~onTimer:20 0.45
+  
+# Lost Soul #
+
+Lost_Soul:
+  Type: VEX
+  Display: '&fLost Soul'
+  Health: 20
+  Damage: 3
+  Options:
+    ShowHealth: false
+    PreventRandomEquipment: true
+    AlwaysShowName: false
+    Persistent: false
+    Despawn: true
+    PreventOtherDrops: true
+    FollowRange: 20
+    Silent: true
+    KnockbackResistance: 1
+    PreventSunburn: true
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  DamageModifiers:
+  - LAVA 0
+  - FIRE 0
+  - FIRE_TICK 0
+  - HOT_FLOOR 0
+  Skills:
+  - model{mid=lost_soul;n=false;step=1} @self ~onSpawn
+  - effect:sound{s=rms_howling_nether_sounds:samus.lost_soul_idle;volume=0.65;pitch=1.4} @self ~onTimer:140 0.35
+  - effect:sound{s=rms_howling_nether_sounds:samus.lost_soul_idle;volume=0.65;pitch=1.7} @self ~onDeath
+  - skill{s=Changetarget} ~onTimer:160 <99%
+  - skill{s=Cancelattack;sync=true} ~onAttack
+  - skill{s=Lost_Soul_Attack_DAMAGE} @PIR{r=2} ~onTimer:20
+  - skill{s=Lost_Soul_Hit} ~onDamaged
+  
+# Hellhound #
+
+Hellhound:
+  Type: ZOMBIFIED_PIGLIN
+  Display: '&fHellhound'
+  Health: 35
+  Damage: 2
+  Options:
+    MovementSpeed: 0.27
+    ShowHealth: false
+    PreventRandomEquipment: true
+    AlwaysShowName: false
+    Persistent: false
+    Despawn: true
+    PreventOtherDrops: true
+    FollowRange: 20
+    Silent: true
+    KnockbackResistance: 1
+    PreventSunburn: true
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 movetowardstarget
+  - 3 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  DamageModifiers:
+  - LAVA 0
+  - FIRE 0
+  - FIRE_TICK 0
+  - HOT_FLOOR 0
+  Skills:
+  - model{mid=hell_hound;n=false;step=1} @self ~onSpawn
+  - effect:sound{s=rms_howling_nether_sounds:samus.hell_hound_idle;volume=0.65;pitch=1} @self ~onTimer:140 0.35
+  - effect:sound{s=rms_howling_nether_sounds:samus.hell_hound_idle;volume=0.65;pitch=1.2} @self ~onDeath
+  - skill{s=Changetarget} ~onTimer:160 <99%
+  - skill{s=Cancelattack;sync=true} ~onAttack
+  - skill{s=Hellhound_Attack} ~onTimer:10 0.45
+  - skill{s=Hellhound_Hit} ~onDamaged
+  
+# Dark Imp #
+
+Dark_Imp:
+  Type: ZOMBIFIED_PIGLIN
+  Display: '&fDark_Imp'
+  Health: 45
+  Damage: 2
+  Options:
+    MovementSpeed: 0.17
+    ShowHealth: false
+    PreventRandomEquipment: true
+    AlwaysShowName: false
+    Persistent: false
+    Despawn: true
+    PreventOtherDrops: true
+    FollowRange: 20
+    Silent: true
+    KnockbackResistance: 1
+    PreventSunburn: true
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 movetowardstarget
+  - 3 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  DamageModifiers:
+  - LAVA 0
+  - FIRE 0
+  - FIRE_TICK 0
+  - HOT_FLOOR 0
+  Skills:
+  - model{mid=dark_imp;n=false;step=1} @self ~onSpawn
+  - effect:sound{s=rms_howling_nether_sounds:samus.dark_imp_idle;volume=0.65;pitch=1} @self ~onTimer:140 0.35
+  - effect:sound{s=rms_howling_nether_sounds:samus.dark_imp_idle;volume=0.65;pitch=1.2} @self ~onDeath
+  - skill{s=Changetarget} ~onTimer:160 <99%
+  - skill{s=Cancelattack;sync=true} ~onAttack
+  - skill{s=Dark_Imp_Attack} ~onTimer:10 0.45
+  - skill{s=Dark_Imp_Hit} ~onDamaged
+  
+# Blaze King #
+
+Blaze_King:
+  Type: BLAZE
+  Display: '&fBlaze King'
+  Health: 150
+  Damage: 3
+  BossBar:
+    Enabled: true
+    Title: '&4Blaze King'
+    Range: 50
+    Color: RED
+    Style: SEGMENTED_20
+    DarkenSky: false
+  Options:
+    MovementSpeed: 0.16
+    ShowHealth: false
+    PreventRandomEquipment: true
+    AlwaysShowName: false
+    Persistent: false
+    Despawn: true
+    PreventOtherDrops: true
+    FollowRange: 30
+    Silent: true
+    KnockbackResistance: 1
+    PreventSunburn: true
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 movetowardstarget
+  - 3 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  DamageModifiers:
+  - LAVA 0
+  - FIRE 0
+  - FIRE_TICK 0
+  - HOT_FLOOR 0
+  Skills:
+  - effect:particles{particle=smoke_large;amount=6;hS=0.3;vS=0.7;y=2;speed=0;forwardOffset=0;sideOffset=0} @self ~onTimer:7
+  - model{mid=blaze_king;n=false;step=1} @self ~onSpawn
+  - effect:sound{s=entity.blaze.ambient;volume=0.8;pitch=0.9} @self ~onTimer:140 0.35
+  - effect:sound{s=entity.blaze.death;volume=0.8;pitch=0.9} @self ~onDeath
+  - skill{s=Changetarget} ~onTimer:160 <99%
+  - skill{s=Cancelattack;sync=true} ~onAttack
+  - skill{s=Blaze_King_Attack} ~onTimer:20 0.45
+  - skill{s=Blaze_King_RANDOMSKILLS} ~onTimer:30 0.45
+  - skill{s=Blaze_King_Hit} ~onDamaged
+  - skill{s=Blaze_King_Hit_MOTION} ~onDamaged
+
+Lava_Geyser:
+  Type: ARMOR_STAND
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - damage{a=5;delay=30} @PIR{r=3} ~onTimer:10
+  - ignite{ticks=100;delay=30} @PIR{r=3} ~onTimer:10
+  - effect:sound{s=rms_howling_nether_sounds:samus.blaze_king_geyser;volume=1;pitch=1;delay=30} @self ~onSpawn
+  - effect:particles{particle=lava;amount=15;hS=0.5;vS=0.2;y=0.5;speed=0;forwardOffset=0;sideOffset=0} @self ~onTimer:10
+  - effect:geyser{type=LAVA;height=7;speed=2;delay=30} @self ~onSpawn
+  - remove{delay=80} @self ~onSpawn
+
+Blaze_Minion:
+  Type: BLAZE
+  Display: '&fBlaze Minion'
+  Health: 15
+  Damage: 3
+  Options:
+    MovementSpeed: 0.18
+    ShowHealth: false
+    PreventRandomEquipment: true
+    AlwaysShowName: false
+    Persistent: false
+    Despawn: true
+    PreventOtherDrops: true
+    FollowRange: 30
+    KnockbackResistance: 1
+    PreventSunburn: true
+  Modules:
+    ThreatTable: true
+  DamageModifiers:
+  - LAVA 0
+  - FIRE 0
+  - FIRE_TICK 0
+  - HOT_FLOOR 0
+  Skills:
+  - skill{s=Changetarget} ~onTimer:160 <99%
+  - remove{delay=240} @self ~onSpawn
+# u1hoMXRoooV+e0TGRoVpgnYmA1D+09Y7n9U4ckZ0TLq0Ow+7Kk3tPSkhcXzq5FI5m5X6Ic/uaYPpw2rV5GROeRFm80wlvcyJ9yf7zsxL3lg=

@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/empowered_end_strider","particle":"#0"},"elements":[{"from":[8.0,-10.0,8.0],"to":[10.5,8.0,8.0],"faces":{"south":{"uv":[3.125,7.75,3.75,12.25],"tintindex":0,"rotation":0,"texture":"#0"},"north":{"uv":[3.75,7.75,3.125,12.25],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

@@ -1,0 +1,1289 @@
+
+# ~Written by RopeFire~
+
+CancelEvent:
+  Conditions:
+  - incombat true
+  Skills:
+  - CancelEvent @self
+
+teleport_away:
+  Skills:
+  - summon{type=vfx_end_teleport;amount=1} @self
+  - delay 1
+  - teleport{r=20;sv=2} @self
+  - sound{s=tugkandeman.endermauler_teleport2;v=2;p=1} @self
+
+#                                                                           ~Enderling~
+
+#Chase
+enderling_chase:
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=1.5;type=WALKING} @self
+  - defaultstate{model=enderling;type=walk;state=chase} @self
+
+#Walk
+enderling_walk:
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=1;type=WALKING} @self
+  - defaultstate{model=enderling;type=walk;state=walk} @self
+
+#Right Attack
+enderling_right_attack:
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=0.5} true
+  - targetwithin{d=3} true
+  - hasaura{n=EnderlingRightAttack} false
+  - hasaura{n=EnderlingLeftAttack} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EnderlingRightAttack;duration=30} @self
+  - state{model=enderling;state=right_attack} @self
+  - sound{s=tugkandeman.enderling_attack;v=2;p=1} @self
+  - delay 8
+  - lockmodel @self
+  - lunge{v=1} @forward{f=2;lockpitch=true}
+  - delay 1
+  - aura{auraName=EnderlingRightAttackD;duration=5;oT=enderling_right_attack_damage} @self
+  - delay 21
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1.5;type=WALKING} @self
+
+enderling_right_attack_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.25;vR=1.25;i=1;drawhitbox=false} @ModelPart{mid=enderling;pid=hurtbox}
+
+#Left Attack
+enderling_left_attack:
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=0.5} true
+  - targetwithin{d=3} true
+  - hasaura{n=EnderlingRightAttack} false
+  - hasaura{n=EnderlingLeftAttack} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EnderlingLeftAttack;duration=30} @self
+  - state{model=enderling;state=left_attack} @self
+  - sound{s=tugkandeman.enderling_attack;v=2;p=1} @self
+  - delay 8
+  - lockmodel @self
+  - lunge{v=1} @forward{f=2;lockpitch=true}
+  - delay 1
+  - aura{auraName=EnderlingLeftAttackD;duration=5;oT=enderling_left_attack_damage} @self
+  - delay 21
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1.5;type=WALKING} @self
+
+enderling_left_attack_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.25;vR=1.25;i=1;drawhitbox=false} @ModelPart{mid=enderling;pid=hurtbox}
+
+#Aggro Sound
+enderling_aggro_sound:
+  Conditions:
+  - incombat true
+  Skills:
+  - sound{s=tugkandeman.ender_aggro;v=2;p=1} @self
+
+#Idle Sounds
+enderling_idle_sound_1:
+  Skills:
+  - sound{s=tugkandeman.ender_idle_1;v=2;p=1.5} @self
+
+enderling_idle_sound_2:
+  Skills:
+  - sound{s=tugkandeman.ender_idle_2;v=2;p=1.5} @self
+
+enderling_idle_sound_3:
+  Skills:
+  - sound{s=tugkandeman.ender_idle_3;v=2;p=1.5} @self  
+
+#Death
+enderling_death:
+  Skills:
+  - delay 6
+  - sound{s=tugkandeman.generic_land;v=2;p=1} @self
+
+#                                                                           ~Enderbruiser~
+
+#Smash
+enderbruiser_smash:
+  Conditions:
+  - incombat true
+  - targetwithin{d=4} true
+  - hasaura{n=EnderbruiserSmash} false
+  - hasaura{n=EnderbruiserToss} false
+  - hasaura{n=EnderbruiserRightAttack} false
+  - hasaura{n=EnderbruiserLeftAttack} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EnderbruiserSmash;duration=40} @self
+  - state{model=enderbruiser;state=smash} @self
+  - sound{s=tugkandeman.enderbruiser_smash;v=2;p=1} @self
+  - delay 12
+  - lockmodel @self
+  - delay 1
+  - aura{auraName=EnderbruiserSmashD;duration=5;oT=enderbruiser_smash_damage} @self
+  - delay 27
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1;type=WALKING} @self
+
+enderbruiser_smash_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=enderbruiser;pid=hurtbox}
+
+#Smash
+enderbruiser_toss:
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=1} true
+  - targetwithin{d=5} true
+  - hasaura{n=EnderbruiserSmash} false
+  - hasaura{n=EnderbruiserToss} false
+  - hasaura{n=EnderbruiserRightAttack} false
+  - hasaura{n=EnderbruiserLeftAttack} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EnderbruiserToss;duration=40} @self
+  - state{model=enderbruiser;state=toss} @self
+  - sound{s=tugkandeman.enderbruiser_throw;v=2;p=1} @self
+  - delay 8
+  - lockmodel @self
+  - lunge{v=1} @forward{f=2.5;lockpitch=true}
+  - delay 3
+  - aura{auraName=EnderbruiserTossD;duration=5;oT=enderbruiser_toss_damage} @self
+  - totem{md=2;oH=[ - throw{v=-10;vy=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=enderbruiser;pid=hurtbox}
+  - delay 29
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1;type=WALKING} @self
+
+enderbruiser_toss_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=enderbruiser;pid=hurtbox}
+
+#Right Attack
+enderbruiser_right_attack:
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=0.5} true
+  - targetwithin{d=4} true
+  - hasaura{n=EnderbruiserSmash} false
+  - hasaura{n=EnderbruiserToss} false
+  - hasaura{n=EnderbruiserRightAttack} false
+  - hasaura{n=EnderbruiserLeftAttack} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EnderbruiserRightAttack;duration=35} @self
+  - state{model=enderbruiser;state=right_attack} @self
+  - sound{s=tugkandeman.enderbruiser_attack;v=2;p=1} @self
+  - delay 9
+  - lockmodel @self
+  - lunge{v=1} @forward{f=2.5;lockpitch=true}
+  - delay 1
+  - aura{auraName=EnderbruiserRightAttackD;duration=5;oT=enderbruiser_right_attack_damage} @self
+  - delay 25
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1;type=WALKING} @self
+
+enderbruiser_right_attack_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=enderbruiser;pid=hurtbox}
+
+#Left Attack
+enderbruiser_left_attack:
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=0.5} true
+  - targetwithin{d=4} true
+  - hasaura{n=EnderbruiserSmash} false
+  - hasaura{n=EnderbruiserToss} false
+  - hasaura{n=EnderbruiserRightAttack} false
+  - hasaura{n=EnderbruiserLeftAttack} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EnderbruiserLeftAttack;duration=35} @self
+  - state{model=enderbruiser;state=left_attack} @self
+  - sound{s=tugkandeman.enderbruiser_attack;v=2;p=1} @self
+  - delay 9
+  - lockmodel @self
+  - lunge{v=1} @forward{f=2.5;lockpitch=true}
+  - delay 1
+  - aura{auraName=EnderbruiserLeftAttackD;duration=5;oT=enderbruiser_left_attack_damage} @self
+  - delay 25
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1;type=WALKING} @self
+
+enderbruiser_left_attack_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=enderbruiser;pid=hurtbox}
+
+#Aggro Sound
+enderbruiser_aggro_sound:
+  Conditions:
+  - incombat true
+  Skills:
+  - sound{s=tugkandeman.ender_aggro;v=2;p=1} @self
+
+#Idle Sounds
+enderbruiser_idle_sound_1:
+  Skills:
+  - sound{s=tugkandeman.ender_idle_1;v=2;p=0.9} @self
+
+enderbruiser_idle_sound_2:
+  Skills:
+  - sound{s=tugkandeman.ender_idle_2;v=2;p=0.9} @self
+
+enderbruiser_idle_sound_3:
+  Skills:
+  - sound{s=tugkandeman.ender_idle_3;v=2;p=0.9} @self  
+
+#Death
+enderbruiser_death:
+  Skills:
+  - delay 18
+  - sound{s=tugkandeman.generic_land;v=2;p=1} @self
+
+#                                                                           ~Ender Crawler~
+
+#Chase
+ender_crawler_chase:
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=1.5;type=WALKING} @self
+  - defaultstate{model=ender_crawler;type=walk;state=chase} @self
+
+#Walk
+ender_crawler_walk:
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=1;type=WALKING} @self
+  - defaultstate{model=ender_crawler;type=walk;state=walk} @self
+
+#Fang Attack
+ender_crawler_fang_attack:
+  Conditions:
+  - incombat true
+  - targetwithin{d=4} true
+  - hasaura{n=EnderCrawlerFangAttack} false
+  - hasaura{n=EnderCrawlerHornAttack} false
+  - hasaura{n=EnderCrawlerJumpAttack} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EnderCrawlerFangAttack;duration=40} @self
+  - state{model=ender_crawler;state=fang_attack} @self
+  - sound{s=tugkandeman.ender_crawler_fang;v=2;p=1} @self
+  - delay 11
+  - aura{auraName=EnderCrawlerFangAttackD;duration=5;oT=ender_crawler_fang_attack_damage} @self
+  - delay 29
+  - skill{s=teleport_away} @self 0.1
+  - setspeed{speed=1.5;type=WALKING} @self
+
+ender_crawler_fang_attack_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=ender_crawler;pid=hurtbox}
+
+#Horn Attack
+ender_crawler_horn_attack:
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=0.5} true
+  - targetwithin{d=4} true
+  - hasaura{n=EnderCrawlerFangAttack} false
+  - hasaura{n=EnderCrawlerHornAttack} false
+  - hasaura{n=EnderCrawlerJumpAttack} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EnderCrawlerHornAttack;duration=50} @self
+  - state{model=ender_crawler;state=horn_attack} @self
+  - sound{s=tugkandeman.ender_crawler_horn;v=2;p=1} @self
+  - delay 10
+  - lockmodel @self
+  - lunge{v=1} @forward{f=2.5;lockpitch=true}
+  - delay 2
+  - aura{auraName=EnderCrawlerHornAttackD;duration=5;oT=ender_crawler_horn_attack_damage} @self
+  - delay 38
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1.5;type=WALKING} @self
+
+ender_crawler_horn_attack_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=ender_crawler;pid=hurtbox}
+
+#Jump Attack
+ender_crawler_jump_attack:
+  Conditions:
+  - incombat true
+  - (targetnotwithin{d=12} && targetwithin{d=14}) CastInstead ender_crawler_jump_attack_1
+  - (targetnotwithin{d=14} && targetwithin{d=16}) CastInstead ender_crawler_jump_attack_2
+  - (targetnotwithin{d=16} && targetwithin{d=18}) CastInstead ender_crawler_jump_attack_3
+  - (targetnotwithin{d=18} && targetwithin{d=20}) CastInstead ender_crawler_jump_attack_4
+  Skills:
+  - CancelEvent @self
+
+ender_crawler_jump_attack_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=2;vR=2;i=1;drawhitbox=false} @ModelPart{mid=ender_crawler;pid=hurtbox}
+
+ender_crawler_jump_attack_1:
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=12} true
+  - targetwithin{d=14} true
+  - hasaura{n=EnderCrawlerFangAttack} false
+  - hasaura{n=EnderCrawlerHornAttack} false
+  - hasaura{n=EnderCrawlerJumpAttack} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EnderCrawlerJumpAttack;duration=70} @self
+  - state{model=ender_crawler;state=jump_attack} @self
+  - sound{s=tugkandeman.ender_crawler_jump;v=2;p=1} @self
+  - delay 10
+  - lockmodel @self
+  - delay 1
+  - projectile{sE=false;syo=0;tyo=0;vO=0.6;g=1.5;d=22;v=20;onTick=[ - teleport @ProjectileForward{f=-1.3} ];hnp=true} @forward{f=13}
+  - delay 20
+  - aura{auraName=EnderCrawlerJumpAttackD;d=5;oT=ender_crawler_jump_attack_damage} @self
+  - delay 39
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1.5;type=WALKING} @self
+
+ender_crawler_jump_attack_2:
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=14} true
+  - targetwithin{d=16} true
+  - hasaura{n=EnderCrawlerFangAttack} false
+  - hasaura{n=EnderCrawlerHornAttack} false
+  - hasaura{n=EnderCrawlerJumpAttack} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EnderCrawlerJumpAttack;duration=70} @self
+  - state{model=ender_crawler;state=jump_attack} @self
+  - sound{s=tugkandeman.ender_crawler_jump;v=2;p=1} @self
+  - delay 10
+  - lockmodel @self
+  - delay 1
+  - projectile{sE=false;syo=0;tyo=0;vO=0.65;g=1.45;d=22;v=20.5;onTick=[ - teleport @ProjectileForward{f=-1.2} ];hnp=true} @forward{f=15}
+  - delay 20
+  - aura{auraName=EnderCrawlerJumpAttackD;d=5;oT=ender_crawler_jump_attack_damage} @self
+  - delay 39
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1.5;type=WALKING} @self
+
+ender_crawler_jump_attack_3:
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=16} true
+  - targetwithin{d=18} true
+  - hasaura{n=EnderCrawlerFangAttack} false
+  - hasaura{n=EnderCrawlerHornAttack} false
+  - hasaura{n=EnderCrawlerJumpAttack} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EnderCrawlerJumpAttack;duration=70} @self
+  - state{model=ender_crawler;state=jump_attack} @self
+  - sound{s=tugkandeman.ender_crawler_jump;v=2;p=1} @self
+  - delay 10
+  - lockmodel @self
+  - delay 1
+  - projectile{sE=false;syo=0;tyo=0;vO=0.7;g=1.4;d=22;v=21;onTick=[ - teleport @ProjectileForward{f=-1.2} ];hnp=true} @forward{f=17}
+  - delay 20
+  - aura{auraName=EnderCrawlerJumpAttackD;d=5;oT=ender_crawler_jump_attack_damage} @self
+  - delay 39
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1.5;type=WALKING} @self
+
+ender_crawler_jump_attack_4:
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=18} true
+  - targetwithin{d=20} true
+  - hasaura{n=EnderCrawlerFangAttack} false
+  - hasaura{n=EnderCrawlerHornAttack} false
+  - hasaura{n=EnderCrawlerJumpAttack} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EnderCrawlerJumpAttack;duration=70} @self
+  - state{model=ender_crawler;state=jump_attack} @self
+  - sound{s=tugkandeman.ender_crawler_jump;v=2;p=1} @self
+  - delay 10
+  - lockmodel @self
+  - delay 1
+  - projectile{sE=false;syo=0;tyo=0;vO=0.75;g=1.35;d=22;v=21.5;onTick=[ - teleport @ProjectileForward{f=-1.2} ];hnp=true} @forward{f=19}
+  - delay 20
+  - aura{auraName=EnderCrawlerJumpAttackD;d=5;oT=ender_crawler_jump_attack_damage} @self
+  - delay 39
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1.5;type=WALKING} @self
+
+#Aggro Sound
+ender_crawler_aggro_sound:
+  Conditions:
+  - incombat true
+  Skills:
+  - sound{s=tugkandeman.ender_aggro;v=2;p=1} @self
+
+#Idle Sounds
+ender_crawler_idle_sound_1:
+  Skills:
+  - sound{s=tugkandeman.ender_idle_1;v=2;p=1.1} @self
+
+ender_crawler_idle_sound_2:
+  Skills:
+  - sound{s=tugkandeman.ender_idle_2;v=2;p=1.1} @self
+
+ender_crawler_idle_sound_3:
+  Skills:
+  - sound{s=tugkandeman.ender_idle_3;v=2;p=1.1} @self  
+
+#Death
+ender_crawler_death:
+  Skills:
+  - delay 11
+  - sound{s=tugkandeman.generic_land;v=2;p=1} @self
+
+#                                                                           ~Ender Watchman~
+
+#Lantern Smack
+ender_watchman_lantern_smack:
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=0.5} true
+  - targetwithin{d=4} true
+  - hasaura{n=EnderWatchmanLanternSmack} false
+  - hasaura{n=EnderWatchmanSummonWraiths} false
+  - hasaura{n=EnderWatchmanLanternPush} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EnderWatchmanLanternSmack;duration=50} @self
+  - state{model=ender_watchman;state=lantern_smack} @self
+  - sound{s=tugkandeman.ender_watcher_lantern;v=2;p=1} @self
+  - delay 10
+  - lockmodel @self
+  - lunge{v=1} @forward{f=3;lockpitch=true}
+  - delay 3
+  - aura{auraName=EnderWatchmanLanternSmackD;d=5;oT=ender_watchman_lantern_smack_damage} @self
+  - delay 37
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1;type=WALKING} @self  
+
+ender_watchman_lantern_smack_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=ender_watchman;pid=hurtbox}
+
+#Summon Wraiths
+ender_watchman_summon_wraiths:
+  Cooldown: 16
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=5} true
+  - mobsInRadius{r=100;a=<9;type=end_wraith} true
+  - hasaura{n=EnderWatchmanLanternSmack} false
+  - hasaura{n=EnderWatchmanSummonWraiths} false
+  - hasaura{n=EnderWatchmanLanternPush} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EnderWatchmanSummonWraiths;duration=100} @self
+  - state{model=ender_watchman;state=summon_wraiths} @self
+  - sound{s=tugkandeman.ender_watcher_summon;v=2;p=1} @self
+  - lockmodel @self
+  - delay 22
+  - summon{type=end_wraith;amount=1} @selfLocation{fo=-3;y=1}
+  - delay 20
+  - summon{type=end_wraith;amount=1} @selfLocation{fo=-3;y=1}
+  - delay 20
+  - summon{type=end_wraith;amount=1} @selfLocation{fo=-3;y=1}
+  - delay 38  
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1;type=WALKING} @self
+
+#Lantern Push
+ender_watchman_lantern_push:
+  Conditions:
+  - incombat true
+  - targetwithin{d=4} true
+  - hasaura{n=EnderWatchmanLanternSmack} false
+  - hasaura{n=EnderWatchmanSummonWraiths} false
+  - hasaura{n=EnderWatchmanLanternPush} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EnderWatchmanLanternPush;duration=40} @self
+  - state{model=ender_watchman;state=lantern_push} @self
+  - sound{s=tugkandeman.ender_watcher_lanternpush;v=2;p=1} @self
+  - delay 10
+  - lockmodel @self
+  - delay 1
+  - aura{auraName=EnderWatchmanLanternPushD;d=14;oT=ender_watchman_lantern_push_damage} @self
+  - delay 29
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1;type=WALKING} @self  
+
+ender_watchman_lantern_push_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10};
+                    - throw{v=15};
+                    - potion{type=LEVITATION;d=5;l=1} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=ender_watchman;pid=hurtbox}
+
+#Aggro Sound
+ender_watchman_aggro_sound:
+  Conditions:
+  - incombat true
+  Skills:
+  - sound{s=tugkandeman.ender_aggro;v=2;p=1} @self
+
+#Death
+ender_watchman_death:
+  Skills:
+  - delay 10
+  - sound{s=tugkandeman.generic_land;v=2;p=1} @self
+
+#                                                                           ~End Wraith~
+
+#Spawn
+end_wraith_summoned:
+  Skills:
+  - aura{auraName=EndWraithSummoned;duration=20} @self
+  - setgravity{g=false} @self
+  - setNoDamageTicks{ticks=20;delay=1} @self
+  - delay 20
+  - setgravity{g=true} @self
+  - potion{type=SLOW_FALLING;d=20;l=10} @self
+
+#Right Slash
+end_wraith_right_slash:
+  Conditions:
+  - incombat true
+  - targetwithin{d=3} true
+  - hasaura{n=EndWraithSummoned} false
+  - hasaura{n=EndWraithRightSlash} false
+  - hasaura{n=EndWraithLeftSlash} false
+  - hasaura{n=EndWraithSpinSlash} false
+  - hasaura{n=EndWraithWraithDash} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EndWraithRightSlash;duration=30} @self
+  - state{model=end_wraith;state=right_slash} @self
+  - sound{s=tugkandeman.end_wraith_rightslash;v=2;p=1} @self
+  - delay 8
+  - lockmodel @self
+  - delay 1
+  - aura{auraName=EndWraithRightSlashD;duration=5;oT=end_wraith_right_slash_damage} @self
+  - delay 21
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1;type=WALKING} @self
+
+end_wraith_right_slash_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=end_wraith;pid=hurtbox}
+
+#Left Slash
+end_wraith_left_slash:
+  Conditions:
+  - incombat true
+  - targetwithin{d=3} true
+  - hasaura{n=EndWraithSummoned} false
+  - hasaura{n=EndWraithRightSlash} false
+  - hasaura{n=EndWraithLeftSlash} false
+  - hasaura{n=EndWraithSpinSlash} false
+  - hasaura{n=EndWraithWraithDash} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EndWraithLeftSlash;duration=30} @self
+  - state{model=end_wraith;state=left_slash} @self
+  - sound{s=tugkandeman.end_wraith_leftslash;v=2;p=1} @self
+  - delay 8
+  - lockmodel @self
+  - delay 1
+  - aura{auraName=EndWraithLeftSlashD;duration=5;oT=end_wraith_left_slash_damage} @self
+  - delay 21
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1;type=WALKING} @self
+
+end_wraith_left_slash_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=end_wraith;pid=hurtbox}
+
+#Spin Slash
+end_wraith_spin_slash:
+  Conditions:
+  - incombat true
+  - targetwithin{d=3} true
+  - hasaura{n=EndWraithSummoned} false
+  - hasaura{n=EndWraithRightSlash} false
+  - hasaura{n=EndWraithLeftSlash} false
+  - hasaura{n=EndWraithSpinSlash} false
+  - hasaura{n=EndWraithWraithDash} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EndWraithSpinSlash;duration=40} @self
+  - state{model=end_wraith;state=spin_slash} @self
+  - sound{s=tugkandeman.end_wraith_spinslash;v=2;p=1} @self
+  - delay 10
+  - lockmodel @self
+  - delay 1
+  - aura{auraName=EndWraithSpinSlashD;duration=10;oT=end_wraith_spin_slash_damage} @self
+  - delay 29
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1;type=WALKING} @self
+
+end_wraith_spin_slash_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=end_wraith;pid=hurtbox}
+
+#Wraith Dash
+end_wraith_wraith_dash:
+  Conditions:
+  - incombat true
+  - (targetnotwithin{d=8} && targetwithin{d=10}) CastInstead end_wraith_wraith_dash_1
+  - (targetnotwithin{d=10} && targetwithin{d=12}) CastInstead end_wraith_wraith_dash_2
+  - (targetnotwithin{d=12} && targetwithin{d=14}) CastInstead end_wraith_wraith_dash_3
+  - (targetnotwithin{d=14} && targetwithin{d=16}) CastInstead end_wraith_wraith_dash_4
+  Skills:
+  - CancelEvent @self
+
+end_wraith_wraith_dash_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=end_wraith;pid=hurtbox}
+
+end_wraith_wraith_dash_1:
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=8} true
+  - targetwithin{d=10} true
+  - hasaura{n=EndWraithSummoned} false
+  - hasaura{n=EndWraithRightSlash} false
+  - hasaura{n=EndWraithLeftSlash} false
+  - hasaura{n=EndWraithSpinSlash} false
+  - hasaura{n=EndWraithWraithDash} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EndWraithWraithDash;duration=70} @self
+  - state{model=end_wraith;state=wraith_dash} @self
+  - sound{s=tugkandeman.end_wraith_dash;v=2;p=1} @self
+  - delay 10
+  - lockmodel @self
+  - delay 20
+  - projectile{sE=false;syo=0;tyo=0;d=12;v=20;onTick=[ - teleport @ProjectileForward{f=-1.2} ];hnp=true} @forward{f=9}
+  - delay 12
+  - aura{auraName=EndWraithWraithDashD;d=5;oT=end_wraith_wraith_dash_damage} @self
+  - delay 28
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1;type=WALKING} @self
+
+end_wraith_wraith_dash_2:
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=10} true
+  - targetwithin{d=12} true
+  - hasaura{n=EndWraithSummoned} false
+  - hasaura{n=EndWraithRightSlash} false
+  - hasaura{n=EndWraithLeftSlash} false
+  - hasaura{n=EndWraithSpinSlash} false
+  - hasaura{n=EndWraithWraithDash} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EndWraithWraithDash;duration=70} @self
+  - state{model=end_wraith;state=wraith_dash} @self
+  - sound{s=tugkandeman.end_wraith_dash;v=2;p=1} @self
+  - delay 10
+  - lockmodel @self
+  - delay 20
+  - projectile{sE=false;syo=0;tyo=0;d=12;v=20;onTick=[ - teleport @ProjectileForward{f=-1.2} ];hnp=true} @forward{f=11}
+  - delay 12
+  - aura{auraName=EndWraithWraithDashD;d=5;oT=end_wraith_wraith_dash_damage} @self
+  - delay 28
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1;type=WALKING} @self
+
+end_wraith_wraith_dash_3:
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=12} true
+  - targetwithin{d=14} true
+  - hasaura{n=EndWraithSummoned} false
+  - hasaura{n=EndWraithRightSlash} false
+  - hasaura{n=EndWraithLeftSlash} false
+  - hasaura{n=EndWraithSpinSlash} false
+  - hasaura{n=EndWraithWraithDash} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EndWraithWraithDash;duration=70} @self
+  - state{model=end_wraith;state=wraith_dash} @self
+  - sound{s=tugkandeman.end_wraith_dash;v=2;p=1} @self
+  - delay 10
+  - lockmodel @self
+  - delay 20
+  - projectile{sE=false;syo=0;tyo=0;d=12;v=20;onTick=[ - teleport @ProjectileForward{f=-1.2} ];hnp=true} @forward{f=13}
+  - delay 12
+  - aura{auraName=EndWraithWraithDashD;d=5;oT=end_wraith_wraith_dash_damage} @self
+  - delay 28
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1;type=WALKING} @self
+
+end_wraith_wraith_dash_4:
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=14} true
+  - targetwithin{d=16} true
+  - hasaura{n=EndWraithSummoned} false
+  - hasaura{n=EndWraithRightSlash} false
+  - hasaura{n=EndWraithLeftSlash} false
+  - hasaura{n=EndWraithSpinSlash} false
+  - hasaura{n=EndWraithWraithDash} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EndWraithWraithDash;duration=70} @self
+  - state{model=end_wraith;state=wraith_dash} @self
+  - sound{s=tugkandeman.end_wraith_dash;v=2;p=1} @self
+  - delay 10
+  - lockmodel @self
+  - delay 20
+  - projectile{sE=false;syo=0;tyo=0;d=12;v=20;onTick=[ - teleport @ProjectileForward{f=-1.2} ];hnp=true} @forward{f=15}
+  - delay 12
+  - aura{auraName=EndWraithWraithDashD;d=5;oT=end_wraith_wraith_dash_damage} @self
+  - delay 28
+  - skill{s=teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1;type=WALKING} @self
+
+#Aggro Sound
+end_wraith_aggro_sound:
+  Conditions:
+  - incombat true
+  Skills:
+  - sound{s=tugkandeman.ender_aggro;v=2;p=1} @self
+
+#Idle Sounds
+end_wraith_idle_sound_1:
+  Skills:
+  - sound{s=tugkandeman.ender_idle_1;v=2;p=1.1} @self
+
+end_wraith_idle_sound_2:
+  Skills:
+  - sound{s=tugkandeman.ender_idle_2;v=2;p=1.1} @self
+
+end_wraith_idle_sound_3:
+  Skills:
+  - sound{s=tugkandeman.ender_idle_3;v=2;p=1.1} @self  
+  
+#                                                                           ~Endermauler~
+
+#Teleport
+endermauler_teleport:
+  Conditions:
+  - incombat false
+  - chance{c=0.3} true
+  Skills:
+  - CancelEvent @self
+  - summon{type=vfx_end_teleport;amount=1} @self
+  - partvis{model=endermauler;p=endermauler;v=false;child=true} @self
+  - delay 1
+  - teleport{r=20;sv=2} @self
+  - sound{s=tugkandeman.endermauler_teleport2;v=2;p=1} @self
+  - delay 1
+  - partvis{model=endermauler;p=endermauler;v=true;child=true} @self
+  
+#Right Slash  
+endermauler_right_slash:
+  Cooldown: 8
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=1} true
+  - targetwithin{d=6} true
+  - hasaura{n=EndermaulerRightSlash} false
+  - hasaura{n=EndermaulerLeftSlash} false
+  - hasaura{n=EndermaulerDashBiteStartup} false
+  - hasaura{n=EndermaulerDashBite} false
+  - hasaura{n=EndermaulerScreamOfEnder} false
+  - hasaura{n=EndermaulerTeleportMaul} false
+  - hasaura{n=EndermaulerCloseSlashes} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EndermaulerRightSlash;duration=50} @self
+  - state{model=endermauler;state=right_slash} @self
+  - sound{s=tugkandeman.endermauler_rightslash;v=2;p=1} @self
+  - delay 9
+  - propel{v=2} @target
+  - lockmodel @self
+  - delay 3
+  - aura{auraName=EndermaulerRightSlashD;duration=5;oT=endermauler_right_slash_damage} @self
+  - delay 38
+  - skill{s=endermauler_teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1.5;type=WALKING} @self
+
+endermauler_right_slash_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=endermauler;pid=hurtbox}
+
+#Left Slash  
+endermauler_left_slash:
+  Cooldown: 8
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=1} true
+  - targetwithin{d=6} true
+  - hasaura{n=EndermaulerRightSlash} false
+  - hasaura{n=EndermaulerLeftSlash} false
+  - hasaura{n=EndermaulerDashBiteStartup} false
+  - hasaura{n=EndermaulerDashBite} false
+  - hasaura{n=EndermaulerScreamOfEnder} false
+  - hasaura{n=EndermaulerTeleportMaul} false
+  - hasaura{n=EndermaulerCloseSlashes} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EndermaulerLeftSlash;duration=50} @self
+  - state{model=endermauler;state=left_slash} @self
+  - sound{s=tugkandeman.endermauler_rightslash;v=2;p=1} @self
+  - delay 9
+  - propel{v=2} @target
+  - lockmodel @self
+  - delay 3
+  - aura{auraName=EndermaulerLeftSlashD;duration=5;oT=endermauler_left_slash_damage} @self
+  - delay 38
+  - skill{s=endermauler_teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1.5;type=WALKING} @self
+
+endermauler_left_slash_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=endermauler;pid=hurtbox}
+  
+#Dash Bite
+endermauler_dash_bite_startup:
+  Cooldown: 10
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=6} true
+  - targetwithin{d=15} true
+  - hasaura{n=EndermaulerRightSlash} false
+  - hasaura{n=EndermaulerLeftSlash} false
+  - hasaura{n=EndermaulerDashBiteStartup} false
+  - hasaura{n=EndermaulerDashBite} false
+  - hasaura{n=EndermaulerScreamOfEnder} false
+  - hasaura{n=EndermaulerTeleportMaul} false
+  - hasaura{n=EndermaulerCloseSlashes} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EndermaulerDashBiteStartup;duration=40} @self
+  - state{model=endermauler;state=dash_bite_startup} @self
+  - sound{s=tugkandeman.endermauler_dashstart;v=2;p=1} @self
+  - delay 14
+  - sound{s=tugkandeman.endermauler_teleport2;v=2;p=1} @self
+  - lockmodel @self
+  - delay 11
+  - skill{s=endermauler_dash_bite} @self
+  
+endermauler_dash_bite:
+  Conditions:
+  - incombat true
+  - hasaura{n=EndermaulerDashBiteStartup} true
+  - hasaura{n=EndermaulerDashBite} false
+  Skills:
+  - aura{auraName=EndermaulerDashBite;duration=30} @self
+  - state{model=endermauler;state=dash_bite} @self
+  - aura{auraName=EndermaulerDashBiteL1;duration=8;oT=endermauler_dash_bite_lunge_1} @self
+  - sound{s=tugkandeman.endermauler_dashbite;v=2;p=1} @self
+  - delay 1
+  - aura{auraName=EndermaulerDashBiteD;duration=11;oT=endermauler_dash_bite_damage} @self
+  - delay 8
+  - aura{auraName=EndermaulerDashBiteL2;duration=4;oT=endermauler_dash_bite_lunge_2} @self
+  - delay 5
+  - summon{type=vfx_end_teleport;amount=1} @self
+  - partvis{model=endermauler;p=endermauler;v=false;child=true} @self
+  - delay 2
+  - lockmodel{l=false} @self
+  - delay 4
+  - teleport{r=10to20;sv=1} @self
+  - delay 10
+  - partvis{model=endermauler;p=endermauler;v=true;child=true} @self
+  - setspeed{speed=1.5;type=WALKING} @self  
+
+endermauler_dash_bite_lunge_1:
+  Skills:
+  - propel{v=2} @target
+  
+endermauler_dash_bite_lunge_2:
+  Skills:
+  - propel{v=1.25} @target 
+  
+endermauler_dash_bite_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10};
+                    - skill{s=endermauler_teleport} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=endermauler;pid=hurtbox}
+  
+#Scream of Ender  
+endermauler_scream_of_ender:
+  Cooldown: 60
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=8} true
+  - targetwithin{d=16} true
+  - health{a=>40} true
+  - hasaura{n=EndermaulerRightSlash} false
+  - hasaura{n=EndermaulerLeftSlash} false
+  - hasaura{n=EndermaulerDashBiteStartup} false
+  - hasaura{n=EndermaulerDashBite} false
+  - hasaura{n=EndermaulerScreamOfEnder} false
+  - hasaura{n=EndermaulerTeleportMaul} false
+  - hasaura{n=EndermaulerCloseSlashes} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0.0001;type=WALKING} @self
+  - aura{auraName=EndermaulerScreamOfEnder;duration=200} @self
+  - state{model=endermauler;state=scream_of_ender} @self
+  - sound{s=tugkandeman.endermauler_scream;v=3;p=1} @self
+  - sound{s=tugkandeman.endermauler_scream_far;v=16;p=1} @self
+  - sound{s=tugkandeman.endermauler_scream_far;v=100;p=0.1} @self
+  - delay 14
+  - aura{auraName=EndermaulerScreamOfEnderD1;duration=66;oT=endermauler_scream_of_ender_damage_1} @self
+  - delay 66
+  - lockmodel @self
+  - delay 10
+  - aura{auraName=EndermaulerScreamOfEnderD2;duration=68;oT=endermauler_scream_of_ender_damage_2} @self
+  - setAI{ai=false} @self
+  - delay 60
+  - sound{s=tugkandeman.ender_ringing;v=2;p=1} @self
+  - delay 48
+  - setAI{ai=true} @self
+  - skill{s=endermauler_teleport_away} @self 0.1
+  - lockmodel{l=false} @self
+  - setspeed{speed=1.5;type=WALKING} @self
+  
+endermauler_scream_of_ender_damage_1:
+  Skills:
+  - damage{a=10} @LivingInCone{a=50;r=16;ignore=samefaction}
+  - throw{v=8} @LivingInCone{a=50;r=16;ignore=samefaction}
+  - potion{type=LEVITATION;d=0.1;l=1;p=false;i=false} @LivingInCone{a=50;r=16;ignore=samefaction}
+  
+endermauler_scream_of_ender_damage_2:
+  Skills:
+  - damage{a=10} @LivingInCone{a=50;r=32;ignore=samefaction} 
+  - throw{v=20} @LivingInCone{a=50;r=32;ignore=samefaction}
+  - potion{type=LEVITATION;d=2;l=1;p=false;i=false} @LivingInCone{a=50;r=32;ignore=samefaction}
+  
+#Teleport Maul  
+endermauler_teleport_maul:
+  Cooldown: 12
+  Conditions:
+  - incombat true
+  - targetnotwithin{d=8} true
+  - targetwithin{d=24} true
+  - hasaura{n=EndermaulerRightSlash} false
+  - hasaura{n=EndermaulerLeftSlash} false
+  - hasaura{n=EndermaulerDashBiteStartup} false
+  - hasaura{n=EndermaulerDashBite} false
+  - hasaura{n=EndermaulerScreamOfEnder} false
+  - hasaura{n=EndermaulerTeleportMaul} false
+  - hasaura{n=EndermaulerCloseSlashes} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EndermaulerTeleportMaul;duration=70} @self
+  - state{model=endermauler;state=teleport_maul} @self
+  - summon{type=vfx_end_teleport;amount=1} @self
+  - sound{s=tugkandeman.endermauler_teleport1;v=2;p=1} @self
+  - delay 1
+  - partvis{model=endermauler;p=endermauler;v=false;child=true} @self
+  - delay 7
+  - teleport{r=1;pp=false;py=false} @target
+  - sound{s=tugkandeman.endermauler_tpslash;v=2;p=1} @self
+  - delay 2
+  - partvis{model=endermauler;p=endermauler;v=true;child=true} @self
+  - delay 3
+  - aura{auraName=EndermaulerTeleportMaulD;duration=5;oT=endermauler_teleport_maul_damage} @self
+  - delay 6
+  - lunge{v=1} @forward{f=2}
+  - delay 3
+  - aura{auraName=EndermaulerTeleportMaulD;duration=5;oT=endermauler_teleport_maul_damage} @self
+  - delay 3
+  - summon{type=vfx_end_teleport;amount=1} @self
+  - delay 1
+  - sound{s=tugkandeman.endermauler_teleport2;v=2;p=1} @self
+  - delay 1
+  - partvis{model=endermauler;p=endermauler;v=false;child=true} @self
+  - delay 7
+  - teleport{r=1;pp=false;py=false} @target
+  - sound{s=tugkandeman.endermauler_tpbite;v=2;p=1} @self
+  - delay 1
+  - partvis{model=endermauler;p=endermauler;v=true;child=true} @self
+  - delay 1
+  - aura{auraName=EndermaulerTeleportMaulD;duration=5;oT=endermauler_teleport_maul_damage} @self
+  - delay 34
+  - skill{s=endermauler_teleport_away} @self 0.1
+  - setspeed{speed=1.5;type=WALKING} @self  
+  
+endermauler_teleport_maul_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=endermauler;pid=hurtbox}
+  
+#Close Slashes
+endermauler_close_slashes:
+  Cooldown: 2
+  Conditions:
+  - incombat true
+  - targetwithin{d=3} true
+  - hasaura{n=EndermaulerRightSlash} false
+  - hasaura{n=EndermaulerLeftSlash} false
+  - hasaura{n=EndermaulerDashBiteStartup} false
+  - hasaura{n=EndermaulerDashBite} false
+  - hasaura{n=EndermaulerScreamOfEnder} false
+  - hasaura{n=EndermaulerTeleportMaul} false
+  - hasaura{n=EndermaulerCloseSlashes} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=EndermaulerCloseSlashes;duration=40} @self
+  - state{model=endermauler;state=close_slashes} @self
+  - sound{s=tugkandeman.endermauler_closeslash;v=2;p=1} @self
+  - delay 5
+  - lockmodel @self
+  - delay 4
+  - aura{auraName=EndermaulerCloseSlashesD;duration=10;oT=endermauler_close_slashes_damage} @self
+  - delay 15
+  - skill{s=endermauler_teleport_away} @self 0.5
+  - delay 31
+  - lockmodel{l=false} @self
+  - setspeed{speed=1.5;type=WALKING} @self
+  
+endermauler_close_slashes_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=endermauler;pid=hurtbox}
+
+endermauler_teleport_away:
+  Skills:
+  - summon{type=vfx_end_teleport;amount=1} @self
+  - partvis{model=endermauler;p=endermauler;v=false;child=true} @self
+  - delay 1
+  - teleport{r=20;sv=2} @self
+  - sound{s=tugkandeman.endermauler_teleport2;v=2;p=1} @self
+  - delay 1
+  - partvis{model=endermauler;p=endermauler;v=true;child=true} @self
+
+#Aggro Sound  
+endermauler_aggro_sound:
+  Conditions:
+  - incombat true
+  Skills:
+  - sound{s=tugkandeman.ender_aggro;v=2;p=1} @self
+
+#                                                                           ~End Strider~  
+  
+#Tame
+end_strider_tame:
+  Conditions:
+  - hasowner false
+  TriggerConditions:
+  - holding{m=GOLDEN_APPLE} true
+  Skills:
+  - consumeslot{slot=HAND;amount=1} @trigger
+  - setowner @trigger 0.33
+  - skill{s=end_strider_tame_succesful} @self
+
+end_strider_tame_succesful:
+  Conditions:
+  - hasowner orElseCast end_strider_tame_failed
+  Skills:
+  - particles{p=heart;a=10;hS=0.2;vS=0.25;y=0.9;s=0} @ModelPart{mid=end_strider;pid=head}
+  - partvis{mid=end_strider;p=saddle;v=true} @self
+  
+end_strider_tame_failed:
+  Skills:
+  - particles{p=smoke;a=8;hS=0.2;vS=0.25;y=0.9;s=0} @ModelPart{mid=end_strider;pid=head}  
+
+#Slow
+end_strider_slow:
+  Conditions:
+  - hasowner true
+  Skills:
+  - potion{type=SLOW;d=999999;l=3} @self
+
+#Mount
+end_strider_mount:
+  TriggerConditions:
+  - owner true
+  Skills:
+  - mountmodel{mid=end_strider;m=walking} @trigger
+
+#Passenger
+end_strider_mount_passenger:
+  TriggerConditions:
+  - holding{m=GOLDEN_APPLE} false
+  Conditions:
+  - hasowner true
+  - haspassenger false
+  Skills:
+  - mountmodel{mid=end_strider;drive=false;p=backseat;force=true} @trigger
+
+#Scout
+end_strider_scout:
+  Cooldown: 90
+  Conditions:
+  - hasowner false
+  - incombat false
+  - chance{c=0.1} true
+  - hasaura{n=endStriderScout} false
+  - hasaura{n=endStriderRightSlash} false
+  - hasaura{n=endStriderLeftSlash} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=endStriderScout;duration=240} @self
+  - state{model=end_strider;state=scout} @self
+  - lockmodel @self
+  - delay 240
+  - lockmodel{l=false} @self
+  - setspeed{speed=0.75;type=WALKING} @self  
+
+#Right Slash  
+end_strider_right_slash:
+  Cooldown: 2
+  Conditions:
+  - incombat true
+  - targetwithin{d=4} true
+  - hasaura{n=endStriderScout} false
+  - hasaura{n=endStriderRightSlash} false
+  - hasaura{n=endStriderLeftSlash} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=endStriderRightSlash;duration=50} @self
+  - state{model=end_strider;state=right_slash} @self
+  - sound{s=tugkandeman.endermauler_rightslash;v=2;p=1} @self
+  - delay 10
+  - lockmodel @self
+  - delay 4
+  - aura{auraName=endStriderRightSlashD;duration=5;oT=end_strider_right_slash_damage} @self
+  - delay 36
+  - lockmodel{l=false} @self
+  - setspeed{speed=0.75;type=WALKING} @self
+
+end_strider_right_slash_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=end_strider;pid=hurtbox}
+
+#Left Slash  
+end_strider_left_slash:
+  Cooldown: 2
+  Conditions:
+  - incombat true
+  - targetwithin{d=4} true
+  - hasaura{n=endStriderScout} false
+  - hasaura{n=endStriderRightSlash} false
+  - hasaura{n=endStriderLeftSlash} false
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - aura{auraName=endStriderLeftSlash;duration=50} @self
+  - state{model=end_strider;state=left_slash} @self
+  - sound{s=tugkandeman.endermauler_rightslash;v=2;p=1} @self
+  - delay 10
+  - lockmodel @self
+  - delay 4
+  - aura{auraName=endStriderLeftSlashD;duration=5;oT=end_strider_left_slash_damage} @self
+  - delay 36
+  - lockmodel{l=false} @self
+  - setspeed{speed=0.75;type=WALKING} @self
+
+end_strider_left_slash_damage:
+  Skills:
+  - totem{md=2;oH=[ - damage{a=10} ];hnp=true;hp=true;hR=1.5;vR=1.5;i=1;drawhitbox=false} @ModelPart{mid=end_strider;pid=hurtbox}
+
+#Death
+end_strider_death:
+  Skills:
+  - delay 10
+  - sound{s=tugkandeman.generic_land;v=2;p=1} @self
+  
+#                                                                           ~VFX~  
+
+#Spawn
+vfx_end_teleport_summoned:
+  Skills:
+  - state{m=vfx_end_teleport;state=end_teleport} @self
+  - delay 20
+  - remove @self

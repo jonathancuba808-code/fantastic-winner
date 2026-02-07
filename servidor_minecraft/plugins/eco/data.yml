@@ -1,0 +1,10 @@
+# For internal storage use only, do not modify.
+
+legacy-data-migrated: true
+previous-handler: yaml
+player:
+  00000000-0000-0000-0000-000000000000:
+    eco:local_server_id: 8cd9593c-481b-4463-a482-56c91337f7fa
+  dae100c7-6450-39fa-b160-81c314f644db:
+    eco:player_name: Fazzer
+

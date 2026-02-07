@@ -1,0 +1,41 @@
+top:
+  name-empty: '&cEmpty'
+  amount-empty: '0'
+  format:
+  - '---- Jobs Leaderboard ----'
+  - '%lines%'
+  empty-position: '&cN/A'
+messages:
+  cant-leave-job: '&cYou can''t leave the %job%&f job!'
+  prefix: '&#964B00&lEcoJobs&r &8» &r'
+  need-amount: '&cYou must specify a amount!'
+  unlocked-job: '&fSuccessfully unlocked the %job%&f job for %player%!'
+  reset-all-players: '&fYou have reset all players'' %job%&f XP!'
+  dont-have-job: '&cYou don''t have this job unlocked!'
+  reset-xp: '&fYou have reset %player%&f''s %job%&f XP!'
+  left-job: '&fYou have left the %job%&f job!'
+  job-already-joined: '&cYou already have this job!'
+  needs-job: '&cYou must specify a job!'
+  needs-player: '&cYou must specify a player!'
+  reset-all-players-all-jobs: '&fYou have reset all players'' XP for all jobs!'
+  not-in-job: '&cYou are not in this job!'
+  reloaded: Reloaded!
+  cannot-spawn-job: '&cYou already have this job unlocked!'
+  doesnt-have-job: '&cPlayer doesn''t have this job!'
+  no-job: '&cYou don''t have a job!'
+  not-player: '&cThis command must be run by a player'
+  invalid-command: '&cUnknown subcommand!'
+  gave-xp: '&fYou have given &a%xp% &fXP to %player%&f''s %job%&f!'
+  invalid-amount: '&cInvalid amount!'
+  already-has-job: '&cPlayer already has this job!'
+  reset-all-jobs: '&fYou have reset %player%&f''s XP for all jobs!'
+  no-permission: '&cYou don''t have permission to do this!'
+  joined-job: '&fYou have joined the %job%&f job!'
+  invalid-job: '&cInvalid job!'
+  cannot-join-job: '&cYou are already in too many jobs, please leave one!'
+  invalid-player: '&cInvalid player!'
+infinity: ∞
+menu:
+  title: Jobs
+top-line-format: '%rank%. %player% - %level%'
+

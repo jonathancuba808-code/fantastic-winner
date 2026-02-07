@@ -1,0 +1,61 @@
+title: <white>
+rows: 6
+items:
+  frostbite_cosmetics_wings:
+    slots:
+    - 0
+    item:
+      name: <white>Frostbite Wings
+      material: POTION
+      model-data: 9923483
+      color: '#ffffff'
+      item-flags:
+      - HIDE_ATTRIBUTES
+      - HIDE_POTION_EFFECTS
+      amount: 1
+      lore:
+      - ''
+      - '<gray>Enabled: <#6D9DC5>%HMCCosmetics_equipped_frostbite_cosmetics_wings%'
+      - '<gray>Allowed: <#6D9DC5>%HMCCosmetics_unlocked_frostbite_cosmetics_wings%'
+    type: cosmetic
+    cosmetic: frostbite_cosmetics_wings
+    locked-item:
+      name: <white>Frostbite Wings <red><b>(LOCK)
+      material: POTION
+      model-data: 9923483
+      color: '#ffffff'
+      item-flags:
+      - HIDE_ATTRIBUTES
+      - HIDE_POTION_EFFECTS
+      amount: 1
+      lore:
+      - <RED>You do not have this cosmetic available
+  frostbite_cosmetics_helmet:
+    slots:
+    - 1
+    item:
+      name: <white>Frostbite Helmet
+      material: POTION
+      model-data: 9923482
+      color: '#ffffff'
+      item-flags:
+      - HIDE_ATTRIBUTES
+      - HIDE_POTION_EFFECTS
+      amount: 1
+      lore:
+      - ''
+      - '<gray>Enabled: <#6D9DC5>%HMCCosmetics_equipped_frostbite_cosmetics_helmet%'
+      - '<gray>Allowed: <#6D9DC5>%HMCCosmetics_unlocked_frostbite_cosmetics_helmet%'
+    type: cosmetic
+    cosmetic: frostbite_cosmetics_helmet
+    locked-item:
+      name: <white>Frostbite Helmet <red><b>(LOCK)
+      material: POTION
+      model-data: 9923482
+      color: '#ffffff'
+      item-flags:
+      - HIDE_ATTRIBUTES
+      - HIDE_POTION_EFFECTS
+      amount: 1
+      lore:
+      - <RED>You do not have this cosmetic available

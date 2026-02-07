@@ -1,0 +1,1134 @@
+# DOCUMENTATION: https://docs.artillex-studios.com/axquestboard.html
+# ITEM BUILDER: https://docs.artillex-studios.com/item-builder.html
+
+quests:
+  '1':
+    # example #1 has ALL the possible customizations, you don't have to use most of them
+    title: Kill %required% creepers
+    # chance of this quest appearing
+    # can go over 100, optional
+    chance: 60
+    settings:
+      # all triggers: https://docs.artillex-studios.com/triggers.html
+      trigger: KILL
+      # extra information for the specified trigger, optional
+      extra: CREEPER
+      # how many actions should it require?
+      required: 100
+      # if the trigger supports it, it will also decrease the progress when needed
+      # for example the break trigger will decrease if the player places the quest block
+      # optional
+      prevent-cheating: true
+      # how many points can they win?
+      win-points: 3
+      # optionally, you can also give items / run commands, not just points
+      # note: the number is the placement, so section 1 will give the rewards to the number 1 player
+      rewards:
+        '1':
+          commands:
+          - say %player% won!
+          items:
+          - material: diamond
+            amount: 1
+            name: '&#00FFFFShiny diamond'
+        '2':
+          commands:
+          - say %player% is second!
+          items:
+          - material: gold_ingot
+            amount: 1
+            name: '&#FFCC00Shiny gold'
+    display-item:
+      material: CREEPER_HEAD
+      name: '&#EE3333&l%title%'
+      lore:
+      - ' '
+      - '&#EE3333&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#EE3333&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#EE3333&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '2':
+    title: Break %required% ancient debris
+    chance: 40
+    settings:
+      trigger: BREAK
+      extra: ANCIENT_DEBRIS
+      prevent-cheating: true
+      required: 10
+      win-points: 5
+    display-item:
+      material: ANCIENT_DEBRIS
+      name: '&#00CCFF&l%title%'
+      lore:
+      - ' '
+      - '&#00CCFF&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#00CCFF&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#00CCFF&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '3':
+    title: Break %required% blocks
+    chance: 50
+    settings:
+      trigger: BREAK
+      prevent-cheating: true
+      required: 7500
+      win-points: 3
+    display-item:
+      material: IRON_PICKAXE
+      name: '&#856426&l%title%'
+      lore:
+      - ' '
+      - '&#856426&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#856426&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#856426&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '4':
+    title: Kill %required% mobs
+    chance: 50
+    settings:
+      trigger: KILL
+      prevent-cheating: true
+      required: 1000
+      win-points: 3
+    display-item:
+      material: DIAMOND_SWORD
+      name: '&#33ebcb&l%title%'
+      lore:
+      - ' '
+      - '&#33ebcb&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#33ebcb&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#33ebcb&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '5':
+    title: Consume %required% golden apples
+    chance: 50
+    settings:
+      trigger: CONSUME
+      extra: GOLDEN_APPLE
+      prevent-cheating: true
+      required: 12
+      win-points: 5
+    display-item:
+      material: GOLDEN_APPLE
+      name: '&#e5e850&l%title%'
+      lore:
+      - ' '
+      - '&#e5e850&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#e5e850&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#e5e850&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '6':
+    title: Consume %required% enchanted golden apple
+    chance: 50
+    settings:
+      trigger: CONSUME
+      extra: ENCHANTED_GOLDEN_APPLE
+      prevent-cheating: true
+      required: 1
+      win-points: 5
+    display-item:
+      material: ENCHANTED_GOLDEN_APPLE
+      name: '&#f7af6b&l%title%'
+      lore:
+      - ' '
+      - '&#f7af6b&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#f7af6b&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#f7af6b&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '7':
+    title: Consume %required% golden carrots
+    chance: 50
+    settings:
+      trigger: CONSUME
+      extra: GOLDEN_CARROT
+      prevent-cheating: true
+      required: 32
+      win-points: 3
+    display-item:
+      material: GOLDEN_CARROT
+      name: '&#ffd052&l%title%'
+      lore:
+      - ' '
+      - '&#ffd052&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#ffd052&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#ffd052&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '8':
+    title: Shear %required% sheep
+    chance: 50
+    settings:
+      trigger: SHEAR
+      extra: SHEEP
+      prevent-cheating: true
+      required: 50
+      win-points: 3
+    display-item:
+      material: SHEARS
+      name: '&#da6e5c&l%title%'
+      lore:
+      - ' '
+      - '&#da6e5c&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#da6e5c&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#da6e5c&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '9':
+    title: Place %required% beacons
+    chance: 50
+    settings:
+      trigger: PLACE
+      extra: BEACON
+      prevent-cheating: true
+      required: 3
+      win-points: 3
+    display-item:
+      material: BEACON
+      name: '&#aaeee6&l%title%'
+      lore:
+      - ' '
+      - '&#aaeee6&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#aaeee6&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#aaeee6&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '10':
+    title: Place %required% blocks
+    chance: 50
+    settings:
+      trigger: PLACE
+      prevent-cheating: true
+      required: 800
+      win-points: 3
+    display-item:
+      material: OAK_PLANKS
+      name: '&#bf9a5d&l%title%'
+      lore:
+      - ' '
+      - '&#bf9a5d&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#bf9a5d&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#bf9a5d&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '11':
+    title: Chat %required% times
+    chance: 50
+    settings:
+      trigger: CHAT
+      prevent-cheating: true
+      required: 15
+      win-points: 3
+    display-item:
+      material: MAP
+      name: '&#d3d6a3&l%title%'
+      lore:
+      - ' '
+      - '&#d3d6a3&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#d3d6a3&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#d3d6a3&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '12':
+    title: Repair %required% durability with mending
+    chance: 50
+    settings:
+      trigger: ITEM_MEND
+      prevent-cheating: true
+      required: 2500
+      win-points: 3
+    display-item:
+      material: ENCHANTED_BOOK
+      name: '&#ce87b3&l%title%'
+      lore:
+      - ' '
+      - '&#ce87b3&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#ce87b3&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#ce87b3&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '13':
+    title: Level up %required% times
+    chance: 50
+    settings:
+      trigger: LEVEL_CHANGE
+      prevent-cheating: true
+      required: 30
+      win-points: 3
+    display-item:
+      material: EXPERIENCE_BOTTLE
+      name: '&#63f763&l%title%'
+      lore:
+      - ' '
+      - '&#63f763&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#63f763&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#63f763&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '14':
+    title: Right click on a netherite block
+    chance: 50
+    settings:
+      trigger: RIGHT_CLICK_BLOCK
+      extra: NETHERITE_BLOCK
+      prevent-cheating: true
+      required: 1
+      win-points: 3
+    display-item:
+      material: NETHERITE_BLOCK
+      name: '&#aca9ae&l%title%'
+      lore:
+      - ' '
+      - '&#aca9ae&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#aca9ae&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#aca9ae&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '15':
+    title: Use end or nether portals %required% times
+    chance: 50
+    settings:
+      trigger: PORTAL_USE
+      prevent-cheating: true
+      required: 5
+      win-points: 3
+    display-item:
+      material: END_PORTAL_FRAME
+      name: '&#dec278&l%title%'
+      lore:
+      - ' '
+      - '&#dec278&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#dec278&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#dec278&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '16':
+    title: Get saved by a totem of undying %required% times
+    chance: 50
+    settings:
+      trigger: RESURRECT_PLAYER
+      prevent-cheating: true
+      required: 3
+      win-points: 3
+    display-item:
+      material: TOTEM_OF_UNDYING
+      name: '&#b9833d&l%title%'
+      lore:
+      - ' '
+      - '&#b9833d&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#b9833d&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#b9833d&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '17':
+    title: Use riptide %required% times
+    chance: 50
+    settings:
+      trigger: RIPTIDE_USE
+      prevent-cheating: true
+      required: 100
+      win-points: 3
+    display-item:
+      material: TRIDENT
+      name: '&#7fe4ce&l%title%'
+      lore:
+      - ' '
+      - '&#7fe4ce&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#7fe4ce&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#7fe4ce&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '18':
+    title: Tame %required% mobs
+    chance: 50
+    settings:
+      trigger: TAME_ENTITY
+      prevent-cheating: true
+      required: 10
+      win-points: 3
+    display-item:
+      material: BONE
+      name: '&#f61618&l%title%'
+      lore:
+      - ' '
+      - '&#f61618&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#f61618&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#f61618&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '19':
+    title: Craft %required% diamond swords
+    chance: 50
+    settings:
+      trigger: CRAFT
+      extra: DIAMOND_SWORD
+      prevent-cheating: true
+      required: 3
+      win-points: 3
+    display-item:
+      material: DIAMOND_SWORD
+      name: '&#30e1c2&l%title%'
+      lore:
+      - ' '
+      - '&#30e1c2&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#30e1c2&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#30e1c2&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '20':
+    title: Craft %required% golden apples
+    chance: 50
+    settings:
+      trigger: CRAFT
+      extra: GOLDEN_APPLE
+      prevent-cheating: true
+      required: 8
+      win-points: 3
+    display-item:
+      material: GOLDEN_APPLE
+      name: '&#eac647&l%title%'
+      lore:
+      - ' '
+      - '&#eac647&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#eac647&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#eac647&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '21':
+    title: Break %required% items
+    chance: 50
+    settings:
+      trigger: BREAK_ITEM
+      prevent-cheating: true
+      required: 10
+      win-points: 3
+    display-item:
+      material: GOLDEN_SHOVEL
+      name: '&#eac64e&l%title%'
+      lore:
+      - ' '
+      - '&#eac64e&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#eac64e&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#eac64e&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '22':
+    title: Break %required% sands
+    chance: 50
+    settings:
+      trigger: BREAK
+      extra: SAND
+      prevent-cheating: true
+      required: 3000
+      win-points: 3
+    display-item:
+      material: SAND
+      name: '&#dfd5af&l%title%'
+      lore:
+      - ' '
+      - '&#dfd5af&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#dfd5af&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#dfd5af&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '23':
+    title: Break %required% red sands
+    chance: 50
+    settings:
+      trigger: BREAK
+      extra: RED_SAND
+      prevent-cheating: true
+      required: 1000
+      win-points: 3
+    display-item:
+      material: RED_SAND
+      name: '&#fe9037&l%title%'
+      lore:
+      - ' '
+      - '&#fe9037&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#fe9037&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#fe9037&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '24':
+    title: Craft %required% beacon
+    chance: 50
+    settings:
+      trigger: CRAFT
+      extra: BEACON
+      prevent-cheating: true
+      required: 1
+      win-points: 3
+    display-item:
+      material: BEACON
+      name: '&#5fe1d2&l%title%'
+      lore:
+      - ' '
+      - '&#5fe1d2&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#5fe1d2&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#5fe1d2&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '25':
+    title: Craft %required% tnt
+    chance: 50
+    settings:
+      trigger: CRAFT
+      extra: TNT
+      prevent-cheating: true
+      required: 64
+      win-points: 3
+    display-item:
+      material: TNT
+      name: '&#ba2117&l%title%'
+      lore:
+      - ' '
+      - '&#ba2117&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#ba2117&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#ba2117&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '26':
+    title: Throw eggs %required% times
+    chance: 50
+    settings:
+      trigger: EGG_THROW
+      prevent-cheating: true
+      required: 300
+      win-points: 3
+    display-item:
+      material: EGG
+      name: '&#d8c997&l%title%'
+      lore:
+      - ' '
+      - '&#d8c997&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#d8c997&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#d8c997&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '27':
+    title: Kill a warden
+    chance: 50
+    settings:
+      trigger: KILL
+      extra: WARDEN
+      prevent-cheating: true
+      required: 1
+      win-points: 5
+    display-item:
+      material: WARDEN_SPAWN_EGG
+      name: '&#52b2b0&l%title%'
+      lore:
+      - ' '
+      - '&#52b2b0&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#52b2b0&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#52b2b0&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '28':
+    title: Break %required% diamond ores
+    chance: 50
+    settings:
+      trigger: BREAK
+      extra: DIAMOND_ORE
+      prevent-cheating: true
+      required: 30
+      win-points: 3
+    display-item:
+      material: DIAMOND_ORE
+      name: '&#46dfcc&l%title%'
+      lore:
+      - ' '
+      - '&#46dfcc&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#46dfcc&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#46dfcc&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '29':
+    title: Catch %required% fish
+    chance: 50
+    settings:
+      trigger: FISH_CAUGHT
+      prevent-cheating: true
+      required: 15
+      win-points: 3
+    display-item:
+      material: TROPICAL_FISH
+      name: '&#ffa84b&l%title%'
+      lore:
+      - ' '
+      - '&#ffa84b&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#ffa84b&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#ffa84b&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '30':
+    title: Kill a wither
+    chance: 50
+    settings:
+      trigger: KILL
+      extra: WITHER
+      prevent-cheating: true
+      required: 1
+      win-points: 5
+    display-item:
+      material: WITHER_SKELETON_SKULL
+      name: '&#868686&l%title%'
+      lore:
+      - ' '
+      - '&#868686&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#868686&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#868686&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '31':
+    title: Kill the ender dragon
+    chance: 50
+    settings:
+      trigger: KILL
+      extra: ENDER_DRAGON
+      prevent-cheating: true
+      required: 1
+      win-points: 5
+    display-item:
+      material: DRAGON_EGG
+      name: '&#ba2dd7&l%title%'
+      lore:
+      - ' '
+      - '&#ba2dd7&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#ba2dd7&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#ba2dd7&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '32':
+    title: Deal %required% damage
+    chance: 50
+    settings:
+      trigger: DEAL_DAMAGE
+      prevent-cheating: true
+      required: 1000
+      win-points: 3
+    display-item:
+      material: NETHERITE_AXE
+      name: '&#837681&l%title%'
+      lore:
+      - ' '
+      - '&#837681&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#837681&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#837681&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '33':
+    title: Regenerate %required% health
+    chance: 50
+    settings:
+      trigger: REGEN_PLAYER
+      prevent-cheating: true
+      required: 100
+      win-points: 3
+    display-item:
+      material: POTION
+      color: 255, 150, 150
+      name: '&#f658f8&l%title%'
+      lore:
+      - ' '
+      - '&#f658f8&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#f658f8&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#f658f8&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '34':
+    title: Take %required% damage
+    chance: 50
+    settings:
+      trigger: TAKE_DAMAGE
+      prevent-cheating: true
+      required: 300
+      win-points: 3
+    display-item:
+      material: SHIELD
+      name: '&#b6b6b6&l%title%'
+      lore:
+      - ' '
+      - '&#b6b6b6&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#b6b6b6&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#b6b6b6&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '35':
+    title: Move %required% blocks
+    chance: 50
+    settings:
+      trigger: MOVE
+      prevent-cheating: true
+      required: 10000
+      win-points: 3
+    display-item:
+      material: GOLDEN_BOOTS
+      name: '&#f7e900&l%title%'
+      lore:
+      - ' '
+      - '&#f7e900&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#f7e900&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#f7e900&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '36':
+    title: Sprint %required% blocks
+    chance: 50
+    settings:
+      trigger: SPRINT
+      prevent-cheating: true
+      required: 3000
+      win-points: 3
+    display-item:
+      material: SUGAR
+      name: '&#e3e3e3&l%title%'
+      lore:
+      - ' '
+      - '&#e3e3e3&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#e3e3e3&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#e3e3e3&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '37':
+    title: Swim %required% blocks
+    chance: 50
+    settings:
+      trigger: SWIM
+      prevent-cheating: true
+      required: 1250
+      win-points: 3
+    display-item:
+      material: WATER_BUCKET
+      name: '&#2f5acf&l%title%'
+      lore:
+      - ' '
+      - '&#2f5acf&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#2f5acf&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#2f5acf&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '38':
+    title: Sneak %required% blocks
+    chance: 50
+    settings:
+      trigger: SNEAK
+      prevent-cheating: true
+      required: 300
+      win-points: 3
+    display-item:
+      material: SCULK_SENSOR
+      name: '&#2e8d9c&l%title%'
+      lore:
+      - ' '
+      - '&#2e8d9c&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#2e8d9c&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#2e8d9c&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '39':
+    title: Jump %required% times
+    chance: 50
+    settings:
+      trigger: JUMP
+      prevent-cheating: true
+      required: 500
+      win-points: 3
+    display-item:
+      material: RABBIT_FOOT
+      name: '&#d2aa7a&l%title%'
+      lore:
+      - ' '
+      - '&#d2aa7a&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#d2aa7a&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#d2aa7a&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '40':
+    title: Fly with an elytra for %required% blocks
+    chance: 50
+    settings:
+      trigger: AVIATE
+      prevent-cheating: true
+      required: 4000
+      win-points: 3
+    display-item:
+      material: ELYTRA
+      name: '&#8d8db5&l%title%'
+      lore:
+      - ' '
+      - '&#8d8db5&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#8d8db5&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#8d8db5&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '41':
+    title: Shoot with a bow %required% times
+    chance: 50
+    settings:
+      trigger: SHOOT_BOW
+      prevent-cheating: true
+      required: 100
+      win-points: 3
+    display-item:
+      material: BOW
+      name: '&#d19d3b&l%title%'
+      lore:
+      - ' '
+      - '&#d19d3b&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#d19d3b&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#d19d3b&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '42':
+    title: Enchant %required% items
+    chance: 50
+    settings:
+      trigger: ENCHANT_ITEM
+      prevent-cheating: true
+      required: 25
+      win-points: 3
+    display-item:
+      material: ENCHANTING_TABLE
+      name: '&#bf402b&l%title%'
+      lore:
+      - ' '
+      - '&#bf402b&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#bf402b&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#bf402b&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '43':
+    title: Milk %required% cows
+    chance: 50
+    settings:
+      trigger: MILK
+      prevent-cheating: true
+      required: 50
+      win-points: 3
+    display-item:
+      material: MILK_BUCKET
+      name: '&#d7eaeb&l%title%'
+      lore:
+      - ' '
+      - '&#d7eaeb&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#d7eaeb&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#d7eaeb&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '44':
+    title: Harvest %required% berry bushes
+    chance: 50
+    settings:
+      trigger: HARVEST_CROP
+      extra: SWEET_BERRY_BUSH
+      prevent-cheating: true
+      required: 35
+      win-points: 3
+    display-item:
+      material: SWEET_BERRIES
+      name: '&#cd2f5e&l%title%'
+      lore:
+      - ' '
+      - '&#cd2f5e&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#cd2f5e&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#cd2f5e&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '45':
+    title: Breed %required% mobs
+    chance: 50
+    settings:
+      trigger: BREED_ENTITY
+      prevent-cheating: true
+      required: 50
+      win-points: 3
+    display-item:
+      material: WHEAT
+      name: '&#f10000&l%title%'
+      lore:
+      - ' '
+      - '&#f10000&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#f10000&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#f10000&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '47':
+    title: Ride %required% blocks in a minecart/boat
+    chance: 50
+    settings:
+      trigger: RIDE_VEHICLE
+      prevent-cheating: true
+      required: 5000
+      win-points: 3
+    display-item:
+      material: MINECART
+      name: '&#babdbf&l%title%'
+      lore:
+      - ' '
+      - '&#babdbf&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#babdbf&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#babdbf&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '48':
+    title: Ride %required% blocks on a mob
+    chance: 50
+    settings:
+      trigger: RIDE_MOB
+      prevent-cheating: true
+      required: 1000
+      win-points: 3
+    display-item:
+      material: SADDLE
+      name: '&#e39e9c&l%title%'
+      lore:
+      - ' '
+      - '&#e39e9c&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#e39e9c&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#e39e9c&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '49':
+    title: Drink %required% potions
+    chance: 50
+    settings:
+      trigger: CONSUME
+      extra: POTION
+      prevent-cheating: true
+      required: 16
+      win-points: 3
+    display-item:
+      material: POTION
+      color: 0, 200, 255
+      name: '&#00CCFF&l%title%'
+      lore:
+      - ' '
+      - '&#00CCFF&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#00CCFF&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#00CCFF&lʀᴇᴡᴀʀᴅ: &f%points% points'
+  
+  '50':
+    title: Throw %required% ender pearls
+    chance: 50
+    settings:
+      trigger: TELEPORT
+      extra: ENDER_PEARL
+      prevent-cheating: true
+      required: 50
+      win-points: 3
+    display-item:
+      material: ENDER_PEARL
+      name: '&#3b9686&l%title%'
+      lore:
+      - ' '
+      - '&#3b9686&lʏᴏᴜ: &f%score%&7/%required%'
+      - ' '
+      - '&#3b9686&lʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ'
+      - ' &#FF0000%top_1_name%: %top_1_score%'
+      - ' &#FFAA00%top_2_name%: %top_2_score%'
+      - ' &#FFFF00%top_3_name%: %top_3_score%'
+      - ' '
+      - '&#3b9686&lʀᴇᴡᴀʀᴅ: &f%points% points'
+
+# do not change this
+version: 1

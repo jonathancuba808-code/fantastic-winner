@@ -1,0 +1,97 @@
+# Download it here: https://black-minecraft.com/resources/9170/
+# DOCUMENTATION: https://docs.artillex-studios.com/axquestboard.html
+
+prefix: '<gradient:#AAFF00:#77FF44><b>AxQuestBoard</b></gradient> &7» '
+
+database:
+  # h2, sqlite
+  # for single server setups we recommend h2 because it's way faster than sqlite
+  type: h2
+
+# timer format for %time% placeholders
+# 1 - HH:MM:SS, for example 01:25:35
+# 2 - short format, for example 20m
+# 3 - text format, for example 01h 25m 35s
+timer-format: 3
+
+# you must define at least 1
+# requires a restart to update
+command-aliases:
+- axquestboard
+- axqb
+- questboard
+- qb
+
+# you must define at least 1
+# requires a restart to update
+shop-commands:
+- axquestshop
+- questshop
+
+# how big the board should be at these player counts?
+# so with the default config at 13 players the board will be 3 rows, at 50 it will be 6 rows
+# if you just want a static board, use this:
+# board-rows:
+#   0:
+#     rows: 6
+#     quest-slots: 0-53
+board-rows:
+  '0':
+    # how many rows should there be at 0-4 players?
+    rows: 1
+    # which of the slots should be used for quests?
+    # please double-check that you defined this correctly or hidden quests may appear (https://c4k3.github.io/wiki.vg/File:DoubleChest-slots.png.html)
+    quest-slots: 0-8
+  '5':
+    rows: 2
+    quest-slots: 9-17
+  '10':
+    rows: 3
+    quest-slots: 18-26
+  '15':
+    rows: 4
+    quest-slots: 27-35
+  '20':
+    rows: 5
+    quest-slots: 36-44
+  '25':
+    rows: 6
+    quest-slots: 45-53
+
+# how often should the board rows be checked?
+# this is only used to recalculate the row amount of the gui
+# this is not too heavy, if you prefer it, you can set it lower
+# requires a restart to change
+resize-check-seconds: 60
+
+# how often should quest scores be saved to the database?
+# requires a restart to change
+auto-save-seconds: 180
+
+# after someone completing a quest from the board, how long should it take to generate a new quest?
+# this is in seconds
+new-quest-cooldown: 1800
+
+# https://docs.oracle.com/javase/tutorial/i18n/format/decimalFormat.html
+# how money should be formatted?
+# set to '#,###.##' to show decimals
+number-format: '#,###'
+
+# broadcasts may be a bit spammy, if you want you can display them as an actionbar
+broadcasts:
+  chat: true
+  actionbar: false
+
+# if enabled, the plugin try to find a quest that is not on the board when refreshing
+# you probably shouldn't enable this if you have set less quests than the maximum board size
+force-unique-quests: false
+
+# should be plugin notify you if there is a new update?
+update-notifier:
+  # if enabled, it will display the message in the console
+  enabled: false
+  # if enabled, it will broadcast the update message to all players who have the <plugin-name>.update-notify permission
+  on-join: false
+
+# do not change this
+version: 3

@@ -1,0 +1,223 @@
+cppuker_em:
+  Type: skeleton
+  Display: 'Corrupted Puker'
+  AIGoalSelectors:
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 SpecificFaction FallenHero
+  - 2 players
+  - 3 attacker
+  Health: 35
+  Faction: CorruptedFlesh
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 1.1
+  - PROJECTILE 0.62
+  Damage: 6 #This is the BASE damage. Applies for ALL skills Setting it to 12 will DOUBLE damage. Setting it to 3 will REDUCE damage in 50% from the original.
+  KillMessages:
+  - '<target.name> was vomited by a Corrupted Puker'
+  - 'A Corrupted Puker melted <target.name>.'
+  - "<target.name> was dissolved by a Corrupted Puker's acid."
+  - "A Corrupted Puker consumed <target.name>'s remains."
+  - '<target.name> was consumed by the Corrupted Flesh.'
+  Equipment:
+  - air HEAD
+  - imboots_cppuker FEET
+  - AIR HAND
+  - air OFFHAND
+  Drops:
+  - exp 10-25 1
+  - exp 10-25 1
+  - exp 10-25 1
+  - exp 10-25 1
+  LevelModifiers:
+    Health: 2
+    Damage: 0.03
+  Skills:
+  - message{m="Hitrec <caster.var.hitrec> STACKS"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+#====== MODEL ASSIGNEMENT =============
+  - model{mid=em_darkpuker;s=idle;n=false} @self ~onSpawn 1
+  - submodel{mid=em_darkpuker;partid=head_decapit;submodelid=em_darkpuker;subpartid=head_decapit;remove=true} @self ~onSpawn 1
+  - submodel{mid=em_darkpuker;partid=hip2;submodelid=em_darkpuker;subpartid=hip2;remove=true} @self ~onSpawn 1
+  - partvisibility{m=em_darkpuker;p=sword;v=false;delay=0} @self ~onSpawn
+  - setlevel{a=set;l=0} ~onSpawn
+  - bindhitbox{m=em_darkpuker;p=ob_headbox;t=cppuker_headbox;delay=2} @self ~onSpawn
+  - hitboxconfig{m=em_darkpuker;p=ob_headbox;pass=0.8;delay=2} @self ~onSpawn
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ~onSpawn
+  - skill{s=cppuker_hp_check} @Self ~onSpawn
+  - setvariable{var=caster.eichpee;value="<caster.mhp>";t=integer} @Self ~onSpawn
+#============ SOUNDS =================
+  - skill{s=cppuker_idlesounds} @Self ~onTimer:70 0.6 ?incombat
+  - skill{s=cppuker_idlesounds} @Self ~onTimer:110 0.45 ?!incombat
+#============ ATTACK =================
+  - skill{s=meleecppukertrigger} @Trigger ~onSignal:DEBUG_TEST 1
+
+  - CancelEvent{sync=true} @self ~onAttack 1 #CANCEL ATTACKS
+  
+  - skill{s=meleecppukertrigger;sync=false} @Target ~onAttack
+  - skill{s=meleecppukertrigger;sync=false} @LivingInCone{a=110.0;r=5;rot=0.0;ignore=samefaction,creative} ~onTimer:15 0.9 ?incombat ###### 0.6
+  
+  - setvariable{var=caster.combor;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.comboa;value="0";t=integer} @Self ~onSpawn
+
+  - skill{s=decapitate_cppuker;cooldown=2;sync=true} @self ~onSignal:DECAPITATE 0.75 <30%
+#================ RIP IN PEPSI PROTOCOL
+  
+  - effect:particles{p=block_crack;m=black_wool;a=20;hs=0.3;y=0;vs=0.3;s=0.2;repeat=15;repeatinterval=1} @ModelPart{m=em_darkpuker;p=decapitation_marker;offset=LOCAL} ~onDeath
+  - sound{s=entity.skeleton.hurt;p=0.9;v=1.5} @selflocation ~onDeath 1
+  - sound{s=entity.skeleton.death;p=0.9;v=1.5;delay=10} @selflocation ~onDeath 1
+  - summon{mob=darkbloodspill_1;amount=1;noise=1;r=0.8;yr=0.3;repeat=3;repeatinterval=2;delay=11} @ModelPart{m=em_darkpuker;p=decapitation_marker;offset=GLOBAL;y=-4;z=0.5} ~onDeath
+  - effect:particles{particle=cloud;amount=150;hS=1.1;vS=0.55;speed=0;size=4.5;repeat=0;repeatinterval=1;sideOffset=0;delay=60} @ModelPart{m=em_darkpuker;p=hip;offset=GLOBAL;y=0.2} ~onDeath
+  - effect:particles{particle=cloud;amount=60;hS=0.6;vS=0.2;speed=0;size=4.5;repeat=0;repeatinterval=1;sideOffset=0;delay=60} @ModelPart{m=em_darkpuker;p=head;offset=GLOBAL;y=0.2} ~onDeath
+  - changepart{m=em_darkpuker;pid=head;nm=em_darkpuker;npid=head2;delay=20} @self ~onDeath
+  - changepart{m=em_darkpuker;pid=jaw;nm=em_darkpuker;npid=jaw2;delay=20} @self ~onDeath
+  - changepart{m=em_darkpuker;pid=hip;nm=em_darkpuker;npid=hip2;delay=20} @self ~onDeath
+  - effect:particles{p=reddust;c=#BEF8E5;a=8;s=20;hs=0.35;vs=0.3;y=0;sideOffset=0;Size=1.1;delay=20;repeat=4;repeatinterval=1} @ModelPart{m=em_darkpuker;p=head;offset=GLOBAL;y=0.3;z=0.5} ~onDeath
+  - effect:particles{p=reddust;c=#BEF8E5;a=8;s=20;hs=0.35;vs=0.3;y=0;sideOffset=0;Size=1.1;delay=20;repeat=4;repeatinterval=1} @ModelPart{m=em_darkpuker;p=hip;offset=LOCAL;y=0.8;z=0.3}  ~onDeath
+  - sound{s=emforgottenpuker:custom.corruptedpuker.death;p=<random.float.0.9to1.1>;v=1.4} @Self ~onDeath
+  - summon{mob=darkbloodspill_1;amount=1;noise=0.5;r=0.6;yr=0;repeat=3;repeatinterval=2} @ModelPart{m=em_darkpuker;p=head_decapit;offset=LOCAL} ~onDeath
+#==============
+  - skill{s=hurt_cppuker_em} @self ~onDamaged 0.92 #Hurtmechanic
+  - randomskill{s=hurtfxcppuker;sync=false} @self ~onDamaged ?DamageAmount{damageamount=>3}
+  - velocity{m=set;x=0;y=0;z=0} @self ~onDamaged
+  - setvariable{var=caster.vulnerable;value="0";t=integer} @Self ~onSpawn
+
+# ========= Anti-ranged protocol
+  - message{m="COUNTERATTACKED"} @PlayersNearOrigin{r=75} ~onSignal:COUNTERATTACK 0 #DEBUGMESSAGE
+  - skill{s=countertacked_cppuker_A;sync=false} @self ~onDamaged ?DamageAmount{damageamount=>2}
+  - skill{s=countertacked_cppuker_A;cooldown=0.3;sync=false} @self ~onSignal:COUNTERATTACK
+  - skill{s=countertacked_cppuker_B;cooldown=0.3;sync=false} @self ~onSignal:COUNTERATTACK ?variableEquals{var=caster.parrying;value="1"}
+  - skill{s=meleecppukertrigger2;cooldown=1;sync=false} @Trigger ~onSignal:COUNTERATTACK 0.45 ?variableEquals{var=caster.parrying;value="1"}
+  
+#
+
+# ========= Anti-ranged protocol
+  - skill{s=hurtgencppuker;sync=true} @self ~onDamaged 1 #Hurtmechanic ANTIARROW
+  - skill{s=hurtgencppuker2;sync=true} @self ~onDamaged 1 #Hurtmechanic ANTIMMSkills
+  - setvariable{var=caster.rollumterr;value="0";t=integer} @Self ~OnSpawn #Hurtmechanic ANTIARROW
+  - setvariable{var=caster.projrec;value="0";t=integer} @Self ~OnSpawn #Hurtmechanic ANTIARROW
+  - setvariable{var=caster.running;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.runstacks;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.hurtened;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.parrying;value="0";t=integer} @Self ~onSpawn
+#======== RUNNER PROTOCOL (Activate if you remove statue pose)
+  - setvariable{var=caster.hitrec;value="0";t=integer} @Self ~OnSpawn #Hurtmechanic ANTIARROW
+  - message{m="Hitrec <caster.var.hitrec>"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+  - message{m="&eCOMBOR &a<caster.var.combor>"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+
+# ======== Dodger Protocol (activate here if you remove statue pose)
+  - sound{s=entity.skeleton.hurt;p=1;v=1} @selflocation ~onDamaged 1 #Hurtmechanic SOUND
+  - setstance{stance=normal} @self ~onSpawn
+#  - message{m="<caster.var.runstacks>"} @PlayersNearOrigin{r=35} ~onTimer:40 0
+
+  Options:
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.15
+    Interactable: true
+    PreventOtherDrops: true
+    KnockbackResistance: 0.9
+    PreventSunburn: true
+
+#HITBOXES
+
+cppuker_headbox:
+  Hidden: true
+  Type: vex
+  Display: ''
+  Faction: CorruptedFlesh
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 1500
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  Damage: 0
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - air:1
+  - air:0
+  Skills:
+  - setvariable{var=caster.headbox;value="1";t=integer;delay=1} @Self ~onSpawn
+  - setvariable{var=caster.headhits;value="0";t=integer;delay=1} @Self ~onSpawn
+  - cancelEvent{sync=true} @Trigger ~onDamaged
+  - variableadd{var=caster.headhits;amount=1} @self ~onDamaged ?damageamount{amount=>2}
+  - message{m="&aHEadbox Damaged"} @PlayersNearOrigin{r=75} ~onDamaged 0 ?damageamount{amount=>2} #DEBUG MESSAGE
+  - message{m="&aHEadbox Spawned"} @PlayersNearOrigin{r=75} ~onSpawn 0 #DEBUG MESSAGE
+  - signal{s=COUNTERATTACK} @parent ~onDamaged ?DamageAmount{damageamount=>2}
+  - skill{s=headdamaged_cppuker} ~onDamaged ?damageamount{amount=>4}
+  - signal{s=DECAPITATE} @parent ~onDamaged 0.6 ?variableInRange{var=caster.headhits;value=5to8}
+  - signal{s=DECAPITATE} @parent ~onDamaged 1 ?variableInRange{var=caster.headhits;value=>8}
+  - randomskill{s=[
+      - state{state=block_trigger1;li=0;lo=8;n=false;speed=1} @parent
+    ],
+      [
+      - state{state=block_trigger2;li=0;lo=8;n=false;speed=1} @parent
+    ];sync=true} @parent ~onDamaged
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.01
+    MaxCombatDistance: 60
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: true
+    Interactable: true
+    KnockbackResistance: 0
+    Collidable: false
+    NoGravity: true
+
+############
+###########
+#
+#
+#   VFX ======= VFX ======= VFX ======= VFX ======= VFX ======= VFX
+#
+#
+#
+#
+###########
+############
+
+darkblood_pukeball:
+  Hidden: true
+  Template: vfx_ForgottenTerrors_template
+  Skills:
+   - model{mid=corruptblood_64_projectile;s=idle;n=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;alod=NO_CULL} @self ~onSpawn
+   - cancelEvent{sync=true} ~onAttack
+
+darkbloodspill_projectile:
+  Hidden: true
+  Template: vfx_ForgottenTerrors_template
+  Skills:
+   - model{mid=corruptblood_64_splash;s=idle;n=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;alod=NO_CULL} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=corruptblood_64_splash;pid=frame1;nm=corruptblood_resources;npid=bspl_c1;delay=0} @self
+    - changepart{m=corruptblood_64_splash;pid=frame1;nm=corruptblood_resources;npid=bspl_c2;delay=1} @self
+    - changepart{m=corruptblood_64_splash;pid=frame1;nm=corruptblood_resources;npid=bspl_c3;delay=2} @self
+    - changepart{m=corruptblood_64_splash;pid=frame1;nm=corruptblood_resources;npid=bspl_c4;delay=3} @self
+    - changepart{m=corruptblood_64_splash;pid=frame1;nm=corruptblood_resources;npid=bspl_c5;delay=4} @self
+    - changepart{m=corruptblood_64_splash;pid=frame1;nm=corruptblood_resources;npid=bspl_c6;delay=5} @self
+    - changepart{m=corruptblood_64_splash;pid=frame1;nm=corruptblood_resources;npid=bspl_c7;delay=6} @self
+    - changepart{m=corruptblood_64_splash;pid=frame1;nm=corruptblood_resources;npid=bspl_c8;delay=7} @self
+    - changepart{m=corruptblood_64_splash;pid=frame1;nm=corruptblood_resources;npid=bspl_c9;delay=8} @self
+    - changepart{m=corruptblood_64_splash;pid=frame1;nm=corruptblood_resources;npid=bspl_c10;delay=9} @self
+    - changepart{m=corruptblood_64_splash;pid=frame1;nm=corruptblood_resources;npid=bspl_c11;delay=10} @self
+    - changepart{m=corruptblood_64_splash;pid=frame1;nm=corruptblood_resources;npid=bspl_c12;delay=11} @self
+    - changepart{m=corruptblood_64_splash;pid=frame1;nm=corruptblood_resources;npid=bspl_c13;delay=12} @self
+    - changepart{m=corruptblood_64_splash;pid=frame1;nm=corruptblood_resources;npid=bspl_c14;delay=13} @self];sync=true} @self ~onSpawn 1
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=14} @Self ~onSpawn
+
+#123123

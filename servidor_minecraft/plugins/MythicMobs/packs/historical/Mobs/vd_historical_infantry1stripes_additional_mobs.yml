@@ -1,0 +1,69 @@
+vd_historical_infantry1stripes_mob_knightpike_shieldhitbox:
+  Template: vd_historical_infantry1_hitbox_template
+  Health: 70
+  Faction: Castille
+  Skills:
+  - signal{s=shieldbreak} @parent ~onDeath
+  - sound{s=item.shield.block;p=1.3;v=0.1} @self ~onDamaged
+  - sound{s=block.heavy_core.place;p=1.3;v=0.6} @self ~onDamaged
+  - setNoDamageTicks{ticks=20} @parent ~onDamaged
+  - heal{amount=7} @parent ~onDamaged
+  - heal{amount=10} @parent ~onTimer:60
+
+vd_historical_infantry1stripes_mob_knightpike_spearhitbox:
+  Template: vd_historical_infantry1_hitbox_template
+  Health: 50
+  Faction: Castille
+  Skills:
+  - particle{p=block_crack;material=OAK_LOG} @origin ~onDamaged
+  - setNoDamageTicks{ticks=40} @parent ~onSpawn
+  - setNoDamageTicks{ticks=20} @parent ~onTimer:1
+  - signal{s=pikebreak} @parent ~onDeath
+  - signal{s=pikedamage} @parent ~onDamaged
+  - sound{s=entity.zombie.attack_wooden_door;p=2;v=0.1} @self ~onDamaged
+  - state{state=pike_damage} @parent ~onDamaged
+  - heal{amount=40} @parent ~onDeath
+  - heal{amount=10} @parent ~onTimer:60
+  - heal{amount=20} @EIR{r=3;limit=1;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightpike_shieldhitbox} true ]} ~onTimer:5
+
+
+vd_historical_infantry1stripes_mob_knightwarhammer_shieldhitbox:
+  Template: vd_historical_infantry1_hitbox_template
+  Health: 70
+  Faction: Castille
+  Skills:
+  - signal{s=shieldbreak} @parent ~onDeath
+  - sound{s=item.shield.block;p=1.3;v=0.1} @self ~onDamaged
+  - sound{s=block.heavy_core.place;p=1.3;v=0.6} @self ~onDamaged
+  - setNoDamageTicks{ticks=20} @parent ~onDamaged
+  - heal{amount=7} @parent ~onDamaged
+  - heal{amount=10} @parent ~onTimer:60
+
+
+vd_historical_infantry1stripes_mob_knighthalberd_halberdhitbox:
+  Template: vd_historical_infantry1_hitbox_template
+  Health: 70
+  Faction: Castille
+  Skills:
+  - particle{p=block_crack;material=OAK_LOG} @origin ~onDamaged
+  - setNoDamageTicks{ticks=40} @parent ~onSpawn
+  - setNoDamageTicks{ticks=20} @parent ~onDamaged
+  - signal{s=halberdbreak} @parent ~onDeath
+  - signal{s=halberddamage} @parent ~onDamaged
+  - sound{s=entity.zombie.attack_wooden_door;p=2;v=0.1} @self ~onDamaged
+  - heal{amount=40} @parent ~onDeath
+  - heal{amount=8} @parent ~onTimer:50
+
+
+vd_historical_infantry1stripes_mob_knightflail_shieldhitbox:
+  Template: vd_historical_infantry1_hitbox_template
+  Health: 140
+  Faction: Castille
+  Skills:
+  - signal{s=shieldbreak} @parent ~onDeath
+  - sound{s=item.shield.block;p=1.3;v=0.1} @self ~onDamaged
+  - sound{s=block.heavy_core.place;p=1.3;v=0.6} @self ~onDamaged
+  - setNoDamageTicks{ticks=20} @parent ~onDamaged
+  - heal{amount=7} @parent ~onDamaged
+  - signal{s=flailbreak} @parent ~onTimer:1 ?health{h=<50}
+  - heal{amount=10} @parent ~onTimer:60

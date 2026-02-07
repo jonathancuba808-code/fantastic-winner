@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/striking_tide_6","particle":"#0"},"elements":[{"from":[-6.500002,-2.7008,-8.5],"to":[22.5,-2.7008,24.5],"faces":{"up":{"uv":[0.0,11.625,4.625,15.875],"tintindex":0,"rotation":0,"texture":"#0"},"down":{"uv":[0.0,15.875,4.625,11.625],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

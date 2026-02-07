@@ -1,0 +1,16 @@
+skill_empty_slot:
+  material: BRICK
+  excludeFromInventory: false
+  Pack:
+    parent_model: item/generated
+    custom_model_data: 89500
+    texture: spectra_trade_ui:spectra_trade_ui/empty_slot.png
+head_display:
+  material: PLAYER_HEAD
+  excludeFromInventory: false
+  Pack:
+    model: spectra_trade_ui:spectra_trade_ui/head_small
+    custom_model_data: 205
+
+
+# 32108HDA8ZDNUZK

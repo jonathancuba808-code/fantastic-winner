@@ -1,0 +1,34 @@
+CancelEvent:
+  Conditions:
+  - incombat true
+  Skills:
+  - CancelEvent @self
+
+rotate:
+  Conditions:
+  - targetnotwithin{d=1.5} true
+  - targetwithin{d=3.5} true
+  Skills:
+  - rotatetowards{pitch=true;uel=true;maxyaw=5;maxpitch=0.5} @Trigger ~onInteract
+  
+remove:
+  Conditions:
+  - targetnotwithin{d=0} true
+  - targetwithin{d=1} true
+  Skills:
+  - remove @self ~onInteract
+
+dummy_hit:
+  Cooldown: 0
+  TargetConditions:
+  - distance{d=<3}
+  Skills:
+  - delay 1
+  - CancelEvent @self
+  - setspeed{speed=0;type=WALKING} @self
+  - state{model=training_dummy;state=hit} @self
+  - delay 15
+  - lockmodel{l=false} @self
+  - setspeed{speed=1;type=WALKING} @self
+  
+#dbbd3a5bdd8b6fdf7ee284ead0fa3306

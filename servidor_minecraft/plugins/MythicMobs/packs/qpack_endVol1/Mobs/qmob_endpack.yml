@@ -1,0 +1,513 @@
+
+######### Ambient Mobs ############
+
+qmob_snailEnd: # one of many varieties!
+  Type: SILVERFISH
+  Display: 'Snail'
+  Health: 1
+  Damage: 0
+  DamageModifiers:
+  Options:
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventTransformation: true
+    PreventBlockInfection: true
+    MovementSpeed: 0.04
+    FollowRange: 10
+  Drops: # put what you want here
+  - CHORUS_FRUIT 1 1 # always drops chorus fruits, adjust to your liking
+  AIGoalSelectors: # this replaces the silverfish ai
+  - clear
+  - randomstroll
+  - randomlookaround
+  - gotospawn
+  AITargetSelectors:
+  - clear
+  Skills:
+  - model{mid=qmob_endsnail;scale=<random.float.0.85to1.35>;save=true} @self ~onSpawn # random size   
+  - potion{t=SLOW_FALLING;l=2;force=true;p=true;d=110} ~onTimer:100 # gives it slow falling
+  - skill{s=snailjarEnd} @self ~onInteract ?~holding{m=GLASS_BOTTLE}
+  - sound{s=block.honey_block.slide;p=2.0;v=0.01;sc=master} @self ~onTimer:3 ?moving{}
+  - sound{s=block.honey_block.break;p=2.0;v=0.5;sc=master} @self ~onHurt
+
+qmob_endermite: # replacement for the vanilla one
+  Type: SILVERFISH
+  Display: 'Endermite'
+  Health: 4
+  Damage: 2
+  DamageModifiers:
+  Options:
+    Despawn: true
+    PreventOtherDrops: true
+    PreventTransformation: true
+    PreventBlockInfection: true
+    MovementSpeed: 0.185
+    FollowRange: 10
+  Drops: # put what you want here
+  - exp 1to3
+  AIGoalSelectors: # this replaces the silverfish ai
+  - clear
+  - movetowardstarget
+  - meleeattack
+  - fleeplayers
+  - randomstroll
+  - randomlookaround
+  - gotospawn
+  AITargetSelectors:
+  - clear
+  Skills:
+  - model{mid=qmob_endermite;scale=<random.float.0.85to1.35>;save=true} @self ~onSpawn # random size
+  - skill{s=endermiteTP;delay=<random.0to100> @self ~onTimer:144 0.85
+  - skill{s=endermiteTP;sync=true} @self ~onHurt 0.3
+
+qmob_ghostfish:
+  Type: VEX
+  Display: 'Ghostfish'  # change this if you want
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - clear
+  Health: 8 # change this if you want
+  Damage: 0 # keep this 0
+  Options:
+    Despawn: true
+    Silent: true
+    PreventOtherDrops: true
+    FollowRange: 0.0
+  Drops:
+  - GLOW_INK_SAC 1 1 # always drops glow sacs, adjust to your liking
+  - exp 1to3
+  # - qitem_endessence 1 0.03 # 3% chance of dropping essence of the end                # enable if you have the items expansion
+  # - qitem_endpowder 1-2 0.1 # 10% chance of dropping end powder                
+  DamageModifiers:
+  Skills:
+  ####### Misc
+  - velocity{m=MULTIPLY;x=0.7;y=0.7;z=0.7} @self ~onTimer:3 # slows down its flying
+  - CancelEvent{sync=true} @self ~onAttack
+  - model{mid=qmob_ghostfish;scale=<random.float.0.85to1.35>;save=true} @self ~onSpawn # random size 
+  - brightness{p=torso;b=10;s=10} @self ~onLoad
+  - skill{s=ghostfishtwinkle;delay=<random.0to10>} @self ~onTimer:20
+  - sound{s=entity.glow_squid.hurt;sc=master;p=1.95;v=0.65;cd=0.5} @self ~onHurt 0.8
+  - sound{s=entity.glow_squid.ambient;sc=master;p=1.95;v=0.45;cd=0.5;delay=<random.0to13>} @self ~onTimer:137 0.55
+  - sound{s=block.amethyst_cluster.chime;sc=master;p=1.95;v=1.45;cd=0.5;delay=<random.0to5>} @self ~onTimer:20
+  - sound{s=entity.glow_squid.death;sc=master;p=2.0;v=0.65} @self ~onDeath
+  - effect:particles{particle=glow_squid_ink;a=<random.2to5>;hs=0.15;vs=0.15;s=0;y=0;delay=40;repeat=4;repeatInterval=1} @self ~onDeath
+  - effect:particles{particle=glow;a=<random.1to2>;hs=0.1;vs=0.1;s=0;y=0;delay=<random.0to10>;repeat=1;repeatInterval=2} @self ~onTimer:20 0.8
+
+
+######### Neutral Mobs (More in Expansion Pack) ############
+
+qmob_shulkrab:
+  Type: WOLF
+  Display: 'Shulkrab'  # change this if you want
+  Faction: shulkrabs
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - movetowardstarget
+  - randomlookaround
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - hurtbytarget
+  - nearestconditionaltarget{mr=true;ms=true;conditions=[ - mythicmobtype{t=qmob_endermite} true ]} # makes it want to attack nearby endermites
+  Health: 60 # change this if you want
+  Damage: 0 # keep this 0
+  Armor: 12.0 # whatever you want
+  Options:
+    Despawn: false
+    Silent: true
+    PreventOtherDrops: true
+    FollowRange: 20
+    MovementSpeed: 0.215
+    Tameable: false
+    KnockbackResistance: 1.0
+  Drops: # put stuff here
+  - SHULKER_SHELL 1 1 # always drops shulker shells, adjust to your liking
+  - exp 9to14
+ # - qitem_endessence 1 0.03 # 3% chance of dropping essence of the end                # enable if you have the items expansion
+  DamageModifiers:
+  - PROJECTILE 0.5 # takes less damage from projectiles
+  - FIRE 0.5 # takes less damage from fire
+  Skills:
+  ####### Misc
+  - model{mid=qmob_shulkrab;scale=<random.float.1.65to1.95>;save=true} @self ~onSpawn # random size 
+  - defaultstate{t=walk;s=walk;sp=0.9} @self ~onSpawn           #
+  - defaultstate{t=idle;s=idle;sp=0.7} @self ~onSpawn           # these slow down the animation since it's a bigger mob
+  - defaultstate{t=death;s=death;sp=0.7} @self ~onSpawn         #
+  ####### Stances/AI/Abilities
+  - potionclear{type=LEVITATION} @self ~onTimer:20
+  - potion{t=SLOW_FALLING;d=22;l=1;p=false} @self ~onTimer:20
+ # - mountmodel{mode=walking;driver=true} @trigger ~onInteract # unused mount
+  - CancelEvent{sync=true} @self ~onInteract # tries to stop the vanilla bone taming
+  - CancelEvent{sync=true} @self ~onAttack # replaces vanilla attack
+  - randomskill{s=shulkrabAttack 2, shulkrabBonkAttack 2;delay=<random.0to10>} @self ~onTimer:75 0.5 ?targetwithin{d=7}
+  - randomskill{s=shulkrabAttack 2, shulkrabBonkAttack 2;delay=<random.0to10>} @self ~onAttack
+  - skill{s=shulkrabHide;delay=<random.0to60>} @self ~onHurt 0.45 ?!stance{s=hiding} # makes it wanna hide when being attacked
+  - skill{s=shulkrabProtect;sync=true} @self ~onHurt ?stance{s=hiding} # invulnerable while in shell
+  ########### FX
+  - skill{s=shulkrabAmbient;delay=<random.0to100>} @self ~onTimer:140 0.6
+  - skill{s=shulkrabHurt} @self ~onHurt ?!stance{s=hiding}
+  - skill{s=shulkrabDeath} @self ~onDeath
+
+
+qmob_swapper: # end variant of the creeper with interesting effects
+  Type: PIG
+  Display: 'swapper'
+  Health: 20
+  Damage: 0
+  DamageModifiers:
+  Options:
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    MovementSpeed: 0.185
+    FollowRange: 32
+    KnockbackResistance: 1.0
+  Drops: # put what you want here, enable the commented out drops if you have the item expansion
+  - exp 1to3
+#  - qitem_endessence 1 0.01 # 1% chance of dropping end essence
+#  - qitem_endpowder 1 0.12
+  - ENDER_PEARL 1to2 1
+  AIGoalSelectors: # this replaces the silverfish ai
+  - clear
+  - randomstroll
+  - randomlookaround
+  - gotospawn
+  AITargetSelectors:
+  - clear
+  Skills:
+  ## Misc ##
+  - model{mid=qmob_swapper;scale=<random.float.1.0to1.15>;save=true} @self ~onSpawn # random size 
+  - brightness{m=qmob_swapper;p=eyes;b=15;s=15} @self ~onSpawn
+  - brightness{m=qmob_swapper;p=eyes;b=15;s=15} @self ~onLoad
+  - defaultstate{t=death;s=death;speed=0.7;li=0;lo=0} @self ~onSpawn
+  - defaultstate{t=death;s=death;speed=0.7;li=0;lo=0} @self ~onLoad
+  ## Abilities ##
+  - CancelEvent{sync=true} @self ~onDeath ?~!hasenchantment{e=VANISHING_CURSE;l=>0} # can only be killed with things that have curse of vanishing on them
+  - skill{s=swapperPrimed;sync=true} @self ~onDeath ?~!hasenchantment{e=VANISHING_CURSE;l=>0} # can only be killed with things that have curse of vanishing on them
+  - skill{s=swapperCaution} @self ~onTimer:20
+  - skill{s=swapperSpooked} @self ~onHurt
+  - skill{s=swapperSwap;delay=<random.0to30>} @self ~onTimer:77 0.71
+  - CancelEvent{sync=true} @self ~onHurt ?damagecause{cause=FALL}  # fall damage immunity
+  ## FX ##
+  - skill{s=swapperDeath} @self ~onDeath
+  - skill{s=swapperHurt} @self ?!damagecause{cause=FALL}
+
+######### Hostile Mobs ##########
+
+qmob_voidooze:
+  Type: SILVERFISH
+  Display: 'Void Ooze'
+  Health: 10
+  Damage: 4
+  Options:
+    Despawn: true
+    Silent: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventTransformation: true
+    PreventBlockInfection: true
+    PreventSlimeSplit: true
+    FollowRange: 16
+    MovementSpeed: 0.0
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - randomlookaround
+  - gotospawn
+  AITargetSelectors:
+  - clear
+  - hurtbytarget
+  - players
+  Drops: # put what you want here          enable the commented out drops if you have the item expansion
+#  - qitem_endessence 1 0.01 # 1% chance of dropping end essence
+#  - qitem_endpowder 1 0.01
+  - qitem_endjelly 1to2 0.33
+  - exp 5to9
+  - SLIME_BALL 1to3 0.65
+  DamageModifiers:
+  - PROJECTILE 0.5 # 50% damage from projectiles cause of the squishiness
+  Skills:
+  ### Misc
+  - model{mid=qmob_voidooze;scale=<random.float.0.95to1.55>;save=true} @self ~onSpawn # random size 
+  - bodyclamp{hu=false;mh=0;mb=0;bu=false;rde=0;rdu=0} @self ~onSpawn
+  - brightness{m=qmob_voidooze;p=torso;b=10;s=10} @self ~onSpawn
+  - brightness{qmob_voidooze;p=head;b=12;s=12} @self ~onSpawn
+  - brightness{qmob_voidooze;p=face;b=15;s=15} @self ~onSpawn
+  - brightness{p=torso;b=10;s=10} @self ~onLoad
+  - brightness{p=head;b=12;s=12} @self ~onLoad
+  - brightness{p=face;b=15;s=15} @self ~onLoad
+  ##### Stances/Abilities
+  - CancelEvent{sync=true} @self ~onAttack
+  - CancelEvent{sync=true} @self ~onHurt ?damagecause{cause=FALL} # no fall damage
+  - CancelEvent{sync=true} @self ~onHurt ?stance{s=dead} # invulnerable while fake dead
+  - potion{t=JUMP;d=22;l=1;p=false} @self ~onTimer:20
+  - skill{s=voidoozeHop} @self ~onTimer:30 0.85 ?!stance{s=dead}
+  - skill{s=voidoozeHop} @self ~onAttack 0.55 ?!stance{s=dead}
+  - skill{s=voidoozeBackstep;delay=<random.0to20>} @self ~onTimer:80 0.45 ?!stance{s=dead}          # simple backstep for variation in the movement.
+  - skill{s=voidoozeBackstep;delay=<random.0to20>} @self ~onHurt 0.15 ?!stance{s=dead}
+  - skill{s=voidoozeAttack;sync=true} @self ~onAttack ?!stance{s=dead}
+  ##### FX 
+  - state{state=jump;li=4;lo=2;speed=1.0} @self ~onSpawn
+  - sound{s=entity.slime.jump;p=<random.float.1.0to1.1>;v=1.0;delay=10} @self ~onSpawn
+  - sound{s=entity.magma_cube.hurt;sc=master;p=<random.float.0.95to1.2>;v=1.0;cd=0.3} @self ~onHurt ?!stance{s=dead}
+  - skill{s=voidoozeDeath;sync=true} @self ~onDeath
+  - sound{s=block.honey_block.slide;p=2.0;v=0.01;sc=master} @self ~onTimer:3 ?stance{s=dead}
+  - sound{s=block.honey_block.break;p=<random.float.0.6to0.8>;v=1.0;sc=master} @self ~onHurt
+
+qmob_mobulus:
+  Type: VEX
+  Display: 'Mobulus'  # change this if you want
+  Modules:
+    ThreatTable: true
+  Health: 10 # change this if you want
+  Damage: 0 # keep this 0
+  Faction: endcity
+  AITargetSelectors:
+  - clear
+  - nearestConditionalTarget{conditions=[
+      - entitytype PLAYER true
+      - fieldofview{angle=120} true
+    ]}
+  - hurtbytarget
+  - otherfactionmonsters
+  Options:
+    Despawn: false
+    Silent: true
+    PreventOtherDrops: true
+    FollowRange: 30
+  Drops: # put stuff here
+  - exp 13to19
+  - PHANTOM_MEMBRANE 1 1 # always drops phantom membranes, adjust to your liking
+  # - qitem_endessence 1 0.03 # 3% chance of dropping essence of the end                       # enable if you have the items expansion
+  # - qitem_endpowder 1-3 0.12 # 12% chance of dropping end powder
+  DamageModifiers:
+  Skills:
+  ####### Misc
+  - model{mid=qmob_mobulus;scale=<random.float.0.95to1.35>;save=true} @self ~onSpawn # random size 
+  - brightness{qmob_mobulus;p=eyes;b=15;s=15} @self ~onSpawn
+  - brightness{qmob_mobulus;p=eyes;b=15;s=15} @self ~onLoad
+  ####### Stances/AI/Abilities
+  - CancelEvent{sync=true} @self ~onAttack
+  - CancelEvent{sync=true} @self ~onHurt ?~!hasenchantment{e=VANISHING_CURSE;l=>0} # can only be hurt with things that have curse of vanishing on them
+  - skill{s=mobulusDashStart;delay=<random.20to30>} @self ~onAttack
+  - skill{s=mobulusDashStart;delay=<random.0to30>} @self ~onTimer:95 0.85
+  - velocity{m=add;x=0;y=0.2;z=0} @self ~onTimer:1 ?!inBlock{b=air} # tries to keep the mob outside of blocks
+  ########### FX
+  - sound{s=entity.phantom.ambient;p=1.5;v=2;delay=<random.0to50>} @self ~onTimer:140 0.66
+  - skill{s=mobulusHurt;delay=1} @self ~onHurt
+  - skill{s=mobulusDeath} @self ~onDeath
+
+qmob_purpursentry:
+  Type: WITHER_SKELETON
+  Display: 'Purpur Sentry'  # change this if you want
+  Modules:
+    ThreatTable: true
+  Health: 30 # change this if you want if you want
+  Damage: 0 # keep this 0
+  Faction: endcity
+  Options:
+    Despawn: false
+    Silent: true
+    PreventOtherDrops: true
+    FollowRange: 30
+    MovementSpeed: 0.16 # slower to compensate
+    KnockbackResistance: 1.0
+  Drops: # put stuff here
+  - exp 13to19
+  - PURPUR_BLOCK 1-3 1 # always drops purpur blocks, adjust to your liking
+  # - qitem_endessence 1 0.1 # 10% chance of dropping essence of the end                       # enable if you have the items expansion
+  # - qitem_endpowder 1-2 0.15 # 15% chance of dropping end powder
+  DamageModifiers:
+  - BLOCK_EXPLOSION 0.0
+  - ENTITY_EXPLOSION 0.0
+  - PROJECTILE 0.0
+  - CONTACT 0.0
+  - FALL 0.0
+  AITargetSelectors:
+  - clear
+  - nearestConditionalTarget{conditions=[
+      - entitytype PLAYER true
+      - fieldofview{angle=120} true
+    ]}
+  - hurtbytarget
+  AIGoalSelectors: # this replaces the vanilla ai
+  - clear
+  - meleeattack
+  - movetowardstarget
+  - randomstroll
+  - randomlookaround
+  - gotospawn
+  Skills:
+  ####### Misc
+  - model{mid=qmob_purpursentry;scale=<random.float.1.0to1.35>;save=true} @self ~onSpawn # random size 
+  - brightness{p=eye;b=15;s=15} @self ~onSpawn
+  - brightness{p=eye;b=15;s=15} @self ~onLoad
+  - brightness{p=torso;b=5;s=5} @self ~onSpawn
+  - brightness{p=torso;b=5;s=5} @self ~onLoad
+  - brightness{p=leg_left;b=5;s=5} @self ~onSpawn
+  - brightness{p=leg_left;b=5;s=5} @self ~onLoad
+  - brightness{p=leg_right;b=5;s=5} @self ~onSpawn
+  - brightness{p=leg_right;b=5;s=5} @self ~onLoad
+  - brightness{p=arm_right;b=5;s=5} @self ~onSpawn
+  - brightness{p=arm_right;b=5;s=5} @self ~onLoad
+  - brightness{p=arm_left;b=5;s=5} @self ~onSpawn
+  - brightness{p=arm_left;b=5;s=5} @self ~onLoad
+  ####### Stances/AI/Abilities
+  - CancelEvent{sync=true} @self ~onAttack
+  - skill{s=purpursentryAttack;sync=true} @self ~onAttack
+  - skill{s=purpursentryShoot;delay=<random.0to40>} @self ~onTimer:160 0.43
+  - potion{t=SLOW_FALLING;p=false;l=10;force=true;d=10} @self ~onTimer:8 ?velocity{v=>1}
+  ########### FX
+  - skill{s=purpursentryHurt;sync=true} @self ~onHurt # can only be hurt with things that have EFFICIENCY on them
+  - skill{s=purpursentryDeath} @self ~onDeath
+
+qmob_defiledwatcher:
+  Type: ENDERMAN
+  Display: 'Defiled Watcher'
+  Health: 40
+  Damage: 0
+  Faction: endcity
+  Options:
+    Despawn: false
+    Silent: true
+    PreventOtherDrops: true
+    FollowRange: 32
+    MovementSpeed: 0.19
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - randomlookaround
+  - gotospawn
+  AITargetSelectors:
+  - clear
+  - hurtbytarget
+  - players
+  - nearestconditionaltarget{mr=true;ms=true;conditions=[ - entitytype{t=ENDERMAN} true ]} 
+  Drops: # put what you want here          enable the commented out drops if you have the item expansion
+#  - qitem_endessence 1 0.04 # 4% chance of dropping end essence
+#  - qitem_endpowder 1to2 0.1
+  - ENDER_PEARL 1 1
+  - exp 15to19
+  DamageModifiers:
+  Skills:
+  ### Misc
+  - model{m=qmob_defiledwatcher;scale=1;save=true} @self ~onSpawn
+  - bodyclamp{hu=false;mh=0;mb=0;bu=false;rde=0;rdu=0} @self ~onSpawn
+  - brightness{m=qmob_defiledwatcher;p=eyes;b=15;s=15;delay=1} @self ~onSpawn
+  - brightness{m=qmob_defiledwatcher;p=eyes;b=15;s=15;delay=1} @self ~onLoad
+  - brightness{m=qmob_defiledwatcher;p=torso;b=15;s=15;delay=1} @self ~onSpawn
+  - brightness{m=qmob_defiledwatcher;p=torso;b=15;s=15;delay=1} @self ~onLoad
+  - brightness{m=qmob_defiledwatcher;p=arm_right;b=15;s=15;delay=1} @self ~onSpawn
+  - brightness{m=qmob_defiledwatcher;p=arm_right;b=15;s=15;delay=1} @self ~onLoad
+  - brightness{m=qmob_defiledwatcher;p=arm_left;b=15;s=15;delay=1} @self ~onSpawn
+  - brightness{m=qmob_defiledwatcher;p=arm_left;b=15;s=15;delay=1} @self ~onLoad
+  - brightness{m=qmob_defiledwatcher;p=leg_left;b=15;s=15;delay=1} @self ~onSpawn
+  - brightness{m=qmob_defiledwatcher;p=leg_left;b=15;s=15;delay=1} @self ~onLoad
+  - brightness{m=qmob_defiledwatcher;p=leg_right;b=15;s=15;delay=1} @self ~onSpawn
+  - brightness{m=qmob_defiledwatcher;p=leg_right;b=15;s=15;delay=1} @self ~onLoad
+  - brightness{m=qmob_defiledwatcher;p=head;b=10;s=10;delay=1} @self ~onSpawn
+  - brightness{m=qmob_defiledwatcher;p=head;b=10;s=10;delay=1} @self ~onLoad
+  - defaultstate{t=walk;s=walk;sp=0.4} @self ~onSpawn           # slower while not in combat
+  - defaultstate{t=walk;s=walk;sp=1.5} @self ~onEnterCombat
+  - defaultstate{t=walk;s=walk;sp=0.4} @self ~onDropCombat
+  ##### Stances/Abilities
+  - CancelEvent{sync=true} @self ~onAttack
+  - CancelEvent{sync=true} @self ~onTeleport
+  - skill{s=defiledAttack} @self ~onAttack
+  - CancelEvent{sync=true} @self ~onHurt ?damagecause{cause=DROWNING}  # stops them from being hurt by water, they still teleport
+  - CancelEvent{sync=true} @self ~onHurt ?damagecause{cause=FALL}  # fall damage immunity
+  ##### FX 
+  - skill{s=defiledwatcherAmbient;delay=<random.0to30>} @self ~onTimer:100 0.6 ?!incombat{}
+  - skill{s=defiledwatcherAngry;delay=<random.0to30>} @self ~onTimer:100 0.6 ?incombat{}
+  - skill{s=defiledwatcherHurt} @self ~onHurt
+  - skill{s=defiledwatcherDeath} @self ~onDeath
+  - particles{p=sneeze;a=1;y=-0.25;hs=0.1;vs=0.1;s=0;sfo=0.0;fromorigin=true;origin=@ModelPart{p=head}} @origin ~onTimer:5
+  - particles{p=reddust;color=#6bffa4;size=0.6;a=3;y=0;hs=0.1;vs=0.1;s=0;sfo=0.0;fromorigin=true;origin=@ModelPart{p=emitter_right}} @origin ~onTimer:1 ?stance{s=attacking}
+  - particles{p=reddust;color=#6bffa4;size=0.6;a=3;y=0;hs=0.1;vs=0.1;s=0;sfo=0.0;fromorigin=true;origin=@ModelPart{p=emitter_left}} @origin ~onTimer:1 ?stance{s=attacking}
+
+qmob_distortedwatcher:
+  Type: WITHER_SKELETON
+  Display: 'Distorted Watcher'
+  Health: 30
+  Damage: 0
+  Faction: endcity
+  Options:
+    Despawn: false
+    Silent: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    FollowRange: 32
+    MovementSpeed: 0.19
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - clear
+  - bowattack
+  - randomstroll
+  - randomlookaround
+  - gotospawn
+  AITargetSelectors:
+  - clear
+  - hurtbytarget
+  - players
+  Equipment:
+  - BOW HAND
+  Drops: # put what you want here          enable the commented out drops if you have the item expansion
+#  - qitem_endessence 1 0.1 # 10% chance of dropping end essence
+#  - qitem_endpowder 1to3 0.3
+  - ENDER_PEARL 1to2 1
+  - exp 28to33
+  DamageModifiers:
+  Skills:
+  ### Misc
+  - model{m=qmob_distortedwatcher;scale=1;step=2.0;save=true} @self ~onSpawn
+  - bodyclamp{hu=false;mh=0;mb=0;bu=false;rde=0;rdu=0} @self ~onSpawn
+  - brightness{m=qmob_distortedwatcher;p=torso;b=15;s=15} @self ~onSpawn
+  - brightness{m=qmob_distortedwatcher;p=horns;b=15;s=15} @self ~onSpawn
+  - brightness{m=qmob_distortedwatcher;p=eyes;b=15;s=15} @self ~onSpawn
+  - brightness{m=qmob_distortedwatcher;p=mouth;b=15;s=15} @self ~onSpawn
+  - brightness{m=qmob_distortedwatcher;p=arm_right;b=15;s=15} @self ~onSpawn
+  - brightness{m=qmob_distortedwatcher;p=arm_left;b=15;s=15} @self ~onSpawn
+  - brightness{m=qmob_distortedwatcher;p=eyes;b=15;s=15} @self ~onLoad
+  - brightness{m=qmob_distortedwatcher;p=mouth;b=15;s=15} @self ~onLoad
+  - brightness{m=qmob_distortedwatcher;p=torso;b=15;s=15} @self ~onLoad
+  - brightness{m=qmob_distortedwatcher;p=horns;b=15;s=15} @self ~onLoad
+  - brightness{m=qmob_distortedwatcher;p=arm_right;b=15;s=15} @self ~onLoad
+  - brightness{m=qmob_distortedwatcher;p=arm_left;b=15;s=15} @self ~onLoad
+  ##### Stances/Abilities
+  - CancelEvent{sync=true} @self ~onShoot
+  - potion{t=SLOW_FALLING;p=false;l=3;force=true;d=22} @self ~onTimer:20
+  - potion{t=LEVITATION;p=false;l=1;force=true;d=10} @self ~onTimer:25
+  - skill{s=distortedShoot;delay=<random.0to40>} @self ~onTimer:75 0.65 ?targetnotwithin{d=5}
+  - skill{s=distortedAttack;delay=<random.0to20>} @self ~onTimer:45 0.85 ?targetwithin{d=5}
+  - skill{s=distortedHurtTP} @self ~onHurt
+  - skill{s=distortedTP;delay=<random.0to30>;repeat=<random.1to3>;repeatInterval=3} @self ~onTimer:133 0.63 ?inCombat{}
+  ##### FX 
+  - skill{s=distortedwatcherAmbient;delay=<random.0to30>} @self ~onTimer:100 0.6 ?!incombat{}
+  - skill{s=distortedwatcherAngry;delay=<random.0to30>} @self ~onTimer:100 0.6 ?incombat{}
+  - skill{s=distortedwatcherDeath} @self ~onDeath
+  - particles{p=sneeze;a=1;y=0;hs=0.1;vs=0.1;s=0;sfo=0.0;fromorigin=true;origin=@ModelPart{p=mouth}} @origin ~onTimer:5
+  - particles{p=reddust;color=#6bffa4;size=0.6;a=1;y=0;hs=0.1;vs=0.1;s=0;sfo=0.0;fromorigin=true;origin=@ModelPart{p=emitter_right}} @origin ~onTimer:1
+  - particles{p=reddust;color=#6bffa4;size=0.6;a=1;y=0;hs=0.1;vs=0.1;s=0;sfo=0.0;fromorigin=true;origin=@ModelPart{p=emitter_left}} @origin ~onTimer:1
+
+qmob_distortedball:
+  Type: BLOCK_DISPLAY
+  Display: ''
+  Health: 0
+  Damage: 0
+  Faction: endcity
+  Skills:
+  ### Misc
+  - model{m=qmob_distortedball;scale=1.5;save=true} @self ~onSpawn
+  - brightness{m=qmob_distortedball;p=ball;b=15;s=15} @self ~onSpawn
+# 394ABRKALVJ7XIGD0B

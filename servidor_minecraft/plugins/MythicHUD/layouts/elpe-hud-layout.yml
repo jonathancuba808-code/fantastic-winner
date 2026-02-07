@@ -1,0 +1,30 @@
+
+
+elpe_hud_upper:
+  elements:
+    elpe_hudupper:
+      asset: 'elpe_hudupper'
+      align: right
+      position:
+        x: 0
+        y: 92
+      offset:
+        x: 0
+        y: 0
+      
+    
+
+elpe_hud:
+  elements:
+    elpe_hud:
+      asset: 'elpe_hud'
+      align: center
+      position:
+        x: 50
+        y: 0
+      offset:
+        x: 0
+        y: 58
+      
+    
+#UGM5lkWN5mNxkDVZBVTzkFaFpnYzsmaOpXQE5UNjRlTwkFMWdDbMZnU0QTVRNTNmN3QitWO

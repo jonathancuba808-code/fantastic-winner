@@ -1,0 +1,38 @@
+name: Vital Beam
+lore:
+- "&a•--"
+- ""
+- "&7Fire a radiant beam that heals you and nearby players in its path,"
+- "&7while damaging enemies struck by it."
+- "&a•--"
+- "&c🗡 {damage} Damage"
+- "&e⌛ {cooldown}s Cooldown"
+- "&a💚 15% Healing"
+- ""
+- "&a•--"
+material: 'COAL:1944'
+timer:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 10
+  per-level: 1
+  min: 10
+  max: 12
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 6
+  per-level: -0.5
+  min: 5
+  max: 6

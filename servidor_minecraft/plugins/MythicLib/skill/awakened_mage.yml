@@ -1,0 +1,49 @@
+MANA_BARRIER:
+    mythicmobs-skill-id: Mana_Barrier
+    passive-type: TIMER
+    modifiers:
+    - barriercooldown
+
+SORCERY_COMBO:
+    mythicmobs-skill-id: Sorcery_Combo
+    modifiers:
+    - damage
+    - burndamage
+    - burnduration
+    - slowduration
+    
+TELEPORT_STRIKE:
+    mythicmobs-skill-id: Teleport_Strike
+    modifiers:
+    - damage
+    - stunduration
+
+BLAZING_BARRAGE:
+    mythicmobs-skill-id: Blazing_Barrage
+    modifiers:
+    - damage
+    - burndamage
+    - burnduration
+    - skillcooldown
+
+CRYO_PRISON:
+    mythicmobs-skill-id: Cryo_Prison
+    passive-type: TIMER
+    modifiers:
+    - damage
+    - freezedamage
+    - freezeduration
+    - skillcooldown
+    
+HAILPIERCER:
+    mythicmobs-skill-id: Hailpiercer
+    modifiers:
+    - damage
+    - slowduration
+    
+METEOR_OF_DOOM:
+    mythicmobs-skill-id: Meteor_Of_Doom
+    modifiers:
+    - damage
+    - burndamage
+    - burnduration

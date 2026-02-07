@@ -1,0 +1,229 @@
+
+
+
+
+UndeadKnightStep1:
+  Conditions:
+  - moving true
+  Skills:
+  - effect:sound{s=entity.ravager.step;v=0.3;p=1} @self
+UndeadKnightStep2:
+  Conditions:
+  - moving true
+  Skills:
+  - effect:sound{s=entity.ravager.step;v=0.3;p=1.2} @self
+UndeadKnightStep3:
+  Conditions:
+  - moving true
+  Skills:
+  - effect:sound{s=entity.ravager.step;v=0.3;p=0.8} @self
+
+  
+UndeadKnightAttack:
+  Conditions:
+  - playersinradius{a=>0;r=4}
+  - offgcd
+  Skills:
+  - gcd{ticks=20}
+  - setAI{ai=false}
+  - lockmodel @self
+  - state{mid=undead_knight;s=attack;li=3;lo=2} @self
+  - delay 10
+  - effect:sound{s=entity.player.attack.sweep;v=2;p=0} @self
+  - totem{ch=4;onStart=UndeadKnightAttack-Damage;i=1;hR=4;d=3} @Forward{f=1.8}
+  - delay 10
+  - lockmodel{l=false} @self
+  - setAI{ai=true}
+UndeadKnightAttack2:
+  Conditions:
+  - playersinradius{a=>0;r=4}
+  - offgcd
+  Skills:
+  - gcd{ticks=20}
+  - setAI{ai=false}
+  - lockmodel @self
+  - state{mid=undead_knight;s=attack2;li=3;lo=2} @self
+  - delay 10
+  - effect:sound{s=entity.player.attack.sweep;v=2;p=0.5} @self
+  - totem{ch=4;onStart=UndeadKnightAttack-Damage;i=1;hR=4;d=3} @Forward{f=1.8}
+  - lockmodel{l=false} @self
+  - delay 10
+  - lockmodel{l=false} @self
+  - setAI{ai=true}
+UndeadKnightAttack3:
+  Conditions:
+  - playersinradius{a=>0;r=4}
+  - offgcd
+  Skills:
+  - gcd{ticks=20}
+  - setAI{ai=false}
+  - lockmodel @self
+  - state{mid=undead_knight;s=attack3;li=3;lo=2} @self
+  - delay 18
+  - effect:sound{s=entity.player.attack.sweep;v=2;p=0.5} @self
+  - totem{ch=4;onStart=UndeadKnightAttack-Damage;i=1;hR=4;d=3} @Forward{f=1.8}
+  - delay 10
+  - lockmodel{l=false} @self
+  - setAI{ai=true}
+UndeadKnightAttack-Damage:
+  Skills:
+  - damage{amount=6} @PIR{r=3.5} # <- In this line you can change damage attack
+  - effect:particles{particle=block_crack;m=redstone_block;amount=15;hS=.25;vS=1;speed=0.01} @PIR{r=3.5}
+  
+  
+UndeadKnightBigPunch:
+  Conditions:
+  - offgcd true
+  - playersinradius{a=>0;r=20}
+  Skills:
+  - gcd{ticks=38}
+  - setAI{ai=false}
+  - lockmodel @self
+  - effect:sound{s=entity.wither_skeleton.ambient;v=2;p=0} @self
+  - state{s=big_punch;ov=true;li=3;lo=2} @self
+  - delay 18
+  - effect:sound{s=entity.wither.break_block;v=2;p=0} @self
+  - effect:sound{s=entity.generic.explode;v=2;p=0} @self
+  - effect:particles{particle=block_crack;m=dirt;amount=1000;hS=4;vS=5;speed=10;vs=0.1} @self
+  - effect:particles{particle=soul;m=dirt;amount=50;hS=4;vS=1;speed=.05;vs=0.1} @self
+  - damage{amount=6} @PIR{r=10} # <- In this line you can change damage of de big punch
+  - throw{velocity=5;velocityY=10} @PIR{r=10}
+  - delay 20
+  - lockmodel{l=false} @self
+  - setAI{ai=true}
+  
+  
+UndeadKnightSummon:
+  Conditions:
+  - offgcd true
+  - playersinradius{a=>0;r=30}
+  - mobsInRadius{types=SkullMinion;amount=1to60;radius=500} false
+  Skills:
+  - CancelEvent
+  - setAI{ai=false} @self
+  - lockmodel @self
+  - delay 10
+  - setAI{ai=false} @self
+  - lockmodel @self
+  - state{s=summon;li=3;lo=2} @self
+  - delay 18
+  - effect:sound{s=entity.wither.spawn;v=0.3;p=0} @self
+  - effect:sound{s=entity.wither.break_block;v=2;p=0.5} @self
+  - delay 20
+  - effect:sound{s=entity.evoker.prepare_summon;v=2;p=0} @self
+  - delay 20
+  - effect:sound{s=entity.evoker.prepare_attack;v=2;p=0.5} @self
+  - sendtitle{title="";subtitle="&eKill all the Minions";d=999999} @PIR{r=500}
+  - summon{type=SkullMinion;amount=1;radius=10;oS=true} @self
+  - delay 20
+  - sendtitle{title="";subtitle="&eKill all the Minions";d=999999} @PIR{r=500}
+  - summon{type=SkullMinion;amount=1;radius=10;oS=true} @self
+  - delay 25
+  - summon{type=SkullMinion;amount=1;radius=10;oS=true} @self
+  - delay 15
+  - summon{type=SkullMinion;amount=1;radius=10;oS=true} @self
+  - delay 20
+  - summon{type=SkullMinion;amount=1;radius=10;oS=true} @self
+  - delay 20
+  - summon{type=SkullMinion;amount=1;radius=10;oS=true} @self
+  - delay 25
+  - summon{type=SkullMinion;amount=1;radius=10;oS=true} @self
+  - delay 15
+  - summon{type=SkullMinion;amount=1;radius=10;oS=true} @self
+  - delay 42
+  - setAI{ai=true} @self
+  - lockmodel{l=false} @self
+CheckUndeadKnightSummon:
+  Conditions:
+  - mobsInRadius{types=SkullMinion;amount=1to60;radius=999} orElseCast NotMinionsInRadius
+  Skills:
+  - potion{type=DAMAGE_RESISTANCE;duration=40;level=100;p=false}
+NotMinionsInRadius:
+  Conditions:
+  - mobsInRadius{types=SkullMinion;amount=1to60;radius=999} false
+  Skills:
+  - sendtitle{title="";subtitle="";d=1} @PIR{r=500}
+
+UndeadKnightDeath:
+  Skills:
+  - effect:sound{s=entity.wither.break_block;v=2;p=0} @self
+  - effect:sound{s=entity.wither.death;v=0.5;p=0.5} @self
+  - state{s=death;li=3;lo=2} @self
+  - delay 25
+  - effect:particles{particle=block_crack;m=dirt;amount=60;vS=.25;speed=.2;vs=0.1} @ModelPart{m=undead_knight;p=sword;offset=GLOBAL;y=-2.3}
+  - effect:sound{s=entity.player.big_fall;v=0.5;p=0} @self
+  - effect:sound{s=block.grass.break;v=0.5;p=1} @self
+  - delay 80
+  - effect:particles{particle=cloud;amount=40;hS=1;vS=1;speed=.01} @Forward{f=0.0;y=1}
+  - effect:particles{particle=soul;amount=10;hS=.25;vS=.25;speed=.01} @ModelPart{m=undead_knight;p=right_forearm;offset=GLOBAL;y=-1.0}
+  - effect:particles{particle=cloud;amount=10;hS=.25;vS=.25;speed=.01} @ModelPart{m=undead_knight;p=right_forearm;offset=GLOBAL;y=-1.0}
+  - effect:particles{particle=cloud;amount=10;hS=.25;vS=.25;speed=.01} @ModelPart{m=undead_knight;p=left_forearm;offset=GLOBAL;y=-1.0}
+  - effect:particles{particle=cloud;amount=10;hS=.25;vS=.25;speed=.01} @ModelPart{m=undead_knight;p=left_leg;offset=GLOBAL;y=-1.0}
+  - effect:particles{particle=cloud;amount=10;hS=.25;vS=.25;speed=.01} @ModelPart{m=undead_knight;p=right_leg;offset=GLOBAL;y=-1.0}
+  - model{mid=undead_knight;remove=true} @self
+  - sendtitle{title="";subtitle="";d=1} @PIR{r=500}
+  
+  
+  
+  
+  
+
+SkullMinionStep1:
+  Conditions:
+  - moving true
+  Skills:
+  - effect:sound{s=block.stone.fall;v=2;p=0} @self
+SkullMinionStep2:
+  Conditions:
+  - moving true
+  Skills:
+  - effect:sound{s=block.stone.fall;v=2;p=0.5} @self
+SkullMinionStep3:
+  Conditions:
+  - moving true
+  Skills:
+  - effect:sound{s=block.stone.fall;v=2;p=0.7} @self
+  
+SkullMinionSpawn:
+  Skills:
+  - setAI{ai=false}
+  - effect:sound{s=entity.illusioner.cast_spell;v=2;p=1.5} @self
+  - effect:particleorbital{r=1;points=8;t=25;i=1;vy=20;particle=soul_fire_flame;oy=1;hS=.05;vS=0.1;a=1} @self
+  - effect:particleorbital{r=0.5;points=8;t=25;i=1;vy=20;particle=soul_fire_flame;oy=0.5;hS=.05;vS=0.1;a=1} @self
+  - effect:particleorbital{r=0.5;points=8;t=25;i=1;vy=20;particle=soul_fire_flame;oy=1.5;hS=.05;vS=0.1;a=1} @self
+  - delay 25
+  - effect:sound{s=entity.illusioner.ambient;v=2;p=1.7} @self
+  - setAI{ai=true}
+
+
+SkullMinionAttack:
+  Conditions:
+  - playersinradius{a=>0;r=4}
+  Skills:
+  - CancelEvent
+  - state{s=attack;li=3;lo=2} @self
+  - lockmodel @self
+  - setAI{ai=false} @self
+  - delay 15
+  - effect:sound{s=entity.player.big_fall;v=0.5;p=0} @self
+  - effect:sound{s=entity.illusioner.hurt;v=0.5;p=1.5} @self
+  - damage{amount=4} @PIR{r=3} # <- In this line you can change minions damage attack
+  - effect:particles{particle=block_crack;m=redstone_block;amount=15;hS=.25;vS=1;speed=0.01} @PIR{r=3}
+  - delay 10
+  - lockmodel{l=false} @self
+  - setAI{ai=true} @self
+  
+SkullMinionDeath:
+  Skills:
+  - effect:sound{s=entity.illusioner.death;v=2;p=1.5} @self
+  - effect:sound{s=item.shield.break;v=1;p=1.2} @self
+  - state{s=death;li=3;lo=2} @self
+  - delay 25
+  - effect:particles{particle=soul;amount=2;vS=.25;speed=.1;vs=0.1} @self
+  - effect:sound{s=entity.player.big_fall;v=0.5;p=0} @self
+  - delay 10
+  - effect:particles{particle=cloud;amount=10;hS=.5;vS=.5;speed=.01} @Forward{f=0.0;y=1}
+  - effect:particles{particle=cloud;amount=10;hS=.1;vS=.1;speed=.01} @ModelPart{m=skull_boss_minion;p=body;offset=GLOBAL;y=-1.0}
+  - model{mid=skull_boss_minion;remove=true} @self
+#AzNFpHcEdzRYh1NZd0Q4kHRBNTYqxmajJHbEpFNnRkW35kbRVzd1ZGaFJ3aTdGO5AnSjR2M
+# +jK/FLtmDo3tQPirgAnOxy3DavzGNoa2ZmBQWmkL3vaMBpxmfjEWIscx+LBszm+zDBpaiRXU0+L05uzH6d9hJBCO+hKStx75CRq5/3MrOo8=

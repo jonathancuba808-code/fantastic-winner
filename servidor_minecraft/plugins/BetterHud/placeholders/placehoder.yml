@@ -1,0 +1,8 @@
+vault_eco_balance_formatted:
+  variable: vault_eco_balance_formatted
+  placeholder: "%vault_eco_balance_formatted%"
+  update: 20
+time:
+  variable: time
+  placeholder: "%localtime_time_H%:%localtime_time_mm%"
+  update: 20

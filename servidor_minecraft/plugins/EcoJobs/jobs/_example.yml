@@ -1,0 +1,189 @@
+# The ID of the job is the name of the .yml file,
+# for example miner.yml has the ID of miner
+# You can place jobs anywhere in this folder,
+# including in subfolders if you want to organize your job configs
+# _example.yml is not loaded.
+
+# The display name of the job
+name: "&6Miner"
+
+# The description of the job
+description: "&8&oLevel up by mining blocks"
+
+# If the job should be unlocked by default
+unlocked-by-default: true
+
+# If job progress should be reset when quitting
+reset-on-quit: false
+
+# The price to join this job (set to 0 to disable)
+# Read here for more: https://plugins.auxilor.io/all-plugins/prices
+join-price:
+  value: 0
+  type: coins
+  display: "&a$%value%"
+
+# Lore shown when clicking on the job icon to join it
+# Reference with %join_lore%
+join-lore: []
+
+# A list of effects to run when the player joins the job.
+# Read https://plugins.auxilor.io/effects/configuring-an-effect
+join-effects:
+  - id: broadcast
+    args:
+      message: "&8» &a%player% &8joined the &6Miner &8job!"
+
+# The price to leave this job (set to 0 to disable)
+# Read here for more: https://plugins.auxilor.io/all-plugins/prices
+leave-price:
+  value: 20000
+  type: coins
+  display: "&a$%value%"
+
+# Lore shown on the confirm leave button
+# Reference with %leave_lore%
+leave-lore:
+  - " &8» This will cost %leave_price%"
+
+# A list of effects to run when the player leaves the job.
+# Read https://plugins.auxilor.io/effects/configuring-an-effect
+leave-effects:
+  - id: send_message
+    args:
+      message: "&8» &8You left the &6Miner &8job!"
+
+# There are two ways to specify level XP requirements:
+#  1. A formula to calculate for infinite levels
+#  2. A list of XP requirements for each level
+
+# Formula
+# xp-formula: (2 ^ %level%) * 25
+# max-level: 100 # The max level of the job
+
+# List
+level-xp-requirements:
+  - 100
+  - 120
+  - 150
+  - 180
+  - 210
+  - 250
+  - 300
+  - 360
+  - 430
+  - 520
+  - 620
+  - 740
+  - 890
+  - 1000
+  - 1300
+  - 1500
+  - 1900
+  - 2200
+  - 2700
+  - 3200
+  - 3800
+  - 4600
+  - 5500
+  - 6600
+  - 7900
+  - 9500
+  - 11500
+  - 14000
+  - 17000
+  - 19000
+  - 24000
+  - 29000
+  - 34000
+  - 41000
+  - 50000
+  - 60000
+  - 70000
+  - 85000
+  - 100000
+  - 120000
+  - 150000
+  - 180000
+  - 210000
+  - 250000
+  - 300000
+  - 360000
+  - 440000
+  - 580000
+  - 750000
+
+# An XP Gain method takes a trigger, a multiplier, conditions, and filters.
+# The multiplier takes the value produced by the trigger and multiplies it
+# by some value to calculate the experience that should be given
+xp-gain-methods:
+  - trigger: mine_block
+    multiplier: 0.5
+    conditions: [ ]
+    filters:
+      items:
+        - "*wooden_pickaxe"
+        - "*stone_pickaxe"
+        - "*iron_pickaxe"
+        - "*golden_pickaxe"
+        - "*diamond_pickaxe"
+        - "*netherite_pickaxe"
+
+# Custom placeholders to be used in descriptions,
+# Don't add % to the IDs, this is done automatically
+# The value takes a %level% placeholder and is a mathematical expression
+level-placeholders:
+  - id: "money"
+    value: "%level% * 0.4"
+  - id: "blocks"
+    value: "ceil(10 - %level% / 10)"
+
+# The text shown with the %effects% placeholder
+# The number dictates the minimum level for this text to show for
+# Adding new levels will override this text on those levels or above
+effects-description:
+  1:
+    - "&8» &8Earn &a$%money%&8 for each &a%blocks%&8 blocks mined"
+
+# Same as above, but for %rewards%
+rewards-description:
+  1:
+    - "&8» &8Earn &a$%money%&8 for each &a%blocks%&8 blocks mined"
+
+# Same as above, but for %level_up_messages%
+level-up-messages:
+  1:
+    - "&8» &8Earn &a$%money%&8 for each &a%blocks%&8 blocks mined"
+
+# Effects to run when the skill levels up
+# %level% is the level the skill leveled up to.
+# If you want to restrict this to certain levels, you can use
+# require: %level% = 20, or require: %level% < 50, etc.
+# If you want a reward to run every x levels, you can use
+# every: 1, or every: 12, etc
+level-up-effects: [ ]
+
+# The effects for the job, has %level% as a placeholder
+effects:
+  - id: give_money
+    args:
+      every: "ceil(10 - %level% / 10)"
+      amount: "0.4 * %level%"
+    filters:
+      items:
+        - "*wooden_pickaxe"
+        - "*stone_pickaxe"
+        - "*iron_pickaxe"
+        - "*golden_pickaxe"
+        - "*diamond_pickaxe"
+        - "*netherite_pickaxe"
+    triggers:
+      - mine_block
+
+# The conditions for the job, also has %level% as a placeholder
+conditions: [ ]
+
+# The icon in GUIs
+icon: player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODU3MDVjZjg2NGRmMmMxODJlMzJjNDg2YjcxNDdjYmY3ODJhMGFhM2RmOGE2ZDYxNDUzOTM5MGJmODRmYjE1ZCJ9fX0=
+
+# oXLfW1Q6WZOttpRe2/wxRsh81NCWbgHWQJlRoWAiDetvk+V0Oma+fCUg2GjJTqKq9CfW5FH5OCwQxCeD0LZ4hUNqGEiDM65/A8Zk+/uUOb8=

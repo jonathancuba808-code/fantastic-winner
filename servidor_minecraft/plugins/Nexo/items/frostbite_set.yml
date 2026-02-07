@@ -1,0 +1,298 @@
+frostbite_helmet:
+  AttributeModifiers:
+  - amount: 2
+    attribute: GENERIC_ARMOR
+    operation: 0
+    slot: HEAD
+    uuid: 533750c0-04fa-4e71-920b-a30afcf3b528
+    name: nexo:modifier
+    key: nexo:modifier
+  Components:
+    equippable:
+      slot: HEAD
+      asset_id: nexo:frostbite
+    max_damage: 165
+  Pack:
+    parent_model: item/generated
+    texture: frostbite_set:armors/frostbite_helmet.png
+    custom_model_data: 1001
+  customname: <white>Frostbite Helmet
+  material: CHAINMAIL_HELMET
+  permission: frostbite_set.helmet
+frostbite_cosmetics_helmet:
+  ItemFlags:
+  - HIDE_POTION_EFFECTS
+  - HIDE_ATTRIBUTES
+  Pack:
+    custom_model_data: 9923482
+    model: frostbite_set:helmet
+  customname: <white>Frostbite Helmet Cosmetics
+  material: POTION
+  permission: frostbite_set.frostbite_cosmetics_helmet
+frostbite_chestplate:
+  AttributeModifiers:
+  - amount: 6
+    attribute: GENERIC_ARMOR
+    operation: 0
+    slot: CHEST
+    uuid: df2c762a-62b4-42c0-ae59-6f571ea2cd3a
+    name: nexo:modifier
+    key: nexo:modifier
+  Components:
+    equippable:
+      slot: CHEST
+      asset_id: nexo:frostbite
+    max_damage: 240
+  Pack:
+    parent_model: item/generated
+    texture: frostbite_set:armors/frostbite_chestplate.png
+    custom_model_data: 1001
+  customname: <white>Frostbite Chestplate
+  material: CHAINMAIL_CHESTPLATE
+  permission: frostbite_set.chestplate
+frostbite_leggings:
+  AttributeModifiers:
+  - amount: 5
+    attribute: GENERIC_ARMOR
+    operation: 0
+    slot: LEGS
+    uuid: cd21bc3c-09ee-42a5-a471-fd10ba686155
+    name: nexo:modifier
+    key: nexo:modifier
+  Components:
+    equippable:
+      slot: LEGS
+      asset_id: nexo:frostbite
+  Pack:
+    parent_model: item/generated
+    texture: frostbite_set:armors/frostbite_leggings.png
+    custom_model_data: 1001
+  customname: <white>Frostbite Leggings
+  material: CHAINMAIL_LEGGINGS
+  permission: frostbite_set.leggings
+frostbite_boots:
+  AttributeModifiers:
+  - amount: 2
+    attribute: GENERIC_ARMOR
+    operation: 0
+    slot: FEET
+    uuid: b6f97345-0a65-455d-a098-11409cf1f392
+    name: nexo:modifier
+    key: nexo:modifier
+  Components:
+    equippable:
+      slot: FEET
+      asset_id: nexo:frostbite
+    max_damage: 165
+  Pack:
+    parent_model: item/generated
+    texture: frostbite_set:armors/frostbite_boots.png
+    custom_model_data: 1001
+  customname: <white>Frostbite Boots
+  material: CHAINMAIL_BOOTS
+  permission: frostbite_set.boots
+frostbite_axe:
+  Pack:
+    model: frostbite_set:axe
+    custom_model_data: 1003
+  customname: <white>Frostbite Axe
+  material: IRON_AXE
+  permission: frostbite_set.axe
+frostbite_pickaxe:
+  Pack:
+    model: frostbite_set:pickaxe
+    custom_model_data: 1001
+  customname: <white>Frostbite Pickaxe
+  material: IRON_PICKAXE
+  permission: frostbite_set.pickaxe
+frostbite_shovel:
+  Pack:
+    model: frostbite_set:shovel
+    custom_model_data: 1001
+  customname: <white>Frostbite Shovel
+  material: IRON_SHOVEL
+  permission: frostbite_set.shovel
+frostbite_hoe:
+  Pack:
+    model: frostbite_set:hoe
+    custom_model_data: 1001
+  customname: <white>Frostbite Hoe
+  material: IRON_HOE
+  permission: frostbite_set.hoe
+frostbite_fishing_rod:
+  Pack:
+    cast_model: frostbite_set:fishing_rod_cast
+    model: frostbite_set:fishing_rod
+    custom_model_data: 1001
+  customname: <white>Frostbite Fishing Rod
+  material: FISHING_ROD
+  permission: frostbite_set.fishing_rod
+frostbite_sword:
+  Pack:
+    model: frostbite_set:sword
+    custom_model_data: 1007
+  customname: <white>Frostbite Sword
+  material: IRON_SWORD
+  permission: frostbite_set.sword
+frostbite_shield:
+  Pack:
+    blocking_model: frostbite_set:shield_blocking
+    model: frostbite_set:shield
+    custom_model_data: 1002
+  customname: <white>Frostbite Shield
+  material: SHIELD
+  permission: frostbite_set.shield
+frostbite_crossbow:
+  Pack:
+    charged_model: frostbite_set:crossbow_charged
+    firework_model: frostbite_set:crossbow_firework
+    model: frostbite_set:crossbow
+    pulling_models:
+    - frostbite_set:crossbow_0
+    - frostbite_set:crossbow_1
+    - frostbite_set:crossbow_2
+    custom_model_data: 1000
+  customname: <white>Frostbite Crossbow
+  material: CROSSBOW
+  permission: frostbite_set.crossbow
+frostbite_bow:
+  Pack:
+    model: frostbite_set:bow
+    pulling_models:
+    - frostbite_set:bow_0
+    - frostbite_set:bow_1
+    - frostbite_set:bow_2
+    custom_model_data: 1001
+  customname: <white>Frostbite Bow
+  material: BOW
+  permission: frostbite_set.bow
+frostbite_staff:
+  Pack:
+    model: frostbite_set:staff
+    custom_model_data: 1008
+  customname: <white>Frostbite Staff
+  material: IRON_SWORD
+  permission: frostbite_set.staff
+frostbite_trident:
+  Pack:
+    model: frostbite_set:trident
+    custom_model_data: 1009
+  customname: <white>Frostbite Trident
+  material: IRON_SWORD
+  permission: frostbite_set.trident
+frostbite_hammer:
+  Pack:
+    model: frostbite_set:hammer
+    custom_model_data: 1010
+  customname: <white>Frostbite Hammer
+  material: IRON_SWORD
+  permission: frostbite_set.hammer
+frostbite_spear:
+  Pack:
+    model: frostbite_set:spear
+    custom_model_data: 1011
+  customname: <white>Frostbite Spear
+  material: IRON_SWORD
+  permission: frostbite_set.spear
+frostbite_scythe:
+  Pack:
+    model: frostbite_set:scythe
+    custom_model_data: 1012
+  customname: <white>Frostbite Scythe
+  material: IRON_SWORD
+  permission: frostbite_set.scythe
+frostbite_chest:
+  Mechanics:
+    furniture:
+      drop:
+        loots:
+        - nexo_item: frostbite_chest
+        silktouch: false
+      limited_placing:
+        floor: true
+        roof: false
+        type: DENY
+        wall: false
+      restricted_rotation: VERY_STRICT
+      properties:
+        display_transform: NONE
+  Pack:
+    model: frostbite_set:chest
+    custom_model_data: 1019
+  customname: <white>Frostbite Chest
+  material: PAPER
+  permission: frostbite_set.chest
+frostbite_key:
+  Pack:
+    model: frostbite_set:key
+    custom_model_data: 1020
+  customname: <white>Frostbite Key
+  material: PAPER
+  permission: frostbite_set.key
+frostbite_mace:
+  Pack:
+    model: frostbite_set:mace
+    custom_model_data: 1013
+  customname: <white>Frostbite Mace
+  material: IRON_SWORD
+  permission: frostbite_set.mace
+frostbite_wings:
+  AttributeModifiers:
+  - amount: 2
+    attribute: GENERIC_ARMOR
+    operation: 0
+    slot: HEAD
+    uuid: 0ec97df7-c5b3-4f5d-892d-c3d9b0df2127
+    name: nexo:modifier
+    key: nexo:modifier
+  Components:
+    max_damage: 165
+  Mechanics:
+    hat:
+      enabled: true
+  Pack:
+    model: frostbite_set:wings
+    custom_model_data: 1021
+  customname: <white>Frostbite Wings
+  material: PAPER
+  permission: frostbite_set.wings
+frostbite_cosmetics_wings:
+  ItemFlags:
+  - HIDE_POTION_EFFECTS
+  - HIDE_ATTRIBUTES
+  Pack:
+    custom_model_data: 9923483
+    model: frostbite_set:wings_cosmetic
+  customname: <white>Frostbite Wings Cosmetics
+  material: POTION
+  permission: frostbite_set.frostbite_cosmetics_wings
+frostbite_cosmetics_wings_normal_2:
+  ItemFlags:
+  - HIDE_POTION_EFFECTS
+  - HIDE_ATTRIBUTES
+  Pack:
+    custom_model_data: 9923486
+    model: frostbite_set:wings_cosmetic_normal_2
+  customname: <white>Frostbite Wings Cosmetics Normal 2
+  material: POTION
+  permission: frostbite_set.frostbite_cosmetics_wings_normal_2
+frostbite_cosmetics_wings_self:
+  ItemFlags:
+  - HIDE_POTION_EFFECTS
+  - HIDE_ATTRIBUTES
+  Pack:
+    custom_model_data: 9923484
+    model: frostbite_set:wings_cosmetic_self
+  customname: <white>Frostbite Wings Cosmetics Self
+  material: POTION
+  permission: frostbite_set.frostbite_cosmetics_wings_self
+frostbite_cosmetics_wings_self_2:
+  ItemFlags:
+  - HIDE_POTION_EFFECTS
+  - HIDE_ATTRIBUTES
+  Pack:
+    custom_model_data: 9923485
+    model: frostbite_set:wings_cosmetic_self_2
+  customname: <white>Frostbite Wings Cosmetics Self 2
+  material: POTION
+  permission: frostbite_set.frostbite_cosmetics_wings_self_2

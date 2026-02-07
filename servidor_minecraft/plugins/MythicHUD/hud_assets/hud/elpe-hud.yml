@@ -1,0 +1,73 @@
+
+elpe_hud:
+  layers:
+    armor:
+      texture:
+        path: assets/elpe/armor_bar_fill.png
+      color: white
+      offset:
+        x: 18
+        y: -14
+      function:
+        listener: armor
+        increment: 20
+        orientation: horizontal
+    air:
+      texture:
+        path: assets/elpe/oxygen_bar_fill.png
+      color: white
+      offset:
+        x: 117
+        y: -14
+      function:
+        listener: air
+        increment: 20
+        orientation: horizontal
+    
+    exp-text:
+      text: "%player_level%"
+      font: "default"
+      color: white
+      align: center
+      outlined: true
+      offset:
+        x: 96
+        y: -29
+    exp:
+      texture:
+        path: assets/elpe/exp_bar_fill.png
+      color: white
+      offset:
+        x: 6
+        y: -34
+      function:
+        listener: exp
+        increment: 60
+        orientation: horizontal
+    expempty:
+      texture:
+        path: assets/elpe/exp_bar_empty.png
+      color: white
+      offset:
+        x: 7
+        y: -34
+    outline:
+      texture:
+        path: assets/elpe/outline_hotbar.png
+
+    outlineright:
+      texture:
+        path: assets/elpe/outline_hotbar_right.png
+      offset:
+        x: 187
+        y: -26
+    outlineleft:
+      texture:
+        path: assets/elpe/outline_hotbar_left.png
+      offset:
+        x: -44
+        y: -26
+  
+
+
+# I/rBKBU2BI6Ji2Dqg+9e5f4EmdcnhADjP7/3aOg4bcXiGVGUhcfq1nZxRkfFHNFcePDjCUudgoDT0tz/75ixzQ1UGtR+vOY3lBFQJk8gMlI=

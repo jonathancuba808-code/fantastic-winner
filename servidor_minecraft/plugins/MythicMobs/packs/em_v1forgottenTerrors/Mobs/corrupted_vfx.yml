@@ -1,0 +1,211 @@
+
+############
+###########
+#
+#
+#   VFX ======= VFX ======= VFX ======= VFX ======= VFX ======= VFX
+#
+
+vfx_ForgottenTerrors_template:
+  Hidden: true
+  Type: silverfish
+  Display: ''
+  Faction: CorruptedFlesh
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 150
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  Damage: 0
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - air:1
+  - air:0
+  Drops:
+
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.56
+    MaxCombatDistance: 5
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: true
+    Interactable: false
+    Invincible: true
+    KnockbackResistance: 0
+    Collidable: false
+    NoGravity: true
+    
+cpblood_expFXmarker1:
+  Hidden: true
+  Template: vfx_ForgottenTerrors_template
+  Skills:
+   - model{mid=cpblood_vfx32;n=false;damagetint=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;alod=NO_CULL} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=cpblood_vfx32;pid=frame1;nm=corruptblood_resources;npid=frame2;delay=1} @self
+    - changepart{m=cpblood_vfx32;pid=frame1;nm=corruptblood_resources;npid=frame3;delay=2} @self
+    - changepart{m=cpblood_vfx32;pid=frame1;nm=corruptblood_resources;npid=frame4;delay=3} @self
+    - changepart{m=cpblood_vfx32;pid=frame1;nm=corruptblood_resources;npid=frame5;delay=4} @self
+    - changepart{m=cpblood_vfx32;pid=frame1;nm=corruptblood_resources;npid=frame6;delay=5} @self
+    - changepart{m=cpblood_vfx32;pid=frame1;nm=corruptblood_resources;npid=frame7;delay=6} @self
+    - changepart{m=cpblood_vfx32;pid=frame1;nm=corruptblood_resources;npid=frame8;delay=7} @self];sync=true} @self ~onSpawn 1
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=8} @Self ~onSpawn
+   - effect:particles{particle=reddust;color=#BEF8E5;amount=5;hS=0.3;vS=0.3;size=0.8;repeat=1;repeatinterval=1} @Origin{y=3} ~onSpawn 1
+    
+darkbloodspill_1:
+  Hidden: true
+  Template: vfx_ForgottenTerrors_template
+  Skills:
+   - model{mid=corruptblood_32;s=idle;n=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;alod=NO_CULL} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=corruptblood_32;pid=frame1;nm=corruptblood_resources;npid=bspl_a1;delay=0} @self
+    - changepart{m=corruptblood_32;pid=frame1;nm=corruptblood_resources;npid=bspl_a2;delay=1} @self
+    - changepart{m=corruptblood_32;pid=frame1;nm=corruptblood_resources;npid=bspl_a3;delay=2} @self
+    - changepart{m=corruptblood_32;pid=frame1;nm=corruptblood_resources;npid=bspl_a4;delay=3} @self
+    - changepart{m=corruptblood_32;pid=frame1;nm=corruptblood_resources;npid=bspl_a5;delay=4} @self
+    - changepart{m=corruptblood_32;pid=frame1;nm=corruptblood_resources;npid=bspl_a6;delay=5} @self
+    - changepart{m=corruptblood_32;pid=frame1;nm=corruptblood_resources;npid=bspl_a7;delay=6} @self
+    - changepart{m=corruptblood_32;pid=frame1;nm=corruptblood_resources;npid=bspl_a8;delay=7} @self
+    - changepart{m=corruptblood_32;pid=frame1;nm=corruptblood_resources;npid=bspl_a9;delay=8} @self
+    - changepart{m=corruptblood_32;pid=frame1;nm=corruptblood_resources;npid=bspl_a10;delay=9} @self
+    - changepart{m=corruptblood_32;pid=frame1;nm=corruptblood_resources;npid=bspl_a11;delay=10} @self];sync=true} @self ~onSpawn 1
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=11} @Self ~onSpawn
+
+darkbloodspill_2:
+  Hidden: true
+  Template: vfx_ForgottenTerrors_template
+  Skills:
+   - model{mid=corruptblood_64;s=idle;n=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;alod=NO_CULL} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=corruptblood_64;pid=frame1;nm=corruptblood_resources;npid=bspl_c1;delay=0} @self
+    - changepart{m=corruptblood_64;pid=frame1;nm=corruptblood_resources;npid=bspl_c2;delay=1} @self
+    - changepart{m=corruptblood_64;pid=frame1;nm=corruptblood_resources;npid=bspl_c3;delay=2} @self
+    - changepart{m=corruptblood_64;pid=frame1;nm=corruptblood_resources;npid=bspl_c4;delay=3} @self
+    - changepart{m=corruptblood_64;pid=frame1;nm=corruptblood_resources;npid=bspl_c5;delay=4} @self
+    - changepart{m=corruptblood_64;pid=frame1;nm=corruptblood_resources;npid=bspl_c6;delay=5} @self
+    - changepart{m=corruptblood_64;pid=frame1;nm=corruptblood_resources;npid=bspl_c7;delay=6} @self
+    - changepart{m=corruptblood_64;pid=frame1;nm=corruptblood_resources;npid=bspl_c8;delay=7} @self
+    - changepart{m=corruptblood_64;pid=frame1;nm=corruptblood_resources;npid=bspl_c9;delay=8} @self
+    - changepart{m=corruptblood_64;pid=frame1;nm=corruptblood_resources;npid=bspl_c10;delay=9} @self
+    - changepart{m=corruptblood_64;pid=frame1;nm=corruptblood_resources;npid=bspl_c11;delay=10} @self
+    - changepart{m=corruptblood_64;pid=frame1;nm=corruptblood_resources;npid=bspl_c12;delay=11} @self
+    - changepart{m=corruptblood_64;pid=frame1;nm=corruptblood_resources;npid=bspl_c13;delay=12} @self
+    - changepart{m=corruptblood_64;pid=frame1;nm=corruptblood_resources;npid=bspl_c14;delay=13} @self];sync=true} @self ~onSpawn 1
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=14} @Self ~onSpawn
+
+darkbloodspill_2a:
+  Hidden: true
+  Template: vfx_ForgottenTerrors_template
+  Skills:
+   - model{mid=corruptblood_64a;s=idle;n=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;alod=NO_CULL} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=corruptblood_64a;pid=frame1;nm=corruptblood_resources;npid=bspl_c1;delay=0} @self
+    - changepart{m=corruptblood_64a;pid=frame1;nm=corruptblood_resources;npid=bspl_c2;delay=1} @self
+    - changepart{m=corruptblood_64a;pid=frame1;nm=corruptblood_resources;npid=bspl_c3;delay=2} @self
+    - changepart{m=corruptblood_64a;pid=frame1;nm=corruptblood_resources;npid=bspl_c4;delay=3} @self
+    - changepart{m=corruptblood_64a;pid=frame1;nm=corruptblood_resources;npid=bspl_c5;delay=4} @self
+    - changepart{m=corruptblood_64a;pid=frame1;nm=corruptblood_resources;npid=bspl_c6;delay=5} @self
+    - changepart{m=corruptblood_64a;pid=frame1;nm=corruptblood_resources;npid=bspl_c7;delay=6} @self
+    - changepart{m=corruptblood_64a;pid=frame1;nm=corruptblood_resources;npid=bspl_c8;delay=7} @self
+    - changepart{m=corruptblood_64a;pid=frame1;nm=corruptblood_resources;npid=bspl_c9;delay=8} @self
+    - changepart{m=corruptblood_64a;pid=frame1;nm=corruptblood_resources;npid=bspl_c10;delay=9} @self
+    - changepart{m=corruptblood_64a;pid=frame1;nm=corruptblood_resources;npid=bspl_c11;delay=10} @self
+    - changepart{m=corruptblood_64a;pid=frame1;nm=corruptblood_resources;npid=bspl_c12;delay=11} @self
+    - changepart{m=corruptblood_64a;pid=frame1;nm=corruptblood_resources;npid=bspl_c13;delay=12} @self
+    - changepart{m=corruptblood_64a;pid=frame1;nm=corruptblood_resources;npid=bspl_c14;delay=13} @self];sync=true} @self ~onSpawn 1
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=14} @Self ~onSpawn
+
+darkbloodspill_2b:
+  Hidden: true
+  Template: vfx_ForgottenTerrors_template
+  Skills:
+   - model{mid=corruptblood_64b;s=idle;n=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;alod=NO_CULL} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=corruptblood_64b;pid=frame1;nm=corruptblood_resources;npid=bspl_c1;delay=0} @self
+    - changepart{m=corruptblood_64b;pid=frame1;nm=corruptblood_resources;npid=bspl_c2;delay=1} @self
+    - changepart{m=corruptblood_64b;pid=frame1;nm=corruptblood_resources;npid=bspl_c3;delay=2} @self
+    - changepart{m=corruptblood_64b;pid=frame1;nm=corruptblood_resources;npid=bspl_c4;delay=3} @self
+    - changepart{m=corruptblood_64b;pid=frame1;nm=corruptblood_resources;npid=bspl_c5;delay=4} @self
+    - changepart{m=corruptblood_64b;pid=frame1;nm=corruptblood_resources;npid=bspl_c6;delay=5} @self
+    - changepart{m=corruptblood_64b;pid=frame1;nm=corruptblood_resources;npid=bspl_c7;delay=6} @self
+    - changepart{m=corruptblood_64b;pid=frame1;nm=corruptblood_resources;npid=bspl_c8;delay=7} @self
+    - changepart{m=corruptblood_64b;pid=frame1;nm=corruptblood_resources;npid=bspl_c9;delay=8} @self
+    - changepart{m=corruptblood_64b;pid=frame1;nm=corruptblood_resources;npid=bspl_c10;delay=9} @self
+    - changepart{m=corruptblood_64b;pid=frame1;nm=corruptblood_resources;npid=bspl_c11;delay=10} @self
+    - changepart{m=corruptblood_64b;pid=frame1;nm=corruptblood_resources;npid=bspl_c12;delay=11} @self
+    - changepart{m=corruptblood_64b;pid=frame1;nm=corruptblood_resources;npid=bspl_c13;delay=12} @self
+    - changepart{m=corruptblood_64b;pid=frame1;nm=corruptblood_resources;npid=bspl_c14;delay=13} @self];sync=true} @self ~onSpawn 1
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=14} @Self ~onSpawn
+
+darkbloodspill_2c:
+  Hidden: true
+  Template: vfx_ForgottenTerrors_template
+  Skills:
+   - model{mid=corruptblood_64c;s=idle;n=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;alod=NO_CULL} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=corruptblood_64c;pid=frame1;nm=corruptblood_resources;npid=bspl_c1;delay=0} @self
+    - changepart{m=corruptblood_64c;pid=frame1;nm=corruptblood_resources;npid=bspl_c2;delay=1} @self
+    - changepart{m=corruptblood_64c;pid=frame1;nm=corruptblood_resources;npid=bspl_c3;delay=2} @self
+    - changepart{m=corruptblood_64c;pid=frame1;nm=corruptblood_resources;npid=bspl_c4;delay=3} @self
+    - changepart{m=corruptblood_64c;pid=frame1;nm=corruptblood_resources;npid=bspl_c5;delay=4} @self
+    - changepart{m=corruptblood_64c;pid=frame1;nm=corruptblood_resources;npid=bspl_c6;delay=5} @self
+    - changepart{m=corruptblood_64c;pid=frame1;nm=corruptblood_resources;npid=bspl_c7;delay=6} @self
+    - changepart{m=corruptblood_64c;pid=frame1;nm=corruptblood_resources;npid=bspl_c8;delay=7} @self
+    - changepart{m=corruptblood_64c;pid=frame1;nm=corruptblood_resources;npid=bspl_c9;delay=8} @self
+    - changepart{m=corruptblood_64c;pid=frame1;nm=corruptblood_resources;npid=bspl_c10;delay=9} @self
+    - changepart{m=corruptblood_64c;pid=frame1;nm=corruptblood_resources;npid=bspl_c11;delay=10} @self
+    - changepart{m=corruptblood_64c;pid=frame1;nm=corruptblood_resources;npid=bspl_c12;delay=11} @self
+    - changepart{m=corruptblood_64c;pid=frame1;nm=corruptblood_resources;npid=bspl_c13;delay=12} @self
+    - changepart{m=corruptblood_64c;pid=frame1;nm=corruptblood_resources;npid=bspl_c14;delay=13} @self];sync=true} @self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=14} @Self ~onSpawn
+  
+darkbloodspill_2d:
+  Hidden: true
+  Template: vfx_ForgottenTerrors_template
+  Skills:
+   - model{mid=corruptblood_64d;s=idle;n=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;alod=NO_CULL} @self ~onSpawn
+   - skill{s=[
+    - changepart{m=corruptblood_64d;pid=frame1;nm=corruptblood_resources;npid=bspl_c1;delay=0} @self
+    - changepart{m=corruptblood_64d;pid=frame1;nm=corruptblood_resources;npid=bspl_c2;delay=1} @self
+    - changepart{m=corruptblood_64d;pid=frame1;nm=corruptblood_resources;npid=bspl_c3;delay=2} @self
+    - changepart{m=corruptblood_64d;pid=frame1;nm=corruptblood_resources;npid=bspl_c4;delay=3} @self
+    - changepart{m=corruptblood_64d;pid=frame1;nm=corruptblood_resources;npid=bspl_c5;delay=4} @self
+    - changepart{m=corruptblood_64d;pid=frame1;nm=corruptblood_resources;npid=bspl_c6;delay=5} @self
+    - changepart{m=corruptblood_64d;pid=frame1;nm=corruptblood_resources;npid=bspl_c7;delay=6} @self
+    - changepart{m=corruptblood_64d;pid=frame1;nm=corruptblood_resources;npid=bspl_c8;delay=7} @self
+    - changepart{m=corruptblood_64d;pid=frame1;nm=corruptblood_resources;npid=bspl_c9;delay=8} @self
+    - changepart{m=corruptblood_64d;pid=frame1;nm=corruptblood_resources;npid=bspl_c10;delay=9} @self
+    - changepart{m=corruptblood_64d;pid=frame1;nm=corruptblood_resources;npid=bspl_c11;delay=10} @self
+    - changepart{m=corruptblood_64d;pid=frame1;nm=corruptblood_resources;npid=bspl_c12;delay=11} @self
+    - changepart{m=corruptblood_64d;pid=frame1;nm=corruptblood_resources;npid=bspl_c13;delay=12} @self
+    - changepart{m=corruptblood_64d;pid=frame1;nm=corruptblood_resources;npid=bspl_c14;delay=13} @self];sync=true} @self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=14} @Self ~onSpawn
+ 
+#123123

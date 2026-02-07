@@ -1,0 +1,29 @@
+# DOCUMENTATION: https://docs.artillex-studios.com/axquestboard.html
+# ITEM BUILDER: https://docs.artillex-studios.com/item-builder.html
+
+title: '&0Quest Board'
+
+# ----- ITEMS -----
+
+# used when a quest slot is on cooldown
+cooldown-item:
+  material: WEEPING_VINES
+  name: '&#EE0000&lRefreshing...'
+  lore:
+  - ' '
+  - '&#EE0000New quest will appear in:'
+  - ' &7- &f%time%'
+  - ' '
+
+## when you add decorations MAKE SURE that you did not set them in the place of a quest
+## look at the board-rows in the config.yml and change it if your decoration overlaps
+#decoration-example:
+#  slot: 13
+#  material: IRON_INGOT
+#  name: '&eDECORATION'
+#  lore:
+#    - ' '
+#    - ' &fWoah, what a cool decoration!'
+
+# do not change this
+version: 1

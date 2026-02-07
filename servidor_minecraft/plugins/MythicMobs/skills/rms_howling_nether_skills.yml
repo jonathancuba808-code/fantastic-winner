@@ -1,0 +1,358 @@
+######## created by samus2002 #########
+
+Changetarget:  
+  Cooldown: 0
+  Skills:
+  - runaitargetselector{target=clear}
+  - runaitargetselector{target=players}
+  
+Cancelattack:
+  Skills:
+  - CancelEvent
+  
+# Lava Mite #
+  
+Lava_Mite_Attack:
+  Conditions:
+  - offgcd
+  - targetwithin{d=3} true
+  Skills:
+  - gcd{ticks=20}
+  - state{s=attack} @self
+  - delay 10
+  - effect:sound{s=rms_howling_nether_sounds:samus.lava_mite_sting;volume=0.65;pitch=1} @self
+  - totem{md=2;c=1;oH=Lava_Mite_Attack_DAMAGE;hnp=false;hp=true;hR=2;vR=2;i=1} @forward{f=0.5}
+  
+Lava_Mite_Attack_DAMAGE:
+  TargetConditions:
+  - isblocking false
+  Skills:
+  - damage{a=2;pkb=false;hnp=false;hp=true}
+  
+Lava_Mite_Hit:
+  Cooldown: 1
+  Skills:
+  - effect:sound{s=rms_howling_nether_sounds:samus.lava_mite_idle;volume=0.65;pitch=1.2} @self
+  
+# Lava Piranha #
+  
+Lava_Piranha_Attack:
+  Conditions:
+  - offgcd
+  - targetwithin{d=4} true
+  Skills:
+  - gcd{ticks=20}
+  - state{s=attack} @self
+  - lunge{velocity=0.4;velocityY=0.6} @target
+  - delay 14
+  - effect:sound{s=rms_howling_nether_sounds:samus.piranha_bite;volume=0.65;pitch=1} @self
+  - totem{md=2;c=1;oH=Lava_Piranha_Attack_DAMAGE;hnp=false;hp=true;hR=2;vR=2;i=1} @forward{f=0.5}
+
+Lava_Piranha_Attack_LAVA:
+  Conditions:
+  - offgcd
+  - targetwithin{d=4} true
+  - inblock{m=LAVA} castinstead Lava_Piranha_Attack
+  Skills:
+  - gcd{ticks=20}
+  - state{s=flop_attack} @self
+  - delay 6
+  - effect:sound{s=rms_howling_nether_sounds:samus.piranha_bite;volume=0.65;pitch=1} @self
+  - totem{md=2;c=1;oH=Lava_Piranha_Attack_DAMAGE;hnp=false;hp=true;hR=2;vR=2;i=1} @forward{f=0.5}
+  
+Lava_Piranha_Attack_DAMAGE:
+  TargetConditions:
+  - isblocking false
+  Skills:
+  - damage{a=2;pkb=false;hnp=false;hp=true}
+  - ignite{ticks=80}
+
+Lava_Piranha_Hit:
+  Cooldown: 1
+  Skills:
+  - effect:sound{s=rms_howling_nether_sounds:samus.piranha_bite;volume=0.4;pitch=1.3} @self
+  
+Lava_Piranha_notinlava:
+  Conditions:
+  - inblock{m=LAVA} false
+  Skills:
+  - state{s=flop} @self
+  - defaultstate{t=death;s=flop_death} @self
+  
+Lava_Piranha_inlava:
+  Conditions:
+  - inblock{m=LAVA} true
+  Skills:
+  - state{s=flop;remove=true} @self
+  - defaultstate{t=death;s=death} @self
+  
+Lava_Piranha_DAMAGED:
+  Conditions:
+  - inblock{m=LAVA} false
+  Skills:
+  - damage{a=1;pkb=false;hnp=false;hp=true} @self
+  
+# Fire Imp #
+  
+Fire_Imp_RANDOM:
+  Skills:
+  - randomskill{skills=Fire_Imp_RANDOM1,Fire_Imp_RANDOM2}
+
+Fire_Imp_RANDOM1:
+  Skills:
+  - state{s=attack_left} @self
+  
+Fire_Imp_RANDOM2:
+  Skills:
+  - state{s=attack_right} @self
+  
+Fire_Imp_Attack:
+  Conditions:
+  - offgcd
+  - targetwithin{d=3} true
+  Skills:
+  - gcd{ticks=26}
+  - skill{s=Fire_Imp_RANDOM}
+  - effect:sound{s=rms_howling_nether_sounds:samus.fire_imp_attack;volume=0.65;pitch=1} @self
+  - delay 12
+  - totem{md=2;c=1;oH=Fire_Imp_Attack_DAMAGE;hnp=false;hp=true;hR=2;vR=2;i=1} @forward{f=0.5}
+
+Fire_Imp_Attack_DAMAGE:
+  TargetConditions:
+  - isblocking false
+  Skills:
+  - damage{a=3;pkb=false;hnp=false;hp=true}
+  - ignite{ticks=80}
+  
+Fire_Imp_Hit:
+  Cooldown: 1
+  Skills:
+  - effect:sound{s=rms_howling_nether_sounds:samus.fire_imp_attack;volume=0.65;pitch=1.2} @self
+  
+# Nether Mushroom #
+  
+Nether_Mushroom_Attack: 
+  Cooldown: 7
+  Conditions:
+  - offgcd
+  - targetwithin{d=5} true
+  Skills:
+  - gcd{ticks=45}
+  - state{s=attack} @self
+  - delay 23
+  - effect:sound{s=rms_howling_nether_sounds:samus.nether_mushroom_poison_aura;volume=0.65;pitch=1} @self
+  - totem{md=60;oT=Nether_Mushroom_Attack_DAMAGE;hnp=false;hp=true;hR=1;vR=1;i=15} @forward{f=0}
+  - effect:particles{particle=sneeze;amount=30;hS=1;vS=0.2;y=1;speed=0;forwardOffset=0;sideOffset=0;repeat=2;repeatinterval=20} @self
+
+Nether_Mushroom_Attack_DAMAGE:
+  TargetConditions:
+  - isblocking false
+  Skills:
+  - potion{type=WITHER;duration=60;level=0;hasParticles=false} @PlayersNearOrigin{r=4}
+  - damage{a=2;pkb=false;hnp=false;hp=true} @PlayersNearOrigin{r=4}
+
+# Lost Soul #
+
+Lost_Soul_Attack_DAMAGE:
+  TargetConditions:
+  - isblocking false
+  Skills:
+  - damage{a=3;pkb=false;hnp=false;hp=true}
+  
+Lost_Soul_Hit:
+  Cooldown: 1
+  Skills:
+  - effect:sound{s=rms_howling_nether_sounds:samus.lost_soul_idle;volume=0.65;pitch=1.7} @self
+  
+# Hellhound #
+  
+Hellhound_RANDOM:
+  Skills:
+  - randomskill{skills=Hellhound_RANDOM1,Hellhound_RANDOM2}
+
+Hellhound_RANDOM1:
+  Skills:
+  - state{s=attack_left} @self
+  
+Hellhound_RANDOM2:
+  Skills:
+  - state{s=attack_right} @self
+  
+Hellhound_Attack:
+  Conditions:
+  - offgcd
+  - targetwithin{d=3} true
+  Skills:
+  - gcd{ticks=40}
+  - skill{s=Hellhound_RANDOM}
+  - effect:sound{s=rms_howling_nether_sounds:samus.hell_hound_attack;volume=0.65;pitch=1} @self
+  - delay 18
+  - totem{md=2;c=1;oH=Hellhound_Attack_DAMAGE;hnp=false;hp=true;hR=2;vR=2;i=1} @forward{f=1}
+
+Hellhound_Attack_DAMAGE:
+  TargetConditions:
+  - isblocking false
+  Skills:
+  - damage{a=4;pkb=false;hnp=false;hp=true}
+  - ignite{ticks=80}
+  
+Hellhound_Hit:
+  Cooldown: 1
+  Skills:
+  - effect:sound{s=rms_howling_nether_sounds:samus.hell_hound_attack;volume=0.65;pitch=1.2} @self
+  
+# Dark Imp #
+  
+Dark_Imp_Attack:
+  Conditions:
+  - offgcd
+  - targetwithin{d=15} true
+  Cooldown: 4
+  Skills:
+  - gcd{ticks=40}
+  - state{s=attack} @self
+  - setAI{ai=false} @self
+  - setAI{ai=true;delay=40} @self
+  - effect:sound{s=rms_howling_nether_sounds:samus.dark_imp_attack;volume=0.65;pitch=1} @self
+  - delay 17
+  - effect:sound{s=rms_howling_nether_sounds:samus.dark_imp_smash;volume=0.8;pitch=1} @self
+  - damage{a=6} @PIR{r=4}
+  - throw{velocity=1;velocityY=7} @PIR{r=4}
+  - projectile{onTick=Dark_Imp_TICK;onHit=Dark_Imp_Attack_DAMAGE;v=15;i=3;hR=1;vR=1;mr=25;hnp=false;hO=0;sE=false;sB=false;hs=true;hfs=0} @target
+
+Dark_Imp_TICK:
+  Skills:
+  - effect:particlering{particle=block_crack;m=netherrack;radius=1.5;points=30;amount=1;hS=0;vS=0;y=0.1} @origin
+  - effect:sound{s=block.roots.break;volume=1;pitch=0.85} @origin
+  
+Dark_Imp_Attack_DAMAGE:
+  Skills:
+  - damage{a=6} @PlayersNearOrigin{r=3}
+  - throw{velocity=1;velocityY=7} @PlayersNearOrigin{r=3}
+
+Dark_Imp_Hit:
+  Cooldown: 1
+  Skills:
+  - effect:sound{s=rms_howling_nether_sounds:samus.dark_imp_idle;volume=0.65;pitch=1.2} @self
+  
+# Blaze King #
+  
+Blaze_King_RANDOMSKILLS:
+  Skills:
+  - randomskill{skills=Blaze_King_Fireball,Blaze_King_Lava_Geyser,Blaze_King_Summon_Blaze}
+  
+# Melee Attack #
+
+Blaze_King_RANDOM:
+  Skills:
+  - randomskill{skills=Blaze_King_RANDOM1,Blaze_King_RANDOM2}
+
+Blaze_King_RANDOM1:
+  Skills:
+  - state{s=attack_melee_left} @self
+  
+Blaze_King_RANDOM2:
+  Skills:
+  - state{s=attack_melee_right} @self
+  
+Blaze_King_Attack:
+  Conditions:
+  - offgcd
+  - targetwithin{d=4} true
+  Skills:
+  - gcd{ticks=32}
+  - skill{s=Blaze_King_RANDOM}
+  - effect:sound{s=rms_howling_nether_sounds:samus.blaze_king_attack;volume=1;pitch=1} @self
+  - delay 12
+  - totem{md=2;c=1;oH=Blaze_King_Attack_DAMAGE;hnp=false;hp=true;hR=3;vR=3;i=1} @forward{f=0.5}
+
+Blaze_King_Attack_DAMAGE:
+  TargetConditions:
+  - isblocking false
+  Skills:
+  - damage{a=5;pkb=false;hnp=false;hp=true}
+  - ignite{ticks=100}
+  
+Blaze_King_Hit:
+  Cooldown: 0
+  Skills:
+  - effect:sound{s=entity.blaze.hurt;volume=0.8;pitch=0.9} @self
+  
+Blaze_King_Hit_MOTION:
+  Cooldown: 0.5
+  Skills:
+  - state{s=hit} @self
+  
+# Fireball #
+
+Blaze_King_Fireball:
+  Cooldown: 4
+  Conditions:
+  - offgcd
+  - targetwithin{d=18} true
+  Skills:
+  - gcd{ticks=62}
+  - setAI{ai=false} @self
+  - setAI{ai=true;delay=40} @self
+  - state{s=skill_fireball} @self
+  - effect:sound{s=rms_howling_nether_sounds:samus.blaze_king_attack;volume=1;pitch=1;delay=10} @self
+  - delay 25
+  - effect:sound{s=entity.blaze.shoot;volume=1.2;pitch=1;repeat=3;repeatinterval=7} @self
+  - projectile{onTick=Blaze_King_Fireball_TICK;onEnd=Blaze_King_Fireball_END;onHit=Blaze_King_Fireball_HIT;v=17;i=1;hR=1;vR=1;mr=40;hnp=false;hO=0;sE=true;sB=true;hs=false;hfs=0;syo=1;tyo=0.5;repeat=3;repeatinterval=7;g=0.1} @target
+  
+Blaze_King_Fireball_HIT:
+  Skills:
+  - damage{a=6} @PlayersNearOrigin{r=4.5}
+  - ignite{ticks=100} @PlayersNearOrigin{r=4.5}
+  - effect:sound{s=entity.generic.explode;volume=1;pitch=1} @origin
+  - effect:particles{particle=explosion_huge;amount=1;hS=0;vS=0;y=0.5;speed=0;forwardOffset=0;sideOffset=0} @origin
+  - effect:particles{particle=flame;amount=30;hS=0;vS=0;y=0.5;speed=0.15;forwardOffset=0;sideOffset=0} @origin
+  
+Blaze_King_Fireball_END:
+  Skills:
+  - damage{a=6} @PlayersNearOrigin{r=4.5}
+  - ignite{ticks=100} @PlayersNearOrigin{r=4.5}
+  - effect:sound{s=entity.generic.explode;volume=1.2;pitch=1} @origin
+  - effect:particles{particle=explosion_huge;amount=1;hS=0;vS=0;y=0.5;speed=0;forwardOffset=0;sideOffset=0} @origin
+  - effect:particles{particle=flame;amount=30;hS=0;vS=0;y=0.5;speed=0.15;forwardOffset=0;sideOffset=0} @origin
+  
+Blaze_King_Fireball_TICK:
+  Skills:
+  - effect:particlesphere{particle=flame;radius=0.5;amount=30} @origin
+  - effect:particlesphere{particle=smoke;radius=0.3;amount=20} @origin
+  
+# Lava Geyser #
+
+Blaze_King_Lava_Geyser:
+  Cooldown: 6
+  Conditions:
+  - offgcd
+  - targetwithin{d=18} true
+  - altitude{h=0-2} true
+  Skills:
+  - gcd{ticks=88}
+  - setAI{ai=false} @self
+  - setAI{ai=true;delay=88} @self
+  - state{s=skill_fire_geyser_ready} @self
+  - effect:sound{s=rms_howling_nether_sounds:samus.blaze_king_attack;volume=1;pitch=1;delay=10} @self
+  - delay 30
+  - summon{type=Lava_Geyser;amount=1;radius=21;yRadius=0;onSurface=true;repeat=10;repeatinterval=5} @self
+
+# Summon Blaze #
+
+Blaze_King_Summon_Blaze:
+  Cooldown: 20
+  Conditions:
+  - offgcd
+  - targetwithin{d=18} true
+  Skills:
+  - gcd{ticks=55}
+  - setAI{ai=false} @self
+  - setAI{ai=true;delay=55} @self
+  - state{s=skill_summon_blaze} @self
+  - effect:sound{s=rms_howling_nether_sounds:samus.blaze_king_summon;volume=1;pitch=1;delay=10} @self
+  - effect:particlesphere{particle=flame;radius=1;amount=40;repeat=4;repeatinterval=5} @Ring{radius=7;points=4}
+  - delay 25
+  - summon{type=Blaze_Minion;amount=1;radius=0;yRadius=0;onSurface=false} @Ring{radius=7;points=4}
+
+# Z9wjiM7r4yBL/xBICCWTANUVhD7h+hZBcg2BB+3SfkoqQh0dShYhryMmrg6zzgcx5ysVKTeCeAroE1KN4QkQsgiqSv7nqI/h6T6IoNjfy08=

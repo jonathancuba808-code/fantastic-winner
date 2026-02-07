@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/empowered_endermauler","particle":"#0"},"elements":[{"from":[5.5,5.5,8.0],"to":[10.5,10.5,8.0],"faces":{"south":{"uv":[10.5,14.5,11.125,15.125],"tintindex":0,"rotation":0,"texture":"#0"},"north":{"uv":[10.5,14.5,11.125,15.125],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

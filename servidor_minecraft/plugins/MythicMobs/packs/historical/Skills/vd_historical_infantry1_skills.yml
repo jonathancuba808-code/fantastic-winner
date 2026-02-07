@@ -1,0 +1,929 @@
+IdleVariation2:
+ Cooldown: 15
+ Conditions:
+ - offgcd true
+ Skills:
+ - cancelevent
+ - state{state=idle_variant} @Self
+ - gcd{ticks=60} @self
+ - sound{s=block.heavy_core.hit;p=2;v=1;delay=18} @self
+ - setAI{ai=false} @self 
+ - setAI{ai=true;delay=58} @self
+IdleVariation3:
+ Cooldown: 15
+ Conditions:
+ - offgcd true
+ Skills:
+ - cancelevent
+ - gcd{ticks=85} @self
+ - state{state=idle_variant} @Self
+ - setAI{ai=false} @self 
+ - setAI{ai=true;delay=85} @self
+IdleVariation1:
+ Cooldown: 15
+ Conditions:
+ - offgcd true
+ Skills:
+ - cancelevent
+ - gcd{ticks=65} @self
+ - state{state=idle_variant} @Self
+ - sound{s=block.heavy_core.hit;p=2;v=1;delay=35} @self
+ - sound{s=block.heavy_core.hit;p=2;v=1;delay=45} @self
+ - setAI{ai=false} @self 
+ - setAI{ai=true;delay=65} @self
+InfantryTarget1:
+ Cooldown: 4
+ Conditions:
+ Skills:
+ - cancelevent
+ - setAI{ai=false} @self
+ - addtag{t=Targeting} @self
+ - setAI{ai=false} @self 
+ - setAI{ai=true;delay=10} @self
+ - delay 6
+ - defaultstate{type=idle;state=idle_target_pike} @Self
+ - defaultstate{type=walk;state=walk_target_pike} @Self
+ - state{state=start_target_pike} @Self
+ - sound{s=block.heavy_core.hit;p=2;v=1;delay=9} @self
+ - sound{s=item.shield.block;p=1.3;v=0.5;delay=9} @self 
+ - setAI{ai=true;delay=12} @self
+InfantryTarget2:
+ Cooldown: 4
+ Conditions:
+ Skills:
+ - cancelevent
+ - setAI{ai=false} @self
+ - addtag{t=Targeting} @self
+ - setAI{ai=false} @self 
+ - setAI{ai=true;delay=8} @self
+ - delay 4
+ - defaultstate{type=idle;state=idle_target} @Self
+ - defaultstate{type=walk;state=walk_target} @Self
+ - state{state=start_target_pike} @Self
+ - sound{s=block.heavy_core.hit;p=2;v=1;delay=9} @self
+ - sound{s=item.shield.block;p=1.3;v=0.5;delay=9} @self 
+ - setAI{ai=true;delay=12} @self
+InfantryTargetDrop1:
+ Conditions:
+ - incombat false
+ Skills:
+ - cancelevent
+ - setAI{ai=false} @self 
+ - setAI{ai=false;delay=5} @self 
+ - setAI{ai=false;delay=10} @self 
+ - gcd{ticks=20} @self
+ - setAI{ai=true;delay=20} @self
+ - delay 6
+ - defaultstate{type=idle;state=idle} @Self
+ - defaultstate{type=walk;state=walk} @Self
+ - delay 6
+ - removetag{t=Targeting} @self
+InfantryShieldAttack1:
+ Cooldown: 3
+ Conditions:
+ - offgcd true
+ - targetWithin 2
+ - hastag{t=Targeting} true
+ - hastag{t=HasPike} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=30}
+ - state{state=target_pike_attack_shield} @Self
+ - sound{s=block.heavy_core.hit;p=2;v=1;delay=10} @self
+ - sound{s=item.shield.block;p=1.3;v=0.5;delay=10} @self
+ - delay 10
+ - potion{type=SLOW;duration=50;level=1;hasparticles=false} @EIC{r=2}
+ - shieldbreak{duration=100} @EIC{r=2;ignore=faction}
+ - throw{v=10;vy=1} @EIC{r=2;ignore=faction}
+ - damage{a=50;ia=true;pi=true} @EIR{r=1.5;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=1.5;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=1.5;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=1.5;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightpike_spearhitbox} true ]}
+PikeHitDamage:
+ Cooldown: 1
+ TargetConditions:
+ - samefaction false
+ Skills:
+ - damage{a=<caster.var.pike_hit_damage>}
+ - sound{s=item.wolf_armor.damage;p=0.8;v=0.2} 
+ - damage{a=<caster.var.bleed_damage>;pi=true;pk=true;delay=5;repeat=3;repeatinterval=8} 
+ - actionmessage{m="&4 Bleeding"} 
+ - particle{p=dripping_dripstone_lava;y=0.1;s=0;repeat=3;repeatinterval=8}  
+ - effect:particles{particle=reddust;color=#E62008;amount=15;hS=0.2;vS=0.3;s=0.6;y=1;size=1;s=1} 
+SwordHitDamage:
+ Cooldown: 0.7
+ TargetConditions:
+ - samefaction false
+ Skills:
+ - damage{a=<caster.var.sword_hit_damage>}
+ - sound{s=item.wolf_armor.damage;p=0.8;v=0.2} 
+ - damage{a=<caster.var.bleed_damage>;pi=true;pk=true;delay=5;repeat=3;repeatinterval=8} 
+ - actionmessage{m="&4 Bleeding"} 
+ - particle{p=dripping_dripstone_lava;y=0.1;s=0;repeat=3;repeatinterval=8}  
+ - effect:particles{particle=reddust;color=#E62008;amount=15;hS=0.2;vS=0.3;s=0.6;y=1;size=1;s=1}
+HammerHitDamage:
+ Cooldown: 1
+ TargetConditions:
+ - samefaction false
+ Skills:
+ - damage{a=<caster.var.hammer_hit_damage>;ia=true}
+ - sound{s=block.heavy_core.hit;p=1;v=0.2}
+ - potion{type=SLOW;duration=75;level=1;hasparticles=false}
+ - potion{type=NAUSEA;duration=150;level=1;hasparticles=false}
+ - throw{v=10;vy=1}
+ - effect:particles{particle=reddust;color=#E62008;amount=15;hS=0.2;vS=0.3;s=0.6;y=1;size=1;s=1} 
+FlailHitDamage:
+ TargetConditions:
+ - samefaction false
+ Cooldown: 1
+ Skills:
+ - damage{a=<caster.var.flail_hit_damage>;ia=true}
+ - sound{s=block.heavy_core.hit;p=1;v=0.2}
+ - potion{type=SLOW;duration=75;level=1;hasparticles=false}
+ - potion{type=NAUSEA;duration=150;level=1;hasparticles=false}
+ - throw{v=4;vy=1}
+ - effect:particles{particle=reddust;color=#E62008;amount=15;hS=0.2;vS=0.3;s=0.6;y=1;size=1;s=1} 
+HammerSpikeDamage:
+ Cooldown: 1
+ TargetConditions:
+ - samefaction false
+ Skills:
+ - damage{a=<caster.var.hammer_spike_damage>;ia=true}
+ - sound{s=block.heavy_core.hit;p=1;v=0.2}
+ - sound{s=item.wolf_armor.damage;p=0.8;v=0.2}
+ - damage{a=<caster.var.bleed_damage>;pi=true;pk=true;delay=5;repeat=3;repeatinterval=8} 
+ - actionmessage{m="&4 Bleeding"} 
+ - particle{p=dripping_dripstone_lava;y=0.1;s=0;repeat=3;repeatinterval=8}  
+ - throw{v=10;vy=1}
+ - effect:particles{particle=reddust;color=#E62008;amount=15;hS=0.2;vS=0.3;s=0.6;y=1;size=1;s=1}
+HalberdHitDamage:
+ TargetConditions:
+ - samefaction false
+ Cooldown: 0.7
+ Skills:
+ - damage{a=<caster.var.halberd_hit_damage>}
+ - sound{s=item.wolf_armor.damage;p=0.8;v=0.2} 
+ - sound{s=block.heavy_core.hit;p=1.4;v=0.2}
+ - damage{a=<caster.var.bleed_damage>;pi=true;pk=true;delay=5;repeat=3;repeatinterval=8} 
+ - actionmessage{m="&4 Bleeding"} 
+ - particle{p=dripping_dripstone_lava;y=0.1;s=0;repeat=3;repeatinterval=8}  
+ - effect:particles{particle=reddust;color=#E62008;amount=15;hS=0.2;vS=0.3;s=0.6;y=1;size=1;s=1}   
+InfantryPikeBreak:
+ Skills:
+ - cancelevent
+ - state{state=pike_break} @Self
+ - gcd{ticks=65} @self
+ - setAI{ai=false} @self 
+ - setAI{ai=true;delay=65} @self
+ - setspeed{speed=1.3} @self
+ - sound{s=entity.zombie.break_wooden_door;p=2;v=0.5;delay=2} @self
+ - sound{s=entity.witch.throw;p=1.2;v=1;delay=22} @self
+ - sound{s=entity.villager.work_librarian;p=1.5;v=1;delay=41} @self
+ - sound{s=entity.villager.work_weaponsmith;p=2;v=0.6;delay=41} @self
+ - sound{s=entity.witch.throw;p=2;v=0.5;delay=43} @self
+ - delay 6
+ - defaultstate{type=idle;state=idle_sword} @Self
+ - defaultstate{type=walk;state=walk_sword} @Self
+ - removetag{t=Targeting} @self
+ - removetag{t=HasPike} @self
+ - addtag{t=HasSword} @self
+InfantryFlailBreak:
+ Cooldown: 20
+ Skills:
+ - cancelevent
+ - state{state=flail_break} @Self
+ - gcd{ticks=65} @self
+ - heal{h=25} @Children
+ - setAI{ai=false} @self 
+ - setAI{ai=true;delay=65} @self
+ - setspeed{speed=1.3} @self
+ - sound{s=entity.zombie.break_wooden_door;p=2;v=0.5;delay=2} @self
+ - sound{s=entity.witch.throw;p=1.2;v=1;delay=22} @self
+ - sound{s=entity.villager.work_librarian;p=1.5;v=1;delay=41} @self
+ - sound{s=entity.villager.work_weaponsmith;p=2;v=0.6;delay=41} @self
+ - sound{s=entity.witch.throw;p=2;v=0.5;delay=43} @self
+ - delay 6
+ - defaultstate{type=idle;state=idle_sword} @Self
+ - defaultstate{type=walk;state=walk_sword;sp=1.6} @Self
+ - removetag{t=Targeting} @self
+ - removetag{t=HasFlail} @self
+ - addtag{t=HasSword} @self
+InfantryHalberdBreak:
+ Skills:
+ - cancelevent
+ - state{state=halberd_break} @Self
+ - gcd{ticks=65} @self
+ - setAI{ai=false} @self 
+ - setAI{ai=true;delay=65} @self
+ - setspeed{speed=1.3} @self
+ - sound{s=entity.item.pickup;p=1;v=0.6;delay=41} @self
+ - sound{s=entity.item.pickup;p=1;v=0.6;delay=41} @self
+ - sound{s=entity.witch.throw;p=0.8;v=1;delay=45} @self
+ - sound{s=entity.witch.throw;p=0.8;v=1;delay=48} @self
+ - sound{s=entity.zombie.break_wooden_door;p=2;v=0.5;delay=2} @self
+ - sound{s=entity.witch.throw;p=1.2;v=1;delay=22} @self
+ - sound{s=entity.witch.throw;p=2;v=0.5;delay=43} @self
+ - delay 6
+ - defaultstate{type=idle;state=idle_axe} @Self
+ - defaultstate{type=walk;state=walk_axe;sp=1.6} @Self
+ - removetag{t=Targeting} @self
+ - removetag{t=HasHalberd} @self
+InfantryShieldBreak:
+ Conditions:
+ - hastag{t=HasSword} true
+ Skills:
+ - cancelevent
+ - state{state=shield_break} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=3} @self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=6} @self
+ - sound{s=block.heavy_core.place;p=1;v=1} @self 
+ - sound{s=item.shield.break;p=0.7;v=0.6} @self
+ - gcd{ticks=30} @self
+ - removetag{t=HasShield} @self
+ - defaultstate{type=death;state=death_broken_shield} @Self
+ - setAI{ai=false} @self 
+ - setAI{ai=true;delay=30} @self
+ - delay 25
+ - state{state=shield_break_hand} @Self
+InfantryShieldBreak2:
+ Conditions:
+ Skills:
+ - cancelevent
+ - state{state=shield_break} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=3} @self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=6} @self
+ - sound{s=block.heavy_core.place;p=1;v=1} @self 
+ - sound{s=item.shield.break;p=0.7;v=0.6} @self
+ - gcd{ticks=30} @self
+ - removetag{t=HasShield} @self
+ - setAI{ai=false} @self 
+ - setAI{ai=true;delay=30} @self
+ - delay 30
+ - defaultstate{type=idle;state=idle_broken_shield} @Self
+ - defaultstate{type=walk;state=walk_broken_shield} @Self
+InfantryFlailHit1:
+ Cooldown: 8
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasSword} false
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - setAI{ai=false;delay=10} @self 
+ - setAI{ai=true;delay=25} @self
+ - state{state=flail_attack_hit} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=9} @self
+ - sound{s=block.heavy_core.hit;p=2;v=1;delay=12} @self
+ - delay 9
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightpike_spearhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightwarhammer_shieldhitbox} true ]}
+InfantryFlailSlash1:
+ Cooldown: 8
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasSword} false
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - state{state=flail_attack_slash} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=9} @self
+ - delay 9
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightpike_spearhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightwarhammer_shieldhitbox} true ]}
+InfantrySwordStab1:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasSword} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - state{state=attack_sword_stab} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=13} @self
+ - delay 13
+ - totem{ch=2;i=4;md=2;oH=SwordHitDamage;drawhitbox=false;hr=0.4;vr=0.4;yo=0.3;repeat=4;repeatinterval=3;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_pike;pid=sword_hitbox_2}
+InfantrySwordCut1:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3
+ - hastag{t=HasSword} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=45}
+ - state{state=attack_sword_cut} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=10} @self
+ - delay 9
+ - totem{ch=2;i=4;md=2;oH=SwordHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=10;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_pike;pid=sword_hitbox_2}
+InfantrySwordHit1:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3
+ - hastag{t=HasSword} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - state{state=attack_sword_hit} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=10} @self
+ - delay 9
+ - totem{ch=2;i=4;md=2;oH=SwordHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=10;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_pike;pid=sword_hitbox_2}
+InfantrySwordStab2:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasSword} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - state{state=attack_flachion_stab} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=13} @self
+ - delay 13
+ - totem{ch=2;i=4;md=2;oH=SwordHitDamage;drawhitbox=false;hr=0.4;vr=0.4;yo=0.3;repeat=4;repeatinterval=3;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_flail;pid=flachion_hitbox_2}
+InfantrySwordCut2:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3
+ - hastag{t=HasSword} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=45}
+ - state{state=attack_sword_cut} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=10} @self
+ - delay 9
+ - totem{ch=2;i=4;md=2;oH=SwordHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=10;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_flail;pid=flachion_hitbox_2}
+InfantrySwordHit2:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3
+ - hastag{t=HasSword} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - state{state=attack_sword_hit} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=10} @self
+ - delay 9
+ - totem{ch=2;i=4;md=2;oH=SwordHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=10;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_flail;pid=flachion_hitbox_2}
+InfantryHealPotion:
+ Cooldown: 60
+ Conditions:
+ - offgcd true
+ - hastag{t=HasSword} true
+ - health{h=<10} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=80}
+ - state{state=healing} @Self
+ - heal{amount=40;delay=41} @self
+ - disengage{v=0.1;repeat=75;repeatinterval=1} @forward
+ - sound{s=entity.villager.work_librarian;p=1.5;v=1;delay=5} @self
+ - sound{s=entity.villager.work_weaponsmith;p=2;v=0.6;delay=5} @self
+ - sound{s=entity.villager.work_librarian;p=1.5;v=0.6;delay=55} @self
+ - sound{s=entity.villager.work_weaponsmith;p=2;v=1;delay=55} @self
+ - sound{s=entity.item.pickup;p=1.5;v=0.6;delay=21} @self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=37} @self
+ - sound{s=block.glass.break;p=1.2;v=0.5;delay=42} @self
+ - sound{s=block.brewing_stand.brew;p=1.5;v=0.5;delay=47} @self
+ - sound{s=entity.breeze.inhale;p=1.5;v=0.5;delay=50} @self
+ - delay 41
+ - summon{type=vd_historical_infantry1red_mob_knightpike_healing;amount=1;radius=0} @self
+InfantryHealPotion2:
+ Cooldown: 60
+ Conditions:
+ - offgcd true
+ - health{h=<10} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=80}
+ - state{state=healing} @Self
+ - heal{amount=40;delay=41} @self
+ - disengage{v=0.1;repeat=75;repeatinterval=1} @forward
+ - sound{s=entity.item.pickup;p=1.5;v=0.6;delay=21} @self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=37} @self
+ - sound{s=block.glass.break;p=1.2;v=0.5;delay=42} @self
+ - sound{s=block.brewing_stand.brew;p=1.5;v=0.5;delay=47} @self
+ - sound{s=entity.breeze.inhale;p=1.5;v=0.5;delay=50} @self
+ - delay 41
+ - summon{type=vd_historical_infantry1red_mob_knightpike_healing;amount=1;radius=0} @self
+InfantrySwordCombo1:
+ Cooldown: 8
+ Conditions:
+ - offgcd true
+ - targetWithin 3
+ - hastag{t=HasSword} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=65}
+ - state{state=attack_sword_combo} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=6} @self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=22} @self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=35} @self
+ - delay 5
+ - totem{ch=2;i=4;md=2;oH=SwordHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=40;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_pike;pid=sword_hitbox_2}
+InfantrySwordCombo2:
+ Cooldown: 8
+ Conditions:
+ - offgcd true
+ - targetWithin 3
+ - hastag{t=HasSword} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=65}
+ - state{state=attack_sword_combo} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=6} @self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=22} @self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=35} @self
+ - delay 5
+ - totem{ch=2;i=4;md=2;oH=SwordHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=40;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_flail;pid=flachion_hitbox_2}
+InfantryShieldAttack2:
+ Cooldown: 0
+ Conditions:
+ - offgcd true
+ - targetWithin 2
+ - hastag{t=HasShield} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=30}
+ - state{state=attack_shield_attack} @Self
+ - sound{s=block.heavy_core.hit;p=2;v=1;delay=10} @self
+ - sound{s=item.shield.block;p=1.3;v=0.5;delay=10} @self
+ - delay 10
+ - potion{type=SLOW;duration=120;level=2;hasparticles=false} @EIC{r=2}
+ - shieldbreak{duration=100} @EIC{r=2;ignore=faction}
+ - throw{v=15;vy=1.5} @EIC{r=2;ignore=faction}
+ - damage{a=50;ia=true;pi=true} @EIR{r=1.5;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=1.5;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=1.5;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=1.5;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightpike_spearhitbox} true ]}
+InfantryHammerStab1:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasShield} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - state{state=attack_hammer_stab_shield} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=15} @self
+ - delay 13
+ - totem{ch=2;i=4;md=2;oH=SwordHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=10;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_warhammer;pid=hammer_damage}
+InfantryHammerStab2:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasShield} false
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - state{state=attack_hammer_stab} @Self
+ - sound{s=entity.witch.throw;p=2;v=0.5;delay=10} @self
+ - delay 9
+ - totem{ch=2;i=4;md=2;oH=SwordHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=10;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_warhammer;pid=hammer_damage}
+InfantryHammerHit1:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasShield} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - state{state=attack_hammer_hit_shield} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=14} @self
+ - sound{s=block.heavy_core.hit;p=0.5;v=1;delay=16} @self
+ - effect:particles{particle=poof;amount=5;hS=0.1;vS=0.1;speed=0;delay=15} @forward{a=2.6}
+ - delay 13
+ - totem{ch=2;i=4;md=2;oH=HammerHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=10;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_warhammer;pid=hammer_damage}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightpike_spearhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=60;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightflail_shieldhitbox} true ]}
+ - damage{a=60;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightflail_shieldhitbox} true ]}
+ - damage{a=60;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightflail_shieldhitbox} true ]}
+ - damage{a=60;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightflail_shieldhitbox} true ]}
+InfantryHammerHit2:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasShield} false
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - state{state=attack_hammer_hit} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=13} @self
+ - sound{s=block.heavy_core.hit;p=0.5;v=1;delay=14} @self
+ - effect:particles{particle=poof;amount=5;hS=0.1;vS=0.1;speed=0;delay=14} @forward{a=2.6}
+ - delay 12
+ - totem{ch=2;i=4;md=2;oH=HammerHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=10;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_warhammer;pid=hammer_damage}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightpike_spearhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=60;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightflail_shieldhitbox} true ]}
+ - damage{a=60;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightflail_shieldhitbox} true ]}
+ - damage{a=60;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightflail_shieldhitbox} true ]}
+ - damage{a=60;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightflail_shieldhitbox} true ]}
+InfantryHammerPick1:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasShield} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - state{state=attack_hammer_pick_shield} @Self
+ - sound{s=entity.witch.throw;p=2;v=0.2;delay=6} @self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=18} @self
+ - delay 16
+ - totem{ch=2;i=4;md=2;oH=HammerSpikeDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=10;repeatinterval=1;hnp=true} @modelpart{mid=vd_historical_infantry1red_mob_knight_warhammer;pid=hammer_damage}
+InfantryHammerPick2:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasShield} false
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - state{state=attack_hammer_pick} @Self
+ - sound{s=entity.witch.throw;p=2;v=0.2;delay=6} @self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=18} @self
+ - delay 16
+ - totem{ch=2;i=4;md=2;oH=HammerSpikeDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=10;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_warhammer;pid=hammer_damage}
+InfantryHammerSlash1:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasShield} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - state{state=attack_hammer_slash_shield} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=11} @self
+ - delay 10
+ - totem{ch=2;i=4;md=2;oH=HammerHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=10;repeatinterval=1;hnp=true} @modelpart{mid=vd_historical_infantry1red_mob_knight_warhammer;pid=hammer_damage}
+InfantryHammerSlash2:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasShield} false
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - state{state=attack_hammer_slash} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=11} @self
+ - delay 10
+ - totem{ch=2;i=4;md=2;oH=HammerHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=10;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_warhammer;pid=hammer_damage}
+InfantryHammerPush1:
+ Cooldown: 0
+ Conditions:
+ - offgcd true
+ - targetWithin 2
+ - hastag{t=HasShield} false
+ Skills:
+ - cancelevent
+ - gcd{ticks=30}
+ - state{state=attack_hammer_push} @Self
+ - sound{s=block.heavy_core.hit;p=2;v=1;delay=10} @self
+ - sound{s=item.shield.block;p=1.3;v=0.5;delay=10} @self
+ - delay 9
+ - potion{type=SLOW;duration=120;level=2;hasparticles=false} @EIC{r=2}
+ - shieldbreak{duration=100} @EIC{r=2;ignore=faction}
+ - throw{v=15;vy=1.5} @EIC{r=2;ignore=faction}
+InfantryHammerComboStart1:
+ Cooldown: 10
+ Conditions:
+ - offgcd true
+ - targetWithin 2.5
+ - PlayerWithin 2.5
+ - hastag{t=HasShield} false
+ Skills:
+ - cancelevent
+ - gcd{ticks=30}
+ - state{state=attack_combo_start} @Self
+ - delay 8
+ - totem{ch=2;i=4;md=2;oH=InfantryHammerCombo1;drawhitbox=true;hr=0.6;vr=0.6;yo=0.3;repeat=5;repeatinterval=1;hnp=false;hp=true} @Forward{a=1.8;y=1.2}
+InfantryHammerCombo1:
+ Cooldown: 5
+ TargetConditions:
+ - samefaction false
+ Skills:
+ - cancelevent
+ - gcd{ticks=70}
+ - potion{type=SLOW;duration=60;level=10;hasparticles=false} @self
+ - sound{s=block.heavy_core.hit;p=2;v=1} @self
+ - stun{d=26;delay=2}
+ - state{state=attack_combo_hammer} @Self
+ - sound{s=entity.witch.throw;p=0.5;v=0.5;delay=27} @self
+ - sound{s=block.heavy_core.hit;p=0;v=1;delay=30} @self
+ - delay 30
+ - damage{a=<caster.var.hammer_combo_damage>;ia=true} @EIC{r=3}
+ - effect:particles{particle=reddust;color=#E62008;amount=15;hS=0.2;vS=0.3;s=0.6;y=1;size=1;s=1} 
+ - throw{v=17;vy=2;delay=1} @EIC{r=3}
+ - potion{type=NAUSEA;duration=300;level=2;hasparticles=false} @EIC{r=3}
+ - potion{type=SLOW;duration=100;level=2;hasparticles=false} @EIC{r=3}
+InfantryHammerComboStart2:
+ Cooldown: 10
+ Conditions:
+ - offgcd true
+ - targetWithin 2.5
+ - PlayerWithin 2.5
+ - hastag{t=HasShield} false
+ Skills:
+ - cancelevent
+ - gcd{ticks=30}
+ - state{state=attack_combo_start} @Self
+ - delay 8
+ - totem{ch=2;i=4;md=2;oH=InfantryHammerCombo2;drawhitbox=true;hr=0.6;vr=0.6;yo=0.3;repeat=5;repeatinterval=1;hnp=false;hp=true} @Forward{a=1.8;y=1.2}
+InfantryHammerCombo2:
+ Cooldown: 5
+ TargetConditions:
+ - samefaction false
+ Skills:
+ - cancelevent
+ - gcd{ticks=60}
+ - potion{type=SLOW;duration=60;level=1;hasparticles=false} @self
+ - sound{s=block.heavy_core.hit;p=2;v=1} @self
+ - stun{d=26;delay=2}
+ - state{state=attack_combo_dagger} @Self
+ - sound{s=entity.witch.throw;p=1.6;v=0.5;delay=21} @self
+ - delay 24
+ - damage{a=<caster.var.hammer_combo_damage>;ia=true} 
+ - damage{a=<caster.var.hammer_combo_bleed_damage>;pi=true;pk=true;delay=5;repeat=6;repeatinterval=8} 
+ - actionmessage{m="&4 Bleeding"} 
+ - sound{s=item.wolf_armor.damage;p=0.8;v=0.2}
+ - particle{p=dripping_dripstone_lava;y=0.1;s=0;repeat=3;repeatinterval=8}  
+ - effect:particles{particle=reddust;color=#E62008;amount=15;hS=0.2;vS=0.3;s=0.6;y=1;size=1;s=1} 
+InfantryHalberdSlash1:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasHalberd} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=45}
+ - state{state=attack_halberd_slash} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=9} @self
+ - delay 9
+ - totem{ch=2;i=4;md=2;oH=HalberdHitDamage;drawhitbox=false;hr=0.8;vr=0.8;yo=0.3;repeat=10;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_halberd;pid=halberd_attack_damage}
+InfantryHalberdStab1:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 4
+ - hastag{t=HasHalberd} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=45}
+ - state{state=attack_halberd_stab} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=13} @self
+ - delay 13
+ - totem{ch=2;i=4;md=2;oH=HalberdHitDamage;drawhitbox=false;hr=0.8;vr=0.8;yo=0.3;repeat=10;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_halberd;pid=halberd_attack_damage}
+InfantryHalberdHit1:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasHalberd} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=45}
+ - state{state=attack_halberd_hit} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=13} @self
+ - delay 13
+ - totem{ch=2;i=4;md=2;oH=HalberdHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=10;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_halberd;pid=halberd_attack_damage}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightpike_spearhitbox} true ]}
+ - damage{a=50;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightpike_spearhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightpike_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=40;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightwarhammer_shieldhitbox} true ]}
+ - damage{a=60;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1red_mob_knightflail_shieldhitbox} true ]}
+ - damage{a=60;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1blue_mob_knightflail_shieldhitbox} true ]}
+ - damage{a=60;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1stripes_mob_knightflail_shieldhitbox} true ]}
+ - damage{a=60;ia=true;pi=true} @EIR{r=3;limit=3;ignore=faction;sort=Nearest;conditions=[  - mythicmobtype{t=vd_historical_infantry1crimson_mob_knightflail_shieldhitbox} true ]}
+InfantryHalberdCombo1:
+ Cooldown: 4
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasHalberd} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=65}
+ - state{state=attack_halberd_combo} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=14} @self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=28} @self
+ - delay 14
+ - totem{ch=2;i=4;md=2;oH=HalberdHitDamage;drawhitbox=false;hr=0.8;vr=0.8;yo=0.3;repeat=22;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_halberd;pid=halberd_attack_damage}
+InfantryHalberdComboStart1:
+ Cooldown: 10
+ Conditions:
+ - offgcd true
+ - targetWithin 3.5
+ - hastag{t=HasHalberd} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=45}
+ - state{state=attack_halberd_pick_start} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=14} @self
+ - delay 16
+ - totem{ch=2;i=4;md=2;oH=InfantryHalberdPick;drawhitbox=false;hr=0.8;vr=0.8;yo=0.3;repeat=5;repeatinterval=1;hnp=false} @modelpart{mid=vd_historical_infantry1red_mob_knight_halberd;pid=halberd_attack_damage}
+InfantryHalberdPick:
+ Cooldown: 5
+ TargetConditions:
+ - samefaction false
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - potion{type=SLOW;duration=60;level=10;hasparticles=false} @self
+ - stun{d=5;delay=2}
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=5} @self
+ - state{state=attack_halberd_pick_start;r=true} @Self
+ - state{state=attack_hablerd_pick} @Self
+ - pull{v=8;delay=10} @EIC{r=4;ignore=faction}
+ - damage{a=<caster.var.halberd_pick_damage>;ia=true}
+ - sound{s=block.heavy_core.hit;p=1;v=0.2}
+ - sound{s=item.wolf_armor.damage;p=0.8;v=0.2}
+ - damage{a=<caster.var.bleed_damage>;pi=true;pk=true;delay=5;repeat=3;repeatinterval=8} 
+ - actionmessage{m="&4 Bleeding"} 
+ - particle{p=dripping_dripstone_lava;y=0.1;s=0;repeat=3;repeatinterval=8}  
+ - effect:particles{particle=reddust;color=#E62008;amount=15;hS=0.2;vS=0.3;s=0.6;y=1;size=1;s=1}
+InfantryHalberdPush:
+ Cooldown: 3
+ Conditions:
+ - offgcd true
+ - targetWithin 2
+ - hastag{t=HasHalberd} true
+ Skills:
+ - cancelevent
+ - gcd{ticks=30}
+ - state{state=attack_halberd_push} @Self
+ - sound{s=block.heavy_core.hit;p=2;v=1;delay=10} @self
+ - sound{s=item.shield.block;p=1.3;v=0.5;delay=10} @self
+ - delay 9
+ - potion{type=SLOW;duration=120;level=2;hasparticles=false} @EIC{r=2}
+ - shieldbreak{duration=100} @EIC{r=2;ignore=faction}
+ - throw{v=15;vy=1.5} @EIC{r=2;ignore=faction}
+InfantryAxeSlash:
+ Cooldown: 3
+ Conditions:
+ - offgcd true
+ - targetWithin 2
+ - hastag{t=HasHalberd} false
+ Skills:
+ - cancelevent
+ - gcd{ticks=35}
+ - state{state=attack_axe_slash} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=9} @self
+ - delay 9
+ - totem{sfo=2.5;ch=2;i=4;md=2;oH=SwordHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=10;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_halberd;pid=axe}
+InfantryAxeStab:
+ Cooldown: 3
+ Conditions:
+ - offgcd true
+ - targetWithin 2
+ - hastag{t=HasHalberd} false
+ Skills:
+ - cancelevent
+ - gcd{ticks=35}
+ - state{state=attack_axe_stab} @Self
+ - sound{s=entity.witch.throw;p=1.8;v=0.5;delay=9} @self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=16} @self
+ - delay 9
+ - totem{sfo=2.5;ch=2;i=4;md=2;oH=SwordHitDamage;drawhitbox=false;hr=0.8;vr=0.8;yo=0.3;repeat=8;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_halberd;pid=dagger}
+ - delay 6
+ - totem{sfo=2.5;ch=2;i=4;md=2;oH=SwordHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=8;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_halberd;pid=axe}
+InfantryAxeHit:
+ Cooldown: 3
+ Conditions:
+ - offgcd true
+ - targetWithin 2
+ - hastag{t=HasHalberd} false
+ Skills:
+ - cancelevent
+ - gcd{ticks=35}
+ - state{state=attack_axe_hit} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=9} @self
+ - sound{s=entity.witch.throw;p=1.8;v=0.5;delay=16} @self
+ - delay 9
+ - totem{sfo=2.5;ch=2;i=4;md=2;oH=SwordHitDamage;drawhitbox=false;hr=0.6;vr=0.6;yo=0.3;repeat=8;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_halberd;pid=axe}
+ - delay 6
+ - totem{sfo=2.5;ch=2;i=4;md=2;oH=SwordHitDamage;drawhitbox=false;hr=0.8;vr=0.8;yo=0.3;repeat=8;repeatinterval=1;hnp=true;} @modelpart{mid=vd_historical_infantry1red_mob_knight_halberd;pid=dagger}
+InfantryAxeKick:
+ Cooldown: 1.5
+ TargetConditions:
+ - samefaction false
+ Conditions:
+ - offgcd true
+ - targetWithin 2
+ - hastag{t=HasHalberd} false
+ Skills:
+ - cancelevent
+ - gcd{ticks=25}
+ - state{state=attack_axe_kick} @Self
+ - state{state=attack_sword_kick} @Self
+ - sound{s=entity.witch.throw;p=0.8;v=0.5;delay=9} @self
+ - delay 8
+ - damage{a=<caster.var.axe_kick_damage>;ia=true} @EIC{r=2}
+ - throw{v=10;vy=1.5} @EIC{r=2;ignore=faction}
+ - shieldbreak{d=200} @EIC{r=2}
+InfantryAxeComboStart:
+ Cooldown: 10
+ Conditions:
+ - offgcd true
+ - targetWithin 2
+ - hastag{t=HasHalberd} false
+ Skills:
+ - cancelevent
+ - gcd{ticks=30}
+ - state{state=attack_axe_combo_start} @Self
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=9} @self
+ - delay 8
+ - totem{ch=2;i=4;md=2;oH=InfantryAxeCombo;drawhitbox=false;hr=0.8;vr=0.8;yo=0.3;repeat=5;repeatinterval=1;hnp=false} @modelpart{mid=vd_historical_infantry1red_mob_knight_halberd;pid=halberd_attack_damage}
+InfantryAxeCombo:
+ Cooldown: 5
+ TargetConditions:
+ - samefaction false
+ Skills:
+ - cancelevent
+ - gcd{ticks=40}
+ - potion{type=SLOW;duration=35;level=1;hasparticles=false} @self
+ - stun{d=10;delay=0}
+ - sound{s=entity.witch.throw;p=1.5;v=0.5;delay=5} @self
+ - state{state=attack_axe_combo} @Self
+ - damage{a=<caster.var.axe_combo_damage>;ia=false}
+ - sound{s=item.wolf_armor.damage;p=0.8;v=0.2}
+ - damage{a=<caster.var.bleed_damage>;pi=true;pk=true;delay=5;repeat=3;repeatinterval=8} 
+ - actionmessage{m="&4 Bleeding"} 
+ - particle{p=dripping_dripstone_lava;y=0.1;s=0;repeat=3;repeatinterval=8}  
+ - effect:particles{particle=reddust;color=#E62008;amount=15;hS=0.2;vS=0.3;s=0.6;y=1;size=1;s=1}
+ - delay 10
+ - damage{a=<caster.var.axe_combo_2_damage>;ia=true} @EIC{r=2}
+ - sound{s=item.wolf_armor.damage;p=0.8;v=0.2} @self
+InfantryAxeBlock:
+ Cooldown: 0.5
+ Conditions:
+ - offgcd true
+ Skills:
+ - cancelevent
+ - state{state=block_axe} @Self
+ - sound{s=block.heavy_core.hit;p=1;v=1} @self
+ - sound{s=item.shield.block;p=1.6;v=0.5} @self
+ 

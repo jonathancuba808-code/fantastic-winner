@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/lava_piranha","particle":"#0"},"elements":[{"from":[8.0,4.0,8.0],"to":[8.0,12.0,16.0],"faces":{"east":{"uv":[2.0,2.25,0.0,4.25],"tintindex":0,"rotation":0,"texture":"#0"},"west":{"uv":[0.0,2.25,2.0,4.25],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

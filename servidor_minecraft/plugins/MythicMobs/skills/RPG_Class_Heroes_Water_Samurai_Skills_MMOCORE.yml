@@ -1,0 +1,450 @@
+Splashing_Water_Flow_Turbulent:
+  Cooldown: 0
+  Skills:
+  - skill{s=Splashing_Water_Flow_Turbulent_SPRINT} ?issprinting
+Splashing_Water_Flow_Turbulent_SPRINT:
+  Cooldown: 0
+  Skills:
+  - potion{type=SPEED;duration=20;level=0;hasParticles=false} @self
+  - particles{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;amount=20;hS=0.3;vS=0.05;y=0.1;size=0.7;speed=0;repeat=9;repeati=2} @self
+
+
+Water_Surface_Slash:
+  Conditions:
+  - hasAura{aura=CASTING} false
+  Skills:
+  - skill{s=Water_Surface_Slash_ST_CAST}
+Water_Surface_Slash_ST_CAST:
+  Skills:
+  - skill{s=Water_Surface_Slash_ST_1;damage="<modifier.damage>"}
+  - skill{s=Water_Surface_Slash_ST_2;damage="<modifier.damage>"}
+  - skill{s=Water_Surface_Slash_ST_3;damage="<modifier.damage>"}
+
+
+
+
+Water_Surface_Slash_ST_1:
+  Conditions:
+  - hasaurastacks{auraName=Water_Surface_Slash_Stack;stacks=1} false
+  - hasaurastacks{auraName=Water_Surface_Slash_Stack;stacks=2} false
+  Skills:
+  - Aura{auraName=Water_Surface_Slash_Stack;duration=300;maxStacks=2;delay=1} @self
+  - totem{md=2;c=1;oH=Water_Surface_Slash_DAMAGE_D;hnp=true;hp=true;hR=2.4;vR=2;i=1} @forward{f=0.6;lockpitch=true}
+  - summon{type=VFX_Water_Surface_Slash_1;amount=1;radius=0;yRadius=0;onSurface=false} @forward{f=0.2;y=1.4;sideOffset=0;lockpitch=true}
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_slash;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+
+
+
+
+Water_Surface_Slash_ST_2:
+  Conditions:
+  - hasaurastacks{auraName=Water_Surface_Slash_Stack;stacks=1} true
+  - hasaurastacks{auraName=Water_Surface_Slash_Stack;stacks=2} false
+  Skills:
+  - Aura{auraName=Water_Surface_Slash_Stack;duration=300;maxStacks=2;delay=1} @self
+  - totem{md=2;c=1;oH=Water_Surface_Slash_DAMAGE_D;hnp=true;hp=true;hR=2.4;vR=2;i=1} @forward{f=0.6;lockpitch=true}
+  - summon{type=VFX_Water_Surface_Slash_2;amount=1;radius=0;yRadius=0;onSurface=false} @forward{f=0.2;y=1.4;sideOffset=0;lockpitch=true}
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_slash;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+
+
+
+
+Water_Surface_Slash_ST_3:
+  Conditions:
+  - hasaurastacks{auraName=Water_Surface_Slash_Stack;stacks=1} false
+  - hasaurastacks{auraName=Water_Surface_Slash_Stack;stacks=2} true
+  Skills:
+  - auraremove{aura=Water_Surface_Slash_Stack;delay=1} @self
+  - totem{md=2;c=1;oH=Water_Surface_Slash_DAMAGE_D;hnp=true;hp=true;hR=2.4;vR=2;i=1} @forward{f=0.6;lockpitch=true}
+  - totem{md=2;c=1;oH=Water_Surface_Slash_DAMAGE_D;hnp=true;hp=true;hR=2.4;vR=2;i=1;delay=6} @forward{f=0.6;lockpitch=true}
+  - summon{type=VFX_Water_Surface_Slash_1;amount=1;radius=0;yRadius=0;onSurface=false} @forward{f=0.2;y=1.4;sideOffset=0;lockpitch=true}
+  - summon{type=VFX_Water_Surface_Slash_2;amount=1;radius=0;yRadius=0;onSurface=false;delay=6} @forward{f=0.2;y=1.4;sideOffset=0;lockpitch=true}
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_slash;volume=0.7;pitch=<random.float.0.9to1.1>;repeat=1;repeati=6} @self
+
+
+
+Water_Surface_Slash_DAMAGE_D:
+  Skills:
+  - skill{s=Water_Surface_Slash_DAMAGE} @EntitiesNearOrigin{r=4;limit=4;sort=NEAREST;conditions=[ - isLiving true - hasaura{aura=immunedelay} false  ]}
+Water_Surface_Slash_DAMAGE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=5}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_Water_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+
+
+Water_Wheel:
+  Conditions:
+  - onground true
+  Skills:
+  - skill{s=Water_Wheel_CAST;damage="<modifier.damage>"}
+
+Water_Wheel_CAST:
+  Conditions:
+  - hasAura{aura=CASTING} false
+  Skills:
+  - aura{auraName=CASTING;duration=15} @self
+  - summon{type=VFX_Water_Surface_Slash_3;amount=1;radius=0;yRadius=0;onSurface=false} @forward{f=0;y=1.8;sideOffset=0;lockpitch=true}
+  
+  - delay 3
+
+  - totem{md=2;c=1;oH=Water_Wheel_DAMAGE_D_UP;hnp=true;hp=true;hR=2.5;vR=2;i=1} @forward{f=0.6;lockpitch=true}
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_wheel;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+  - lunge{velocity=0.1;velocityY=0.75;repeat=2;repeati=1} @forward{f=0;y=4;lockpitch=true}
+  - stun{d=10;f=true;CancelOnTakeDamage=false;CancelOnDeath=true;delay=5} @self
+
+  - delay 5
+  
+  - onDamaged{auraName=landresist;d=20;cE=true;damagemods=FALL;delay=5} @self
+  - totem{md=2;c=1;oH=Water_Wheel_DAMAGE_D;hnp=true;hp=true;hR=2.5;vR=3;i=1;repeat=4;repeati=2} @forward{f=0;lockpitch=true}
+  - orbital{auraName=VFX_Water_Wheel;bulletType=MOB;mob=VFX_Water_Wheel;hr=1;vr=1;hp=false;hnp=false;r=0;points=1;i=1;duration=15;oy=2.4;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0} @self
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_wheel2;volume=0.7;pitch=<random.float.0.9to1.1>} @self
+
+Water_Wheel_DAMAGE_D_UP:
+  Skills:
+  - skill{s=Water_Wheel_DAMAGE_UP} @EntitiesNearOrigin{r=3.5;limit=4;sort=NEAREST;conditions=[ - isLiving true - hasaura{aura=immunedelay} false  ]}
+Water_Wheel_DAMAGE_UP:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=5}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - throw{velocity=0;velocityY=7}
+  - stun{d=10;f=true;CancelOnTakeDamage=false;CancelOnDeath=true;delay=5}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_Water_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+
+Water_Wheel_DAMAGE_D:
+  Skills:
+  - skill{s=Water_Wheel_DAMAGE} @EntitiesNearOrigin{r=4;limit=4;sort=NEAREST;conditions=[ - isLiving true - hasaura{aura=immunedelay} false  ]}
+Water_Wheel_DAMAGE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=5}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_Water_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+
+
+Flowing_Dance:
+  Conditions:
+  - onground true
+  Skills:
+  - skill{s=Flowing_Dance_CAST;damage="<modifier.damage>"}
+Flowing_Dance_CAST:
+  Conditions:
+  - hasAura{aura=CASTING} false
+  Skills:
+  - aura{auraName=CASTING;duration=15} @self
+  - skill{s=Flowing_Dance_RING} @selflocation{y=0.9}
+  - effect:sound{s=entity.phantom.ambient;volume=0.8;pitch=0.8} @self
+  
+  - delay 10
+
+  - skill{s=Flowing_Dance_DAMAGE;repeat=4;repeati=4} @EIR{r=5;limit=5;sort=RANDOM;conditions=[ - isLiving true - hasaura{aura=immunedelay} false  ]}
+  - randomskill{skills=
+    [- summon{type=VFX_Flowing_Dance_1;amount=1;radius=0;yRadius=0;onSurface=false;cooldown=0.15}],
+    [- summon{type=VFX_Flowing_Dance_2;amount=1;radius=0;yRadius=0;onSurface=false;cooldown=0.15}],
+    [- summon{type=VFX_Flowing_Dance_3;amount=1;radius=0;yRadius=0;onSurface=false;cooldown=0.15}],
+    [- summon{type=VFX_Flowing_Dance_4;amount=1;radius=0;yRadius=0;onSurface=false;cooldown=0.15}],
+    [- summon{type=VFX_Flowing_Dance_5;amount=1;radius=0;yRadius=0;onSurface=false;cooldown=0.15}],
+    [- summon{type=VFX_Flowing_Dance_6;amount=1;radius=0;yRadius=0;onSurface=false;cooldown=0.15}],
+    [- summon{type=VFX_Flowing_Dance_7;amount=1;radius=0;yRadius=0;onSurface=false;cooldown=0.15}];repeat=8;repeati=2} @forward{f=0.7;y=1.8;sideOffset=0;lockpitch=true}
+
+  - onDamaged{auraName=landresist;d=18;cE=true} @self
+  - lunge{velocity=1.3;velocityY=-0.05;repeat=6;repeatinterval=1} @forward{f=5;y=-0.05;sideoffset=4;lockpitch=true}
+  - lunge{velocity=1.5;velocityY=-0.05;repeat=6;repeatinterval=1;delay=5} @forward{f=5;y=-0.05;sideoffset=-7;lockpitch=true}
+  - lunge{velocity=1.3;velocityY=-0.05;repeat=6;repeatinterval=1;delay=10} @forward{f=5;y=-0.05;sideoffset=4;lockpitch=true}
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_dash;volume=0.7;pitch=<random.float.0.9to1.1>;repeat=2;repeati=5} @self
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_slash;volume=0.7;pitch=<random.float.0.9to1.1>;repeat=2;repeati=5} @self
+
+Flowing_Dance_DAMAGE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=5}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - particles{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;amount=10;hS=0.3;vS=0.5;y=1;size=0.7;speed=0;repeat=40;repeati=1}
+  - potion{type=LEVITATION;duration=40;level=0;hasParticles=false}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_Water_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+
+Flowing_Dance_RING:
+  Skills:
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=5;points=80;amount=1;hS=0;vS=0;y=0.1;speed=0;size=0.55;delay=0}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=4.5;points=80;amount=1;hS=0;vS=0;y=0.1;speed=0;size=0.55;delay=1}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=4;points=80;amount=1;hS=0;vS=0;y=0.1;speed=0;size=0.55;delay=2}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=3.5;points=80;amount=1;hS=0;vS=0;y=0.1;speed=0;size=0.55;delay=3}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=3;points=80;amount=1;hS=0;vS=0;y=0.1;speed=0;size=0.55;delay=4}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=2.5;points=80;amount=1;hS=0;vS=0;y=0.1;speed=0;size=0.55;delay=5}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=2;points=80;amount=1;hS=0;vS=0;y=0.1;speed=0;size=0.55;delay=6}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=1.5;points=80;amount=1;hS=0;vS=0;y=0.1;speed=0;size=0.55;delay=7}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=1;points=80;amount=1;hS=0;vS=0;y=0.1;speed=0;size=0.55;delay=8}
+
+
+Whirlpool:
+  Conditions:
+  - hasAura{aura=CASTING} false
+  Skills:
+  - skill{s=Whirlpool_CAST;damage="<modifier.damage>"}
+
+Whirlpool_CAST:
+  Skills:
+  - aura{auraName=CASTING;duration=15} @self
+  - auraremove{aura=Whirlpool_STACK} @self
+  - summon{type=VFX_Whirlpool;amount=1;radius=0;yRadius=0;onSurface=true} @SelfLocation
+  - lunge{velocity=0.01;velocityY=0.35;repeat=10;repeati=1} @forward{f=0;y=5;lockpitch=true}
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_dash;volume=0.7;pitch=<random.float.0.7to0.9>;repeat=1;repeati=6} @self
+
+  - skill{s=Whirlpool_DAMAGE;repeat=10;repeati=1} @EIR{r=7.5;limit=8;sort=RANDOM;conditions=[ - isLiving true - hasaura{aura=immunedelay} false  ]}
+
+  - delay 10
+
+  - lunge{velocity=0.01;velocityY=-0.7;repeat=3;repeati=1;delay=2} @forward{f=0;y=-5;lockpitch=true}
+  - onDamaged{auraName=landresist;d=20;cE=true;damagemods=FALL} @self
+
+  - summon{type=VFX_Water_Surface_Slash_4;amount=1;radius=0;yRadius=0;onSurface=false} @forward{f=0.2;y=1.4;sideOffset=0;lockpitch=true}
+  - summon{type=VFX_Water_Surface_Slash_5;amount=1;radius=0;yRadius=0;onSurface=false;delay=3} @forward{f=0.2;y=1.4;sideOffset=0;lockpitch=true}
+  - summon{type=VFX_Water_Surface_Slash_6;amount=1;radius=0;yRadius=0;onSurface=false;delay=6} @forward{f=0.2;y=1.4;sideOffset=0;lockpitch=true}
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_spin;volume=0.7;pitch=<random.float.1to1.2>;repeat=2;repeati=3} @self
+
+  - skill{s=Whirlpool_DAMAGE_END;repeat=1;repeati=6} @EIR{r=7.5;limit=8;sort=RANDOM;conditions=[ - isLiving true - hasaura{aura=immunedelay} false  ]}
+  
+
+
+Whirlpool_DAMAGE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=5}
+  - damage{a=<skill.damage> * 0.2;pkb=true;hnp=true;hp=true}
+  - pull{velocity=4;to=true}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_Water_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+Whirlpool_DAMAGE_END:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=5}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - throw{velocity=15;velocityY=2}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_Water_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+
+
+Striking_Tide:
+  Conditions:
+  - hasAura{aura=CASTING} false
+  Skills:
+  - skill{s=Striking_Tide_CAST;damage="<modifier.damage>"}
+Striking_Tide_CAST:
+  Skills:
+  - aura{auraName=CASTING;duration=20} @self
+  - lunge{velocity=0.4;velocityY=0;repeat=2;repeati=1} @forward{f=5;y=-0.02;lockpitch=true}
+
+  - delay 5
+
+  - totem{md=2;c=1;oH=Striking_Tide_DAMAGE_D;hnp=true;hp=true;hR=2.4;vR=2;i=1} @forward{f=0.5;lockpitch=true}
+  - summon{type=VFX_Striking_Tide_1;amount=1;radius=0;yRadius=0;onSurface=false} @forward{f=0.2;y=1.4;sideOffset=0;lockpitch=true}
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_slash;volume=0.7;pitch=<random.float.0.8to1.2>} @self
+
+  - delay 3
+  
+  - totem{md=2;c=1;oH=Striking_Tide_DAMAGE_D;hnp=true;hp=true;hR=2.4;vR=2;i=1} @forward{f=0.5;lockpitch=true}
+  - summon{type=VFX_Striking_Tide_2;amount=1;radius=0;yRadius=0;onSurface=false} @forward{f=0.2;y=1.4;sideOffset=0;lockpitch=true}
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_slash;volume=0.7;pitch=<random.float.0.8to1.2>} @self
+
+  - delay 3
+  
+  - totem{md=2;c=1;oH=Striking_Tide_DAMAGE_D;hnp=true;hp=true;hR=2.4;vR=2;i=1} @forward{f=0.5;lockpitch=true}
+  - summon{type=VFX_Striking_Tide_3;amount=1;radius=0;yRadius=0;onSurface=false} @forward{f=0.2;y=1.4;sideOffset=0;lockpitch=true}
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_slash;volume=0.7;pitch=<random.float.0.8to1.2>} @self
+  - delay 3
+  - totem{md=2;c=1;oH=Striking_Tide_DAMAGE_D;hnp=true;hp=true;hR=2.4;vR=2;i=1} @forward{f=0.5;lockpitch=true}
+  - summon{type=VFX_Striking_Tide_4;amount=1;radius=0;yRadius=0;onSurface=false} @forward{f=0.2;y=1.4;sideOffset=0;lockpitch=true}
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_slash;volume=0.7;pitch=<random.float.0.8to1.2>} @self
+  - delay 7
+  - lunge{velocity=0.4;velocityY=0;repeat=2;repeati=1} @forward{f=-5;y=-0.02;lockpitch=true}
+  - totem{md=2;c=1;oH=Striking_Tide_DAMAGE_D_UP;hnp=true;hp=true;hR=2.4;vR=2;i=1} @forward{f=0.5;lockpitch=true}
+  - summon{type=VFX_Striking_Tide_5;amount=1;radius=0;yRadius=0;onSurface=false} @forward{f=0.2;y=1.4;sideOffset=0;lockpitch=true}
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_slash;volume=0.7;pitch=<random.float.0.8to1.2>} @self
+  - delay 4
+  - lunge{velocity=0.4;velocityY=0;repeat=2;repeati=1} @forward{f=5;y=-0.02;lockpitch=true}
+  - delay 4
+  - totem{md=2;c=1;oH=Striking_Tide_DAMAGE_D_DOWN;hnp=true;hp=true;hR=2.4;vR=2;i=1} @forward{f=0.5;lockpitch=true}
+  - projectile{oT=Striking_Tide_T;i=4;v=15;hR=1;vR=1;mr=11;hnp=true;hO=0;sE=false;sB=false;hs=true;hfs=0;sfo=0;syo=0;tyo=0;sso=0;sfo=4;fo=true;hitConditions=[- isLiving true];byo=0;drawhitbox=false;ham=true} @forward{f=5;y=0;lockpitch=true}
+  
+  - summon{type=VFX_Striking_Tide_6;amount=1;radius=0;yRadius=0;onSurface=false} @forward{f=0.8;y=1.4;sideOffset=0;lockpitch=true}
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_slash;volume=0.7;pitch=<random.float.0.8to1.2>} @self
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_dash;volume=0.7;pitch=<random.float.1.2to1.4>;repeat=3;repeati=5} @self
+
+Striking_Tide_T:
+  Skills:
+  - summon{type=VFX_Splashing_Water_Flow;amount=1;radius=0;yRadius=0;onSurface=true} @origin
+  - skill{s=Striking_Tide_T_DMG} @EntitiesNearOrigin{r=4;limit=4;sort=NEAREST;conditions=[ - isLiving true  - hasaura{n=immunedelay} false  ]}
+Striking_Tide_T_DMG:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=5}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - throw{velocity=0;velocityY=5}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_Water_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+  
+Striking_Tide_DAMAGE_D:
+  Skills:
+  - skill{s=Striking_Tide_DAMAGE} @EntitiesNearOrigin{r=5;limit=4;sort=NEAREST;conditions=[ - isLiving true  ]}
+Striking_Tide_DAMAGE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=5}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_Water_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+
+Striking_Tide_DAMAGE_D_UP:
+  Skills:
+  - skill{s=Striking_Tide_DAMAGE_UP} @EntitiesNearOrigin{r=5;limit=4;sort=NEAREST;conditions=[ - isLiving true  ]}
+Striking_Tide_DAMAGE_UP:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=5}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - throw{velocity=2;velocityY=5}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_Water_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+
+Striking_Tide_DAMAGE_D_DOWN:
+  Skills:
+  - skill{s=Striking_Tide_DAMAGE_DOWN} @EntitiesNearOrigin{r=5;limit=4;sort=NEAREST;conditions=[ - isLiving true  ]}
+Striking_Tide_DAMAGE_DOWN:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=5}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - throw{velocity=2;velocityY=-6}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_Water_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+
+
+Constant_Flux:
+  Conditions:
+  - hasAura{aura=CASTING} false
+  Skills:
+  - skill{s=Constant_Flux_CAST;damage="<modifier.damage>"}
+Constant_Flux_CAST:
+  Skills:
+  - aura{auraName=CASTING;duration=100} @self
+  - skill{s=Constant_Flux_SPHERE} @selflocation{y=0.9}
+
+  - delay 10
+
+  - orbital{auraName=VFX_WaterDragon_1;bulletType=MOB;mob=VFX_WaterDragon_1;hr=1;vr=1;hp=false;hnp=false;r=0;points=1;i=1;duration=20;oy=2.4;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;delay=1} @self
+  - particles{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;amount=30;hS=0.4;vS=0.7;y=0.7;size=0.7;speed=0;repeat=71;repeati=1} @self
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_dragon_summon;volume=0.7;pitch=1} @self
+
+  - delay 12
+  
+  - lunge{velocity=1;velocityY=-0.05;repeat=60;repeatinterval=1} @forward{f=12;y=-0.05;lockpitch=true}
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_dragon;volume=0.7;pitch=<random.float.0.8to1.2>;repeat=10;repeati=5} @self
+  - skill{s=Constant_Flux_DAMAGE;repeat=19;repeati=3} @EIR{r=5;limit=7;sort=RANDOM;conditions=[ - isLiving true - hasaura{aura=immunedelay} false  ]}
+  - orbital{auraName=VFX_WaterDragon_2;bulletType=MOB;mob=VFX_WaterDragon_2;hr=1;vr=1;hp=false;hnp=false;r=0;points=1;i=1;duration=20;oy=2.4;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;delay=9} @self
+  - orbital{auraName=VFX_WaterDragon_3;bulletType=MOB;mob=VFX_WaterDragon_3;hr=1;vr=1;hp=false;hnp=false;r=0;points=1;i=1;duration=20;oy=2.4;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;delay=15} @self
+  - orbital{auraName=VFX_WaterDragon_4;bulletType=MOB;mob=VFX_WaterDragon_4;hr=1;vr=1;hp=false;hnp=false;r=0;points=1;i=1;duration=20;oy=2.4;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;delay=26} @self
+  - orbital{auraName=VFX_WaterDragon_5;bulletType=MOB;mob=VFX_WaterDragon_5;hr=1;vr=1;hp=false;hnp=false;r=0;points=1;i=1;duration=20;oy=2.4;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;delay=37} @self
+  
+  - randomskill{skills=
+    [- summon{type=VFX_Water_Surface_Slash_1;amount=1;radius=0;yRadius=0;onSurface=false;cooldown=0.15}],
+    [- summon{type=VFX_Water_Surface_Slash_2;amount=1;radius=0;yRadius=0;onSurface=false;cooldown=0.15}],
+    [- summon{type=VFX_Water_Surface_Slash_3;amount=1;radius=0;yRadius=0;onSurface=false;cooldown=0.15}],
+    [- summon{type=VFX_Water_Surface_Slash_4;amount=1;radius=0;yRadius=0;onSurface=false;cooldown=0.15}],
+    [- summon{type=VFX_Water_Surface_Slash_5;amount=1;radius=0;yRadius=0;onSurface=false;cooldown=0.15}],
+    [- summon{type=VFX_Water_Surface_Slash_6;amount=1;radius=0;yRadius=0;onSurface=false;cooldown=0.15}];repeat=10;repeati=5} @forward{f=0.7;y=1.8;sideOffset=0;lockpitch=true}
+
+  - delay 60
+  
+  - stun{d=20;f=true;CancelOnTakeDamage=false;CancelOnDeath=true} @self
+  - skill{s=Flowing_Dance_RING} @selflocation{y=0.9}
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_dash;volume=0.7;pitch=<random.float.0.8to1.2>} @self
+
+  - delay 20
+
+  - effect:sound{s=water_samurai_sounds:samus.water_samurai.water_wheel;volume=0.7;pitch=<random.float.0.8to1.2>} @self
+  - skill{s=Constant_Flux_RING_OUT} @selflocation{y=0.9}
+  - skill{s=Constant_Flux_DAMAGE_END} @EIR{r=12;limit=15;sort=RANDOM;conditions=[ - isLiving true - hasaura{aura=immunedelay} false  ]}
+
+Constant_Flux_DAMAGE:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=5}
+  - damage{a=<skill.damage>;pkb=true;hnp=true;hp=true}
+  - potion{type=LEVITATION;duration=5;level=0;hasParticles=false}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_Water_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+Constant_Flux_DAMAGE_END:
+  TargetConditions:
+  - entitytype{t=ARMOR_STAND} false
+  - mmoCanTarget{interaction=OFFENSE_ACTION} true
+  Skills:
+  - aura{auraName=immunedelay;duration=5}
+  - damage{a=<skill.damage> * 1.5;pkb=true;hnp=true;hp=true}
+  - potion{type=LEVITATION;duration=80;level=0;hasParticles=false}
+  - effect:particlesphere{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=1;size=0.55;amount=25;y=0.65;repeat=80;repeati=1}
+  - projectile{targetisorigin=true;bulletType=MOB;mob=VFX_Water_Impact;v=0;i=1;hR=0;vR=0;mr=2;hnp=false;hO=0;sE=false;sB=false;hs=false;hfs=0;sfo=0;syo=1.2;tyo=1.2;sso=0;fo=true;byo=0;ham=true}
+
+Constant_Flux_SPHERE:
+  Skills:
+  - sound{sound=entity.breeze.inhale;volume=0.8;pitch=0.7} @self
+  - sound{sound=particle.soul_escape;volume=0.8;pitch=1} @self
+  - effect:particlesphere{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=0.5;size=0.55;amount=40;y=0.6;delay=9} @self
+  - effect:particlesphere{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=1;size=0.55;y=0.6;amount=70;delay=8} @self
+  - effect:particlesphere{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=1.5;size=0.55;y=0.6;amount=160;delay=7} @self
+  - effect:particlesphere{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=2;size=0.55;y=0.6;amount=180;delay=6} @self
+  - effect:particlesphere{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=2.5;size=0.55;y=0.6;amount=200;delay=5} @self
+  - effect:particlesphere{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=3;size=0.55;y=0.6;amount=220;delay=4} @self
+  - effect:particlesphere{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=3.5;size=0.55;y=0.6;amount=240;delay=3} @self
+  - effect:particlesphere{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=4;size=0.55;y=0.6;amount=270;delay=2} @self
+  - effect:particlesphere{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=4.5;size=0.55;y=0.6;amount=300;delay=1} @self
+  - effect:particlesphere{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=5;size=0.55;y=0.6;amount=330} @self
+Constant_Flux_RING_OUT:
+  Skills:
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=10;points=120;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=14}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=9.9;points=110;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=13}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=9.7;points=100;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=12}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=9.4;points=90;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=11}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=9;points=90;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=10}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=8.5;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=9}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=8;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=8}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=7.5;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=7}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=7;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=6}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=6;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=5}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=5;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=4}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=4;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=3}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=3;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=2}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=2;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=1}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#0a1a72;radius=1;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=0}
+
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#ffffff;radius=11;points=120;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=14}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#ffffff;radius=10.9;points=110;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=13}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#ffffff;radius=10.7;points=100;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=12}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#ffffff;radius=10.4;points=90;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=11}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#ffffff;radius=10;points=90;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=10}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#ffffff;radius=9.5;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=9}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#ffffff;radius=9;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=8}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#ffffff;radius=8.5;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=7}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#ffffff;radius=8;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=6}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#ffffff;radius=7;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=5}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#ffffff;radius=6;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=4}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#ffffff;radius=5;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=3}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#ffffff;radius=4;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=2}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#ffffff;radius=3;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=1}
+  - effect:particlering{p=dust_color_transition;color1=#40d9ff;color2=#ffffff;radius=2;points=80;amount=5;hS=0.1;vS=0.1;y=0.1;speed=0;size=0.55;delay=0}

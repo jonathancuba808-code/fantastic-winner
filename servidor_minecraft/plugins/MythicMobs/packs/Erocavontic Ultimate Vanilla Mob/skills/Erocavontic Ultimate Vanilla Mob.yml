@@ -1,0 +1,420 @@
+ero_spider_shoot:
+  Cooldown: 5.5
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - fieldofview{angle=45}
+  Skills:
+  - gcd{t=60}
+  - skill{s=ero_stopEntity;sync=true;durations=60} @self
+  - look{headOnly=true;immediately=false}
+  - setcollidable{c=false} @self
+  - state{s=shoot;speed=1} @self
+  - sound{s=entity.wither.shoot;p=1.5;v=1;delay=28} @self
+  - skill{s=[
+      - projectile{oT=[
+          - effect:particles{particle=Snowflake;speed=0.01;Size=0.1;a=2;hS=0.1;vS=0.1}
+        ];oH=[
+          - skill{s=ero_spider_shoot_hook;sync=true}
+          - sudoskill{s=[ - pull{v=10;fo=true;Origin=@SelfLocation{y=-10};delay=1} @self]}
+          - skill{s=[- damage{a="<caster.damage>"}];sync=true}
+          - skill{s=ero_spider_shoot_target;sync=true}
+        ];oE=[
+          - summon{t=ero_spider_cobweb;onsummon=[ - sudoskill{s=[ - remove{delay=100} @self ];cat=true}]} @TargetedLocation{Conditions=[ - distance{d=>9} false ]}
+        ];v=<random.18to25>;sfo=0;syo=0;i=1;hR=0.55;TargetYOffset=-0.65;hnp=true;mr=99;g=0.2;fo=true;Origin=@ModelPart{p=shoot}} @Forward{f=99;y=0.5}
+    ];sync=true;delay=30}
+
+ero_spider_attack:
+  Cooldown: 1
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - distance{d=<2.5}
+  Skills:
+  - gcd{t=15} @self
+  - sound{s=minecraft:entity.spider.hurt;p=1;v=1} @self
+  - skill{s=ero_stopEntity;sync=true;durations=15} @self
+  - look{headOnly=true;immediately=false} @self
+  - state{s=attack;speed=1} @self
+  - damage{a="<caster.damage>";delay=10}
+
+ero_spider_shoot_target:
+  TargetConditions:
+  - distance{d=>9} false
+  Skills:
+  - summon{t=ero_spider_cobweb;onsummon=[ - sudoskill{s=[ - remove{delay=100} @self];cat=true}]}
+
+ero_spider_shoot_hook:
+  TargetConditions:
+  - distance{d=>9}
+  Skills:
+  - pull{v=5;fo=true;repeat=19;repeatInterval=1}
+  - delay 20
+  - potion{t=WEAKNESS;d=100;l=2}
+  - summon{t=ero_spider_cobweb;onsummon=[ - sudoskill{s=[ - remove{delay=160} @self - addtag{t=lock} @self];cat=true}];a=4;r=1}
+
+ero_spider_idle_set:
+  Conditions:
+  - incombat orElseCast ero_spider_idle_set2
+  Skills:
+  - Aura{auraName=combat;onStart=[
+      - auraremove{n=n_combat;s=99} @self
+      - defaultstate{type=idle;state=idle} @self ?hasaurastacks{n=combat;s=1}
+    ];time=60;i=1;ms=2} @self
+
+ero_spider_idle_set2:
+  Conditions:
+  - hasaura{n=combat} false
+  Skills:
+  - Aura{auraName=n_combat;onStart=[
+      - defaultstate{type=idle;state=idle2} @self ?hasaurastacks{n=n_combat;s=1}
+    ];time=60;i=1;ms=2} @self
+
+
+ero_spider_death:
+  Skills:
+  - effect:particles{particle=Smoke;speed=0;Size=1;a=5;hS=0.5;vS=0.15;y=0.3;repeat=10;repeatInterval=1} @self
+
+ero_stopEntity:
+  Skills:
+  - potion{t=SLOW;d=<skill.durations>+5;l=254;force=true;p=false;i=false} @self
+  - attribute{attribute=GENERIC_KNOCKBACK_RESISTANCE;a=100;duration=<skill.durations>+5} @self
+  - attribute{attribute=GENERIC_EXPLOSION_KNOCKBACK_RESISTANCE;a=100;duration=<skill.durations>+5} @self
+  - attribute{attribute=GENERIC_ATTACK_KNOCKBACK;a=100;duration=<skill.durations>+5} @self
+
+  - onJump{cE=true;time=<skill.durations>;auraName=ero_stopEntity;oe=[ - setcollidable{c=true} @self ]} @self
+
+
+ero_skeleton_shoot:
+  Cooldown: 1
+  Conditions:
+  - offgcd
+  - variableInRange{var=caster.shootC;value=>2} castinstead ero_skeleton_shoot_combo
+  TargetConditions:
+  - distance{d=<3} castinstead ero_skeleton_n_attack
+  Skills:
+  - variableadd{var=CASTER.shootC;val=1} @self
+  - skill{s=ero_stopEntity;sync=true;durations=24} @self
+  - state{m=ero_skeleton;s=shoot} @self
+  - look{headOnly=true;immediately=false;repeat=9;repeatInterval=2}
+  - delay 20 
+  - sound{s=entity.arrow.shoot;p=1;v=1} @self
+  - volley{type=arrow;velocity=2.5;damage=<caster.damage>;amount=1;fo=true;Origin=@ModelPart{m=ero_skeleton;p=bow}} @Forward{f=10;y=1.5;sideOffset=0;rotate=0}
+
+ero_skeleton_shoot_combo:
+  Skills:
+  - gcd{t=50} @self
+  - skill{s=ero_stopEntity;sync=true;durations=35} @self
+  - state{m=ero_skeleton;s=shoot_4_shots} @self
+  - look{headOnly=true;immediately=false;repeat=17;repeatInterval=2}
+  - setSkillCooldown{s=ero_skeleton_shoot;t=4} @self
+  - setvariable{var=CASTER.shootC;val="0";t=INTEGER} @self
+  - sound{s=entity.arrow.shoot;p=1;v=1;repeat=3;repeatInterval=10;delay=10} @self
+  - effect:particles{particle=Crit;Size=1;a=8;hS=0.2;vS=0.2;repeat=3;repeatInterval=10;delay=10} @ModelPart{m=ero_skeleton;p=bow}
+  - volley{type=arrow;velocity=2.5;damage=<caster.damage>;amount=1;repeat=3;repeatInterval=10;fo=true;Origin=@Forward{f=0.2;y=0.75;lockpitch=true};delay=10} @Forward{f=10;y=1.2;sideOffset=0;rotate=0}
+
+ero_skeleton_n_attack:
+  Skills:
+  - gcd{t=45} @self
+  - skill{s=ero_stopEntity;sync=true;durations=45} @self
+  - state{m=ero_skeleton;s=spin_kick} @self
+  - sound{s=minecraft:entity.player.attack.sweep;p=1;v=1;delay=3} @self
+  - delay 10
+  - effect:particles{particle=Cloud;speed=0.8;Size=1;a=2;hS=0.05;vS=0;Origin=@SelfLocation{y=1};d=true;yOffset=1} @Ring{radius=5;points=14;offsety=0.5}
+  - skill{s=[
+      - damage{a=<caster.damage>} 
+      - sound{s=entity.player.attack.knockback;p=1.44;v=1.0}
+      - throw{v=8;vy=1;delay=1}
+    ];sync=true} @EntitiesNearOrigin{r=3}
+  - delay 9
+  - state{m=ero_skeleton;s=jump_back} @self
+  - delay 5
+  - sound{s=entity.skeleton.step;p=0.75;v=1.0} @self
+  - effect:particles{particle=campfire_cosy_smoke;speed=0.05;Size=1;a=1;hS=0;vS=0;d=true;yOffset=0.1} @Ring{radius=1;points=7;offsety=0}
+  - lunge{v=2;vy=0.3} @Forward{f=-5;y=0.2;lockpitch=true}
+  - delay 22
+  - skill{s=ero_skeleton_shoot_combo;sync=true} @nearestPlayer{r=45}
+
+ero_skeleton_death:
+  Skills:
+  - effect:particles{particle=Smoke;speed=0;Size=1;a=5;hS=0.75;vS=0.15;y=0.3;repeat=10;repeatInterval=1} @self
+
+
+ero_witch_heal:
+  Cooldown: 4
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=55} @self
+  - meg:setitemmodel{mid=ero_witch;bone=drink;i=ero_witch_potion_drink} @self
+  - state{s=drink} @self
+  - sound{s=minecraft:entity.witch.drink;p=1;v=1;delay=30} @self
+  - delay 40
+  - healpercent{m=0.15} @self
+  - meg:setitemmodel{mid=ero_witch;bone=drink;i=air} @self
+
+
+ero_witch_throw:
+  Cooldown: 5
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=20} @self
+  - randomskill{skills=ero_witch_throw_1 0.6,ero_witch_throw_2 0.4} @self
+
+ero_witch_throw_1:
+  Skills:
+  - gcd{t=60} @self
+  - state{s=throw_1} @self
+  - skill{s=ero_stopEntity;sync=true;durations=60} @self
+  - delay 38
+  - sound{s=minecraft:entity.witch.throw;p=1;v=1} @self
+  - skill{s=ero_witch_randomsPotion_rightHand;sync=true} @self
+  
+ero_witch_throw_2:
+  Skills:
+  - gcd{t=80} @self
+  - state{s=throw_2} @self
+  - skill{s=ero_stopEntity;sync=true;durations=80} @self
+  - delay 38
+  - sound{s=minecraft:entity.witch.throw;p=1;v=1} @self
+  - skill{s=ero_witch_randomsPotion_rightHand;sync=true} @self
+  - delay 9
+  - sound{s=minecraft:entity.witch.throw;p=1;v=1} @self
+  - skill{s=ero_witch_randomsPotion_leftHand;sync=true} @self
+
+ero_witch_randomsPotion_rightHand:
+  Skills:
+  - randomskill{skills=ero_witch_randomsPotion_SLOW_rightHand,ero_witch_randomsPotion_Poison_rightHand,ero_witch_randomsPotion_Weakness_rightHand,ero_witch_randomsPotion_InstantDamage_rightHand,ero_witch_randomsPotion_Blindness_rightHand}
+
+ero_witch_randomsPotion_SLOW_rightHand:
+  Skills:
+  - setvariable{var=CASTER.potionVar;val="SLOW";t=STRING} @self
+  - shoot{type=potion;potiontype=<caster.var.potionVar>;potioncolor=#ababab;accuracy=0.95;potionduration=100;velocity=0.8;oE=ero_witch_throw_summon;Origin=@ModelPart{m=ero_witch;p=right_hand};fo=true} @Forward{f=18;y=1.5;sideOffset=0;rotate=0}
+
+ero_witch_randomsPotion_Poison_rightHand:
+  Skills:
+  - setvariable{var=CASTER.potionVar;val="Poison";t=STRING} @self
+  - shoot{type=potion;potiontype=<caster.var.potionVar>;potioncolor=#61bd17;accuracy=0.95;potionduration=100;velocity=0.8;oE=ero_witch_throw_summon;Origin=@ModelPart{m=ero_witch;p=right_hand};fo=true} @Forward{f=18;y=1.5;sideOffset=0;rotate=0}
+
+ero_witch_randomsPotion_Weakness_rightHand:
+  Skills:
+  - setvariable{var=CASTER.potionVar;val="Weakness";t=STRING} @self
+  - shoot{type=potion;potiontype=<caster.var.potionVar>;potioncolor=#a02b07;accuracy=0.95;potionduration=100;velocity=0.8;oE=ero_witch_throw_summon;Origin=@ModelPart{m=ero_witch;p=right_hand};fo=true} @Forward{f=18;y=1.5;sideOffset=0;rotate=0}
+
+ero_witch_randomsPotion_InstantDamage_rightHand:
+  Skills:
+  - setvariable{var=CASTER.potionVar;val="instant_damage";t=STRING} @self
+  - shoot{type=potion;potiontype=<caster.var.potionVar>;potioncolor=#960700;accuracy=0.95;potionduration=100;velocity=0.8;oE=ero_witch_throw_summon;Origin=@ModelPart{m=ero_witch;p=right_hand};fo=true} @Forward{f=18;y=1.5;sideOffset=0;rotate=0}
+
+ero_witch_randomsPotion_Blindness_rightHand:
+  Skills:
+  - setvariable{var=CASTER.potionVar;val="Blindness";t=STRING} @self
+  - shoot{type=potion;potiontype=<caster.var.potionVar>;potioncolor=#353535;accuracy=0.95;potionduration=100;velocity=0.8;oE=ero_witch_throw_summon;Origin=@ModelPart{m=ero_witch;p=right_hand};fo=true} @Forward{f=18;y=1.5;sideOffset=0;rotate=0}
+
+ero_witch_randomsPotion_leftHand:
+  Skills:
+  - randomskill{skills=ero_witch_randomsPotion_SLOW_leftHand,ero_witch_randomsPotion_Poison_leftHand,ero_witch_randomsPotion_Weakness_leftHand,ero_witch_randomsPotion_InstantDamage_leftHand,ero_witch_randomsPotion_Blindness_leftHand}
+
+ero_witch_randomsPotion_SLOW_leftHand:
+  Skills:
+  - setvariable{var=CASTER.potionVar;val="SLOW";t=STRING} @self
+  - shoot{type=potion;potiontype=<caster.var.potionVar>;potioncolor=#ababab;accuracy=0.95;potionduration=100;velocity=0.8;oE=ero_witch_throw_summon;Origin=@ModelPart{m=ero_witch;p=left_hand};fo=true} @Forward{f=18;y=1.5;sideOffset=0;rotate=0}
+
+ero_witch_randomsPotion_Poison_leftHand:
+  Skills:
+  - setvariable{var=CASTER.potionVar;val="Poison";t=STRING} @self
+  - shoot{type=potion;potiontype=<caster.var.potionVar>;potioncolor=#61bd17;accuracy=0.95;potionduration=100;velocity=0.8;oE=ero_witch_throw_summon;Origin=@ModelPart{m=ero_witch;p=left_hand};fo=true} @Forward{f=18;y=1.5;sideOffset=0;rotate=0}
+
+ero_witch_randomsPotion_Weakness_leftHand:
+  Skills:
+  - setvariable{var=CASTER.potionVar;val="Weakness";t=STRING} @self
+  - shoot{type=potion;potiontype=<caster.var.potionVar>;potioncolor=#a02b07;accuracy=0.95;potionduration=100;velocity=0.8;oE=ero_witch_throw_summon;Origin=@ModelPart{m=ero_witch;p=left_hand};fo=true} @Forward{f=18;y=1.5;sideOffset=0;rotate=0}
+
+ero_witch_randomsPotion_InstantDamage_leftHand:
+  Skills:
+  - setvariable{var=CASTER.potionVar;val="instant_damage";t=STRING} @self
+  - shoot{type=potion;potiontype=<caster.var.potionVar>;potioncolor=#960700;accuracy=0.95;potionduration=100;velocity=0.8;oE=ero_witch_throw_summon;Origin=@ModelPart{m=ero_witch;p=left_hand};fo=true} @Forward{f=18;y=1.5;sideOffset=0;rotate=0}
+
+ero_witch_randomsPotion_Blindness_leftHand:
+  Skills:
+  - setvariable{var=CASTER.potionVar;val="Blindness";t=STRING} @self
+  - shoot{type=potion;potiontype=<caster.var.potionVar>;potioncolor=#353535;accuracy=0.95;potionduration=100;velocity=0.8;oE=ero_witch_throw_summon;Origin=@ModelPart{m=ero_witch;p=left_hand};fo=true} @Forward{f=18;y=1.5;sideOffset=0;rotate=0}
+
+
+ero_witch_throw_summon:
+  Conditions:
+  - chance{chance=0.15}
+  Skills:
+  - summon{t=skeleton;a=1;l=0;r=3} @Origin ?chance{chance=0.85}
+  - summon{t=zombie;a=1;l=0;r=3} @Origin ?chance{chance=0.85}
+  - summon{t=spider;a=1;l=0;r=3} @Origin ?chance{chance=0.85}
+  - summon{t=creeper;a=1;l=0;r=3} @Origin ?chance{chance=0.85}
+
+ero_witch_death:
+  Skills:
+  - shoot{type=LINGERING_POTION;potiontype=POISON;expiration=150;potionduration=100;potioncolor=#69c80e;velocity=0;Origin=@ModelPart{m=ero_witch;p=body};fo=true} @ModelPart{m=ero_witch;p=body}
+  - effect:particles{particle=Smoke;speed=0;Size=1;a=5;hS=0.5;vS=0.15;y=0.3;repeat=10;repeatInterval=1} @ModelPart{m=ero_witch;p=body}
+
+ero_vindicator_run:
+  Skills:
+  - setspeed{speed=1.5;type=WALKING} @self
+ero_vindicator_walk:
+  Skills:
+  - setspeed{speed=1;type=WALKING} @self
+
+ero_vindicator_attack:
+  Cooldown: 1
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=20} @self
+  - skill{s=ero_stopEntity;sync=true;durations=20} @self
+  - state{m=ero_vindicator;s=attack;override=true} @self
+  - delay 10
+  - sound{s=minecraft:entity.player.attack.sweep;p=1;v=1} @self
+  - damage{a=<caster.damage>} @EntitiesInCone{angle=45;range=3;usepitch=true}
+
+ero_vindicator_axe_shoot:
+  Cooldown: 2
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - distance{d=>3} true
+  Skills:
+  - gcd{t=25} @self
+  - skill{s=ero_stopEntity;sync=true;durations=23} @self
+  - state{m=ero_vindicator;s=axe_throwing} @self
+  - delay 10
+  - sound{s=entity.witch.throw;p=0.70;v=1.0} @self
+  - projectile{bulletType=MOB;mob=ero_vindicator_axe;bulletYOffset=0;oH=[
+      - damage{a=<caster.damage>}
+      - potion{t=SLOW;d=60;l=4}
+    ];oT=[
+      - effect:particles{p=reddust;color=#e4e4e4;Size=0.68;a=7;hS=0.1;vS=0.1;delay=1}
+    ];v=17;i=1;hR=0.4;hnp=false;bulletForwardOffset=3.2;g=0.1;mr=99;Origin=@ModelPart{m=ero_vindicator;p=iron_axe};fo=true;sfo=0;syo=0} @Forward{f=99;y=1.8}
+
+ero_vindicator_summon:
+  Cooldown: 40
+  Conditions:
+  - offgcd
+  Skills:
+  - gcd{t=80} @self
+  - skill{s=ero_stopEntity;sync=true;durations=70} @self
+  - potion{t=DAMAGE_RESISTANCE;d=80;l=5;force=true;p=false;i=false} @self
+  - state{s=blow_the_horn} @self
+  - delay 10
+  - sound{s=item.goat_horn.sound.2;p=1.20;v=1.0} @self
+  - delay 15
+  - summon{t=pillager;a=5;l=0;r=3} @self
+
+ero_vindicator_death:
+  Skills:
+  - effect:particles{particle=Smoke;speed=0;Size=1;a=5;hS=0.5;vS=0.15;y=0.3;repeat=10;repeatInterval=1} @ModelPart{m=ero_vindicator;p=body}
+
+
+ero_zombie_attack:
+  Cooldown: 1
+  Conditions:
+  - offgcd
+  - hastag{t=left_arm} castinstead ero_zombie_attack_one_hand
+  Skills:
+  - gcd{t=20} @self
+  - skill{s=ero_stopEntity;sync=true;durations=20} @self
+  - state{m=ero_zombie;s=attack;override=true} @self
+  - delay 10
+  - sound{s=minecraft:entity.player.attack.sweep;p=1;v=1} @self
+  - damage{a="<caster.damage>"} @EntitiesInCone{angle=45;range=3;usepitch=true}
+
+ero_zombie_attack_one_hand:
+  Cooldown: 1
+  Skills:
+  - gcd{t=20} @self
+  - skill{s=ero_stopEntity;sync=true;durations=20} @self
+  - state{m=ero_zombie;s=attack2;override=true} @self
+  - delay 10
+  - sound{s=minecraft:entity.player.attack.sweep;p=1;v=1} @self
+  - damage{a="<caster.damage> * 1.3"} @EntitiesInCone{angle=45;range=3;usepitch=true}
+
+ero_zombie_left_arm:
+  Cooldown: 5
+  Conditions:
+  - offgcd
+  - hastag{t=left_arm} false
+  Skills:
+  - gcd{t=35} @self
+  - potion{t=DAMAGE_RESISTANCE;d=35;l=2;force=true;p=false;i=false} @self
+  - defaultstate{mid=ero_zombie;type=death;state=death_one_arm} @self
+  - skill{s=ero_stopEntity;sync=true;durations=35} @self
+  - state{m=ero_zombie;s=left_arm_missing} @self
+  - delay 35
+  - addtag{t=left_arm} @self
+  - partvis{m=ero_zombie;p=LeftArm;v=false} @self
+
+ero_zombie_left_arm_y:
+  Skills:
+  - sound{s=entity.zombie.infect;p=1.54;v=1.0} @self
+  - sound{s=entity.zombie.destroy_egg;p=0.68;v=1.0} @self
+  - sound{s=entity.zombie_villager.step;p=1.24;v=1.0} @self
+
+ero_zombie_left_arm_s:
+  Skills:
+  - sound{s=entity.zombie.step;p=0.85;v=1.0} @self
+  - sound{s=entity.zombie.infect;p=2.00;v=1.0} @self
+
+ero_zombie_two_arm:
+  Cooldown: 5
+  Conditions:
+  - offgcd
+  - hastag{t=two_arm} false
+  Skills:   
+  - gcd{t=35} @self
+  - potion{t=DAMAGE_RESISTANCE;d=35;l=2;force=true;p=false;i=false} @self
+  - skill{s=ero_stopEntity;sync=true;durations=35} @self
+  - state{m=ero_zombie;s=right_arm_missing} @self
+  - defaultstate{mid=ero_zombie;type=walk;state=walk_away} @self
+  - defaultstate{mid=ero_zombie;type=death;state=death_no_arm} @self
+  - delay 35
+  - addtag{t=two_arm} @self
+  - runaigoalselector{goal=clear} @self
+  - runaigoalselector{goal=fleeplayers{d=10}} @self
+  - runaitargetselector{target=clear} @self
+  - setspeed{speed=1.35;type=WALKING} @self
+  - partvis{m=ero_zombie;p=RightArm;v=false} @self
+
+ero_zombie_right_arm:
+  Cooldown: 5
+  Conditions:
+  - healthpercent{p=>50%}
+  Skills:
+  - gcd{t=23} @self
+  - removetag{t=two_arm;delay=23} @self
+  - setspeed{speed=1;type=WALKING} @self
+  - resetai @self
+  - defaultstate{mid=ero_zombie;type=walk;state=walk} @self
+  - potion{t=DAMAGE_RESISTANCE;d=23;l=2;force=true;p=false;i=false} @self
+  - skill{s=ero_stopEntity;sync=true;durations=23} @self
+  - state{m=ero_zombie;s=right_arm_grows;delay=1} @self
+  - partvis{m=ero_zombie;p=RightArm;v=true;delay=2} @self
+  
+ero_zombie_death:
+  Skills:
+  - skill{s=[
+      - effect:particles{p=falling_dust;material=REDSTONE_BLOCK;speed=9;Size=0.65;a=1;hS=0.05;vS=0.05;repeat=1;repeatInterval=1} @ModelPart{m=ero_zombie;p=RightLeg}
+      - effect:particles{p=falling_dust;material=REDSTONE_BLOCK;speed=9;Size=0.65;a=1;hS=0.05;vS=0.05;repeat=1;repeatInterval=1} @ModelPart{m=ero_zombie;p=LeftLeg}
+      - effect:particles{p=falling_dust;material=REDSTONE_BLOCK;speed=9;Size=0.65;a=1;hS=0.05;vS=0.05;repeat=1;repeatInterval=1} @ModelPart{m=ero_zombie;p=RightArm} ?!hastag{t=two_arm}
+      - effect:particles{p=falling_dust;material=REDSTONE_BLOCK;speed=9;Size=0.65;a=1;hS=0.05;vS=0.05;repeat=1;repeatInterval=1} @ModelPart{m=ero_zombie;p=LeftArm} ?!hastag{t=left_arm}
+      - effect:particles{p=falling_dust;material=REDSTONE_BLOCK;speed=9;Size=0.65;a=1;hS=0.05;vS=0.05;repeat=1;repeatInterval=1} @ModelPart{m=ero_zombie;p=Body}
+      - effect:particles{p=falling_dust;material=REDSTONE_BLOCK;speed=9;Size=0.65;a=1;hS=0.05;vS=0.05;repeat=1;repeatInterval=1} @ModelPart{m=ero_zombie;p=Head}
+    ];sync=true;repeat=99;repeatInterval=1} @self
+  - delay 5
+  - sound{s=entity.zombie_villager.step;p=1.10;v=0.8} @self
+  - sound{s=entity.zombie_villager.cure;p=1.74;v=0.5} @self
+  - sound{s=entity.zombie.death;p=0.90;v=0.7} @self
+  - sound{s=entity.zombie.infect;p=0.75;v=1.0} @self
+  - potion{t=POISON;d=200;l=1;force=false;p=true;i=true} @LivingEntitiesInRadius{r=4.5}
+  - effect:particlesphere{p=Glow_Squid_Ink;amount=45;radius=3} @SelfLocation{y=1.5}
+  - effect:particles{particle=Explosion;speed=0;Size=1;a=3;hS=0.3;vS=0.3;y=0.5} @SelfLocation{y=1}
+  - effect:particlesphere{p=Smoke;amount=75;radius=2;hS=0.5;vS=0.5} @SelfLocation{y=1.5}
+
+

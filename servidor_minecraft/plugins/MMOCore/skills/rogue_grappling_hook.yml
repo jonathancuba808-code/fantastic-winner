@@ -1,0 +1,37 @@
+name: Grappling Hook
+lore:
+- "&4•--"
+- ""
+- "&7Fire a grappling hook. Hitting an enemy pulls them to you;"
+- "&7hitting terrain pulls you toward the hooked spot."
+- "&4•--"
+- "&c🗡 {damage} Damage"
+- "&e⌛ {cooldown}s Cooldown"
+- ""
+- "&4•--"
+material: 'COAL:1932'
+timer:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 8
+  per-level: 0.5
+  min: 8
+  max: 10
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 2
+  per-level: 0
+  min: 2
+  max: 2

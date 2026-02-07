@@ -1,0 +1,45 @@
+{
+  "samus.water_samurai.water_dash": {
+    "category": "master",
+    "sounds": [
+      "samus/water_samurai/water_dash"
+    ]
+  },
+  "samus.water_samurai.water_dragon": {
+    "category": "master",
+    "sounds": [
+      "samus/water_samurai/water_dragon",
+      "samus/water_samurai/water_dragon2"
+    ]
+  },
+  "samus.water_samurai.water_dragon_summon": {
+    "category": "master",
+    "sounds": [
+      "samus/water_samurai/water_dragon_summon"
+    ]
+  },
+  "samus.water_samurai.water_slash": {
+    "category": "master",
+    "sounds": [
+      "samus/water_samurai/water_slash"
+    ]
+  },
+  "samus.water_samurai.water_spin": {
+    "category": "master",
+    "sounds": [
+      "samus/water_samurai/water_spin"
+    ]
+  },
+  "samus.water_samurai.water_wheel": {
+    "category": "master",
+    "sounds": [
+      "samus/water_samurai/water_wheel"
+    ]
+  },
+  "samus.water_samurai.water_wheel2": {
+    "category": "master",
+    "sounds": [
+      "samus/water_samurai/water_wheel2"
+    ]
+  }
+}

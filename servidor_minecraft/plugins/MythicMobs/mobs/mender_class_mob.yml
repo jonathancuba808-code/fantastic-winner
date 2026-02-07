@@ -1,0 +1,179 @@
+vfx_mender_lifebound:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=mender_lifebound} @self ~onSpawn
+  - brightness{mid=mender_lifebound;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=35} @self ~onSpawn
+  
+vfx_mender_spiritbolt:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=mender_spiritbolt} @self ~onSpawn
+  - brightness{mid=mender_spiritbolt;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=idle} @self ~onSpawn
+  
+vfx_mender_spiritbolt_impact:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=mender_spiritbolt_impact} @self ~onSpawn
+  - brightness{mid=mender_spiritbolt_impact;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=14} @self ~onSpawn 
+  
+vfx_mender_cascadebolt:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=mender_cascadebolt;scale=1.2} @self ~onSpawn
+  - segment{m=mender_cascadebolt;p=vfx;bounded=false} @self ~onSpawn
+  - segment{m=mender_cascadebolt;p=lace;roll=true;em=false;angle=80;roll=true} @self ~onSpawn
+  - brightness{mid=mender_cascadebolt;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=idle} @self ~onSpawn   
+  
+vfx_mender_cascadebolt_lg:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=mender_cascadebolt_lg;scale=1.2} @self ~onSpawn
+  - segment{m=mender_cascadebolt_lg;p=vfx;bounded=false} @self ~onSpawn
+  - segment{m=mender_cascadebolt_lg;p=lace;roll=true;em=false;angle=80;roll=true} @self ~onSpawn
+  - brightness{mid=mender_cascadebolt_lg;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=idle} @self ~onSpawn    
+  
+vfx_mender_cascadebolt_shoot:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=mender_cascadebolt_shoot;scale=1.2} @self ~onSpawn
+  - brightness{mid=mender_cascadebolt_shoot;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=11} @self ~onSpawn     
+  
+vfx_mender_cascadebolt_split2:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=mender_cascadebolt_split2;scale=0.7} @self ~onSpawn
+  - brightness{mid=mender_cascadebolt_split2;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=idle} @self ~onSpawn      
+  
+vfx_mender_cascadebolt_impact:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=mender_cascadebolt_impact} @self ~onSpawn
+  - brightness{mid=mender_cascadebolt_impact;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=14} @self ~onSpawn    
+  
+vfx_mender_cascadebolt_split2_impact:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=mender_cascadebolt_split2_impact} @self ~onSpawn
+  - brightness{mid=mender_cascadebolt_split2_impact;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=14} @self ~onSpawn    
+  
+vfx_mender_purging_light:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=mender_purging_light} @self ~onSpawn
+  - brightness{mid=mender_purging_light;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=55} @self ~onSpawn   
+  
+vfx_mender_vital_beam:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=mender_vital_beam} @self ~onSpawn
+  - brightness{mid=mender_vital_beam;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=26} @self ~onSpawn    
+  
+vfx_mender_lifeweavers_grace:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=mender_lifeweavers_grace;scale=0.7} @self ~onSpawn
+  - brightness{mid=mender_lifeweavers_grace;b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=true;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - remove{delay=140} @self ~onSpawn
+  - skill{s=mender_lifeweavers_grace_ballskills;delay=6} ~onSpawn
+  - skill{s=mender_lifeweavers_grace_ballskills;delay=16} ~onSpawn
+  - skill{s=mender_lifeweavers_grace_ballskills;delay=26} ~onSpawn
+  - skill{s=mender_lifeweavers_grace_ballskills;delay=36} ~onSpawn
+  - skill{s=mender_lifeweavers_grace_ballskills;delay=46} ~onSpawn
+  - skill{s=mender_lifeweavers_grace_ballskills;delay=56} ~onSpawn
+  - skill{s=mender_lifeweavers_grace_ballparticles;delay=6} ~onTimer:2
+# F49KnqV9+fGkEFAonISC2wLD2olGNgix+YC3zsiOD8LwZ20KnYGXEZhM6faDRUehYEL8vYRwtOON9I/5Xwj31eiXCCiSEgia9rNmmZJsy5Y=

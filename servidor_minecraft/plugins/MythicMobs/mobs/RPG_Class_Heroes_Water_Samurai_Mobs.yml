@@ -1,0 +1,1111 @@
+VFX_Water_Impact:
+  Type: text_display
+  DisplayOptions:
+    Text: ""
+    BlockLight: 15
+    SkyLight: 15
+    Scale: 1,1,1
+    Billboard: CENTER
+    BackgroundColor: 0,0,0,0
+    Translation: 0,0,0
+    ViewRange: 5
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - settextdisplay{text="ᝠ";delay=0} @self ~onSpawn
+  - settextdisplay{text="ᝡ";delay=1} @self ~onSpawn
+  - settextdisplay{text="ᝢ";delay=2} @self ~onSpawn
+  - settextdisplay{text="ᝣ";delay=3} @self ~onSpawn
+  - settextdisplay{text="ង";delay=4} @self ~onSpawn
+  - settextdisplay{text="ᝤ";delay=5} @self ~onSpawn
+  - settextdisplay{text="ᝥ";delay=6} @self ~onSpawn
+  - remove{delay=7} @self ~onSpawn
+
+VFX_Water_Surface_Slash_1:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=water_surface_slash_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=skill;speed=1} @self ~onSpawn
+  
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_2;np=water_slash;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_3;np=water_slash;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_4;np=water_slash;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_5;np=water_slash;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_6;np=water_slash;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_7;np=water_slash;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_8;np=water_slash;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_2;np=bone;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_3;np=bone;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_4;np=bone;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_5;np=bone;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_6;np=bone;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_7;np=bone;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_8;np=bone;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_2;np=bone2;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_3;np=bone2;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_4;np=bone2;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_5;np=bone2;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_6;np=bone2;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_7;np=bone2;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_8;np=bone2;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_2;np=bone3;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_3;np=bone3;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_4;np=bone3;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_5;np=bone3;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_6;np=bone3;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_7;np=bone3;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_8;np=bone3;delay=15} @self ~onSpawn
+
+  - remove{delay=17} @self ~onSpawn
+
+VFX_Water_Surface_Slash_2:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=water_surface_slash_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=skill2;speed=1} @self ~onSpawn
+  
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_2;np=water_slash;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_3;np=water_slash;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_4;np=water_slash;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_5;np=water_slash;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_6;np=water_slash;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_7;np=water_slash;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_8;np=water_slash;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_2;np=bone;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_3;np=bone;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_4;np=bone;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_5;np=bone;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_6;np=bone;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_7;np=bone;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_8;np=bone;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_2;np=bone2;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_3;np=bone2;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_4;np=bone2;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_5;np=bone2;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_6;np=bone2;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_7;np=bone2;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_8;np=bone2;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_2;np=bone3;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_3;np=bone3;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_4;np=bone3;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_5;np=bone3;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_6;np=bone3;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_7;np=bone3;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_8;np=bone3;delay=15} @self ~onSpawn
+
+  - remove{delay=17} @self ~onSpawn
+
+VFX_Water_Surface_Slash_3:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=water_surface_slash_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=skill3;speed=1} @self ~onSpawn
+  
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_2;np=water_slash;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_3;np=water_slash;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_4;np=water_slash;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_5;np=water_slash;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_6;np=water_slash;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_7;np=water_slash;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_8;np=water_slash;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_2;np=bone;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_3;np=bone;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_4;np=bone;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_5;np=bone;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_6;np=bone;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_7;np=bone;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_8;np=bone;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_2;np=bone2;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_3;np=bone2;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_4;np=bone2;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_5;np=bone2;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_6;np=bone2;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_7;np=bone2;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_8;np=bone2;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_2;np=bone3;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_3;np=bone3;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_4;np=bone3;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_5;np=bone3;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_6;np=bone3;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_7;np=bone3;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_8;np=bone3;delay=15} @self ~onSpawn
+
+  - remove{delay=17} @self ~onSpawn
+
+VFX_Water_Wheel:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=water_wheel;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation;speed=1} @self ~onSpawn
+  
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_2;np=water_slash;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_3;np=water_slash;delay=6} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_4;np=water_slash;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_5;np=water_slash;delay=8} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_6;np=water_slash;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_7;np=water_slash;delay=10} @self ~onSpawn
+  - remove{delay=11} @self ~onSpawn
+
+
+VFX_Flowing_Dance_1:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=flowing_dance_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=flowing_dance_1;speed=1} @self ~onSpawn
+  
+  - aura{delay=3;d=16;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_3;np=dance_slash_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_1;np=asset_water3_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_2;np=asset_water3_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_3;np=asset_water3_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_4;np=asset_water3_4}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_5;np=asset_water3_5}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_6;np=asset_water3_6}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_7;np=asset_water3_7}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_8;np=asset_water3_8}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_9;np=asset_water3_9}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_10;np=asset_water3_10}
+
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_2;np=dance_slash_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_1;np=asset_water2_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_2;np=asset_water2_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_3;np=asset_water2_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_4;np=asset_water2_4}
+
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_1;np=dance_slash_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_1;np=asset_water1_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_2;np=asset_water1_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_3;np=asset_water1_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_4;np=asset_water1_4}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_Flowing_Dance_2:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=flowing_dance_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=flowing_dance_2;speed=1} @self ~onSpawn
+  
+  - aura{delay=3;d=16;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_3;np=dance_slash_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_1;np=asset_water3_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_2;np=asset_water3_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_3;np=asset_water3_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_4;np=asset_water3_4}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_5;np=asset_water3_5}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_6;np=asset_water3_6}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_7;np=asset_water3_7}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_8;np=asset_water3_8}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_9;np=asset_water3_9}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_10;np=asset_water3_10}
+
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_2;np=dance_slash_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_1;np=asset_water2_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_2;np=asset_water2_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_3;np=asset_water2_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_4;np=asset_water2_4}
+
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_1;np=dance_slash_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_1;np=asset_water1_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_2;np=asset_water1_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_3;np=asset_water1_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_4;np=asset_water1_4}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_Flowing_Dance_3:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=flowing_dance_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=flowing_dance_3;speed=1} @self ~onSpawn
+  
+  - aura{delay=3;d=16;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_3;np=dance_slash_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_1;np=asset_water3_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_2;np=asset_water3_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_3;np=asset_water3_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_4;np=asset_water3_4}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_5;np=asset_water3_5}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_6;np=asset_water3_6}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_7;np=asset_water3_7}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_8;np=asset_water3_8}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_9;np=asset_water3_9}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_10;np=asset_water3_10}
+
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_2;np=dance_slash_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_1;np=asset_water2_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_2;np=asset_water2_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_3;np=asset_water2_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_4;np=asset_water2_4}
+
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_1;np=dance_slash_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_1;np=asset_water1_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_2;np=asset_water1_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_3;np=asset_water1_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_4;np=asset_water1_4}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_Flowing_Dance_4:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=flowing_dance_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=flowing_dance_4;speed=1} @self ~onSpawn
+  
+  - aura{delay=3;d=16;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_3;np=dance_slash_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_1;np=asset_water3_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_2;np=asset_water3_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_3;np=asset_water3_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_4;np=asset_water3_4}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_5;np=asset_water3_5}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_6;np=asset_water3_6}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_7;np=asset_water3_7}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_8;np=asset_water3_8}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_9;np=asset_water3_9}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_10;np=asset_water3_10}
+
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_2;np=dance_slash_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_1;np=asset_water2_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_2;np=asset_water2_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_3;np=asset_water2_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_4;np=asset_water2_4}
+
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_1;np=dance_slash_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_1;np=asset_water1_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_2;np=asset_water1_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_3;np=asset_water1_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_4;np=asset_water1_4}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_Flowing_Dance_5:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=flowing_dance_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=flowing_dance_5;speed=1} @self ~onSpawn
+  
+  - aura{delay=3;d=16;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_3;np=dance_slash_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_1;np=asset_water3_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_2;np=asset_water3_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_3;np=asset_water3_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_4;np=asset_water3_4}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_5;np=asset_water3_5}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_6;np=asset_water3_6}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_7;np=asset_water3_7}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_8;np=asset_water3_8}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_9;np=asset_water3_9}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_10;np=asset_water3_10}
+
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_2;np=dance_slash_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_1;np=asset_water2_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_2;np=asset_water2_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_3;np=asset_water2_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_4;np=asset_water2_4}
+
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_1;np=dance_slash_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_1;np=asset_water1_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_2;np=asset_water1_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_3;np=asset_water1_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_4;np=asset_water1_4}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_Flowing_Dance_6:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=flowing_dance_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=flowing_dance_6;speed=1} @self ~onSpawn
+  
+  - aura{delay=3;d=16;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_3;np=dance_slash_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_1;np=asset_water3_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_2;np=asset_water3_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_3;np=asset_water3_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_4;np=asset_water3_4}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_5;np=asset_water3_5}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_6;np=asset_water3_6}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_7;np=asset_water3_7}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_8;np=asset_water3_8}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_9;np=asset_water3_9}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_10;np=asset_water3_10}
+
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_2;np=dance_slash_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_1;np=asset_water2_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_2;np=asset_water2_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_3;np=asset_water2_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_4;np=asset_water2_4}
+
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_1;np=dance_slash_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_1;np=asset_water1_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_2;np=asset_water1_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_3;np=asset_water1_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_4;np=asset_water1_4}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_Flowing_Dance_7:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=flowing_dance_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=flowing_dance_7;speed=1} @self ~onSpawn
+  
+  - aura{delay=3;d=18;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_3;np=dance_slash_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_1;np=asset_water3_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_2;np=asset_water3_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_3;np=asset_water3_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_4;np=asset_water3_4}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_5;np=asset_water3_5}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_6;np=asset_water3_6}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_7;np=asset_water3_7}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_8;np=asset_water3_8}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_9;np=asset_water3_9}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water3_10;np=asset_water3_10}
+
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_2;np=dance_slash_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_1;np=asset_water2_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_2;np=asset_water2_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_3;np=asset_water2_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water2_4;np=asset_water2_4}
+
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=dance_slash_1;np=dance_slash_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_1;np=asset_water1_1}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_2;np=asset_water1_2}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_3;np=asset_water1_3}
+    - changepart{m=flowing_dance_1;nm=flowing_dance_<caster.var.iteration>;p=asset_water1_4;np=asset_water1_4}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+
+
+VFX_Whirlpool:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=whirlpool_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation;speed=1} @self ~onSpawn
+  
+  - aura{delay=2;d=16;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=whirlpool_1;nm=whirlpool_<caster.var.iteration>;p=bone;np=bone}
+    - changepart{m=whirlpool_1;nm=whirlpool_<caster.var.iteration>;p=bone2;np=bone2}
+    - changepart{m=whirlpool_1;nm=whirlpool_<caster.var.iteration>;p=bone3;np=bone3}
+    - changepart{m=whirlpool_1;nm=whirlpool_<caster.var.iteration>;p=bone4;np=bone4}
+    - changepart{m=whirlpool_1;nm=whirlpool_<caster.var.iteration>;p=bone5;np=bone5}
+    - changepart{m=whirlpool_1;nm=whirlpool_<caster.var.iteration>;p=bone6;np=bone6}
+    - changepart{m=whirlpool_1;nm=whirlpool_<caster.var.iteration>;p=bone7;np=bone7}
+    - changepart{m=whirlpool_1;nm=whirlpool_<caster.var.iteration>;p=bone8;np=bone8}
+    - changepart{m=whirlpool_1;nm=whirlpool_<caster.var.iteration>;p=bone9;np=bone9}
+    - changepart{m=whirlpool_1;nm=whirlpool_<caster.var.iteration>;p=bone10;np=bone10}
+    - changepart{m=whirlpool_1;nm=whirlpool_<caster.var.iteration>;p=bone11;np=bone11}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+
+VFX_Water_Surface_Slash_4:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=water_surface_slash_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=skill4;speed=1} @self ~onSpawn
+  
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_2;np=water_slash;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_3;np=water_slash;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_4;np=water_slash;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_5;np=water_slash;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_6;np=water_slash;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_7;np=water_slash;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_8;np=water_slash;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_2;np=bone;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_3;np=bone;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_4;np=bone;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_5;np=bone;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_6;np=bone;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_7;np=bone;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_8;np=bone;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_2;np=bone2;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_3;np=bone2;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_4;np=bone2;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_5;np=bone2;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_6;np=bone2;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_7;np=bone2;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_8;np=bone2;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_2;np=bone3;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_3;np=bone3;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_4;np=bone3;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_5;np=bone3;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_6;np=bone3;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_7;np=bone3;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_8;np=bone3;delay=15} @self ~onSpawn
+
+  - remove{delay=17} @self ~onSpawn
+
+VFX_Water_Surface_Slash_5:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=water_surface_slash_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=skill5;speed=1} @self ~onSpawn
+  
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_2;np=water_slash;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_3;np=water_slash;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_4;np=water_slash;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_5;np=water_slash;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_6;np=water_slash;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_7;np=water_slash;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_8;np=water_slash;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_2;np=bone;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_3;np=bone;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_4;np=bone;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_5;np=bone;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_6;np=bone;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_7;np=bone;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_8;np=bone;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_2;np=bone2;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_3;np=bone2;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_4;np=bone2;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_5;np=bone2;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_6;np=bone2;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_7;np=bone2;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_8;np=bone2;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_2;np=bone3;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_3;np=bone3;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_4;np=bone3;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_5;np=bone3;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_6;np=bone3;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_7;np=bone3;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_8;np=bone3;delay=15} @self ~onSpawn
+
+  - remove{delay=17} @self ~onSpawn
+
+VFX_Water_Surface_Slash_6:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=water_surface_slash_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=skill6;speed=1} @self ~onSpawn
+  
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_2;np=water_slash;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_3;np=water_slash;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_4;np=water_slash;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_5;np=water_slash;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_6;np=water_slash;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_7;np=water_slash;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=water_slash;nm=water_surface_slash_8;np=water_slash;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_2;np=bone;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_3;np=bone;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_4;np=bone;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_5;np=bone;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_6;np=bone;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_7;np=bone;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone;nm=water_surface_slash_8;np=bone;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_2;np=bone2;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_3;np=bone2;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_4;np=bone2;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_5;np=bone2;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_6;np=bone2;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_7;np=bone2;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone2;nm=water_surface_slash_8;np=bone2;delay=15} @self ~onSpawn
+
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_2;np=bone3;delay=3} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_3;np=bone3;delay=5} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_4;np=bone3;delay=7} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_5;np=bone3;delay=9} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_6;np=bone3;delay=11} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_7;np=bone3;delay=13} @self ~onSpawn
+  - changepart{m=water_surface_slash_1;p=bone3;nm=water_surface_slash_8;np=bone3;delay=15} @self ~onSpawn
+
+  - remove{delay=17} @self ~onSpawn
+
+
+
+VFX_Striking_Tide_1:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=striking_tide_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=skill1;speed=1} @self ~onSpawn
+  
+  - aura{delay=2;d=16;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=striking_tide;np=striking_tide}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone;np=bone}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone2;np=bone2}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone3;np=bone3}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone4;np=bone4}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone5;np=bone5}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone6;np=bone6}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_Striking_Tide_2:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=striking_tide_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=skill2;speed=1} @self ~onSpawn
+  
+  - aura{delay=2;d=16;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=striking_tide;np=striking_tide}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone;np=bone}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone2;np=bone2}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone3;np=bone3}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone4;np=bone4}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone5;np=bone5}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone6;np=bone6}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_Striking_Tide_3:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=striking_tide_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=skill3;speed=1} @self ~onSpawn
+  
+  - aura{delay=2;d=16;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=striking_tide;np=striking_tide}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone;np=bone}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone2;np=bone2}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone3;np=bone3}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone4;np=bone4}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone5;np=bone5}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone6;np=bone6}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_Striking_Tide_4:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=striking_tide_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=skill4;speed=1} @self ~onSpawn
+  
+  - aura{delay=2;d=16;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=striking_tide;np=striking_tide}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone;np=bone}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone2;np=bone2}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone3;np=bone3}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone4;np=bone4}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone5;np=bone5}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone6;np=bone6}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_Striking_Tide_5:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=striking_tide_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=skill5;speed=1} @self ~onSpawn
+  
+  - aura{delay=2;d=16;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=striking_tide;np=striking_tide}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone;np=bone}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone2;np=bone2}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone3;np=bone3}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone4;np=bone4}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone5;np=bone5}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone6;np=bone6}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_Striking_Tide_6:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=striking_tide_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=skill6;speed=1} @self ~onSpawn
+  
+  - aura{delay=2;d=16;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=striking_tide;np=striking_tide}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone;np=bone}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone2;np=bone2}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone3;np=bone3}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone4;np=bone4}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone5;np=bone5}
+    - changepart{m=striking_tide_1;nm=striking_tide_<caster.var.iteration>;p=bone6;np=bone6}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+
+VFX_Splashing_Water_Flow:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=splashing_water_flow_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=animation;speed=1} @self ~onSpawn
+  
+  - aura{delay=1;d=18;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=splashing_water_flow_1;nm=splashing_water_flow_<caster.var.iteration>;p=ef_splashing;np=ef_splashing}
+    - changepart{m=splashing_water_flow_1;nm=splashing_water_flow_<caster.var.iteration>;p=asset_splashing1;np=asset_splashing1}
+    - changepart{m=splashing_water_flow_1;nm=splashing_water_flow_<caster.var.iteration>;p=asset_splashing2;np=asset_splashing2}
+    - changepart{m=splashing_water_flow_1;nm=splashing_water_flow_<caster.var.iteration>;p=asset_splashing3;np=asset_splashing3}
+    - changepart{m=splashing_water_flow_1;nm=splashing_water_flow_<caster.var.iteration>;p=asset_splashing4;np=asset_splashing4}
+    - changepart{m=splashing_water_flow_1;nm=splashing_water_flow_<caster.var.iteration>;p=asset_splashing5;np=asset_splashing5}
+    - changepart{m=splashing_water_flow_1;nm=splashing_water_flow_<caster.var.iteration>;p=asset_splashing6;np=asset_splashing6}
+    - changepart{m=splashing_water_flow_1;nm=splashing_water_flow_<caster.var.iteration>;p=ef_water_circle;np=ef_water_circle}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+
+
+
+VFX_WaterDragon_1:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=constant_flux_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=constant_flux_slash_1;speed=1} @self ~onSpawn
+  
+  - aura{delay=14;d=20;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=water_wheel;np=water_wheel}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone;np=bone}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone2;np=bone2}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone3;np=bone3}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone4;np=bone4}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone5;np=bone5}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone6;np=bone6}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone7;np=bone7}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone8;np=bone8}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone9;np=bone9}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone10;np=bone10}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone11;np=bone11}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone12;np=bone12}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone13;np=bone13}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone14;np=bone14}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone15;np=bone15}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone16;np=bone16}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone17;np=bone17}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone18;np=bone18}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone19;np=bone19}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone20;np=bone20}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_WaterDragon_2:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=constant_flux_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=constant_flux_slash_2;speed=1} @self ~onSpawn
+  
+  - aura{delay=2;d=20;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=water_wheel;np=water_wheel}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone;np=bone}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone2;np=bone2}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone3;np=bone3}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone4;np=bone4}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone5;np=bone5}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone6;np=bone6}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone7;np=bone7}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone8;np=bone8}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone9;np=bone9}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone10;np=bone10}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone11;np=bone11}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone12;np=bone12}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone13;np=bone13}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone14;np=bone14}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone15;np=bone15}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone16;np=bone16}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone17;np=bone17}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone18;np=bone18}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone19;np=bone19}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone20;np=bone20}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_WaterDragon_3:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=constant_flux_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=constant_flux_slash_3;speed=1} @self ~onSpawn
+  
+  - aura{delay=2;d=20;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=water_wheel;np=water_wheel}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone;np=bone}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone2;np=bone2}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone3;np=bone3}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone4;np=bone4}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone5;np=bone5}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone6;np=bone6}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone7;np=bone7}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone8;np=bone8}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone9;np=bone9}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone10;np=bone10}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone11;np=bone11}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone12;np=bone12}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone13;np=bone13}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone14;np=bone14}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone15;np=bone15}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone16;np=bone16}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone17;np=bone17}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone18;np=bone18}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone19;np=bone19}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone20;np=bone20}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_WaterDragon_4:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=constant_flux_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=constant_flux_slash_4;speed=1} @self ~onSpawn
+  
+  - aura{delay=2;d=20;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=water_wheel;np=water_wheel}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone;np=bone}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone2;np=bone2}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone3;np=bone3}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone4;np=bone4}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone5;np=bone5}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone6;np=bone6}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone7;np=bone7}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone8;np=bone8}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone9;np=bone9}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone10;np=bone10}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone11;np=bone11}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone12;np=bone12}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone13;np=bone13}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone14;np=bone14}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone15;np=bone15}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone16;np=bone16}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone17;np=bone17}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone18;np=bone18}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone19;np=bone19}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone20;np=bone20}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn
+VFX_WaterDragon_5:
+  Type: block_display
+  DisplayOptions:
+    Block: AIR
+    Billboard: FIXED
+  Options:
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{usestatemachine=true;mid=constant_flux_1;lockpitch=true} @self ~onSpawn
+  - brightness{b=15;s=15} @self ~onSpawn
+  - BodyRotation{playermode=false;stable=0;rdelay=0;rduration=0} @self ~onSpawn
+  - state{s=constant_flux_slash_5;speed=1} @self ~onSpawn
+  
+  - aura{delay=2;d=20;i=2;
+    os=[
+    - setvariable{var=caster.iteration;val=1;type=INTEGER}
+    ];
+    ot=[
+    - setvariable{var=caster.iteration;val="<caster.var.iteration>+1"}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=water_wheel;np=water_wheel}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone;np=bone}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone2;np=bone2}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone3;np=bone3}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone4;np=bone4}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone5;np=bone5}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone6;np=bone6}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone7;np=bone7}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone8;np=bone8}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone9;np=bone9}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone10;np=bone10}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone11;np=bone11}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone12;np=bone12}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone13;np=bone13}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone14;np=bone14}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone15;np=bone15}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone16;np=bone16}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone17;np=bone17}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone18;np=bone18}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone19;np=bone19}
+    - changepart{m=constant_flux_1;nm=constant_flux_<caster.var.iteration>;p=bone20;np=bone20}
+    ];
+    oe=[ - remove @self ]} @self ~onSpawn

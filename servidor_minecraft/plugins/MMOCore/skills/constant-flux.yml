@@ -1,0 +1,38 @@
+name: Constant Flux
+lore:
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+- ""
+- "&7Gain high movement speed while executing a high-power continuous"
+- "&7rotation attack that gains momentum the longer it spins. Unleash"
+- "&7accumulated water energy at the end of the skill, leaving all hit"
+- "&7enemies levitating."
+- "&c🗡 {damage} Damage"
+- "&e⌛ {cooldown}s Cooldown"
+- ""
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+material: 'COAL:2273'
+timer:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 7
+  per-level: 1
+  min: 7
+  max: 10
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 12
+  per-level: -0.01
+  min: 10
+  max: 12

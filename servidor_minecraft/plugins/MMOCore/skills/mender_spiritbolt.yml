@@ -1,0 +1,38 @@
+name: Spirit Bolt
+lore:
+- "&a•--"
+- ""
+- "&7Launch a small spiritbolt. Damages enemies on hit,"
+- "&7but heals players slightly instead."
+- "&a•--"
+- "&c🗡 {damage} Damage"
+- "&e⌛ {cooldown}s Cooldown"
+- "&a💚 10% Healing"
+- ""
+- "&a•--"
+material: 'COAL:1941'
+timer:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 6
+  per-level: 1
+  min: 6
+  max: 10
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 1
+  per-level: -0.05
+  min: 0.9
+  max: 1

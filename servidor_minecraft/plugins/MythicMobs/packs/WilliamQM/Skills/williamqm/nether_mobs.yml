@@ -1,0 +1,279 @@
+
+netherman_scream:
+  Cooldown: 2to4
+  Conditions:
+  - targetwithin{d=10} true
+  - targetnotwithin{d=1} true
+  - offgcd true
+  Skills:
+  - state{s=scream} @self
+  - runaigoalselector{goal=clear}
+  - setspeed{t=walking;s=0} @self
+  - gcd{t=40}
+  - delay 10
+  - sound{s=entity.enderman.scream;p=1;v=1} @self
+  - delay 5
+  - projectile{oT=scream_tick;oH=scream_hit;v=20;i=1;sB=false;sE=false;hnp=true;mr=16} @forward{a=16;uel=true}
+  - delay 8
+  - runaigoalselector{goal=meleeattack}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=randomlookaround}
+  - runaigoalselector{goal=lookatplayers}
+  - setspeed{t=walking;s=1} @self
+scream_tick:
+  Skills:
+  - effect:particles{p=sonic_boom;amount=1;speed=0;hS=0;vS=0} @origin
+scream_hit:
+  Skills:
+  - delay 10
+  - potion{type=SLOW;duration=60;level=2} @EIC{a=130;r=16}
+  - damage{a=2;pi=true;ii=true}
+  - delay 3
+  - damage{a=2;pi=true;ii=true}
+  - delay 3
+  - damage{a=2;pi=true;ii=true}
+
+netherman_swipe:
+  Cooldown: 2to4
+  Conditions:
+  - targetwithin{d=4} true
+  - offgcd true
+  Skills:
+  - state{s=swipe} @self
+  - lockmodel @self
+  - runaigoalselector{goal=clear}
+  - setspeed{t=walking;s=0} @self
+  - potion{type=SLOW;duration=40;level=3} @EIR{r=5}
+  - gcd{t=40}
+  - delay 10
+  - slash{y=1.8;w=4;h=2;mcd=true;a=180;oP=[ - effect:particles{p=snowflake;a=1} ];roll=-45to45} @self
+  - damage{a=4;pi=true;ii=true} @EIC{a=180;r=5}
+  - throw{velocity=10;velocityY=0} @EIC{a=180;r=5}
+  - sound{s=entity.player.attack.knockback;p=1;v=1} @self
+  - delay 21
+  - runaigoalselector{goal=meleeattack}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=randomlookaround}
+  - runaigoalselector{goal=lookatplayers}
+  - lockmodel{l=false} @self
+  - setspeed{t=walking;s=1.5} @self
+
+
+skeleton_whip:
+  Cooldown: 2to4
+  Conditions:
+  - targetwithin{d=6} true
+  - offgcd true
+  Skills:
+  - state{s=whip} @self
+  - lockmodel @self
+  - runaigoalselector{goal=clear}
+  - setspeed{t=walking;s=0} @self
+  - gcd{t=40}
+  - delay 12
+  - potion{type=POISON;duration=40;level=1} @EIC{a=90;r=5}
+  - damage{a=4;pi=true;ii=true} @EIC{a=90;r=5}
+  - sound{s=entity.player.attack.sweep;p=1.7;v=1} @self
+  - delay 12
+  - runaigoalselector{goal=meleeattack}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=randomlookaround}
+  - runaigoalselector{goal=lookatplayers}
+  - lockmodel{l=false} @self
+  - setspeed{t=walking;s=1} @self
+skeleton_spin:
+  Cooldown: 2to4
+  Conditions:
+  - targetwithin{d=4} true
+  - offgcd true
+  Skills:
+  - state{s=spin} @self
+  - lockmodel @self
+  - runaigoalselector{goal=clear}
+  - setspeed{t=walking;s=0} @self
+  - gcd{t=40}
+  - delay 14
+  - damage{a=4;pi=true;ii=true} @EIR{r=4}
+  - throw{velocity=5;velocityY=5} @EIR{r=4}
+  - delay 3
+  - damage{a=2;pi=true;ii=true} @EIR{r=6}
+  - throw{velocity=10;velocityY=0} @EIR{r=6}
+  - sound{s=entity.player.attack.sweep;p=1.7;v=1} @self
+  - delay 14
+  - runaigoalselector{goal=meleeattack}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=randomlookaround}
+  - runaigoalselector{goal=lookatplayers}
+  - lockmodel{l=false} @self
+  - setspeed{t=walking;s=1} @self
+  
+
+creeper_fuse:
+  Conditions:
+  - incombat
+  Skills:
+  - effect:particles{p=soul_fire_flame;amount=4;speed=0;hS=0;vS=0} @selflocation{y=1.8;x=0}
+  - effect:particles{p=smoke;amount=5;speed=0;hS=0.2;vS=0.2} @selflocation{y=1.8;x=0}
+
+creeper_explode:
+  Cooldown: 10
+  Conditions:
+  - targetwithin{d=4} true
+  Skills:
+  - state{s=explode} @self
+  - lockmodel @self
+  - runaigoalselector{goal=clear}
+  - setspeed{t=walking;s=0} @self
+  - gcd{t=40}
+  - delay 8
+  - sound{s=entity.generic.explode;p=1;v=1} @self
+  - skill{s=creeper_projectile} @target
+  - skill{s=creeper_projectile} @selflocation{z=-10}
+  - skill{s=creeper_projectile} @selflocation{z=-10;x=-10}
+  - skill{s=creeper_projectile} @selflocation{z=10}
+  - skill{s=creeper_projectile} @selflocation{z=10;x=-10}
+  - skill{s=creeper_projectile} @selflocation{x=-10}
+  - skill{s=creeper_projectile} @selflocation{z=-10;x=10}
+  - skill{s=creeper_projectile} @selflocation{x=10}
+  - skill{s=creeper_projectile} @selflocation{z=10;x=10}
+  - skill{s=creeper_projectile} @selflocation{y=10}
+  - explosion{yield=1} @self
+  - throw{velocity=20;velocityY=2} @EIR{r=10}
+  - delay 20
+  - remove @self
+creeper_projectile:
+  Skills:
+  - projectile{v=20;oH=[ - damage{a=11;pi=true;ii=true} ];i=1;hnp=true;sE=false;
+    oS=[
+      - vfx{mid=nether_creeper;pid=front_left_forearm}
+      - VFXScale{s=1,1,1}
+      - VFXRot{y=90;z=90to180}
+    ]}
+
+
+scorpion_pinch:
+  Cooldown: 2to4
+  Conditions:
+  - targetwithin{d=3} true
+  Skills:
+  - state{s=pinch} @self
+  - lockmodel @self
+  - runaigoalselector{goal=clear}
+  - setspeed{t=walking;s=0} @self
+  - delay 7
+  - damage{a=7;pi=true;ii=true} @EIC{a=180;r=4}
+  - throw{velocity=10;velocityY=2} @EIC{a=180;r=4}
+  - sound{s=entity.player.attack.sweep;p=0.5;v=1} @self
+  - delay 8
+  - runaigoalselector{goal=meleeattack}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=randomlookaround}
+  - runaigoalselector{goal=lookatplayers}
+  - lockmodel{l=false} @self
+  - setspeed{t=walking;s=1} @self
+  
+scorpion_sting:
+  Cooldown: 2to4
+  Conditions:
+  - targetwithin{d=6} true
+  Skills:
+  - state{s=sting} @self
+  - lockmodel @self
+  - runaigoalselector{goal=clear}
+  - setspeed{t=walking;s=0} @self
+  - delay 7
+  - potion{type=POISON;duration=40;level=1} @EIC{a=90;r=7}
+  - damage{a=4;pi=true;ii=true} @EIC{a=90;r=7}
+  - sound{s=entity.player.attack.knockback;p=0.5;v=1} @self
+  - delay 10
+  - runaigoalselector{goal=meleeattack}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=randomlookaround}
+  - runaigoalselector{goal=lookatplayers}
+  - lockmodel{l=false} @self
+  - setspeed{t=walking;s=1} @self
+  
+
+zombie_kick:
+  Cooldown: 2to4
+  Conditions:
+  - targetwithin{d=3} true
+  - offgcd true
+  Skills:
+  - state{s=kick} @self
+  - lockmodel @self
+  - runaigoalselector{goal=clear}
+  - setspeed{t=walking;s=0} @self
+  - gcd{t=40}
+  - delay 5
+  - sound{s=entity.player.attack.strong;p=0.5;v=1} @self
+  - damage{a=4;pi=true;ii=true} @EIC{a=180;r=3}
+  - throw{velocity=5;velocityY=1} @EIC{a=180;r=3}
+  - delay 9
+  - runaigoalselector{goal=meleeattack}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=randomlookaround}
+  - runaigoalselector{goal=lookatplayers}
+  - lockmodel{l=false} @self
+  - setspeed{t=walking;s=1} @self
+
+zombie_sweep:
+  Cooldown: 2to4
+  Conditions:
+  - targetwithin{d=4} true
+  - offgcd true
+  Skills:
+  - state{s=sweep} @self
+  - lockmodel @self
+  - runaigoalselector{goal=clear}
+  - setspeed{t=walking;s=0} @self
+  - gcd{t=40}
+  - delay 10
+  - sound{s=entity.player.attack.sweep;p=0.5;v=1} @self
+  - potion{type=SLOW;duration=10;level=4} @EIR{r=4}
+  - effect:particlering{p=block_crack;material=REDSTONE_BLOCK;radius=4;points=64;amount=1;hS=0;vS=0} @origin
+  - delay 5
+  - damage{a=4;pi=true;ii=true} @EIR{r=4}
+  - throw{velocity=15;velocityY=5} @EIR{r=4}
+  - delay 15
+  - runaigoalselector{goal=meleeattack}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=randomlookaround}
+  - runaigoalselector{goal=lookatplayers}
+  - lockmodel{l=false} @self
+  - setspeed{t=walking;s=1} @self
+  
+zombie_toss:
+  Cooldown: 2to4
+  Conditions:
+  - targetnotwithin{d=4} true
+  - targetwithin{d=16} true
+  - offgcd true
+  Skills:
+  - state{s=toss} @self
+  - runaigoalselector{goal=clear}
+  - setspeed{t=walking;s=0} @self
+  - gcd{t=40}
+  - delay 8
+  - sound{s=entity.egg.throw;p=0.5;v=1} @self
+  - projectile{oT=lava_tick;oH=lava_hit;oE=lava_land;v=8;i=1;hR=1;vR=1;hnp=true;sE=false;sB=true;sso=1;syo=2;tyo=3;g=0.2} @target
+  - delay 11
+  - runaigoalselector{goal=meleeattack}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=randomlookaround}
+  - runaigoalselector{goal=lookatplayers}
+  - setspeed{t=walking;s=1} @self
+
+lava_tick:
+  Skills:
+  - effect:particles{p=block_crack;material=REDSTONE_BLOCK;amount=1;speed=0;hS=0.1;vS=0.1} @origin
+  - effect:particles{p=reddust;color=#6B0103;amount=2;speed=0;hS=0.1;vS=0.1} @origin
+lava_hit:
+  Skills:
+  - damage{a=7}
+  - throw{velocity=5;velocityY=5}
+lava_land:
+  Skills:
+  - effect:particlering{p=reddust;color=#6B0103;radius=1;points=16;amount=1;hS=0;vS=0} @origin
+  - effect:particlering{p=spell_mob;color=#6B0103;radius=1;points=8;amount=1;hS=0;vS=0} @origin
+  - sound{s=block.lava.extinguish;p=1;v=0.5} @origin

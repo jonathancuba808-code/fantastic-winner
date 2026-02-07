@@ -1,0 +1,821 @@
+ 
+# TRANSLATIONS OF GUI MENU FILES
+ 
+GUI:
+  # Common and repetitive translation items are clustered in this excerpt
+  Common: ''
+  Common back name: <red>Come back
+  Common back lore:
+  - ''
+  - ' <yellow>Click to Come back.'
+  Common next name: <green>Next page
+  Common next lore:
+  - ''
+  - ' <yellow>Click to proceed.'
+  Common previous name: <green>Previous page
+  Common previous lore:
+  - ''
+  - ' <yellow>Click to Come back.'
+  Common fill name: ' '
+  Common fill lore: [
+    ]
+   
+  # Item-by-item translations are below.
+  General: ''
+  General disband_confirm title: <red>Klanı silmeyi onaylayın?
+  General disband_confirm items confirm name: <green>Onayla
+  General disband_confirm items confirm lore:
+  - ''
+  - ' <red>Onaylamak için tıklayın.'
+  General disband_confirm items cancel name: <green>İptal
+  General disband_confirm items cancel lore:
+  - ''
+  - ' <yellow>İptal etmek için tıklayın.'
+  General changeleader_confirm title: <red>Klan Liderini değiştirmeyi onaylıyor musunuz?
+  General changeleader_confirm items confirm name: <green>Onayla
+  General changeleader_confirm items confirm lore:
+  - ''
+  - ' <red>Onaylamak için tıklayın.'
+  General changeleader_confirm items cancel name: <green>İptal
+  General changeleader_confirm items cancel lore:
+  - ''
+  - ' <yellow>İptal etmek için tıklayın.'
+  General clan_homes title: <blue>Klan Evi
+  General clan_homes items ally_homes name: <green>Müttefik evlerini görüntüleyin
+  General clan_homes items ally_homes lore:
+  - ''
+  - ' <yellow>Açmak için tıklayın.'
+  General clan_homes items create name: <green>Yeni bir ev oluştur
+  General clan_homes items create lore:
+  - ''
+  - ' <yellow>Oluşturmak için tıklayın.'
+  General clan_homes items current name: <green>Home %uclans_home:{name}:name%
+  General clan_homes items current lore:
+  - ''
+  - ' <yellow>Ev Bilgisi'
+  - ' <gray>'
+  - ' <gray>Sunucu: <green>%uclans_home:{name}:server%'
+  - ' <gray>İsim: <aqua>%uclans_home:{name}:name%'
+  - ' <gray>Lokasyon: <aqua>%uclans_home:{name}:location%'
+  - ''
+  - ' <yellow>Işınlanmak için Sol-Tıkla '
+  - ' <red>Silmek için sağ tıklayın.'
+  General clan_homes items current visit name: <green>Home %uclans_home:{name}:name%
+  General clan_homes items current visit lore:
+  - ''
+  - ' <yellow>Ev Bilgisi'
+  - ' <gray>'
+  - ' <gray>Sunucu: <green>%uclans_home:{name}:server%'
+  - ' <gray>İsim: <aqua>%uclans_home:{name}:name%'
+  General clan_delhome_confirm title: <dark_red>%home_name% <red>evinin silinmesi onaylansın mı?
+  General clan_delhome_confirm items confirm name: <green>Onaylamak için tıklayın
+  General clan_delhome_confirm items confirm lore:
+  - ' '
+  - ' <yellow>Onaylamak için tıklayın.'
+  General clan_delhome_confirm items cancel name: <green>İptal etmek için tıklayın
+  General clan_delhome_confirm items cancel lore:
+  - ' '
+  - ' <yellow>İptal etmek için tıklayın.'
+  General noclan_home title: <blue>Klan <gray>| <red>Klansız
+  General noclan_home items commands name: <green>Komut Listesi ve Yardım
+  General noclan_home items commands lore:
+  - ' <yellow>Klanlar ve Arazi için komutların tam'
+  - <yellow>listesini görmek için tıklayın.
+  General noclan_home items clans name: <green>Tüm Klanlar
+  General noclan_home items clans lore:
+  - ' <yellow>Klan listesi menüsünü açmak için tıklayın.'
+  General noclan_home items create name: <red>Klanınız yok
+  General noclan_home items create lore:
+  - ' <yellow>Bir Klan oluşturmak için tıklayın.'
+  General noclan_home items profile name: <green>Profilin
+  General noclan_home items profile lore:
+  - ' <yellow>Profilinizi açmak için tıklayın'
+  General clan_home title: <blue>Klan Menüsü
+  General clan_home items info name: <green>Klan %uclans_tag_color%
+  General clan_home items info lore:
+  - ' <yellow>Klan Bilgisi'
+  - ' <gray>'
+  - ' <gray>Patent: <green>%uclans_patent_formated%'
+  - ''
+  - ' <gray>Klan Seviyesi: <green>%uclans_level%'
+  - ' <gray>Klan Puanı: <green>%uclans_points% <dark_gray>(Bir sonraki Seviye Atlama için %uclans_points_to_nextlevel% gerekli)'
+  - ' <gray>Banka: <green>%uclans_money_currency%%uclans_bank_balance%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Açıklama: <aqua>%uclans_desc_color%'
+  - ' '
+  - ' <yellow>Bir durum listesi açmak için tıklayın.'
+  General clan_home items logger name: <green>Klan günlüğü
+  General clan_home items logger lore:
+  - ' <yellow>klan olayları'
+  - ' <gray>'
+  - ' <gray>Miktar: <green>%uclans_logger_amount%'
+  - ' '
+  - ' <yellow>Açmak için tıklayın.'
+  General clan_home items banner name: <green>Klan Banner
+  General clan_home items banner lore:
+  - ' '
+  - ' <yellow>Banner Bilgisi:'
+  - ''
+  - ' <white>Banner durumu: <aqua>%uclans_hasbanner_formated%'
+  - ' <white>Banner: <aqua>%uclans_banner_material%'
+  - ' '
+  - ' <yellow>Klan bannerı sizin markanızdır!'
+  General clan_home items clans name: <green>Tüm Klanlar
+  General clan_home items clans lore:
+  - ' <yellow>Klan listesi menüsünü açmak için tıklayın.'
+  General clan_home items commands name: <green>Komut Listesi ve Yardım
+  General clan_home items commands lore:
+  - ' <yellow>Klanlar ve Arazi için komutların tam'
+  - <yellow>listesini görmek için tıklayın.
+  General clan_home items settings name: <green>Klan Ayarları
+  General clan_home items settings lore:
+  - ' <yellow>Açmak için tıklayın.'
+  General clan_home items home name: <green>Ev menüsünü aç.
+  General clan_home items home lore:
+  - ' <yellow>Açmak için tıklayın.'
+  General clan_home items ally name: <green>Müttefikler
+  General clan_home items ally lore:
+  - ' '
+  - ' <gray>Müttefikler: <aqua>%uclans_clan_count_ally%'
+  - ' '
+  - ' <yellow>Müttefikler menüsünü açmak için tıklayın.'
+  General clan_home items rival name: <green>Düşmanlar
+  General clan_home items rival lore:
+  - ' '
+  - ' <gray>Düşmanlar: <aqua>%uclans_clan_count_rival%'
+  - ' '
+  - ' <yellow>Düşmanlar menüsünü açmak için tıklayın.'
+  General clan_home items members name: <green>Klan Üyeleri
+  General clan_home items members lore:
+  - ' '
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ' '
+  - ' <yellow>Üyeler menüsünü açmak için tıklayın.'
+  General player_profile title: <blue>Profil <gray>| <green>%uclans_player%
+  General player_profile items head name: <green>%uclans_player%
+  General player_profile items head lore:
+  - ''
+  - ' <gray>Klan: <aqua>%uclans_hasclan_formated%'
+  - ' <gray>Rol: <aqua>%uclans_player_role_formated%'
+  - ' <gray>Lider: <aqua>%uclans_leader_formated%'
+  - ' '
+  - ' <gray>Takma Ad: <aqua>%uclans_player%'
+  - ' <gray>Kdr: <aqua>%uclans_player_kills%<dark_gray>/<aqua>%uclans_player_deaths% <dark_gray>(%uclans_player_kdr%)'
+  - ' <gray>Giriş: <aqua>%uclans_player_joindate_formated%'
+  - ' <gray>Son Görülme: <aqua>%uclans_player_lastsee_formated%'
+  General player_profile items invites name: <green>Davetiyeler.
+  General player_profile items invites lore:
+  - ''
+  - ' <yellow>Gelen Davetleri Yönetin.'
+  - ' <yellow>Açmak için tıklayın.'
+  General player_profile items settings name: <green>Profil ayarları.
+  General player_profile items settings lore:
+  - ''
+  - ' <yellow>Profil tercihlerinizi düzenleyin.'
+  - ' '
+  - ' <yellow>Açmak için tıklayın.'
+  General player_settings title: <blue>Profil Ayarları Menüsü
+  General player_settings items nickname name: <green>Görünür takma adı değiştir.
+  General player_settings items nickname lore:
+  - ''
+  - ' <gray>İsim: <aqua>%uclans_player_realname%'
+  - ' <gray>Şuanda: <aqua>%uclans_player_nickname%'
+  - ''
+  - ' <yellow>Değiştirmek için SOL-TIKLA.'
+  - ' <red>Sıfırlamak için SAĞ-TIKLA.'
+  General player_settings items skin name: <green>Skin Güncelle.
+  General player_settings items skin lore:
+  - ''
+  - ' <yellow>Mevcut skini güncellemek için tıklayın.'
+  General player_settings items skin_cooldown name: <green>Skin Güncellendi!
+  General player_settings items skin_cooldown lore:
+  - ''
+  - ' <red>Tekrar güncellemek için <aqua>%time%</aqua> <red>bekleyin.'
+  General player_settings items invite name: <green>Klan Davetiyeleri.
+  General player_settings items invite lore:
+  - ''
+  - ' <white>Durum: %uclans_player_settings_state:INVITATIONS%'
+  - ''
+  - ' <yellow>Değiştirmek için tıklayın.'
+  - ''
+  - ' <red>Bu seçenek devre dışı bırakılırsa,'
+  - <red>klan daveti almazsınız.
+  General clan_stats title: <blue>Stats <gray>| %uclans_tag_nocolor%
+  General clan_stats items limits name: '<green>Klan Limitleri:'
+  General clan_stats items limits lore:
+  - ' '
+  - '<yellow>Limitler Hakkında:'
+  - ' '
+  - ' <gray>Evler: <aqua>%uclans_limit_home%'
+  - ' <gray>Müttefikler: <aqua>%uclans_limit_ally%'
+  - ' <gray>Düşmanlar: <aqua>%uclans_limit_rival%'
+  - ' <gray>Slotlar: <aqua>%uclans_slots_total%'
+  - ' '
+  - ' <yellow>Klan seviye kazandıkça'
+  - <yellow>sınırlar artar.
+  General clan_stats items member_rival_ally name: '<green>Üyeler, Düşmanlar ve Müttefikler:'
+  General clan_stats items member_rival_ally lore:
+  - ' '
+  - '<yellow>Üyeler, Düşmanlar ve Müttefikler Hakkında:'
+  - ' '
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ' <gray>Çevrimiçi Üyeler: <aqua>%uclans_count_onlinemembers%'
+  - ' <gray>Müttefikler: <aqua>%uclans_clan_count_ally%'
+  - ' <gray>Düşmanlar: <aqua>%uclans_clan_count_rival%'
+  General clan_stats items others name: '<green>Diğer istatistikler:'
+  General clan_stats items others lore:
+  - ' '
+  - '<yellow>Diğer:'
+  - ' '
+  - ' <gray>Katılan Üyeler: <aqua>%uclans_clan_member_joined%'
+  - ' <gray>Ayrılan Üyeler: <aqua>%uclans_clan_member_leave%'
+  - ' <gray>Atılan Üyeler: <aqua>%uclans_clan_member_kicked%'
+  - ' <gray>Tag değişiklikleri: <aqua>%uclans_clan_tag_changed%'
+  General clan_stats items status name: '<green>Status:'
+  General clan_stats items status lore:
+  - ' '
+  - '<yellow>Durum hakkında:'
+  - ' '
+  - ' <gray>Banka: <green>%uclans_money_currency%%uclans_bank_balance%'
+  - ' <gray>Ruhlar: <green>%uclans_money_currency%%uclans_clan_souls%'
+  - ' <gray>Seviye: <aqua>%uclans_level%'
+  - ' <gray>Maksimum ulaşılan seviye: <aqua>%uclans_max_level_reached%'
+  - ' <gray>Klan Puanları: <aqua>%uclans_points%'
+  - ' <gray>Bitirilen Görevler: <aqua>%uclans_quest_finished%'
+  General clan_stats items war name: '<green>Savaş istatistikleri:'
+  General clan_stats items war lore:
+  - ' '
+  - '<yellow>Savaşlar hakkında:'
+  - ' '
+  - ' <gray>Kazanılan Savaşlar: <aqua>%uclans_clan_war_win%'
+  - ' <gray>Kaybedilen Savaşlar: <aqua>%uclans_clan_war_lose%'
+  - ' <grayTotal Savaşlar: <aqua>%uclans_clan_war_total%'
+  General clan_stats items kdr name: '<green>KDR:'
+  General clan_stats items kdr lore:
+  - ' '
+  - '<yellow>Kdr hakkında:'
+  - ' '
+  - ' <gray>Öldürmeler: <aqua>%uclans_clan_kills%'
+  - ' <gray>Ölmeler: <aqua>%uclans_clan_deaths%'
+  - ' <gray>Total kdr: <aqua>%uclans_clan_kdr%'
+  General clan_stats items banner name: <green>Klan Banner
+  General clan_stats items banner lore:
+  - ' '
+  - ' <yellow>Banner Bilgisi:'
+  - ''
+  - ' <white>Banner durumu: <aqua>%uclans_hasbanner_formated%'
+  General clan_stats items foundation name: '<green>Temel:'
+  General clan_stats items foundation lore:
+  - ' '
+  - '<yellow>Temel hakkında:'
+  - ' '
+  - ' <gray>Patent: <green>%uclans_patent_formated%'
+  - ' <gray>Lider: <aqua>%uclans_leader%'
+  - ' <gray>Oluşturulma: <aqua>%uclans_creation_date_formated%'
+  - ' <gray>Doğrulama: <white>%uclans_verified%'
+  - ' <gray>Slotlar: <white>%uclans_slots% <dark_gray>(+%uclans_slots_extra%)'
+  - ' <gray>Herkese Açık: <white>%uclans_isopen_formated%'
+  - ' '
+  - ' <gray>Moderatörler (%uclans_count_moderators%):'
+  - '  <green>%uclans_moderators%'
+  General clan_stats items members name: <green>Üye Listesi
+  General clan_stats items members lore:
+  - ' '
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Açmak için tıkla.'
+  General clan_stats items homes name: <green>Ev listesi
+  General clan_stats items homes lore:
+  - ' '
+  - ' <gray>Evler: <aqua>%uclans_home%'
+  - ''
+  - ' <yellow>Açmak için tıkla.'
+  General clan_settings title: <red>Ayarlar Menüsü
+  General clan_settings items clan_roles name: <green>Klan rolleri
+  General clan_settings items clan_roles lore:
+  - ''
+  - ' <yellow>Klan rollerini yönet.'
+  - ' <yellow>Açmak için tıkla.'
+  General clan_settings items member_ban name: <green>Yasaklanan oyuncular.
+  General clan_settings items member_ban lore:
+  - ''
+  - ' <white>Yasaklanan: <aqua>%uclans_count_banned%'
+  - ''
+  - ' <red>Yasaklanan oyuncular klana açılırsa'
+  - <red>katılamazlar ve tekrar davet edilemezler.
+  - ''
+  - ' <yellow>Açmak için tıkla.'
+  General clan_settings items clan_edit name: <green>Klanı düzenle.
+  General clan_settings items clan_edit lore:
+  - ''
+  - ' <yellow>Klan ayarlarını düzenle.'
+  - ' <yellow>Açmak için tıkla.'
+  General clan_roles title: <red>Klan Rolleri
+  General clan_roles items update name: <red>Senkronizasyon izinleri
+  General clan_roles items update lore:
+  - ' <yellow>Varsayılan izinlerle senkronize'
+  - <yellow>etmek için tıklayın.
+  General clan_roles items blocked name: <red>%name%
+  General clan_roles items blocked lore:
+  - ' '
+  - ' <yellow>Bu rolü düzenleyemezsiniz'
+  General clan_roles_editor title: <red>Yetki Düzenleyici <gray>| <aqua>%name%
+  General clan_roles_editor items current name: <green>%key%
+  General clan_roles_editor items current lore:
+  - ' '
+  - ' <white>Durum: %value%'
+  - ''
+  - ' <yellow>Değiştirmek için tıkla'
+  General banned_members title: <red>Yasaklanan oyuncular <gray>| <aqua>%amount%
+  General banned_members items current name: <aqua>%uclans_player%
+  General banned_members items current lore:
+  - ' <yellow>Bu oyuncunun <red>YASAKLANMASINI KALDIRMAK</red><yellow> için tıklayın.'
+  General banned_members items add name: <red>Bir oyuncuyu yasakla
+  General banned_members items add lore:
+  - ' <yellow>Yasaklamak için tıklayın.'
+  General clan_actions title: <red>Klanı Düzenle
+  General clan_actions items desc name: <green>Klan Açıklamasını Değiştirme
+  General clan_actions items desc lore:
+  - ' <yellow>Klan açıklamasını değiştirmek için tıklayın.'
+  General clan_actions items modtag name: <green>Klan Tagını Değiştir
+  General clan_actions items modtag lore:
+  - ' <yellow>Klan tagını değiştirmek için tıklayın'
+  General clan_actions items join_leave name: <green>Katılma ve Ayrılma
+  General clan_actions items join_leave lore:
+  - ' '
+  - ' <white>Durum: %uclans_actions_state:JOINLEAVE%'
+  - ''
+  - ' <yellow>Değiştirmek için tıkla '
+  - ' '
+  - ' <red>Devre dışı bırakıldığında,'
+  - <red>klanınıza girerken veya çıkarken
+  - <red>mesaj gelmez.
+  General clan_actions items opened name: <green>Herkese açık klan
+  General clan_actions items opened lore:
+  - ' '
+  - ' <white>Durum: %uclans_actions_state:OPENED%'
+  - ''
+  - ' <yellow>Klan herkese açıksa veya yalnızca davetlilere'
+  - <yellow>açıksa açıp kapatmak için tıklayın.
+  General clan_actions items publichomes name: <green>Evler halka açıktır
+  General clan_actions items publichomes lore:
+  - ' '
+  - ' <white>Durum: %uclans_actions_state:PUBLICHOMES%'
+  - ''
+  - ' <yellow>Evleri herkese açık ve diğer klanlar'
+  - <yellow>tarafından görülebilir hale getirmek
+  - <yellow>için açıp kapatmak için tıklayın.
+  General clan_actions items ff name: <green>Dost ateşi
+  General clan_actions items ff lore:
+  - ' '
+  - ' <white>Durum: %uclans_actions_state:CLANFF%'
+  - ''
+  - ' <yellow>Değiştirmek için tıkla '
+  - ' '
+  - ' <red>Etkinleştirildiğinde, üyeler'
+  - <red>birbirlerine saldırabilir.
+  General clan_actions items allysharedhome name: <green>Müttefikle paylaşılan ev
+  General clan_actions items allysharedhome lore:
+  - ' '
+  - ' <white>Durum: %uclans_actions_state:ALLYSHAREDHOME%'
+  - ''
+  - ' <yellow>Değiştirmek için tıkla '
+  - ' '
+  - ' <red>Devre dışı bırakıldığında, klanınızın'
+  - <red>evleri müttefik ev listesinde görünmeyecek.
+  General clan_actions items allysharedchat name: <green>Müttefikle paylaşılan sohbet
+  General clan_actions items allysharedchat lore:
+  - ' '
+  - ' <white>Durum: %uclans_actions_state:ALLYSHAREDCHAT%'
+  - ''
+  - ' <yellow>Değiştirmek için tıkla '
+  - ' '
+  - ' <red>Devre dışı bırakıldığında klanınız'
+  - <red>müttefiklerden mesaj almaz veya göndermez.
+  General clan_actions items warinvite name: <green>Savaş Davetiyeleri
+  General clan_actions items warinvite lore:
+  - ' '
+  - ' <white>Durum: %uclans_actions_state:WARINVITE%'
+  - ''
+  - ' <yellow>Değiştirmek için tıkla '
+  - ' '
+  - ' <red>Devre dışı bırakıldığında klanınız'
+  - <red>meydan okuma almaz
+  General clan_actions items delete name: <red>Klanı sil
+  General clan_actions items delete lore:
+  - ' <yellow>Klanı silmek için tıklayın'
+  - ' <red>Bunu ancak Lider yapabilir.!'
+  - ' <red>Bu, arazinizdeki korumayı kaldıracaktır.'
+  - ' <red>Bu, SOHBETTE onay gerektirir!'
+  - ' '
+  - ' <red>Dikkat, bu işlem geri alınamaz!'
+  General clan_top title: <blue>Klan Listesi <gray>| <green>%current%
+  General clan_top items active name: ' <green>Mevcut'
+  General clan_top items active lore: [
+    ]
+  General clan_top items all name: <red>Tüm Klanlar
+  General clan_top items all lore:
+  - ' <yellow>Görüntülemek için tıklayın'
+  - ' '
+  General clan_top items kdr name: <red>Top KDR
+  General clan_top items kdr lore:
+  - ' <yellow>KDR listesini'
+  - '<yellow>istemek için tıkla '
+  - ' '
+  General clan_top items kill name: <red>Top ÖLDÜRME
+  General clan_top items kill lore:
+  - ' <yellow>ÖLDÜRME listesini'
+  - '<yellow>istemek için tıkla '
+  - ' '
+  General clan_top items death name: <red>Top ÖLME
+  General clan_top items death lore:
+  - ' <yellow>ÖLME listesini'
+  - '<yellow>istemek için tıkla '
+  - ' '
+  General clan_top items bank name: <red>Top BANKA
+  General clan_top items bank lore:
+  - ' <yellow>BANKA listesini'
+  - '<yellow>istemek için tıkla '
+  - ' '
+  General clan_top items member name: <red>Top ÜYE
+  General clan_top items member lore:
+  - ' <yellow>ÜYE listesini'
+  - '<yellow>istemek için tıkla '
+  - ' '
+  General clan_top items level name: <red>Top Seviye
+  General clan_top items level lore:
+  - ' <yellow>Seviye listesini'
+  - '<yellow>istemek için tıkla '
+  - ' '
+  General clan_top items war name: <red>Top Savaş
+  General clan_top items war lore:
+  - ' <yellow>En iyi savaş listesini'
+  - '<yellow>istemek için tıkla '
+  - ' '
+  General clan_top items point name: <red>Tüm puanlar
+  General clan_top items point lore:
+  - ' <yellow>En iyi puan listesini'
+  - '<yellow>istemek için tıkla '
+  - ' '
+  General clan_top items patent name: <red>Patent
+  General clan_top items patent lore:
+  - ' <yellow>En iyi patent listesini'
+  - '<yellow>istemek için tıkla '
+  - ' '
+  General clan_top items current_war name: <green>Klan %uclans_tag_color%
+  General clan_top items current_war lore:
+  - ''
+  - ' <yellow>Klan Bilgisi'
+  - ' <gray>'
+  - ' <gray>Kazanılan savaşlar: <green>%uclans_clan_war_win%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Lider: <aqua>%uclans_leader%'
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Bilgileri görüntülemek için sağ-tıklayın.'
+  General clan_top items current_bank name: <green>Clan %uclans_tag_color%
+  General clan_top items current_bank lore:
+  - ''
+  - ' <yellow>Klan Bilgisi'
+  - ' <gray>'
+  - ' <gray>Banka: <green>%uclans_money_currency%%uclans_bank_balance%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Lider: <aqua>%uclans_leader%'
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Bilgileri görüntülemek için sağ-tıklayın.'
+  General clan_top items current_member name: <green>Klan %uclans_tag_color%
+  General clan_top items current_member lore:
+  - ''
+  - ' <yellow>Klan Bilgisi'
+  - ' <gray>'
+  - ' <gray>Üyeler: <green>%uclans_count_members%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Lider: <aqua>%uclans_leader%'
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Bilgileri görüntülemek için sağ-tıklayın.'
+  General clan_top items current_death name: <green>Klan %uclans_tag_color%
+  General clan_top items current_death lore:
+  - ''
+  - ' <yellow>Klan Bilgisi'
+  - ' <gray>'
+  - ' <gray>Ölmeler: <green>%uclans_clan_deaths%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Lider: <aqua>%uclans_leader%'
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Bilgileri görüntülemek için sağ-tıklayın.'
+  General clan_top items current_kill name: <green>Klan %uclans_tag_color%
+  General clan_top items current_kill lore:
+  - ''
+  - ' <yellow>Klan Bilgisi'
+  - ' <gray>'
+  - ' <gray>Öldürmeler: <green>%uclans_clan_kills%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Lider: <aqua>%uclans_leader%'
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Bilgileri görüntülemek için sağ-tıklayın.'
+  General clan_top items current_kdr name: <green>Klan %uclans_tag_color%
+  General clan_top items current_kdr lore:
+  - ''
+  - ' <yellow>Klan Bilgisi'
+  - ' <gray>'
+  - ' <gray>KDR: <green>%uclans_clan_kdr%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Lider: <aqua>%uclans_leader%'
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Bilgileri görüntülemek için sağ-tıklayın.'
+  General clan_top items current_level name: <green>Klan %uclans_tag_color%
+  General clan_top items current_level lore:
+  - ''
+  - ' <yellow>Klan Bilgisi'
+  - ' <gray>'
+  - ' <gray>Seviye: <green>%uclans_level%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Lider: <aqua>%uclans_leader%'
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Bilgileri görüntülemek için sağ-tıklayın.'
+  General clan_top items current_point name: <green>Klan %uclans_tag_color%
+  General clan_top items current_point lore:
+  - ''
+  - ' <yellow>Klan Bilgisi'
+  - ' <gray>'
+  - ' <gray>Puanlar: <green>%uclans_points%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Lider: <aqua>%uclans_leader%'
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Bilgileri görüntülemek için sağ-tıklayın.'
+  General clan_top items current_all name: <green>Klan %uclans_tag_color%
+  General clan_top items current_all lore:
+  - ''
+  - ' <yellow>Klan Bilgisi'
+  - ' <gray>'
+  - ' <gray>Oluşturulma: <green>%uclans_creation_date_formated%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Lider: <aqua>%uclans_leader%'
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Bilgileri görüntülemek için sağ-tıklayın.'
+  General clan_top items current_patent name: <green>Klan %uclans_tag_color%
+  General clan_top items current_patent lore:
+  - ''
+  - ' <yellow>Klan Bilgisi'
+  - ' <gray>'
+  - ' <gray>Patent: <green>%uclans_patent_formated%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Lider: <aqua>%uclans_leader%'
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Bilgileri görüntülemek için sağ-tıklayın.'
+  General clan_top items current name: <green>Klan %uclans_tag_color%
+  General clan_top items current lore:
+  - ''
+  - ' <yellow>Klan Bilgisi'
+  - ' <gray>'
+  - ' <gray>Seviye: <green>%uclans_level%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Lider: <aqua>%uclans_leader%'
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Bilgileri görüntülemek için sağ-tıklayın.'
+  General clan_members_invite title: <blue>Üyeleri davet et
+  General clan_members_invite items current name: <green>%uclans_player%
+  General clan_members_invite items current lore:
+  - ''
+  - ' <gray>Takma ad: <aqua>%uclans_player%'
+  - ' <gray>Kdr: <aqua>%uclans_player_kills%<dark_gray>/<aqua>%uclans_player_deaths% <dark_gray>(%uclans_player_kdr%)'
+  - ' <gray>Katılma: <aqua>%uclans_player_joindate_formated%'
+  - ' <gray>Son görülme: <aqua>%uclans_player_lastsee_formated%'
+  - ' '
+  - ' <yellow>Davet etmek için tıklayın.'
+  General clan_members_invite items search name: <red>Arama
+  General clan_members_invite items search lore:
+  - ' <yellow>Üye aramak için tıklayın.'
+  General clan_search_members_invite title: <blue>Arama <gray>| <dark_red>%amount% sonuç(lar)<gray>
+  General clan_search_members_invite items current name: <green>%uclans_player%
+  General clan_search_members_invite items current lore:
+  - ''
+  - ' <gray>Takma ad: <aqua>%uclans_player%'
+  - ' <gray>Kdr: <aqua>%uclans_player_kills%<dark_gray>/<aqua>%uclans_player_deaths% <dark_gray>(%uclans_player_kdr%)'
+  - ' <gray>Katılma: <aqua>%uclans_player_joindate_formated%'
+  - ' <gray>Son görülme: <aqua>%uclans_player_lastsee_formated%'
+  - ' '
+  - ' <yellow>Davet etmek için tıklayın.'
+  General rival title: <blue>Düşman listesi <gray>| %uclans_tag_nocolor%
+  General rival items current name: <green>Klan %uclans_tag_color%
+  General rival items current lore:
+  - ''
+  - ' <yellow>Klan Bilgisi'
+  - ' <gray>'
+  - ' <gray>Seviye: <green>%uclans_level%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Lider: <aqua>%uclans_leader%'
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Bilgileri görüntülemek için Sol Tıklayın.'
+  - ' <yellow>Bunu kaldırmak için sağ tıklayın.'
+  General ally title: <blue>List of alliances <gray>| %uclans_tag_color%
+  General ally items current name: <green>Clan %uclans_tag_color%
+  General ally items current lore:
+  - ''
+  - ' <yellow>Klan Bilgisi'
+  - ' <gray>'
+  - ' <gray>Seviye: <green>%uclans_level%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Lider: <aqua>%uclans_leader%'
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Bilgileri görüntülemek için Sol Tıklayın.'
+  - ' <yellow>Bunu kaldırmak için sağ tıklayın.'
+  General members title: <blue>Üye Listesi <gray>| %uclans_tag_nocolor%
+  General members items invite name: <green>Oyuncuları davet et
+  General members items invite lore:
+  - ' <yellow>Yeni üye davet etmek için tıklayın'
+  General members items current name: <green>%uclans_player%
+  General members items current lore:
+  - ''
+  - ' <gray>Rol: <aqua>%uclans_player_role_formated%'
+  - ' <gray>Takma ad: <aqua>%uclans_player%'
+  - ' <gray>Kdr: <aqua>%uclans_player_kills%<dark_gray>/<aqua>%uclans_player_deaths% <dark_gray>(%uclans_player_kdr%)'
+  - ' <gray>Katılma: <aqua>%uclans_player_joindate_formated%'
+  - ' <gray>Son görülme: <aqua>%uclans_player_lastsee_formated%'
+  - ' '
+  - ' <yellow>Profili görüntülemek için tıklayın.'
+  General listhomes title: <blue>Ev Listesi <gray>| %uclans_tag_nocolor%
+  General listhomes items current name: <green>Ev %uclans_home:{name}:name%
+  General listhomes items current lore:
+  - ''
+  - ' <yellow>Ev Bilgisi'
+  - ' <gray>'
+  - ' <gray>Sunucu: <green>%uclans_home:{name}:server%'
+  - ' <gray>İsim: <aqua>%uclans_home:{name}:name%'
+  - ' <gray>Lokasyon: <aqua>%uclans_home:<num>:location%'
+  General clan_allyhome title: <blue>Müttefik Evleri
+  General clan_allyhome items current name: <green>Ev %uclans_home:{name}:name% of clan %uclans_tag_color%.
+  General clan_allyhome items current lore:
+  - ''
+  - ' <yellow>Ev Bilgisi'
+  - ' <gray>'
+  - ' <gray>Klan: <aqua>%uclans_tag_color%'
+  - ' <gray>Sunucu: <green>%uclans_home:{name}:server%'
+  - ' <gray>İsim: <aqua>%uclans_home:{name}:name%'
+  - ''
+  - ' <yellow>Işınlanmak için Sol-Tıkla.'
+  General invites items current name: <green>%uclans_tag_color% klanın daveti
+  General invites items current lore:
+  - ''
+  - ' <yellow>Davetiye bilgileri'
+  - ' <gray>'
+  - ' <gray>Klan: <green>%uclans_tag_color%'
+  - ' <gray>Patent: <aqua>%uclans_patent_formated%'
+  - ' <gray>Seviye: <aqua>%uclans_level%'
+  - ' <gray>Üyeler: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Kabul etmek için Sol-Tıkla.'
+  - ' <red>Reddetmek için Sağ-Tıkla.'
+  General banner_home title: <blue><bold>Banner menüsü
+  General banner_home items current name: <green>Mevcut Banner
+  General banner_home items current lore:
+  - ' '
+  - ' <yellow>Klan bannerı sizin markanızdır.'
+  - ''
+  - ' <aqua><bold><< <red>Yanlardaki düğmeleri kullanın <aqua><bold>>>'
+  General banner_home items upload name: <green>Yükle
+  General banner_home items upload lore:
+  - ''
+  - ' <yellow>Yükleme menüsünü açmak için tıklayın.'
+  General banner_home items delete name: <green>Bir Bannerı Sil
+  General banner_home items delete lore:
+  - ''
+  - ' <yellow>Geçerli bannerı silmek için tıklayın.'
+  General banner_home items pre name: <green>Önceden oluşturulmuş bannerlar.
+  General banner_home items pre lore:
+  - ''
+  - ' <yellow>Listeyi açmak için tıklayın.'
+  General banner_home_pre title: <blue>Banner simgesini seçin
+  General banner_home_pre items current name: <green>%name%.
+  General banner_home_pre items current lore:
+  - ''
+  - ' <yellow>Seçmek için tıkla.'
+  General banner_home_pre items common name: '<green>Filtre: <aqua>Yaygın'
+  General banner_home_pre items common lore:
+  - ''
+  - ' <yellow>Filtreyi uygulamak için tıklayın.'
+  General banner_home_pre items common_current name: '<green>Filtre: <aqua>Yaygın'
+  General banner_home_pre items common_current lore:
+  - ''
+  - ' <green>Geçerli filtre'
+  General banner_home_pre items head name: '<green>Filtre: <aqua>Başlıklar'
+  General banner_home_pre items head lore:
+  - ''
+  - ' <yellow>Filtre uygulamak için tıklayın.'
+  General banner_home_pre items head_current name: '<green>Filtre: <aqua>Başlıklar'
+  General banner_home_pre items head_current lore:
+  - ''
+  - ' <green>Geçerli filtre'
+  General banner_home_pre items banner name: '<green>Filtre: <aqua>Bannerlar'
+  General banner_home_pre items banner lore:
+  - ''
+  - ' <yellow>Filtre uygulamak için tıklayın.'
+  General banner_home_pre items banner_current name: '<green>Filtre: <aqua>Bannerlar'
+  General banner_home_pre items banner_current lore:
+  - ''
+  - ' <green>Geçerli filtre'
+  General banner_delete title: <red>Geçerli bannerı silmeyi onaylayın?
+  General banner_delete items confirm name: <green>Onayla
+  General banner_delete items confirm lore:
+  - ''
+  - ' <red>Onaylamak için tıklayın.'
+  General banner_delete items cancel name: <green>İptal
+  General banner_delete items cancel lore:
+  - ''
+  - ' <yellow>İptal etmek için tıklayın.'
+  General banner_upload title: <blue>Banner Yükle
+  General banner_upload items upload_slot name: ''
+  General banner_upload items upload_slot lore: [
+    ]
+  General banner_upload items confirm name: <green>Kaydetmek için tıklayın.
+  General banner_upload items confirm lore:
+  - ''
+  - ' <yellow>Kaydetmek için buraya tıklayın.'
+  General clan_logger title: <blue>Klan Günlüğü <gray>| <green>{timer}
+  General clan_logger items current name: '<white>Kaynak:  <green>%uclans_logger:{id}:plugin%'
+  General clan_logger items current lore:
+  - ' '
+  - ' <white>Tarih: <aqua>%uclans_logger:{id}:date% <dark_gray>(Bitmesine: %uclans_logger:{id}:expires%)'
+  - ' '
+  - ' <gray>- <yellow>%uclans_logger:{id}:text%'
+  General clan_logger items clear name: <green>Tüm günlüğü temizle
+  General clan_logger items clear lore:
+  - ''
+  - ' <yellow>Temizlemek için tıklayın.'
+  - ''
+  - <red>! Bu geri alınamaz
+  General clan_logger items filter_all name: '<green>Filtre: <aqua>Hepsi'
+  General clan_logger items filter_all lore:
+  - ''
+  - ' <yellow>Filtre uygulamak için tıklayın.'
+  General clan_logger items filter_all_current name: '<green>Filtre: <aqua>Hepsi'
+  General clan_logger items filter_all_current lore:
+  - ''
+  - ' <green>Geçerli filtre'
+  General clan_logger items filter_daily name: '<green>Filtre: <aqua>Günlük'
+  General clan_logger items filter_daily lore:
+  - ''
+  - ' <yellow>Filtre uygulamak için tıklayın.'
+  General clan_logger items filter_daily_current name: '<green>Filtre: <aqua>Günlük'
+  General clan_logger items filter_daily_current lore:
+  - ''
+  - ' <green>Geçerli filtre'
+  General clan_logger items filter_weekly name: '<green>Filtre: <aqua>Haftalık'
+  General clan_logger items filter_weekly lore:
+  - ''
+  - ' <yellow>Filtre uygulamak için tıklayın.'
+  General clan_logger items filter_weekly_current name: '<green>Filtre: <aqua>Haftalık'
+  General clan_logger items filter_weekly_current lore:
+  - ''
+  - ' <green>Geçerli filtre'
+  General clan_logger items filter_monthly name: '<green>Filtre: <aqua>Aylık'
+  General clan_logger items filter_monthly lore:
+  - ''
+  - ' <yellow>Filtre uygulamak için tıklayın.'
+  General clan_logger items filter_monthly_current name: '<green>Filtre: <aqua>Aylık'
+  General clan_logger items filter_monthly_current lore:
+  - ''
+  - ' <green>Geçerli filtre'
+  General clan_logger items filter_yearly name: '<green>Filtre: <aqua>Yıllık'
+  General clan_logger items filter_yearly lore:
+  - ''
+  - ' <yellow>Filtre uygulamak için tıklayın.'
+  General clan_logger items filter_yearly_current name: '<green>Filtre: <aqua>Yıllık'
+  General clan_logger items filter_yearly_current lore:
+  - ''
+  - ' <green>Geçerli filtre'
+  General clear_logger_confirm title: <red>Klan günlüğünü temizlemeyi onaylayın?
+  General clear_logger_confirm items confirm name: <green>Onayla
+  General clear_logger_confirm items confirm lore:
+  - ''
+  - ' <red>Onaylamak için tıklayın.'
+  General clear_logger_confirm items cancel name: <green>İptal
+  General clear_logger_confirm items cancel lore:
+  - ''
+  - ' <yellow>İptal etmek için tıklayın.'

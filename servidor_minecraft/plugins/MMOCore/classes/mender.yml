@@ -1,0 +1,53 @@
+display:
+    name: '&a&lMender'
+    lore:
+    - '&bChoose the Mender Class'
+    item: STONE_SWORD:4597 # Supports custom model data/texture by durability
+
+exp-curve: levels
+
+max-level: 100
+
+exp-table: class_exp_table
+
+skills:
+    MENDER_LIFEBOUND:
+        level: 1
+        max-level: 30
+    MENDER_SPIRITBOLT:
+        level: 1
+        max-level: 30
+    MENDER_CASCADEBOLT:
+        level: 1
+        max-level: 30
+    MENDER_PURGING_LIGHT:
+        level: 1
+        max-level: 30 
+    MENDER_VITAL_BEAM:
+        level: 1
+        max-level: 30
+    MENDER_LIFEWEAVERS_GRACE:
+        level: 1
+        max-level: 20
+    
+
+skill-slots:
+    1:
+        name: "&aSkill Slot I (Passive)"
+        formula: "<PASSIVE>"
+        unlocked-by-default: true
+    2:
+        name: "&aSkill Slot II"
+        unlocked-by-default: true
+    3:
+        name: "&aSkill Slot III"
+        unlocked-by-default: true
+    4:
+        name: "&aSkill Slot IV"
+        unlocked-by-default: true
+    5:
+        name: "&aSkill Slot V"
+        unlocked-by-default: true
+    6:
+        name: "&aSkill Slot VI"
+        unlocked-by-default: true

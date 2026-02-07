@@ -1,0 +1,156 @@
+AWAKENED_MAGE_RUNESTAFF:
+  base:
+    material: STONE_SWORD
+    custom-model-data: 2089.0
+    name: <gradient:#4c00ff:#75acff:#4c00ff>Runestaff
+    lore:
+    - <gradient:#4c00ff:#75acff:#4c00ff>The Runestaff of the Awakened Mage
+    displayed-type: <gradient:#4c00ff:#75acff:#4c00ff>Awakened Mage
+    attack-damage: 5.0
+    unbreakable: true
+    ability:
+      ability1:
+        type: MANA_BARRIER
+        mode: TIMER
+        timer: 10
+        barriercooldown: 7
+        cooldown: 0
+      ability2:
+        type: SORCERY_COMBO
+        mode: LEFT_CLICK
+        damage: 5
+        burndamage: 1
+        burnduration: 3
+        slowduration: 3
+        cooldown: 0.3
+      ability3:
+        type: TELEPORT_STRIKE
+        mode: RIGHT_CLICK
+        damage: 5
+        stunduration: 2
+        cooldown: 2
+      ability4:
+        type: BLAZING_BARRAGE
+        mode: SNEAK
+        damage: 5
+        burndamage: 1
+        burnduration: 3
+        skillcooldown: 3
+      ability5:
+        type: CRYO_PRISON
+        mode: TIMER
+        timer: 10
+        damage: 6
+        freezedamage: 5
+        freezeduration: 3
+        skillcooldown: 3
+      ability6:
+        type: HAILPIERCER
+        mode: SHIFT_RIGHT_CLICK
+        damage: 5
+        slowduration: 4
+        cooldown: 3
+      ability7:
+        type: METEOR_OF_DOOM
+        mode: SHIFT_LEFT_CLICK
+        damage: 20
+        burndamage: 2
+        burnduration: 7
+        cooldown: 7
+    disable-attack-passive: true
+    attack-speed: 1.0
+WARRIOR_BATTLEBLADE:
+  base:
+    material: STONE_SWORD
+    custom-model-data: 4572
+    name: <gradient:#877b93:#9896ad:#abb6c1>Battleblade
+    lore:
+    - <gradient:#877b93:#9896ad:#abb6c1>Battleblade of the Warrior Class
+    displayed-type: <gradient:#877b93:#9896ad:#abb6c1>Warrior
+    attack-damage: 5.0
+    unbreakable: true
+    ability:
+      ability1:
+        type: WARRIOR_RAGE
+        mode: DAMAGED
+      ability2:
+        type: WARRIOR_FURIOUSSLASH
+        mode: LEFT_CLICK
+        damage: 8
+        cooldown: 0.2
+      ability3:
+        type: WARRIOR_FURIOUSSTRIKE
+        mode: RIGHT_CLICK
+        damage: 4
+        cooldown: 0.2
+      ability4:
+        type: WARRIOR_WHIRLWIND
+        mode: SNEAK
+        damage: 15
+        cooldown: 6
+      ability5:
+        type: WARRIOR_HELLBLADE
+        mode: SHIFT_RIGHT_CLICK
+        damage: 20
+        cooldown: 10
+      ability6:
+        type: WARRIOR_LEAPINGSLASH
+        mode: SHIFT_LEFT_CLICK
+        damage: 15
+        cooldown: 3
+    disable-attack-passive: true
+    attack-speed: 1.0
+WATER_SAMURAI_KATANA:
+  base:
+    material: STONE_SWORD
+    custom-model-data: 2084.0
+    name: <gradient:#0022e0:#25deff:#0022e0>Water Katana
+    lore:
+    - <gradient:#0022e0:#25deff:#0022e0>The Water Katana of the Water Samurai
+    displayed-type: <gradient:#0022e0:#25deff:#0022e0>Water Samurai
+    attack-damage: 5.0
+    unbreakable: true
+    ability:
+      ability1:
+        type: SPLASHING_WATER_FLOW_TURBULENT
+        mode: TIMER
+        timer: 10
+      ability2:
+        type: WATER_SURFACE_SLASH
+        mode: LEFT_CLICK
+        damage: 4
+        cooldown: 0.2
+      ability3:
+        type: WATER_WHEEL
+        mode: RIGHT_CLICK
+        damage: 4
+        cooldown: 2
+      ability4:
+        type: FLOWING_DANCE
+        mode: SNEAK
+        damage: 5
+        skillcooldown: 4
+      ability5:
+        type: WHIRLPOOL
+        mode: TIMER
+        timer: 10
+        damage: 4
+        skillcooldown: 6
+      ability6:
+        type: STRIKING_TIDE
+        mode: SHIFT_RIGHT_CLICK
+        damage: 4
+        cooldown: 3
+      ability7:
+        type: CONSTANT_FLUX
+        mode: SHIFT_LEFT_CLICK
+        damage: 7
+        cooldown: 12
+    disable-attack-passive: true
+    attack-speed: 1.0
+OVERLORD_SWORD:
+  base:
+    material: NETHERITE_SWORD
+    custom-model-data: 2000.0
+    name: '&6&lOverlords Blade'
+    attack-damage: 10.0

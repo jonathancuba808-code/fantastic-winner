@@ -1,0 +1,844 @@
+hv_selenia_spawn:
+  Skills:
+  - defaultstate{t=idle;s=not_active} @self 
+  - lockmodel{l=true;delay=2} @self
+  - setspeed{s=0} @self 
+  - addtag{t=hv_selenia_not_active} @self
+  - partvis{mid=hv_selenia;p=damage;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=damage2;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=death_sword;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=moon_jump_vfx;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=daggers;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=stars;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=left_phase1_train2;v=false;child=true} @self 
+  - partvis{mid=hv_selenia;p=right_phase1_train;v=false;child=true} @self 
+  - partvis{mid=hv_selenia;p=left_phase2_vfxs;v=false;child=true} @self 
+  - partvis{mid=hv_selenia;p=right_phase2_vfxs;v=false;child=true} @self 
+  - partvis{mid=hv_selenia;p=phase1_poke_train;v=false;child=true} @self 
+  - partvis{mid=hv_selenia;p=left_fire_blade;v=false;child=true} @self 
+  - partvis{mid=hv_selenia;p=left_fire_blade2;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=right_moon_blade;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=right_moon_blade2;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=left_phase2_train2;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=right_phase2_train;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=phase2_poke_train;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=fire_dance2;v=false;child=true} @self
+  - BodyClamp{mh=25;rde=0;rdu=0} @self
+  
+hv_selenia_death:
+  Skills:
+  - partvis{mid=hv_selenia;p=death_sword;v=true;child=true;delay=55} @self
+  - partvis{mid=hv_selenia;p=left_phase1_train2;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=moon_jump_vfx;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=daggers;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=stars;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=left_phase1_train2;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=right_phase1_train;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=left_phase2_vfxs;v=false;child=true} @self 
+  - partvis{mid=hv_selenia;p=right_phase2_vfxs;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=phase1_poke_train;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=left_fire_blade;v=false;child=true} @self 
+  - partvis{mid=hv_selenia;p=left_fire_blade2v=false;child=true} @self 
+  - partvis{mid=hv_selenia;p=right_moon_blade;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=right_moon_blade2;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=left_blade;v=true;child=true} @self 
+  - partvis{mid=hv_selenia;p=left_blade2;v=true;child=true} @self 
+  - partvis{mid=hv_selenia;p=right_blade;v=true;child=true} @self 
+  - partvis{mid=hv_selenia;p=right_blade2;v=true;child=true} @self 
+  - partvis{mid=hv_selenia;p=left_phase2_train2;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=right_phase2_train;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=phase2_poke_train;v=false;child=true} @self
+  - partvis{mid=hv_selenia;p=fire_dance2;v=false;child=true} @self
+  - sound{s=hv_selenia.landing;v=5;p=1.5;delay=10} @self
+  - sound{s=hv_selenia.landing;v=5;p=1;delay=95} @self
+  
+
+hv_selenia_active:
+  Cooldown: 10
+  Conditions:
+  - targetwithin{d=20} true
+  - hastag{t=hv_selenia_active} false
+  Skills:
+  - gcd{ticks=40} @self
+  - setspeed{s=0} @self
+  - state{s=active} @self
+  - lockmodel{l=false} @self 
+  - defaultstate{t=idle;s=idle} @self
+  - addtag{t=hv_selenia_active} @self
+  - sound{s=hv_selenia.landing;v=5;p=2;delay=10} @self
+  - sound{s=hv_selenia.landing;v=5;p=1.5;delay=25} @self
+  - delay 40
+  - removetag{t=hv_selenia_not_active} @self
+  - setspeed{s=0.8} @self
+  
+hv_selenia_phase2:
+  Conditions:
+  - offgcd
+  - hastag{t=hv_selenia_phase2} false
+  - health{h=<250} true
+  - targetwithin{d=32} true
+  Skills:
+  - gcd{ticks=70} @self
+  - state{s=phase2} @self
+  - setspeed{s=0} @self
+  - partvis{mid=hv_selenia;p=left_phase2_vfxs;v=true;child=true;delay=5} @self
+  - partvis{mid=hv_selenia;p=left_fire_blade;v=true;child=true;delay=5} @self 
+  - partvis{mid=hv_selenia;p=left_fire_blade2;v=true;child=true;delay=5} @self
+  - partvis{mid=hv_selenia;p=right_phase2_vfxs;v=true;child=true;delay=5} @self
+  - partvis{mid=hv_selenia;p=right_moon_blade;v=true;child=true;delay=5} @self
+  - partvis{mid=hv_selenia;p=right_moon_blade2;v=true;child=true;delay=5} @self
+  - partvis{mid=hv_selenia;p=left_blade;v=true;child=true;delay=5} @self
+  - partvis{mid=hv_selenia;p=left_blade;v=false;child=true;delay=40} @self
+  - partvis{mid=hv_selenia;p=left_blade2;v=false;child=true;delay=40} @self
+  - partvis{mid=hv_selenia;p=right_blade;v=false;child=true;delay=40} @self
+  - partvis{mid=hv_selenia;p=right_blade2;v=false;child=true;delay=40} @self
+  - sound{s=hv_selenia.phase2_swing;v=5;p=1;delay=29} @self
+  - sound{s=hv_selenia.phase2_swing2;v=5;p=1.1;delay=30} @self
+  - addtag{t=hv_selenia_phase2} @self
+  - delay 70
+  - setspeed{s=0.8} @self
+  
+
+hv_selenia_phase1_skills:
+  Conditions:
+  - hastag{t=hv_selenia_phase2} false
+  - hastag{t=hv_selenia_not_active} false
+  Skills:
+  - randomskill{s=hv_selenia_range1,hv_selenia_range_combo1,hv_selenia_melee_attack,hv_selenia_jump_back,hv_selenia_melee_combo1,hv_selenia_melee_combo2,hv_selenia_moon_jump} @target
+  
+hv_selenia_phase2_skills:
+  Conditions:
+  - hastag{t=hv_selenia_phase2} true
+  Skills:
+  - randomskill{s=hv_selenia_range1,hv_selenia_range_combo1_p2,hv_selenia_jump_back,hv_selenia_melee_attack_p2,hv_selenia_melee_combo1_p2,hv_selenia_melee_combo2_p2,hv_selenia_fire_dance,hv_selenia_moon_jump_p2} @target
+  
+hv_selenia_step:
+  Conditions:
+  - moving true
+  - inblock{b=WATER,LAVA} false
+  - offgcd
+  Skills:
+  - randomskill{s=hv_selenia_step1,hv_selenia_step2,hv_selenia_step3}
+  
+hv_selenia_step1:
+  Skills:
+  - sound{s=hv_selenia.step;v=3;p=1.2} @self
+  
+hv_selenia_step2:
+  Skills:
+  - sound{s=hv_selenia.step;v=3;p=1.3} @self
+  
+hv_selenia_step3:
+  Skills:
+  - sound{s=hv_selenia.step;v=3;p=1.5} @self
+  
+  
+hv_selenia_range1:
+  Cooldown: 16
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - distance{d=6to18} true
+  Skills:
+  - gcd{ticks=48} @self
+  - state{s=range1} @self
+  - setspeed{s=0} @self
+  - partvis{mid=hv_selenia;p=daggers;v=true;child=true;delay=10} @self
+  - partvis{mid=hv_selenia;p=daggers;v=false;child=true;delay=35} @self 
+  - sound{s=entity.allay.item_thrown;v=5;p=1;delay=12} @self
+  - sound{s=entity.allay.item_thrown;v=5;p=1;delay=14} @self
+  - sound{s=entity.allay.item_thrown;v=5;p=1;delay=16} @self
+  - sound{s=entity.allay.item_thrown;v=5;p=1;delay=18} @self
+  - sound{s=entity.allay.item_thrown;v=5;p=1;delay=20} @self
+  - sound{s=entity.drowned.shoot;v=5;p=1;delay=32} @self
+  - delay 30 
+  - lockmodel{l=true} @self
+  - propel{v=3} @forward{f=-2;yo=0.1;lockpitch=true}
+  - delay 2
+  - projectile{b=MOB;mm=hv_selenia_dagger;ti=25;v=45;syo=4;tyo=1;so=-1;oH=hv_selenia_dagger_damage;se=false;sb=true} @modelpart{pid=damage;o=model;x=-1.5}
+  - projectile{b=MOB;mm=hv_selenia_dagger;ti=25;v=45;syo=4.5;tyo=1;so=-0.5;oH=hv_selenia_dagger_damage;se=false;sb=true} @modelpart{pid=damage;o=model;x=-0.75}
+  - projectile{b=MOB;mm=hv_selenia_dagger;ti=25;v=45;syo=5;tyo=1;so=0;oH=hv_selenia_dagger_damage;se=false;sb=true} @modelpart{pid=damage;o=model}
+  - projectile{b=MOB;mm=hv_selenia_dagger;ti=25;v=45;syo=4.5;tyo=1;so=0.5;oH=hv_selenia_dagger_damage;se=false;sb=true} @modelpart{pid=damage;o=model;x=0.75}
+  - projectile{b=MOB;mm=hv_selenia_dagger;ti=25;v=45;syo=4;tyo=1;so=1;oH=hv_selenia_dagger_damage;se=false;sb=true} @modelpart{pid=damage;o=model;x=1.5}
+  - delay 8
+  - lockmodel{l=false} @self
+  - delay 5
+  - setspeed{s=0.8} @self
+
+hv_selenia_dagger_damage:
+  Skills:
+  - basedamage{m=2.5;pi=true}
+  - throw{v=5;vy=0}
+
+hv_selenia_range_combo1:
+  Cooldown: 16
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - distance{d=6to12} true
+  Skills:
+  - gcd{ticks=48} @self
+  - state{s=range_combo1} @self
+  - setspeed{s=0} @self
+  - aura{auraName=hv_selenia_range_combo1_totem;onTick=hv_selenia_range_combo1_totem_tick;interval=1;duration=2;delay=17} @self
+  - aura{auraName=hv_selenia_range_combo1_totem1;onTick=hv_selenia_range_combo1_totem_tick1;interval=1;duration=2;delay=20} @self
+  - aura{auraName=hv_selenia_range_combo1_totem2;onTick=hv_selenia_range_combo1_totem_tick;interval=1;duration=3;delay=29} @self
+  - aura{auraName=hv_selenia_range_combo1_totem3;onTick=hv_selenia_range_combo1_totem_tick2;interval=1;duration=2;delay=33} @self
+  - partvis{mid=hv_selenia;p=left_phase1_train2;v=true;child=true;delay=15} @self 
+  - partvis{mid=hv_selenia;p=right_phase1_train;v=true;child=true;delay=15} @self 
+  - partvis{mid=hv_selenia;p=phase1_poke_train;v=true;child=true;delay=15} @self
+  - partvis{mid=hv_selenia;p=left_phase1_train2;v=false;child=true;delay=45} @self 
+  - partvis{mid=hv_selenia;p=right_phase1_train;v=false;child=true;delay=45} @self 
+  - partvis{mid=hv_selenia;p=phase1_poke_train;v=false;child=true;delay=45} @self 
+  - sound{s=hv_selenia.swing;v=5;p=1.7;delay=16} @self
+  - sound{s=hv_selenia.swing;v=5;p=1.4;delay=20} @self
+  - sound{s=hv_selenia.swing;v=5;p=1.1;delay=28} @self
+  - sound{s=hv_selenia.swing;v=5;p=2;delay=31} @self
+  - delay 12
+  - setspeed{s=3} @self
+  - delay 10
+  - setspeed{s=0} @self
+  - delay 6
+  - setspeed{s=2.5} @self
+  - delay 6
+  - setspeed{s=0} @self
+  - lockmodel{l=true} @self
+  - delay 11
+  - lockmodel{l=false} @self
+  - delay 3
+  - setspeed{s=0.8} @self
+
+hv_selenia_range_combo1_totem_tick:
+  Skills:
+  - totem{md=1;oH=hv_selenia_range_combo1_damage;hr=3;vr=3;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_range_combo1_totem_tick1:
+  Skills:
+  - totem{md=1;oH=hv_selenia_range_combo1_damage1;hr=3;vr=3;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_range_combo1_totem_tick2:
+  Skills:
+  - totem{md=1;oH=hv_selenia_range_combo1_damage2;hr=2;vr=2;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_range_combo1_damage:
+  Skills:
+  - basedamage{m=1.5;pi=true}
+  - throw{v=5;vy=0}
+  - shieldbreak{duration=60}
+  
+hv_selenia_range_combo1_damage1:
+  Skills:
+  - basedamage{m=1.5;pi=true}
+  - throw{v=5;vy=0}
+  - shieldbreak{duration=60}
+  
+hv_selenia_range_combo1_damage2:
+  Skills:
+  - basedamage{m=2;pi=true}
+  - throw{v=10;vy=0}
+  - shieldbreak{duration=60}
+  
+hv_selenia_melee_attack:
+  Cooldown: 10
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - distance{d=0to6} true
+  Skills:
+  - gcd{ticks=32} @self
+  - state{s=melee_attack} @self
+  - setspeed{s=0} @self
+  - aura{auraName=hv_selenia_melee_attack_totem;onTick=hv_selenia_melee_attack_totem_tick;interval=1;duration=3;delay=17} @self
+  - partvis{mid=hv_selenia;p=right_phase1_train;v=true;child=true;delay=5} @self 
+  - partvis{mid=hv_selenia;p=right_phase1_train;v=false;child=true;delay=25} @self  
+  - sound{s=hv_selenia.swing;v=5;p=1;delay=14} @self
+  - delay 14
+  - setspeed{s=2} @self
+  - delay 4
+  - setspeed{s=0} @self
+  - lockmodel{l=true} @self
+  - delay 10
+  - lockmodel{l=false} @self
+  - delay 4
+  - setspeed{s=0.8} @self
+  
+hv_selenia_melee_attack_totem_tick:
+  Skills:
+  - totem{md=1;oH=hv_selenia_melee_attack_damage;hr=2.5;vr=2.5;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_melee_attack_damage:
+  Skills:
+  - basedamage{m=2.5}
+  - throw{v=5;vy=0}
+  - shieldbreak{duration=80}
+  
+hv_selenia_jump_back:
+  Cooldown: 10
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - distance{d=0to4} true
+  Skills:
+  - gcd{t=30} @self
+  - state{s=jump_back} @self
+  - setspeed{s=0} @self
+  - sound{s=hv_selenia.swing;v=5;p=0.5;delay=6} @self
+  - sound{s=hv_selenia.landing;v=5;p=1.5;delay=15} @self
+  - delay 10
+  - propel{v=3.5} @forward{f=-2;yo=0.1;lockpitch=true}
+  - delay 20
+  - setspeed{s=0.8} @self
+  
+hv_selenia_melee_combo1:
+  Cooldown: 16
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - distance{d=0to6} true
+  Skills:
+  - gcd{ticks=50} @self
+  - state{s=melee_combo1} @self
+  - setspeed{s=0} @self
+  - aura{auraName=hv_selenia_melee_combo1_totem;onTick=hv_selenia_melee_combo1_totem_tick;interval=1;duration=3;delay=10} @self
+  - aura{auraName=hv_selenia_melee_combo1_totem1;onTick=hv_selenia_melee_combo1_totem_tick1;interval=1;duration=3;delay=21} @self
+  - aura{auraName=hv_selenia_melee_combo1_totem2;onTick=hv_selenia_melee_combo1_totem_tick2;interval=1;duration=3;delay=29} @self
+  - partvis{mid=hv_selenia;p=left_phase1_train2;v=true;child=true;delay=5} @self 
+  - partvis{mid=hv_selenia;p=right_phase1_train;v=true;child=true;delay=5} @self 
+  - partvis{mid=hv_selenia;p=left_phase1_train2;v=false;child=true;delay=34} @self 
+  - partvis{mid=hv_selenia;p=right_phase1_train;v=false;child=true;delay=34} @self 
+  - sound{s=hv_selenia.swing;v=5;p=1.7;delay=10} @self
+  - sound{s=hv_selenia.swing;v=5;p=1.4;delay=20} @self
+  - sound{s=hv_selenia.swing;v=5;p=1;delay=29} @self
+  - sound{s=hv_selenia.swing;v=5;p=1.1;delay=30} @self
+  - delay 10
+  - setspeed{s=2} @self
+  - delay 4
+  - setspeed{s=0} @self
+  - delay 6
+  - setspeed{s=2} @self
+  - delay 4
+  - setspeed{s=0} @self
+  - delay 3
+  - setspeed{s=2} @self
+  - delay 4
+  - lockmodel{l=true} @self
+  - setspeed{s=0} @self
+  - delay 14
+  - lockmodel{l=false} @self
+  - delay 5
+  - setspeed{s=0.8} @self
+  
+hv_selenia_melee_combo1_totem_tick:
+  Skills:
+  - totem{md=1;oH=hv_selenia_melee_combo1_damage;hr=2.5;vr=2.5;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_melee_combo1_totem_tick1:
+  Skills:
+  - totem{md=1;oH=hv_selenia_melee_combo1_damage1;hr=2.5;vr=2.5;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_melee_combo1_totem_tick2:
+  Skills:
+  - totem{md=1;oH=hv_selenia_melee_combo1_damage2;hr=3;vr=3;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_melee_combo1_damage:
+  Skills:
+  - basedamage{m=1.5;pi=true}
+  - throw{v=4;vy=2}
+  - shieldbreak{duration=60}
+  
+hv_selenia_melee_combo1_damage1:
+  Skills:
+  - basedamage{m=1.5;pi=true}
+  - throw{v=4;vy=2}
+  - shieldbreak{duration=60}
+  
+hv_selenia_melee_combo1_damage2:
+  Skills:
+  - basedamage{m=2.5;pi=true}
+  - throw{v=15;vy=2}
+  - shieldbreak{duration=60}
+  
+hv_selenia_melee_combo2:
+  Cooldown: 16
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - distance{d=0to6} true
+  Skills:
+  - gcd{ticks=50} @self
+  - state{s=melee_combo2} @self
+  - setspeed{s=0} @self
+  - aura{auraName=hv_selenia_melee_combo2_totem;onTick=hv_selenia_melee_combo2_totem_tick;interval=1;duration=3;delay=15} @self
+  - aura{auraName=hv_selenia_melee_combo2_totem1;onTick=hv_selenia_melee_combo2_totem_tick1;interval=1;duration=3;delay=30} @self
+  - partvis{mid=hv_selenia;p=left_phase1_train2;v=true;child=true;delay=5} @self 
+  - partvis{mid=hv_selenia;p=right_phase1_train;v=true;child=true;delay=5} @self 
+  - partvis{mid=hv_selenia;p=left_phase1_train2;v=false;child=true;delay=34} @self 
+  - partvis{mid=hv_selenia;p=right_phase1_train;v=false;child=true;delay=34} @self 
+  - sound{s=hv_selenia.swing;v=5;p=1.2;delay=13} @self
+  - sound{s=hv_selenia.swing;v=5;p=1.4;delay=14} @self
+  - sound{s=hv_selenia.swing;v=5;p=1.3;delay=28} @self
+  - sound{s=hv_selenia.swing;v=5;p=1.5;delay=29} @self
+  - delay 14
+  - setspeed{s=3} @self
+  - delay 3
+  - setspeed{s=0} @self
+  - lockmodel{l=true} @self
+  - delay 3
+  - lockmodel{l=false} @self
+  - delay 10
+  - setspeed{s=3} @self
+  - delay 3
+  - lockmodel{l=true} @self
+  - setspeed{s=0} @self
+  - delay 12
+  - lockmodel{l=false} @self
+  - delay 5
+  - setspeed{s=0.8} @self
+   
+hv_selenia_melee_combo2_totem_tick:
+  Skills:
+  - totem{md=1;oH=hv_selenia_melee_combo2_damage;hr=2.5;vr=2.5;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_melee_combo2_totem_tick1:
+  Skills:
+  - totem{md=1;oH=hv_selenia_melee_combo2_damage1;hr=2.5;vr=2.5;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_melee_combo2_damage:
+  Skills:
+  - basedamage{m=2}
+  - throw{v=4;vy=2}
+  - shieldbreak{duration=60}
+  
+hv_selenia_melee_combo2_damage1:
+  Skills:
+  - basedamage{m=2}
+  - throw{v=4;vy=2}
+  - shieldbreak{duration=60}
+  
+hv_selenia_stun:
+  Cooldown: 60
+  Conditions:
+  - offgcd
+  - health{h=<350} true
+  - chance{c=0.3} true
+  Skills:
+  - gcd{t=150} @self
+  - state{s=stun} @self
+  - setspeed{s=0} @self
+  - partvis{mid=hv_selenia;p=stars;v=true;child=true;delay=5} @self
+  - partvis{mid=hv_selenia;p=stars;v=false;child=true;delay=135} @self
+  - sound{s=hv_selenia.landing;v=5;p=1.5;delay=8} @self
+  - sound{s=hv_selenia.landing;v=5;p=2;delay=135} @self
+  - sound{s=hv_selenia.landing;v=5;p=1.8;delay=146} @self
+  - delay 10
+  - lockmodel{l=true} @self
+  - setai{ai=true} @self
+  - delay 130
+  - lockmodel{l=false} @self
+  - setai{ai=true} @self
+  - delay 10
+  - setspeed{s=0.8} @self
+  
+hv_selenia_moon_jump:
+  Cooldown: 24
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - distance{d=0to8} true
+  Skills:
+  - gcd{ticks=58} @self
+  - state{s=moon_jump} @self
+  - setspeed{s=0} @self
+  - aura{auraName=hv_selenia_moon_jump_totem;onTick=hv_selenia_moon_jump_totem_tick;interval=1;duration=10;delay=27} @self
+  - partvis{mid=hv_selenia;p=left_phase1_train2;v=true;child=true;delay=5} @self 
+  - partvis{mid=hv_selenia;p=right_phase1_train;v=true;child=true;delay=5} @self 
+  - partvis{mid=hv_selenia;p=left_phase1_train2;v=false;child=true;delay=34} @self 
+  - partvis{mid=hv_selenia;p=right_phase1_train;v=false;child=true;delay=34} @self
+  - sound{s=hv_selenia.swing;v=5;p=0.5;delay=6} @self
+  - sound{s=hv_selenia.swing;v=5;p=1.4;delay=23} @self
+  - sound{s=hv_selenia.swing;v=5;p=1.5;delay=24} @self
+  - sound{s=hv_selenia.landing;v=5;p=1;delay=23} @self
+  - sound{s=hv_selenia.sword_ground;v=5;p=1.5;delay=28} @self
+  - delay 10
+  - lockmodel{l=true} @self
+  - propel{v=0.9} @SelfLocation{y=3}
+  - delay 40
+  - lockmodel{l=false} @self
+  - delay 8
+  - setspeed{s=0.8} @self
+  
+hv_selenia_moon_jump_totem_tick:
+  Skills:
+  - totem{md=1;oH=hv_selenia_moon_jump_damage;hr=2.5;vr=2.5;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage2;o=model}
+  
+hv_selenia_moon_jump_damage:
+  Skills:
+  - basedamage{m=2}
+  - throw{v=10;vy=2}
+  - shieldbreak{duration=100}
+  
+
+hv_selenia_range_combo1_p2:
+  Cooldown: 16
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - distance{d=6to12} true
+  Skills:
+  - gcd{ticks=48} @self
+  - state{s=range_combo1} @self
+  - setspeed{s=0} @self
+  - aura{auraName=hv_selenia_range_combo1_totem_p2;onTick=hv_selenia_range_combo1_totem_tick_p2;interval=1;duration=2;delay=17} @self
+  - aura{auraName=hv_selenia_range_combo1_totem1_p2;onTick=hv_selenia_range_combo1_totem_tick1_p2;interval=1;duration=2;delay=20} @self
+  - aura{auraName=hv_selenia_range_combo1_totem2_p2;onTick=hv_selenia_range_combo1_totem_tick2_p2;interval=1;duration=3;delay=29} @self
+  - aura{auraName=hv_selenia_range_combo1_totem3_p2;onTick=hv_selenia_range_combo1_totem_tick3_p2;interval=1;duration=2;delay=33} @self
+  - partvis{mid=hv_selenia;p=left_phase2_train2;v=true;child=true;delay=15} @self 
+  - partvis{mid=hv_selenia;p=right_phase2_train;v=true;child=true;delay=15} @self 
+  - partvis{mid=hv_selenia;p=phase2_poke_train;v=true;child=true;delay=15} @self
+  - partvis{mid=hv_selenia;p=left_phase2_train2;v=false;child=true;delay=45} @self 
+  - partvis{mid=hv_selenia;p=right_phase2_train;v=false;child=true;delay=45} @self 
+  - partvis{mid=hv_selenia;p=phase2_poke_train;v=false;child=true;delay=45} @self
+  - sound{s=hv_selenia.phase2_swing;v=5;p=1.7;delay=14} @self
+  - sound{s=hv_selenia.phase2_swing2;v=5;p=1.4;delay=18} @self
+  - sound{s=hv_selenia.phase2_swing2;v=5;p=1.3;delay=26} @self
+  - sound{s=hv_selenia.phase2_swing1;v=5;p=2;delay=29} @self
+  - delay 12
+  - setspeed{s=3} @self
+  - delay 10
+  - setspeed{s=0} @self
+  - delay 6
+  - setspeed{s=2.5} @self
+  - delay 6
+  - setspeed{s=0} @self
+  - lockmodel{l=true} @self
+  - delay 11
+  - lockmodel{l=false} @self
+  - delay 3
+  - setspeed{s=0.8} @self
+
+hv_selenia_range_combo1_totem_tick_p2:
+  Skills:
+  - totem{md=1;oH=hv_selenia_range_combo1_damage_p2;hr=3;vr=3;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_range_combo1_totem_tick1_p2:
+  Skills:
+  - totem{md=1;oH=hv_selenia_range_combo1_damage1_p2;hr=3;vr=3;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_range_combo1_totem_tick2_p2:
+  Skills:
+  - totem{md=1;oH=hv_selenia_range_combo1_damage2_p2;hr=3;vr=3;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_range_combo1_totem_tick3_p2:
+  Skills:
+  - totem{md=1;oH=hv_selenia_range_combo1_damage3_p2;hr=2;vr=2;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_range_combo1_damage_p2:
+  Skills:
+  - basedamage{m=1.5;pi=true}
+  - ignite{ticks=100}
+  - throw{v=5;vy=0}
+  - shieldbreak{duration=60}
+  
+hv_selenia_range_combo1_damage1_p2:
+  Skills:
+  - basedamage{m=1.5;pi=true}
+  - potion{type=SLOW;duration=100;level=2}
+  - throw{v=5;vy=0}
+  - shieldbreak{duration=60}
+  
+hv_selenia_range_combo1_damage2_p2:
+  Skills:
+  - basedamage{m=2;pi=true}
+  - potion{type=SLOW;duration=100;level=2}
+  - throw{v=10;vy=0}
+  - shieldbreak{duration=60}
+  
+hv_selenia_range_combo1_damage3_p2:
+  Skills:
+  - basedamage{m=2;pi=true}
+  - ignite{ticks=100}
+  - throw{v=10;vy=0}
+  - shieldbreak{duration=60}
+  
+hv_selenia_melee_attack_p2:
+  Cooldown: 10
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - distance{d=0to6} true
+  Skills:
+  - gcd{ticks=32} @self
+  - state{s=melee_attack} @self
+  - setspeed{s=0} @self
+  - aura{auraName=hv_selenia_melee_attack_totem_p2;onTick=hv_selenia_melee_attack_totem_tick_p2;interval=1;duration=3;delay=17} @self
+  - partvis{mid=hv_selenia;p=right_phase2_train;v=true;child=true;delay=5} @self 
+  - partvis{mid=hv_selenia;p=right_phase2_train;v=false;child=true;delay=25} @self
+  - sound{s=hv_selenia.phase2_swing2;v=5;p=1.5;delay=12} @self
+  - delay 14
+  - setspeed{s=2} @self
+  - delay 4
+  - setspeed{s=0} @self
+  - lockmodel{l=true} @self
+  - delay 10
+  - lockmodel{l=false} @self
+  - delay 4
+  - setspeed{s=0.8} @self
+  
+hv_selenia_melee_attack_totem_tick_p2:
+  Skills:
+  - totem{md=1;oH=hv_selenia_melee_attack_damage_p2;hr=2.5;vr=2.5;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_melee_attack_damage_p2:
+  Skills:
+  - basedamage{m=2.5;pi=true}
+  - potion{type=SLOW;duration=100;level=2}
+  - throw{v=5;vy=0}
+  - shieldbreak{duration=80}
+  
+hv_selenia_melee_combo1_p2:
+  Cooldown: 16
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - distance{d=0to6} true
+  Skills:
+  - gcd{ticks=50} @self
+  - state{s=melee_combo1} @self
+  - setspeed{s=0} @self
+  - aura{auraName=hv_selenia_melee_combo1_totem_p2;onTick=hv_selenia_melee_combo1_totem_tick_p2;interval=1;duration=3;delay=10} @self
+  - aura{auraName=hv_selenia_melee_combo1_totem1_p2;onTick=hv_selenia_melee_combo1_totem_tick1_p2;interval=1;duration=3;delay=21} @self
+  - aura{auraName=hv_selenia_melee_combo1_totem2_p2;onTick=hv_selenia_melee_combo1_totem_tick2_p2;interval=1;duration=3;delay=29} @self
+  - partvis{mid=hv_selenia;p=left_phase2_train2;v=true;child=true;delay=5} @self 
+  - partvis{mid=hv_selenia;p=right_phase2_train;v=true;child=true;delay=5} @self 
+  - partvis{mid=hv_selenia;p=left_phase2_train2;v=false;child=true;delay=34} @self 
+  - partvis{mid=hv_selenia;p=right_phase2_train;v=false;child=true;delay=34} @self
+  - sound{s=hv_selenia.phase2_swing;v=5;p=1.7;delay=10} @self
+  - sound{s=hv_selenia.phase2_swing2;v=5;p=1.8;delay=20} @self
+  - sound{s=hv_selenia.phase2_swing;v=5;p=1.5;delay=29} @self
+  - sound{s=hv_selenia.phase2_swing2;v=5;p=1.6;delay=30} @self
+  - delay 10
+  - setspeed{s=2} @self
+  - delay 4
+  - setspeed{s=0} @self
+  - delay 6
+  - setspeed{s=2} @self
+  - delay 4
+  - setspeed{s=0} @self
+  - delay 3
+  - setspeed{s=2} @self
+  - delay 4
+  - lockmodel{l=true} @self
+  - setspeed{s=0} @self
+  - delay 14
+  - lockmodel{l=false} @self
+  - delay 5
+  - setspeed{s=0.8} @self
+  
+hv_selenia_melee_combo1_totem_tick_p2:
+  Skills:
+  - totem{md=1;oH=hv_selenia_melee_combo1_damage_p2;hr=2.5;vr=2.5;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_melee_combo1_totem_tick1_p2:
+  Skills:
+  - totem{md=1;oH=hv_selenia_melee_combo1_damage1_p2;hr=2.5;vr=2.5;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_melee_combo1_totem_tick2_p2:
+  Skills:
+  - totem{md=1;oH=hv_selenia_melee_combo1_damage2_p2;hr=3;vr=3;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_melee_combo1_damage_p2:
+  Skills:
+  - basedamage{m=1.5;pi=true}
+  - ignite{ticks=100}
+  - throw{v=4;vy=2}
+  - shieldbreak{duration=60}
+  
+hv_selenia_melee_combo1_damage1_p2:
+  Skills:
+  - basedamage{m=1.5;pi=true}
+  - potion{type=SLOW;duration=100;level=2}
+  - throw{v=4;vy=2}
+  - shieldbreak{duration=60}
+  
+hv_selenia_melee_combo1_damage2_p2:
+  Skills:
+  - basedamage{m=2.5;pi=true}
+  - ignite{ticks=100}
+  - potion{type=SLOW;duration=100;level=2}
+  - throw{v=15;vy=2}
+  - shieldbreak{duration=60}
+  
+hv_selenia_melee_combo2_p2:
+  Cooldown: 16
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - distance{d=0to6} true
+  Skills:
+  - gcd{ticks=50} @self
+  - state{s=melee_combo2} @self
+  - setspeed{s=0} @self
+  - aura{auraName=hv_selenia_melee_combo2_totem_p2;onTick=hv_selenia_melee_combo2_totem_tick_p2;interval=1;duration=3;delay=15} @self
+  - aura{auraName=hv_selenia_melee_combo2_totem1_p2;onTick=hv_selenia_melee_combo2_totem_tick1_p2;interval=1;duration=3;delay=30} @self
+  - partvis{mid=hv_selenia;p=left_phase2_train2;v=true;child=true;delay=5} @self 
+  - partvis{mid=hv_selenia;p=right_phase2_train;v=true;child=true;delay=5} @self 
+  - partvis{mid=hv_selenia;p=left_phase2_train2;v=false;child=true;delay=34} @self 
+  - partvis{mid=hv_selenia;p=right_phase2_train;v=false;child=true;delay=34} @self
+  - sound{s=hv_selenia.phase2_swing;v=5;p=2;delay=13} @self
+  - sound{s=hv_selenia.phase2_swing2;v=5;p=1.8;delay=14} @self
+  - sound{s=hv_selenia.phase2_swing;v=5;p=1.8;delay=28} @self
+  - sound{s=hv_selenia.phase2_swing2;v=5;p=2;delay=29} @self
+  - delay 14
+  - setspeed{s=3} @self
+  - delay 3
+  - setspeed{s=0} @self
+  - lockmodel{l=true} @self
+  - delay 3
+  - lockmodel{l=false} @self
+  - delay 10
+  - setspeed{s=3} @self
+  - delay 3
+  - lockmodel{l=true} @self
+  - setspeed{s=0} @self
+  - delay 12
+  - lockmodel{l=false} @self
+  - delay 5
+  - setspeed{s=0.8} @self
+   
+hv_selenia_melee_combo2_totem_tick_p2:
+  Skills:
+  - totem{md=1;oH=hv_selenia_melee_combo2_damage_p2;hr=2.5;vr=2.5;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_melee_combo2_totem_tick1_p2:
+  Skills:
+  - totem{md=1;oH=hv_selenia_melee_combo2_damage1_p2;hr=2.5;vr=2.5;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_melee_combo2_damage_p2:
+  Skills:
+  - basedamage{m=2}
+  - ignite{ticks=100}
+  - potion{type=SLOW;duration=100;level=2}
+  - throw{v=4;vy=2}
+  - shieldbreak{duration=60}
+  
+hv_selenia_melee_combo2_damage1_p2:
+  Skills:
+  - basedamage{m=2}
+  - ignite{ticks=100}
+  - potion{type=SLOW;duration=100;level=2}
+  - throw{v=4;vy=2}
+  - shieldbreak{duration=60}
+  
+hv_selenia_fire_dance:
+  Cooldown: 32
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - distance{d=0to8} true
+  Skills:
+  - gcd{ticks=120} @self
+  - state{s=fire_dance} @self
+  - setspeed{s=0} @self
+  - partvis{mid=hv_selenia;p=fire_dance2;v=true;child=true;delay=20} @self
+  - partvis{mid=hv_selenia;p=fire_dance2;v=false;child=true;delay=115} @self
+  - sound{s=hv_selenia.phase2_swing;v=5;p=1.4;delay=14} @self
+  - sound{s=hv_selenia.fire_ring;v=5;p=1.2;delay=17} @self
+  - sound{s=block.campfire.crackle;v=5;p=0.6;delay=15} @self
+  - sound{s=hv_selenia.phase2_swing;v=5;p=1.4;delay=45} @self
+  - sound{s=block.campfire.crackle;v=5;p=0.6;delay=47} @self
+  - sound{s=hv_selenia.fire_ring;v=5;p=0.9;delay=50} @self
+  - sound{s=hv_selenia.phase2_swing;v=5;p=1.4;delay=75} @self
+  - sound{s=block.campfire.crackle;v=5;p=0.6;delay=77} @self
+  - sound{s=hv_selenia.fire_ring;v=5;p=0.6;delay=79} @self
+  - delay 5
+  - lockmodel{l=true} @self
+  - delay 17
+  - summon{m=hv_selenia_eruption;amount=1;radius=0} @Ring{r=7;p=11}
+  - throw{v=25;vy=-5} @EIR{r=7}
+  - basedamage{m=3;pi=true} @EIR{r=7}
+  - ignite{ticks=100} @EIR{r=7}
+  - delay 26
+  - summon{m=hv_selenia_eruption;amount=1;radius=0} @Ring{r=11;p=19}
+  - throw{v=25;vy=-5} @EIR{r=7}
+  - basedamage{m=3;pi=true} @EIR{r=7}
+  - ignite{ticks=100} @EIR{r=7} 
+  - delay 33
+  - summon{m=hv_selenia_eruption;amount=1;radius=0} @Ring{r=17;p=27}
+  - throw{v=25;vy=-5} @EIR{r=7}
+  - basedamage{m=3;pi=true} @EIR{r=7}
+  - ignite{ticks=100} @EIR{r=7}
+  - delay 34
+  - lockmodel{l=false} @self
+  - delay 5
+  - setspeed{s=0.8} @self
+  
+hv_selenia_eruption:
+  Skills:
+  - aura{auraName=hv_selenia_eruption_aura;onTick=hv_selenia_eruption_aura_tick;interval=10;duration=100} @self
+  - aura{auraName=hv_selenia_eruption_aura1;onTick=hv_selenia_eruption_aura_tick1;interval=2;duration=68;delay=32} @self
+  - sound{s=hv_selenia.fire_geyser;v=0.1;p=1.3;delay=28} @self
+  - sound{s=block.campfire.crackle;v=0.1;p=0.4} @self
+  - sound{s=block.campfire.crackle;v=0.1;p=0.4;delay=30} @self
+  - sound{s=block.fire.extinguish;v=0.1;p=1;delay=100} @self
+  
+hv_selenia_eruption_aura_tick:
+  Skills:
+  - basedamage{m=1.5;pi=true;pk=true} @EIR{r=2.2}
+  - ignite{ticks=60} @EIR{r=2.2}
+  
+hv_selenia_eruption_aura_tick1:
+  Skills:
+  - basedamage{m=2;pi=true;pk=true} @EIR{r=2}
+  - ignite{ticks=60} @EIR{r=2}
+  - shieldbreak{duration=5} @EIR{r=2}
+  
+hv_selenia_moon_jump_p2:
+  Cooldown: 24
+  Conditions:
+  - offgcd
+  TargetConditions:
+  - distance{d=0to8} true
+  Skills:
+  - gcd{ticks=58} @self
+  - state{s=moon_jump} @self
+  - setspeed{s=0} @self
+  - aura{auraName=hv_selenia_moon_jump_totem_p2;onTick=hv_selenia_moon_jump_totem_tick_p2;interval=1;duration=10;delay=27} @self
+  - partvis{mid=hv_selenia;p=left_phase2_train2;v=true;child=true;delay=5} @self 
+  - partvis{mid=hv_selenia;p=right_phase2_train;v=true;child=true;delay=5} @self 
+  - partvis{mid=hv_selenia;p=moon_jump_vfx;v=true;child=true;delay=27} @self 
+  - partvis{mid=hv_selenia;p=left_phase2_train2;v=false;child=true;delay=34} @self 
+  - partvis{mid=hv_selenia;p=right_phase2_train;v=false;child=true;delay=34} @self
+  - partvis{mid=hv_selenia;p=moon_jump_vfx;v=false;child=true;delay=50} @self 
+  - sound{s=hv_selenia.swing;v=5;p=0.5;delay=6} @self
+  - sound{s=hv_selenia.phase2_swing;v=5;p=1.4;delay=23} @self
+  - sound{s=hv_selenia.phase2_swing2;v=5;p=1.5;delay=24} @self
+  - sound{s=hv_selenia.landing;v=5;p=1;delay=23} @self
+  - sound{s=hv_selenia.sword_ground;v=5;p=1.5;delay=28} @self
+  - sound{s=hv_selenia.moon_vfx;v=5;p=0.7;delay=28} @self
+  - delay 10
+  - lockmodel{l=true} @self
+  - propel{v=0.9} @SelfLocation{y=3}
+  - delay 40
+  - lockmodel{l=false} @self
+  - delay 8
+  - setspeed{s=0.8} @self
+  
+hv_selenia_moon_jump_totem_tick_p2:
+  Skills:
+  - totem{md=1;oH=hv_selenia_moon_jump_damage_p2;hr=3.5;vr=3.5;hnp=true;drawhitbox=false;ti=25} @modelpart{pid=damage;o=model}
+  
+hv_selenia_moon_jump_damage_p2:
+  Skills:
+  - basedamage{m=2}
+  - potion{type=SLOW;duration=100;level=2}
+  - throw{v=10;vy=2}
+  - shieldbreak{duration=100}
+
+
+  
+  
+  
+  
+
+#kTZJB1dpNnczJERLRnYURkRFV1Y0gGbOFFaY1EaGdVWPpkVSZTMO5ET0ZTMwgXYR5EWyBlM
+# 9+QZiVlAIDarK2hcy2Px6GN9SW/lcDGwvBUAMU5ZRdTrMsXfjR9g/nweeyg1M5u+lguUIzkE3OTM2Jqoal7gx7kjkfhs+pWHaIbL3NEbML0=

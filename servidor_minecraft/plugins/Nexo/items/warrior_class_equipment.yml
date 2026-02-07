@@ -1,0 +1,151 @@
+warrior_battleblade:
+  Pack:
+    custom_model_data: 4572
+    model: warrior_battleblade
+  material: STONE_SWORD
+  permission: warrior_battleblade
+  itemname: <gradient:#877b93:#9896ad:#abb6c1>The Battleblade
+warrior_helmet:
+  material: CHAINMAIL_HELMET
+  Pack:
+    CustomArmor:
+      layer1: warrior_texture/warrior_layer_1.png
+      layer2: warrior_texture/warrior_layer_2.png
+    parent_model: item/generated
+    texture: warrior_texture/warrior_helmet
+    custom_model_data: 4573
+  AttributeModifiers:
+  - attribute: GENERIC_ARMOR
+    amount: 3
+    operation: 0
+    slot: HEAD
+    uuid: 99b5ef3a-af47-4b86-ab6f-aeee216760a6
+    name: nexo:modifier
+    key: nexo:modifier
+  itemname: <gradient:#877b93:#9896ad:#abb6c1>Warrior Helmet
+  Components:
+    equippable:
+      slot: HEAD
+      asset_id: nexo:warrior
+  ItemFlags:
+  - HIDE_ARMOR_TRIM
+  trim_pattern: nexo:warrior
+warrior_chestplate:
+  material: CHAINMAIL_CHESTPLATE
+  Pack:
+    CustomArmor:
+      layer1: warrior_texture/warrior_layer_1.png
+      layer2: warrior_texture/warrior_layer_2.png
+    parent_model: item/generated
+    texture: warrior_texture/warrior_chestplate
+    custom_model_data: 4574
+  AttributeModifiers:
+  - attribute: GENERIC_ARMOR
+    amount: 8
+    operation: 0
+    slot: CHEST
+    uuid: 94458a56-b035-4db6-bcab-9030ef47b157
+    name: nexo:modifier
+    key: nexo:modifier
+  itemname: <gradient:#877b93:#9896ad:#abb6c1>Warrior Chestplate
+  Components:
+    equippable:
+      slot: CHEST
+      asset_id: nexo:warrior
+  ItemFlags:
+  - HIDE_ARMOR_TRIM
+  trim_pattern: nexo:warrior
+warrior_leggings:
+  material: CHAINMAIL_LEGGINGS
+  Pack:
+    CustomArmor:
+      layer1: warrior_texture/warrior_layer_1.png
+      layer2: warrior_texture/warrior_layer_2.png
+    parent_model: item/generated
+    texture: warrior_texture/warrior_leggings
+    custom_model_data: 4575
+  AttributeModifiers:
+  - attribute: GENERIC_ARMOR
+    amount: 6
+    operation: 0
+    slot: LEGS
+    uuid: 1033b76c-8846-4b6c-9923-6b007330663d
+    name: nexo:modifier
+    key: nexo:modifier
+  itemname: <gradient:#877b93:#9896ad:#abb6c1>Warrior Leggings
+  Components:
+    equippable:
+      slot: LEGS
+      asset_id: nexo:warrior
+  ItemFlags:
+  - HIDE_ARMOR_TRIM
+  trim_pattern: nexo:warrior
+warrior_boots:
+  material: CHAINMAIL_BOOTS
+  Pack:
+    CustomArmor:
+      layer1: warrior_texture/warrior_layer_1.png
+      layer2: warrior_texture/warrior_layer_2.png
+    parent_model: item/generated
+    texture: warrior_texture/warrior_boots
+    custom_model_data: 4576
+  AttributeModifiers:
+  - attribute: GENERIC_ARMOR
+    amount: 3
+    operation: 0
+    slot: FEET
+    uuid: a1343751-7f58-45db-bb4f-0df8fb1b7e2f
+    name: nexo:modifier
+    key: nexo:modifier
+  itemname: <gradient:#877b93:#9896ad:#abb6c1>Warrior Boots
+  Components:
+    equippable:
+      slot: FEET
+      asset_id: nexo:warrior
+  ItemFlags:
+  - HIDE_ARMOR_TRIM
+  trim_pattern: nexo:warrior
+icon_warrior_rage:
+  Pack:
+    custom_model_data: 1909
+    texture: warrior_texture/icon_warrior_rage.png
+  material: COAL
+  permission: icon_warrior_rage
+  itemname: icon_warrior_rage
+icon_warrior_warrior_furious_slash:
+  Pack:
+    custom_model_data: 1910
+    texture: warrior_texture/icon_warrior_furious_slash.png
+  material: COAL
+  permission: icon_warrior_furious_slash
+  itemname: icon_warrior_furious_slash
+icon_warrior_furious_strike:
+  Pack:
+    custom_model_data: 1911
+    texture: warrior_texture/icon_warrior_furious_strike.png
+  material: COAL
+  permission: icon_warrior_furious_strike
+  itemname: icon_warrior_furious_strike
+icon_warrior_whirlwind:
+  Pack:
+    custom_model_data: 1912
+    texture: warrior_texture/icon_warrior_whirlwind.png
+  material: COAL
+  permission: icon_warrior_whirlwind
+  itemname: icon_warrior_whirlwind
+icon_warrior_leaping_slash:
+  Pack:
+    custom_model_data: 1913
+    texture: warrior_texture/icon_warrior_leaping_slash.png
+  material: COAL
+  permission: icon_warrior_leaping_slash
+  itemname: icon_warrior_leaping_slash
+icon_warrior_hellblade:
+  Pack:
+    custom_model_data: 1914
+    texture: warrior_texture/icon_warrior_hellblade.png
+  material: COAL
+  permission: icon_warrior_hellblade
+  itemname: icon_warrior_hellblade
+
+# smeOVTSs1kYax2Q1Z1RH9UVRFDZYpFSjNkQuVleONzYXJFMUx2M5UFNzUjWCJ2cwZ1VSZnM

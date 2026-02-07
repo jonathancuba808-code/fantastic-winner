@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/water_wheel","particle":"#0"},"elements":[{"from":[9.25,-4.0,-5.0],"to":[9.25,20.0,21.0],"faces":{"east":{"uv":[5.0,12.25,1.125,16.0],"tintindex":0,"rotation":0,"texture":"#0"},"west":{"uv":[1.125,12.25,5.0,16.0],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

@@ -1,0 +1,622 @@
+
+fallenMauler_em:
+  Template: fallenMauler_em_activated
+  Display: 'Fallen Mauler'
+
+fallenMauler_em_activated:
+  Template: fallenMauler_em_generic
+  Display: 'Fallen Mauler'
+  Skills:
+  - setvariable{var=caster.statueform;value="0";t=integer} @Self ~onSpawn #=====================
+  - setvariable{var=caster.eichpee;value="<caster.mhp>";t=float} @Self ~onSpawn
+  - skill{s=fallenMauler_em_hp_check;cooldown=99999;sync=true;delay=1} @PlayersInRadius{r=60} ~onSpawn
+  - renderinit{mid=fallen_mauler} @self ~onSpawn
+  - renderinit{mid=fallen_mauler} @self ~onLoad
+  - DefaultState{type=WALK;state=walk_combat} @self ~onEnterCombat
+  - DefaultState{type=IDLE;state=idle_combat} @self ~onEnterCombat
+  - DefaultState{type=WALK;state=walk} @self ~onDropCombat
+  - DefaultState{type=IDLE;state=idle} @self ~onDropCombat
+  - setspeed{speed=1.5;type=walking} @Self ~onDropCombat
+  - propel{v=0.04;repeat=1;repeati=1} @forward{f=2;y=-3} ~onDropCombat
+  - setspeed{speed=2.15;type=walking} @Self ~onEnterCombat ?!variableEquals{var=caster.parrying;value="1"}
+  - setspeed{speed=1.5;type=walking} @Self ~onEnterCombat ?variableEquals{var=caster.parrying;value="1"} 
+  
+  - Aura{auraName=backstepdodgerfallenMauler_em;onTick=fallenMauler_em_bstpcheck;interval=7;duration=99999} @self ~onSpawn
+  - setstance{stance=normal} @self ~onSpawn
+
+
+fallenMauler_em_n:
+  Template: fallenMauler_em_activable
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=180} @Self ~onSpawn
+  - renderinit{mid=fallen_mauler} @self ~onSpawn
+  - renderinit{mid=fallen_mauler} @self ~onLoad
+  - lockmodel{l=true;delay=5} @Self ~onSpawn
+  - spin{auraName=spin;d=40;v=0;delay=0} @self ~onSpawn
+  - potion{type=SLOW;duration=40;level=7;p=false;force=true} @Self ~onSpawn
+fallenMauler_em_s:
+  Template: fallenMauler_em_activable
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=0} @Self ~onSpawn
+  - renderinit{mid=fallen_mauler} @self ~onSpawn
+  - renderinit{mid=fallen_mauler} @self ~onLoad
+  - lockmodel{l=true;delay=5} @Self ~onSpawn
+  - spin{auraName=spin;d=40;v=0;delay=0} @self ~onSpawn
+  - potion{type=SLOW;duration=40;level=7;p=false;force=true} @Self ~onSpawn
+fallenMauler_em_w:
+  Template: fallenMauler_em_activable
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=90} @Self ~onSpawn
+  - renderinit{mid=fallen_mauler} @self ~onSpawn
+  - renderinit{mid=fallen_mauler} @self ~onLoad
+  - lockmodel{l=true;delay=5} @Self ~onSpawn
+  - spin{auraName=spin;d=40;v=0;delay=0} @self ~onSpawn
+  - potion{type=SLOW;duration=40;level=7;p=false;force=true} @Self ~onSpawn
+fallenMauler_em_e:
+  Template: fallenMauler_em_activable
+  Skills:
+  - setrotation{relative=false;pitch=0;yaw=-90} @Self ~onSpawn
+  - renderinit{mid=fallen_mauler} @self ~onSpawn
+  - renderinit{mid=fallen_mauler} @self ~onLoad
+  - lockmodel{l=true;delay=5} @Self ~onSpawn
+  - spin{auraName=spin;d=40;v=0;delay=0} @self ~onSpawn
+  - potion{type=SLOW;duration=40;level=7;p=false;force=true} @Self ~onSpawn
+
+fallenMauler_em_activable:
+  Template: fallenMauler_em_generic
+  AIGoalSelectors:
+  - 0 clear
+  Skills:
+  - DefaultState{type=WALK;state=walk_combat} @self ~onEnterCombat ?!variableEquals{var=caster.statueform;value="1"}
+  - DefaultState{type=IDLE;state=idle_combat} @self ~onEnterCombat ?!variableEquals{var=caster.statueform;value="1"}
+  - DefaultState{type=WALK;state=walk} @self ~onDropCombat ?!variableEquals{var=caster.statueform;value="1"}
+  - DefaultState{type=IDLE;state=idle} @self ~onDropCombat ?!variableEquals{var=caster.statueform;value="1"}
+  - skill{s=[
+      - changepart{m=fallen_mauler;pid=head;nm=fallen_mauler2;npid=head} @self 
+      - changepart{m=fallen_mauler;pid=right_arm;nm=fallen_mauler2;npid=right_arm} @self 
+      - changepart{m=fallen_mauler;pid=right_forearm;nm=fallen_mauler2;npid=right_forearm} @self 
+      - changepart{m=fallen_mauler;pid=left_arm;nm=fallen_mauler2;npid=left_arm} @self 
+      - changepart{m=fallen_mauler;pid=left_forearm;nm=fallen_mauler2;npid=left_forearm} @self 
+      - changepart{m=fallen_mauler;pid=hip;nm=fallen_mauler2;npid=hip} @self 
+      - changepart{m=fallen_mauler;pid=chest;nm=fallen_mauler2;npid=chest} @self 
+      - changepart{m=fallen_mauler;pid=left_leg;nm=fallen_mauler2;npid=left_leg} @self 
+      - changepart{m=fallen_mauler;pid=left_shin;nm=fallen_mauler2;npid=left_shin} @self 
+      - changepart{m=fallen_mauler;pid=shield;nm=fallen_mauler2;npid=shield} @self 
+      - changepart{m=fallen_mauler;pid=right_weapon;nm=fallen_mauler2;npid=right_weapon} @self 
+      - changepart{m=fallen_mauler;pid=right_leg;nm=fallen_mauler2;npid=right_leg} @self 
+      - changepart{m=fallen_mauler;pid=right_shin;nm=fallen_mauler2;npid=right_shin} @self ]} ~onSpawn
+  
+  - setstance{stance=static} @self ~onSpawn
+  - Aura{auraName=staticfallenMauler_em;onTick=fallenMauler_emstcheck;interval=20;duration=99999;delay=20} @self ~onSpawn
+  - skill{s=fallenMauler_emstcheck3;cooldown=0.3;sync=false} @self ~onSignal:RAMPAGE_ACTIVATE
+  - Aura{auraName=RAMPAGE_activated;duration=200} ~onSignal:RAMPAGE_ACTIVATE
+  - setvariable{var=caster.statueform;value="1";t=integer} @Self ~onSpawn #=====================
+  - skill{s=fallenMauler_emstcheck3;cooldown=99999;sync=false} @self ~onDamaged 1 #=====================
+  - RunAIGoalSelector{goal=clear} @self ~onSpawn
+  - state{s=idlestatic;li=0;lo=0;n=false} @self ~onSpawn
+
+fallenMauler_em_revived:
+  Template: fallenMauler_em_generic
+  Skills:
+  - renderinit{mid=fallen_mauler} @self ~onSpawn
+  - renderinit{mid=fallen_mauler} @self ~onLoad
+  - skill{s=[
+      - changepart{m=fallen_mauler;pid=head;nm=fallen_mauler2;npid=head} @self 
+      - changepart{m=fallen_mauler;pid=right_arm;nm=fallen_mauler2;npid=right_arm} @self 
+      - changepart{m=fallen_mauler;pid=right_forearm;nm=fallen_mauler2;npid=right_forearm} @self 
+      - changepart{m=fallen_mauler;pid=left_arm;nm=fallen_mauler2;npid=left_arm} @self 
+      - changepart{m=fallen_mauler;pid=left_forearm;nm=fallen_mauler2;npid=left_forearm} @self 
+      - changepart{m=fallen_mauler;pid=hip;nm=fallen_mauler2;npid=hip} @self 
+      - changepart{m=fallen_mauler;pid=chest;nm=fallen_mauler2;npid=chest} @self 
+      - changepart{m=fallen_mauler;pid=left_leg;nm=fallen_mauler2;npid=left_leg} @self 
+      - changepart{m=fallen_mauler;pid=left_shin;nm=fallen_mauler2;npid=left_shin} @self 
+      - changepart{m=fallen_mauler;pid=shield;nm=fallen_mauler2;npid=shield} @self 
+      - changepart{m=fallen_mauler;pid=right_weapon;nm=fallen_mauler2;npid=right_weapon} @self 
+      - changepart{m=fallen_mauler;pid=right_leg;nm=fallen_mauler2;npid=right_leg} @self 
+      - changepart{m=fallen_mauler;pid=right_shin;nm=fallen_mauler2;npid=right_shin} @self ]} ~onSpawn
+  - setspeed{speed=1.5;type=walking} @Self ~onDropCombat ?!variableEquals{var=caster.parrying;value="1"}
+  - propel{v=0.04;repeat=1;repeati=1} @forward{f=2;y=-3} ~onDropCombat
+  - setspeed{speed=2.15;type=walking} @Self ~onEnterCombat ?!variableEquals{var=caster.parrying;value="1"} ?!variableEquals{var=caster.statueform;value="1"}
+  - setspeed{speed=1.5;type=walking} @Self ~onEnterCombat ?variableEquals{var=caster.parrying;value="1"} ?!variableEquals{var=caster.statueform;value="1"}
+  
+  - setstance{stance=static} @self ~onSpawn
+  - skill{s=fallenMauler_emstcheck3;cooldown=0.3;sync=false} @self ~onSignal:RAMPAGE_ACTIVATE
+  - Aura{auraName=RAMPAGE_activated;duration=200} ~onSignal:RAMPAGE_ACTIVATE
+  - setvariable{var=caster.statueform;value="1";t=integer} @Self ~onSpawn #=====================
+  - skill{s=fallenMauler_emstcheck3;cooldown=99999;sync=false} @self ~onDamaged 1 #=====================
+  - RunAIGoalSelector{goal=clear} @self ~onSpawn
+  - state{s=idlestatic;li=0;lo=0;n=false} @self ~onSpawn
+
+fallenMauler_em_generic:
+  Type: wither_skeleton
+  Display: 'Fallen Mauler'
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 SpecificFaction CorruptedFlesh
+  - 2 SpecificFaction Zombie
+  - 2 attacker
+  - 3 players
+  Health: 30
+  Faction: FallenHero
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 1.1
+  - PROJECTILE 0.25
+  Damage: 10 #10 is the BASE damage. Setting it to 20 will DOUBLE damage. Setting it to 5 will REDUCE damage in 50% from the original.
+  KillMessages:
+  - '<target.name> was killed by the fallen heroes.'
+  - 'The fallen heroes have claimed justice over <target.name>.'
+  - "<target.name> suffered the revenge of the fallen heroes."
+  - "The fallen heroes have claimed <target.name>'s soul."
+  - '<target.name> tried to defy the fallen heroes. Tried.'
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - imbootsfallenMauler_em:1
+  - air:0
+  - air:5
+  Drops:
+  - exp 10-25 1
+  - exp 10-25 1
+  - exp 10-25 1
+  - exp 10-25 1
+  LevelModifiers:
+    Health: 2
+    Damage: 0.03
+  Skills:
+  - message{m="Hitrec <caster.var.hitrec> STACKS"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+  - model{step=1;mid=fallen_mauler;damagetint=false;initrender=false} @self ~onSpawn
+  - model{step=1;mid=fallen_mauler;damagetint=false;initrender=false} @self ~onLoad
+  - setlevel{a=set;l=0} ~onSpawn
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ~onSpawn
+  - setvariable{var=caster.eichpee;value="<caster.mhp>";t=float} @Self ~onSpawn
+  
+  - bindhitbox{m=fallen_mauler;p=ob_shieldenn;t=fallenMauler_em_shieldennbox;delay=2} @self ~onSpawn
+  - hitboxconfig{m=fallen_mauler;p=ob_shieldenn;pass=0;delay=2} @self ~onSpawn
+
+  - bindhitbox{m=fallen_mauler;p=ob_parrybox;t=fallenMauler_em_parrybox;delay=2} @self ~onSpawn
+  - hitboxconfig{m=fallen_mauler;p=ob_parrybox;pass=0;delay=2} @self ~onSpawn
+  - CancelEvent{sync=true} @self ~onAttack 1 #CANCEL ATTACKS
+
+  - skill{s=[
+      - skill{s=fallenMauler_em_meleetrigger;sync=false} @LivingInCone{a=110.0;r=6.5;rot=0.0;ignore=samefaction}
+      - skill{s=fallenMauler_em_meleetrigger;sync=false} @LivingInCone{a=200.0;r=1.3;rot=0.0;ignore=samefaction}
+    ]} ~onTimer:8 0.8 ?!variableEquals{var=caster.parrying;value="1"} ?incombat 
+  - skill{s=[
+      - skill{s=fallenMauler_em_meleetrigger2;sync=false} @LivingInCone{a=110.0;r=5.5;rot=0.0;ignore=samefaction} 
+      - skill{s=fallenMauler_em_meleetrigger2;sync=false} @LivingInCone{a=200.0;r=1.3;rot=0.0;ignore=samefaction} 
+    ]} ~onTimer:26 0.65 ?variableEquals{var=caster.parrying;value="1"} ?incombat 
+
+  - setvariable{var=caster.combor;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.comboa;value="0";t=integer} @Self ~onSpawn
+  - sound{s=emaginationfallenheroes:custom.fallenhero.death;p=1;v=1} @selflocation ~onDeath 1
+  - sound{s=emaginationfallenravager:custom.fallenravager.statuefall;p=1;v=1.5} @selflocation ~onDeath 1
+  - effect:particles{particle=cloud;amount=150;hS=1.1;vS=0.55;speed=0;size=4.5;repeatinterval=1;delay=179} @ModelPart{m=fallen_mauler;p=hip;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=cloud;amount=60;hS=0.6;vS=0.2;speed=0;size=4.5;repeatinterval=1;delay=179} @ModelPart{m=fallen_mauler;p=right_weapon;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=cloud;amount=60;hS=0.6;vS=0.2;speed=0;size=4.5;repeatinterval=1;delay=179} @ModelPart{m=fallen_mauler;p=head;offset=LOCAL;y=0} ~onDeath
+  - skill{s=[
+    - BodyClamp{maxbody=0;stable=0;rdelay=0;rduration=5;delay=0} @self
+    - changeparent{model=fallen_mauler;parent=left_leg_death;child=left_leg} @self
+    - changeparent{model=fallen_mauler;parent=left_shin_death;child=left_shin} @self
+    - changeparent{model=fallen_mauler;parent=right_leg_death;child=right_leg} @self
+    - changeparent{model=fallen_mauler;parent=right_shin_death;child=right_shin} @self
+    - changeparent{model=fallen_mauler;parent=left_arm_death;child=left_arm} @self 0
+    - changeparent{model=fallen_mauler;parent=left_forearm_death;child=left_forearm} @self
+    - changeparent{model=fallen_mauler;parent=right_arm_death;child=right_arm} @self 0
+    - changeparent{model=fallen_mauler;parent=right_forearm_death;child=right_forearm} @self
+    - changeparent{model=fallen_mauler;parent=head_death;child=head} @self
+    - changeparent{model=fallen_mauler;parent=hip_death;child=hip} @self
+    - changeparent{model=fallen_mauler;parent=chest_death;child=chest} @self
+    - changeparent{model=fallen_mauler;parent=weapon_death;child=superior_right_weapon_control} @self
+    
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=35;hS=0.3;vS=0.3;size=2} @ModelPart{m=fallen_mauler;p=chest;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.2;vS=0.1;size=0.75;delay=0;repeat=20;repeatinterval=1} @ModelPart{m=fallen_mauler;p=chest;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.2;vS=0.1;size=1.5;delay=20;repeat=22;repeatinterval=1} @ModelPart{m=fallen_mauler;p=chest;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.2;vS=0.1;size=0.75;delay=42;repeat=40;repeatinterval=1} @ModelPart{m=fallen_mauler;p=chest;offset=LOCAL;y=0}
+
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.1;vS=0.1;size=0.7;delay=0;repeat=84;repeatinterval=1} @ModelPart{m=fallen_mauler;p=left_forearm;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.1;vS=0.1;size=0.7;delay=0;repeat=100;repeatinterval=1} @ModelPart{m=fallen_mauler;p=left_shin;offset=LOCAL;y=0}
+
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.1;vS=0.1;size=0.7;delay=0;repeat=72;repeatinterval=1} @ModelPart{m=fallen_mauler;p=right_forearm;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.1;vS=0.1;size=0.7;delay=0;repeat=100;repeatinterval=1} @ModelPart{m=fallen_mauler;p=right_shin;offset=LOCAL;y=0}
+
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=6;hS=0.1;vS=0.16;size=0.8;delay=0;repeat=140;repeatinterval=1} @ModelPart{m=fallen_mauler;p=axeparticles1;offset=LOCAL;y=0}
+
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.4;delay=0;repeat=95;repeatinterval=1} @ModelPart{m=fallen_mauler;p=eye1;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.4;delay=0;repeat=95;repeatinterval=1} @ModelPart{m=fallen_mauler;p=eye2;offset=LOCAL;y=0}
+
+    - changepart{m=fallen_mauler;pid=hip;nm=fallen_mauler3;npid=hip;delay=10} @self
+    - changepart{m=fallen_mauler;pid=chest;nm=fallen_mauler3;npid=chest;delay=10} @self
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=45;hS=0.15;vS=0.25;size=1.8;delay=10;repeat=3} @ModelPart{m=fallen_mauler;p=chest;offset=LOCAL;y=0}
+    
+    - changepart{m=fallen_mauler;pid=left_arm;nm=fallen_mauler3;npid=left_arm;delay=10} @self
+    - changepart{m=fallen_mauler;pid=left_forearm;nm=fallen_mauler3;npid=left_forearm;delay=10} @self
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=15;hS=0.15;vS=0.15;size=1.4;delay=10;repeat=2;repeatinterval=1} @ModelPart{m=fallen_mauler;p=left_forearm;offset=LOCAL;y=0}
+
+    - changepart{m=fallen_mauler;pid=right_forearm;nm=fallen_mauler3;npid=right_forearm;delay=10} @self
+    - changepart{m=fallen_mauler;pid=right_arm;nm=fallen_mauler3;npid=right_arm;delay=10} @self
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=15;hS=0.15;vS=0.15;size=1.4;delay=9;repeat=2;repeatinterval=1} @ModelPart{m=fallen_mauler;p=right_forearm;offset=LOCAL;y=0}
+    
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.5;delay=10;repeat=17;repeatinterval=1} @ModelPart{m=fallen_mauler;p=eye1;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.5;delay=10;repeat=17;repeatinterval=1} @ModelPart{m=fallen_mauler;p=eye2;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.4;delay=10;repeat=40;repeatinterval=1} @ModelPart{m=fallen_mauler;p=eye1;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.4;delay=10;repeat=40;repeatinterval=1} @ModelPart{m=fallen_mauler;p=eye2;offset=LOCAL;y=0}
+    - changepart{m=fallen_mauler;pid=head;nm=fallen_mauler3;npid=head;delay=10} @self
+
+    - changepart{m=fallen_mauler;pid=left_leg;nm=fallen_mauler3;npid=left_leg;delay=10} @self
+    - changepart{m=fallen_mauler;pid=left_shin;nm=fallen_mauler3;npid=left_shin;delay=10} @self
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=20;hS=0.17;vS=0.17;size=1.5;delay=10;repeat=3;repeatinterval=1} @ModelPart{m=fallen_mauler;p=left_shin;offset=LOCAL;y=0}
+    - changepart{m=fallen_mauler;pid=right_leg;nm=fallen_mauler3;npid=right_leg;delay=10} @self
+    - changepart{m=fallen_mauler;pid=right_shin;nm=fallen_mauler3;npid=right_shin;delay=10} @self
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=20;hS=0.17;vS=0.17;size=1.5;delay=10;repeat=3;repeatinterval=1} @ModelPart{m=fallen_mauler;p=right_shin;offset=LOCAL;y=0}];sync=true} @Self ~onDeath
+  
+  - summon{mob=fallenMauler_em_spirit;amount=1;noise=0;r=0;yr=0;delay=11} @SelfLocation{y=-3} ~onDeath
+
+  - skill{s=hurt1fallenMauler_em} @self ~onDamaged 1 #Hurtmechanic
+  - velocity{m=set;x=0;y=0;z=0} @self ~onDamaged ?onground #ANTIKNOCKBACK SYSTEM
+  - skill{s=hurtgenfallenMauler_em;sync=true} @self ~onDamaged 1 #Hurtmechanic ANTIARROW
+  - skill{s=hurtgenfallenMauler_em2;sync=true} @self ~onDamaged 1 #Hurtmechanic ANTIMMSkills
+  - message{m="COUNTERATTACKED"} @PlayersNearOrigin{r=75} ~onSignal:COUNTERATTACK 0 #DEBUGMESSAGE
+  - skill{s=countertacked_fallenMauler_em_A;cooldown=2;sync=true} @self ~onSignal:COUNTERATTACK
+  - skill{s=countertacked_fallenMauler_em_B;cooldown=0.3;sync=false} @self ~onSignal:COUNTERATTACK ?variableEquals{var=caster.parrying;value="1"}
+  - skill{s=fallenMauler_em_meleetrigger2;cooldown=1;sync=false} @Trigger ~onSignal:COUNTERATTACK 0.45 ?variableEquals{var=caster.parrying;value="1"}
+
+
+  - setvariable{var=caster.rollumterr;value="0";t=integer} @Self ~OnSpawn #Hurtmechanic ANTIARROW
+  - setvariable{var=caster.projrec;value="0";t=integer} @Self ~OnSpawn #Hurtmechanic ANTIARROW
+  - setvariable{var=caster.running;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.runstacks;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.hurtened;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.parrying;value="0";t=integer} @Self ~onSpawn
+
+  - setvariable{var=caster.hitrec;value="0";t=integer} @Self ~OnSpawn #Hurtmechanic ANTIARROW
+  - message{m="Hitrec <caster.var.hitrec>"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+  - message{m="&eCOMBOR &a<caster.var.combor>"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+
+  - Aura{auraName=backstepdodgerfallenMauler_em;onTick=fallenMauler_em_bstpcheck;interval=7;duration=99999} @self ~onSpawn 0
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=1;v=1} @selflocation ~onDamaged ?!damagecause{c=FIRE} ?!damagecause{c=LAVA} ?!damagecause{c=CAMPFIRE} ?!damagecause{c=FIRE_TICK}  #Hurtmechanic SOUND
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=1;v=1} @selflocation ~onDeath 1 
+
+  Options:
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.18
+    Interactable: true
+    PreventOtherDrops: true
+    KnockbackResistance: 0.9
+    PreventSunburn: true
+    FollowRange: 26
+
+fallenMauler_dummy:
+  Type: skeleton
+  Display: 'Mauler DUMMY 1'
+  Modules:
+    ThreatTable: false
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 30
+  Faction: FallenHero
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 1.1
+  - PROJECTILE 0.25
+  Damage: 10 #10 is the BASE damage. Setting it to 20 will DOUBLE damage. Setting it to 5 will REDUCE damage in 50% from the original.
+  KillMessages:
+  - '<target.name> was killed by the fallen heroes.'
+  - 'The fallen heroes have claimed justice over <target.name>.'
+  - "<target.name> suffered the revenge of the fallen heroes."
+  - "The fallen heroes have claimed <target.name>'s soul."
+  - '<target.name> tried to defy the fallen heroes. Tried.'
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - imbootsfallenMauler_em:1
+  - air:0
+  - air:5
+  Drops:
+  - exp 10-25 1
+  - exp 10-25 1
+  - exp 10-25 1
+  - exp 10-25 1
+  LevelModifiers:
+    Health: 2
+    Damage: 0.03
+  Skills:
+  - message{m="Hitrec <caster.var.hitrec> STACKS"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+  - model{step=1;mid=fallen_mauler;invisible=true;damagetint=false} @self ~onSpawn
+  - model{step=1;mid=fallen_mauler;invisible=true;damagetint=false} @self ~onLoad
+  - setlevel{a=set;l=0} ~onSpawn
+  - bindhitbox{m=fallen_mauler;p=ob_shieldenn;t=fallenMauler_em_shieldennbox;delay=2} @self ~onSpawn
+  - hitboxconfig{m=fallen_mauler;p=ob_shieldenn;pass=0;delay=2} @self ~onSpawn
+
+  - bindhitbox{m=fallen_mauler;p=ob_parrybox;t=fallenMauler_em_parrybox;delay=2} @self ~onSpawn
+  - hitboxconfig{m=fallen_mauler;p=ob_parrybox;pass=0;delay=2} @self ~onSpawn
+  - setvariable{var=caster.skillxd;value="none";t=string} @Self ~onSpawn
+  - setvariable{var=caster.eichpee;value="<caster.mhp>";t=float} @Self ~onSpawn
+  
+  - partvisibility{m=fallen_mauler;p=body_right_weapon;v=false;delay=1} @self ~onSpawn
+  - partvisibility{m=fallen_mauler;p=body_right_weapon;v=false;delay=1} @self ~onLoad
+  
+  - DefaultState{type=IDLE;state=idle_combat} @self ~onSpawn 
+  - DefaultState{type=WALK;state=walk_combat} @self ~onSpawn
+  - setvariable{var=caster.statueform;value="0";t=integer} @Self ~onSpawn #=====================
+  - skill{s=fallenMauler_em_hp_check;cooldown=99999;sync=true;delay=1} @PlayersInRadius{r=60} ~onSpawn
+
+  - setspeed{speed=1.5;type=walking} @Self ~onDropCombat ?!variableEquals{var=caster.parrying;value="1"}
+  - propel{v=0.04;repeat=1;repeati=1} @forward{f=2;y=-3} ~onDropCombat
+  - setspeed{speed=2.15;type=walking} @Self ~onEnterCombat ?!variableEquals{var=caster.parrying;value="1"} ?!variableEquals{var=caster.statueform;value="1"}
+  - setspeed{speed=1.5;type=walking} @Self ~onEnterCombat ?variableEquals{var=caster.parrying;value="1"} ?!variableEquals{var=caster.statueform;value="1"}
+  
+  - Aura{auraName=backstepdodgerfallenMauler_em;onTick=fallenMauler_em_bstpcheck;interval=7;duration=99999} @self ~onSpawn
+  - setstance{stance=normal} @self ~onSpawn
+
+  - CancelEvent{sync=true} @self ~onAttack 1 #CANCEL ATTACKS
+
+  - skill{s=fallenMauler_em_bruttack1;sync=false} @Trigger ~onSignal:DEBUG_TEST
+  - skill{s=fallenMauler_em_bruttack2;sync=false} @Trigger ~onSignal:DEBUG_TEST2
+  - skill{s=fallenMauler_em_bruttack3;sync=false} @Trigger ~onSignal:DEBUG_TEST3
+  - skill{s=hurtbad2_fallenMauler_em;sync=false} @Trigger ~onSignal:DEBUG_TEST4
+  - skill{s=fallenMauler_em_backstep1_check;sync=false} @Trigger ~onSignal:DEBUG_TEST5
+  - skill{s=fallenMauler_em_backstep1;sync=false} @Trigger ~onSignal:DEBUG_TEST6
+
+  - setvariable{var=caster.combor;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.comboa;value="0";t=integer} @Self ~onSpawn
+  - sound{s=emaginationfallenheroes:custom.fallenhero.death;p=1;v=1} @selflocation ~onDeath 1
+  - sound{s=emaginationfallenravager:custom.fallenravager.statuefall;p=1;v=1.5} @selflocation ~onDeath 1
+  - effect:particles{particle=cloud;amount=150;hS=1.1;vS=0.55;speed=0;size=4.5;repeatinterval=1;delay=179} @ModelPart{m=fallen_mauler;p=hip;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=cloud;amount=60;hS=0.6;vS=0.2;speed=0;size=4.5;repeatinterval=1;delay=179} @ModelPart{m=fallen_mauler;p=right_weapon;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=cloud;amount=60;hS=0.6;vS=0.2;speed=0;size=4.5;repeatinterval=1;delay=179} @ModelPart{m=fallen_mauler;p=head;offset=LOCAL;y=0} ~onDeath
+  - skill{s=[
+    - BodyClamp{maxbody=0;stable=0;rdelay=0;rduration=5;delay=0} @self
+    - changeparent{model=fallen_mauler;parent=left_leg_death;child=left_leg} @self
+    - changeparent{model=fallen_mauler;parent=left_shin_death;child=left_shin} @self
+    - changeparent{model=fallen_mauler;parent=right_leg_death;child=right_leg} @self
+    - changeparent{model=fallen_mauler;parent=right_shin_death;child=right_shin} @self
+    - changeparent{model=fallen_mauler;parent=left_forearm_death;child=left_forearm} @self
+    - changeparent{model=fallen_mauler;parent=right_forearm_death;child=right_forearm} @self
+    - changeparent{model=fallen_mauler;parent=head_death;child=head} @self
+    - changeparent{model=fallen_mauler;parent=hip_death;child=hip} @self
+    - changeparent{model=fallen_mauler;parent=chest_death;child=chest} @self
+    - changeparent{model=fallen_mauler;parent=weapon_death;child=superior_right_weapon_control} @self
+    
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=25;hS=0.3;vS=0.3;size=2} @ModelPart{m=fallen_mauler;p=chest;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=4;hS=0.2;vS=0.1;size=0.75;delay=0;repeat=20;repeatinterval=1} @ModelPart{m=fallen_mauler;p=chest;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=4;hS=0.2;vS=0.1;size=1.5;delay=20;repeat=22;repeatinterval=1} @ModelPart{m=fallen_mauler;p=chest;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=4;hS=0.2;vS=0.1;size=0.75;delay=42;repeat=40;repeatinterval=1} @ModelPart{m=fallen_mauler;p=chest;offset=LOCAL;y=0}
+
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=4;hS=0.1;vS=0.1;size=0.7;delay=0;repeat=84;repeatinterval=1} @ModelPart{m=fallen_mauler;p=left_forearm;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=4;hS=0.1;vS=0.1;size=0.7;delay=0;repeat=100;repeatinterval=1} @ModelPart{m=fallen_mauler;p=left_shin;offset=LOCAL;y=0}
+
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=4;hS=0.1;vS=0.1;size=0.7;delay=0;repeat=72;repeatinterval=1} @ModelPart{m=fallen_mauler;p=right_forearm;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=4;hS=0.1;vS=0.1;size=0.7;delay=0;repeat=100;repeatinterval=1} @ModelPart{m=fallen_mauler;p=right_shin;offset=LOCAL;y=0}
+
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=4;hS=0.1;vS=0.16;size=0.8;delay=0;repeat=140;repeatinterval=1} @ModelPart{m=fallen_mauler;p=axeparticles1;offset=LOCAL;y=0}
+
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.4;delay=0;repeat=95;repeatinterval=1} @ModelPart{m=fallen_mauler;p=eye1;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.4;delay=0;repeat=95;repeatinterval=1} @ModelPart{m=fallen_mauler;p=eye2;offset=LOCAL;y=0}
+
+    - changepart{m=fallen_mauler;pid=hip;nm=fallen_mauler3;npid=hip;delay=10} @self
+    - changepart{m=fallen_mauler;pid=chest;nm=fallen_mauler3;npid=chest;delay=10} @self
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=45;hS=0.15;vS=0.25;size=1.8;delay=10;repeat=3} @ModelPart{m=fallen_mauler;p=chest;offset=LOCAL;y=0}
+    
+    - changepart{m=fallen_mauler;pid=left_arm;nm=fallen_mauler3;npid=left_arm;delay=10} @self
+    - changepart{m=fallen_mauler;pid=left_forearm;nm=fallen_mauler3;npid=left_forearm;delay=10} @self
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=15;hS=0.15;vS=0.15;size=1.4;delay=10;repeat=2;repeatinterval=1} @ModelPart{m=fallen_mauler;p=left_forearm;offset=LOCAL;y=0}
+
+    - changepart{m=fallen_mauler;pid=right_forearm;nm=fallen_mauler3;npid=right_forearm;delay=10} @self
+    - changepart{m=fallen_mauler;pid=right_arm;nm=fallen_mauler3;npid=right_arm;delay=10} @self
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=15;hS=0.15;vS=0.15;size=1.4;delay=9;repeat=2;repeatinterval=1} @ModelPart{m=fallen_mauler;p=right_forearm;offset=LOCAL;y=0}
+    
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.5;delay=10;repeat=17;repeatinterval=1} @ModelPart{m=fallen_mauler;p=eye1;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.5;delay=10;repeat=17;repeatinterval=1} @ModelPart{m=fallen_mauler;p=eye2;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.4;delay=10;repeat=40;repeatinterval=1} @ModelPart{m=fallen_mauler;p=eye1;offset=LOCAL;y=0}
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=3;hS=0.1;vS=0.1;size=0.4;delay=10;repeat=40;repeatinterval=1} @ModelPart{m=fallen_mauler;p=eye2;offset=LOCAL;y=0}
+    - changepart{m=fallen_mauler;pid=head;nm=fallen_mauler3;npid=head;delay=10} @self
+
+    - changepart{m=fallen_mauler;pid=left_leg;nm=fallen_mauler3;npid=left_leg;delay=10} @self
+    - changepart{m=fallen_mauler;pid=left_shin;nm=fallen_mauler3;npid=left_shin;delay=10} @self
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=20;hS=0.17;vS=0.17;size=1.5;delay=10;repeat=3;repeatinterval=1} @ModelPart{m=fallen_mauler;p=left_shin;offset=LOCAL;y=0}
+    - changepart{m=fallen_mauler;pid=right_leg;nm=fallen_mauler3;npid=right_leg;delay=10} @self
+    - changepart{m=fallen_mauler;pid=right_shin;nm=fallen_mauler3;npid=right_shin;delay=10} @self
+    - effect:particles{particle=reddust;color=#ECEBE2;amount=20;hS=0.17;vS=0.17;size=1.5;delay=10;repeat=3;repeatinterval=1} @ModelPart{m=fallen_mauler;p=right_shin;offset=LOCAL;y=0}];sync=true} @Self ~onDeath
+  
+  
+  - summon{mob=fallenMauler_em_spirit;amount=1;noise=0;r=0;yr=0;delay=11} @SelfLocation{y=-3} ~onDeath
+
+  - randomskill{s=hurt1fallenMauler_em} @self ~onDamaged 0.92 #Hurtmechanic
+  - velocity{m=set;x=0;y=0;z=0} @self ~onDamaged
+
+  - message{m="COUNTERATTACKED"} @PlayersNearOrigin{r=75} ~onSignal:COUNTERATTACK 0 #DEBUGMESSAGE
+  - skill{s=countertacked_fallenMauler_em_A;cooldown=2;sync=true} @self ~onSignal:COUNTERATTACK
+  - skill{s=countertacked_fallenMauler_em_B;cooldown=0.3;sync=false} @self ~onSignal:COUNTERATTACK ?variableEquals{var=caster.parrying;value="1"}
+  - skill{s=fallenMauler_em_meleetrigger2;cooldown=1;sync=false} @Trigger ~onSignal:COUNTERATTACK 0.45 ?variableEquals{var=caster.parrying;value="1"}
+  
+
+  - skill{s=hurtgenfallenMauler_em;sync=true} @self ~onDamaged 1 #Hurtmechanic ANTIARROW
+  - skill{s=hurtgenfallenMauler_em2;sync=true} @self ~onDamaged 1 #Hurtmechanic ANTIMMSkills
+  - setvariable{var=caster.rollumterr;value="0";t=integer} @Self ~OnSpawn #Hurtmechanic ANTIARROW
+  - setvariable{var=caster.projrec;value="0";t=integer} @Self ~OnSpawn #Hurtmechanic ANTIARROW
+  - setvariable{var=caster.running;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.runstacks;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.hurtened;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.parrying;value="0";t=integer} @Self ~onSpawn
+
+  - setvariable{var=caster.hitrec;value="0";t=integer} @Self ~OnSpawn #Hurtmechanic ANTIARROW
+  - message{m="Hitrec <caster.var.hitrec>"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+  - message{m="&eCOMBOR &a<caster.var.combor>"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+
+  - Aura{auraName=backstepdodgerfallenMauler_em;onTick=fallenMauler_em_bstpcheck;interval=7;duration=99999} @self ~onSpawn 0
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=1;v=1} @selflocation ~onDamaged 1 ?!damagecause{c=FIRE} ?!damagecause{c=LAVA} ?!damagecause{c=CAMPFIRE} ?!damagecause{c=FIRE_TICK} #Hurtmechanic SOUND
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=1;v=1} @selflocation ~onDeath 1 
+  
+  
+  Options:
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.18
+    Interactable: true
+    PreventOtherDrops: true
+    KnockbackResistance: 0.9
+    PreventSunburn: true
+    FollowRange: 26
+
+fallenMauler_em_parrybox:
+  Type: vex
+  Display: ''
+  Faction: FallenHero
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 1500
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  Damage: 0
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - air:1
+  - air:0
+  Skills:
+  - setvariable{var=caster.parrybox;value="1";t=integer;delay=1} @Self ~onSpawn
+  - cancelEvent{sync=true} @Trigger ~onDamaged
+  - cancelEvent{sync=true} @parent ~onDamaged
+  - message{m="&aParrybox Damaged"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+  - message{m="&aParrybox Spawned"} @PlayersNearOrigin{r=75} ~onSpawn 0 #DEBUGMESSAGE
+  - signal{s=COUNTERATTACK} @parent ~onDamaged 1
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=2;v=2} @selflocation ~onDamaged
+  - sound{s=emaginationfallenknights:custom.spell.swordclash;p=<random.float.0.7to0.9>;v=2} @selflocation ~onDamaged
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.01
+    MaxCombatDistance: 60
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: true
+    Interactable: true
+    KnockbackResistance: 0
+    Collidable: false
+    NoGravity: true
+
+fallenMauler_em_shieldennbox:
+  Type: vex
+  Display: ''
+  Faction: FallenHero
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 1500
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  Damage: 0
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - air:1
+  - air:0
+  Skills:
+  - setvariable{var=caster.shieldennbox;value="1";t=integer;delay=1} @Self ~onSpawn
+  - cancelEvent{sync=true} @Trigger ~onDamaged
+  - cancelEvent{sync=true} @parent ~onDamaged
+  - message{m="&bShieldennbox Damaged"} @PlayersNearOrigin{r=75} ~onDamaged 0 #DEBUGMESSAGE
+  - message{m="&bShieldennbox Spawned"} @PlayersNearOrigin{r=75} ~onSpawn 0 #DEBUGMESSAGE
+  - randomskill{s=[
+      - state{state=block_trigger1;li=0;lo=8} @parent
+    ],
+      [
+      - state{state=block_trigger2;li=0;lo=8} @parent
+    ],
+      [
+      - state{state=block_trigger3;li=0;lo=8} @parent
+    ]} @parent ~onDamaged
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=<random.float.1.5to2>;v=2} @selflocation ~onDamaged ?!damagecause{c=ENTITY_SWEEP_ATTACK}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=<random.float.1.5to1.8>;v=2} @selflocation ~onDamaged ?!damagecause{c=ENTITY_SWEEP_ATTACK}
+  - sound{s=item.shield.block;p=2;v=1;cooldown=0} @selflocation ~onDamaged ?!damagecause{c=ENTITY_SWEEP_ATTACK}
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.01
+    MaxCombatDistance: 60
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: true
+    Interactable: true
+    KnockbackResistance: 0
+    Collidable: false
+    NoGravity: true
+
+
+fallenMauler_em_spirit:
+  Type: silverfish
+  Display: ''
+  Faction: FallenHero
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 150
+  Damage: 0
+  Skills:
+   - model{mid=soldier_fireblade;n=false;damagetint=false} @self ~onSpawn 1
+   - cullconfig{vc=false;bkc=false;blc=false;delay=1} @self ~onSpawn
+   - skill{s=posessing_missile_fallenMauler_em} @LivingEntitiesInRadius{r=30;limit=1;sort=NEAREST;conditions=[  - mythicmobtype{t=statue_fallenMauler_em_s,statue_fallenMauler_em_n,statue_fallenMauler_em_e,statue_fallenMauler_em_w,statue_fallenMauler_em_activable_n,statue_fallenMauler_em_activable_s,statue_fallenMauler_em_activable_e,statue_fallenMauler_em_activable_w,statue_fallenMauler_em_activable_resist_n,statue_fallenMauler_em_activable_resist_s,statue_fallenMauler_em_activable_resist_e,statue_fallenMauler_em_activable_resist_w} true  - variableEquals{var=target.posess;value="1"} false ]} ~onSpawn
+   - bodyclamp{m=soldier_fireblade;c=360} @self ~onSpawn 0
+   - skill{s=[
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb1;delay=0} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb2;delay=1} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb3;delay=2} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb4;delay=3} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb5;delay=4} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb6;delay=5} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb7;delay=6} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb8;delay=7} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb9;delay=8} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb10;delay=9} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb11;delay=10} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb12;delay=11} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb13;delay=12} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb14;delay=13} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb15;delay=14} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb16;delay=15} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb17;delay=16} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb18;delay=17} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb19;delay=18} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldierplosion_reources;npid=fb20;delay=19} @self
+    - changepart{m=soldier_fireblade;pid=fb1;nm=soldier_fireblade;npid=fb1;delay=20} @self];sync=false} @self ~onSpawn 1
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove{delay=20} @Self ~onSpawn 0
+   - effect:particles{particle=reddust;color=#ECEBE2;amount=4;hS=0.3;vS=0.3;size=1.2;repeat=1;repeatinterval=1} @Origin{y=2.3} ~onSpawn 1
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.001
+    MaxCombatDistance: 1
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Invincible: true
+    Despawn: true
+    Interactable: false
+    KnockbackResistance: 1
+    Collidable: false
+    NoGravity: true
+
+# vrQPxi5w8hQdFUbaF+qTE+cDSQpoevBSXfnEOWtKiiBNFk3tWGvyqF+agfE82Cn3cPhaj9m9ARZPXWwQNm1BY8DEO7pLDaeCVZ/KAiUeIxo=

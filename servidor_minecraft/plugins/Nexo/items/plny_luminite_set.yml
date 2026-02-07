@@ -1,0 +1,322 @@
+luminiteset_helmet:
+  AttributeModifiers:
+  - amount: 2
+    attribute: GENERIC_ARMOR
+    operation: 0
+    slot: HEAD
+    uuid: 7065bad9-b24d-4a4c-9679-6a1dab0e31ac
+    name: nexo:modifier
+    key: nexo:modifier
+  Components:
+    equippable:
+      slot: HEAD
+      asset_id: nexo:luminiteset
+    max_damage: 165
+  Pack:
+    parent_model: item/generated
+    texture: plny_luminite_set:armors/luminiteset_helmet.png
+    custom_model_data: 1002
+  itemname: <white>Helmet
+  material: CHAINMAIL_HELMET
+  permission: plny_luminite_set.helmet
+luminite_set_helmet:
+  AttributeModifiers:
+  - amount: 2
+    attribute: GENERIC_ARMOR
+    operation: 0
+    slot: HEAD
+    uuid: 8b737f7d-5012-427a-baf4-071f5f1a804a
+    name: nexo:modifier
+    key: nexo:modifier
+  Components:
+    equippable:
+      slot: HEAD
+    max_damage: 165
+  Pack:
+    model: plny_luminite_set:helmet
+    custom_model_data: 1027
+  itemname: <white>Helmet
+  material: PAPER
+  permission: plny_luminite_set.helmet
+luminite_set_cosmetics_helmet:
+  ItemFlags:
+  - HIDE_POTION_EFFECTS
+  - HIDE_ATTRIBUTES
+  Pack:
+    custom_model_data: 9926721
+    model: plny_luminite_set:helmet
+  customname: <white>Helmet Cosmetics
+  material: POTION
+  permission: plny_luminite_set.luminite_set_cosmetics_helmet
+luminiteset_chestplate:
+  AttributeModifiers:
+  - amount: 6
+    attribute: GENERIC_ARMOR
+    operation: 0
+    slot: CHEST
+    uuid: 64487158-9aaf-439c-90c4-e6f27fce89dd
+    name: nexo:modifier
+    key: nexo:modifier
+  Components:
+    equippable:
+      slot: CHEST
+      asset_id: nexo:luminiteset
+    max_damage: 240
+  Pack:
+    parent_model: item/generated
+    texture: plny_luminite_set:armors/luminiteset_chestplate.png
+    custom_model_data: 1002
+  itemname: <white>Chestplate
+  material: CHAINMAIL_CHESTPLATE
+  permission: plny_luminite_set.chestplate
+luminiteset_leggings:
+  AttributeModifiers:
+  - amount: 5
+    attribute: GENERIC_ARMOR
+    operation: 0
+    slot: LEGS
+    uuid: 0a004c35-e37c-4a62-89d2-c2956a9ebb65
+    name: nexo:modifier
+    key: nexo:modifier
+  Components:
+    equippable:
+      slot: LEGS
+      asset_id: nexo:luminiteset
+    max_damage: 180
+  Pack:
+    parent_model: item/generated
+    texture: plny_luminite_set:armors/luminiteset_leggings.png
+    custom_model_data: 1002
+  itemname: <white>Leggings
+  material: CHAINMAIL_LEGGINGS
+  permission: plny_luminite_set.leggings
+luminiteset_boots:
+  AttributeModifiers:
+  - amount: 2
+    attribute: GENERIC_ARMOR
+    operation: 0
+    slot: FEET
+    uuid: 33244cf2-8ec6-4066-80c7-361b23ad35fa
+    name: nexo:modifier
+    key: nexo:modifier
+  Components:
+    equippable:
+      slot: FEET
+      asset_id: nexo:luminiteset
+    max_damage: 165
+  Pack:
+    parent_model: item/generated
+    texture: plny_luminite_set:armors/luminiteset_boots.png
+    custom_model_data: 1002
+  itemname: <white>Boots
+  material: CHAINMAIL_BOOTS
+  permission: plny_luminite_set.boots
+luminite_set_axe:
+  Pack:
+    model: plny_luminite_set:axe
+    custom_model_data: 1001
+  itemname: <white>Axe
+  material: NETHERITE_AXE
+  permission: plny_luminite_set.axe
+luminite_set_pickaxe:
+  Pack:
+    model: plny_luminite_set:pickaxe
+    custom_model_data: 1001
+  itemname: <white>Pickaxe
+  material: NETHERITE_PICKAXE
+  permission: plny_luminite_set.pickaxe
+luminite_set_shovel:
+  Pack:
+    model: plny_luminite_set:shovel
+    custom_model_data: 1001
+  itemname: <white>Shovel
+  material: NETHERITE_SHOVEL
+  permission: plny_luminite_set.shovel
+luminite_set_hoe:
+  Pack:
+    model: plny_luminite_set:hoe
+    custom_model_data: 1001
+  itemname: <white>Hoe
+  material: NETHERITE_HOE
+  permission: plny_luminite_set.hoe
+luminite_set_fishing_rod:
+  Pack:
+    cast_model: plny_luminite_set:fishing_rod_cast
+    model: plny_luminite_set:fishing_rod
+    custom_model_data: 1003
+  itemname: <white>Fishing Rod
+  material: FISHING_ROD
+  permission: plny_luminite_set.fishing_rod
+luminite_set_sword:
+  Pack:
+    model: plny_luminite_set:sword
+    custom_model_data: 1001
+  itemname: <white>Sword
+  material: NETHERITE_SWORD
+  permission: plny_luminite_set.sword
+luminite_set_shield:
+  Pack:
+    blocking_model: plny_luminite_set:shield_blocking
+    model: plny_luminite_set:shield
+    custom_model_data: 1004
+  itemname: <white>Shield
+  material: SHIELD
+  permission: plny_luminite_set.shield
+luminite_set_crossbow:
+  Pack:
+    charged_model: plny_luminite_set:crossbow_charged
+    firework_model: plny_luminite_set:crossbow_firework
+    model: plny_luminite_set:crossbow
+    pulling_models:
+    - plny_luminite_set:crossbow_0
+    - plny_luminite_set:crossbow_1
+    - plny_luminite_set:crossbow_2
+    custom_model_data: 1002
+  itemname: <white>Crossbow
+  material: CROSSBOW
+  permission: plny_luminite_set.crossbow
+luminite_set_bow:
+  Pack:
+    model: plny_luminite_set:bow
+    pulling_models:
+    - plny_luminite_set:bow_0
+    - plny_luminite_set:bow_1
+    - plny_luminite_set:bow_2
+    custom_model_data: 1003
+  itemname: <white>Bow
+  material: BOW
+  permission: plny_luminite_set.bow
+luminite_set_staff:
+  Pack:
+    model: plny_luminite_set:staff
+    custom_model_data: 1002
+  itemname: <white>Staff
+  material: NETHERITE_SWORD
+  permission: plny_luminite_set.staff
+luminite_set_trident:
+  Components:
+    item_model: plny_luminite_set:trident
+  Mechanics:
+    trident:
+      display_transform: HEAD
+  Pack:
+    icon: icon/trident
+    model: plny_luminite_set:trident
+  itemname: <white>Trident
+  material: TRIDENT
+  permission: plny_luminite_set.trident
+luminite_set_hammer:
+  Pack:
+    model: plny_luminite_set:hammer
+    custom_model_data: 1003
+  itemname: <white>Hammer
+  material: NETHERITE_SWORD
+  permission: plny_luminite_set.hammer
+luminite_set_spear:
+  Pack:
+    model: plny_luminite_set:spear
+    custom_model_data: 1004
+  itemname: <white>Spear
+  material: NETHERITE_SWORD
+  permission: plny_luminite_set.spear
+luminite_set_scythe:
+  Pack:
+    model: plny_luminite_set:scythe
+    custom_model_data: 1005
+  itemname: <white>Scythe
+  material: NETHERITE_SWORD
+  permission: plny_luminite_set.scythe
+luminite_set_chest:
+  Mechanics:
+    furniture:
+      barrier: false
+      drop:
+        loots:
+        - nexo_item: luminite_set_chest
+        silktouch: false
+      limited_placing:
+        floor: true
+        roof: false
+        type: DENY
+        wall: false
+      properties:
+        display_transform: NONE
+  Pack:
+    model: plny_luminite_set:chest
+    custom_model_data: 1028
+  itemname: <white>Chest
+  material: PAPER
+  permission: plny_luminite_set.chest
+luminite_set_key:
+  Pack:
+    model: plny_luminite_set:key
+    custom_model_data: 1029
+  itemname: <white>Key
+  material: PAPER
+  permission: plny_luminite_set.key
+luminite_set_mace:
+  Pack:
+    model: plny_luminite_set:mace
+    custom_model_data: 1006
+  itemname: <white>Mace
+  material: NETHERITE_SWORD
+  permission: plny_luminite_set.mace
+luminite_set_wings:
+  AttributeModifiers:
+  - amount: 2
+    attribute: GENERIC_ARMOR
+    operation: 0
+    slot: HEAD
+    uuid: 13f410b9-cb59-49a5-9726-c6c0fd2b60a2
+    name: nexo:modifier
+    key: nexo:modifier
+  Components:
+    equippable:
+      slot: HEAD
+    max_damage: 165
+  Pack:
+    model: plny_luminite_set:wings
+    custom_model_data: 1030
+  itemname: <white>Wings
+  material: PAPER
+  permission: plny_luminite_set.wings
+luminite_set_cosmetics_wings:
+  ItemFlags:
+  - HIDE_POTION_EFFECTS
+  - HIDE_ATTRIBUTES
+  Pack:
+    custom_model_data: 9926722
+    model: plny_luminite_set:wings_cosmetic
+  customname: <white>Wings Cosmetics
+  material: POTION
+  permission: plny_luminite_set.luminite_set_cosmetics_wings
+luminite_set_cosmetics_wings_normal_2:
+  ItemFlags:
+  - HIDE_POTION_EFFECTS
+  - HIDE_ATTRIBUTES
+  Pack:
+    custom_model_data: 9926725
+    model: plny_luminite_set:wings_cosmetic_normal_2
+  customname: <white>Wings Cosmetics Normal 2
+  material: POTION
+  permission: plny_luminite_set.luminite_set_cosmetics_wings_normal_2
+luminite_set_cosmetics_wings_self:
+  ItemFlags:
+  - HIDE_POTION_EFFECTS
+  - HIDE_ATTRIBUTES
+  Pack:
+    custom_model_data: 9926723
+    model: plny_luminite_set:wings_cosmetic_self
+  customname: <white>Wings Cosmetics Self
+  material: POTION
+  permission: plny_luminite_set.luminite_set_cosmetics_wings_self
+luminite_set_cosmetics_wings_self_2:
+  ItemFlags:
+  - HIDE_POTION_EFFECTS
+  - HIDE_ATTRIBUTES
+  Pack:
+    custom_model_data: 9926724
+    model: plny_luminite_set:wings_cosmetic_self_2
+  customname: <white>Wings Cosmetics Self 2
+  material: POTION
+  permission: plny_luminite_set.luminite_set_cosmetics_wings_self_2

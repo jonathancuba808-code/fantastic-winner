@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/qmob_distortedwatcher","particle":"#0"},"elements":[{"from":[0.0,-0.5,7.96],"to":[16.0,18.5,7.96],"faces":{"south":{"uv":[4.5,0.0,6.5,2.375],"tintindex":0,"rotation":0,"texture":"#0"},"north":{"uv":[4.0,3.0,6.0,5.375],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

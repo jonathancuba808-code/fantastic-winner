@@ -1,0 +1,31 @@
+BS_Vote_Armadillo:
+  Type: PIG 
+  Options:
+    Silent: true
+    Collidable: true
+    MovementSpeed: 0.24
+    PreventOtherDrops: true
+    FollowRange: 8 
+  Skills:
+  - model{mid=bs_vm_armadillo} @self ~onSpawn
+BS_Vote_Crab:
+  Type: PIG 
+  Options:
+    Silent: true
+    Collidable: true
+    MovementSpeed: 0.24
+    PreventOtherDrops: true
+    FollowRange: 8 
+  Skills:
+  - model{mid=bs_vm_crab} @self ~onSpawn
+BS_Vote_Penguin:
+  Type: PIG 
+  Options:
+    Silent: true
+    Collidable: true
+    MovementSpeed: 0.15
+    PreventOtherDrops: true
+    FollowRange: 8 
+  Skills:
+  - model{mid=bs_vm_penguin} @self ~onSpawn    
+#64324e02f907af9bae721b1a57f34c13

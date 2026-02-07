@@ -1,0 +1,35 @@
+name: Lifebound
+lore:
+- "&a•--"
+- ""
+- "&7Allies near you are gently healed over time through Regeneration."
+- "&7Periodically, a healing pulse radiates outward from you."
+- ""
+- "&a•--"
+material: 'COAL:1940'
+passive-type: TIMER
+timer:
+  base: 100
+  per-level: 0
+  min: 100
+  max: 100
+damage:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0

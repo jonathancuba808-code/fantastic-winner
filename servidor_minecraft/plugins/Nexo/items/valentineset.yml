@@ -1,0 +1,288 @@
+valentine_axe:
+  Pack:
+    model: valentineset/axe
+    custom_model_data: 1005
+  displayname: <White>Valentine Axe
+  material: IRON_AXE
+  permission: valentine.axe
+valentine_bouquet:
+  Pack:
+    model: valentineset/bouquet
+    custom_model_data: 1032
+  displayname: <White>Valentine Bouquet
+  material: PAPER
+  permission: valentine.bouquet
+valentine_bow:
+  Pack:
+    model: valentineset/bow
+    pulling_models:
+    - valentineset/bow_0
+    - valentineset/bow_1
+    - valentineset/bow_2
+    custom_model_data: 1005
+  displayname: <White>Valentine Bow
+  material: BOW
+  permission: valentine.bow
+valentine_chest:
+  Mechanics:
+    furniture:
+      drop:
+        loots:
+        - oraxen_item: valentine_chest
+        silktouch: false
+      limited_placing:
+        floor: true
+        roof: false
+        type: DENY
+        wall: false
+      rotation: 90
+      properties:
+        display_transform: NONE
+  Pack:
+    model: valentineset/chest
+    custom_model_data: 1033
+  displayname: <White>Valentine Chest
+  material: PAPER
+  permission: valentine.chest
+valentine_crossbow:
+  Pack:
+    charged_model: valentineset/crossbow_charged
+    firework_model: valentineset/crossbow_firework
+    model: valentineset/crossbow
+    pulling_models:
+    - valentineset/crossbow_0
+    - valentineset/crossbow_1
+    - valentineset/crossbow_2
+    custom_model_data: 1003
+  displayname: <White>Valentine Crossbow
+  material: CROSSBOW
+  permission: valentine.crossbow
+valentine_fishing_rod:
+  Pack:
+    cast_model: valentineset/fishing_rod_cast
+    model: valentineset/fishing_rod
+    custom_model_data: 1004
+  displayname: <White>Valentine Fishing Rod
+  material: FISHING_ROD
+  permission: valentine.fishing_rod
+valentine_greatsword:
+  Pack:
+    model: valentineset/greatsword
+    custom_model_data: 1019
+  displayname: <White>Valentine Great Sword
+  material: IRON_SWORD
+  permission: valentine.greatsword
+valentine_hammer:
+  Pack:
+    model: valentineset/hammer
+    custom_model_data: 1020
+  displayname: <White>Valentine Hammer
+  material: IRON_SWORD
+  permission: valentine.hammer
+valentine_head:
+  Mechanics:
+    hat:
+      enabled: true
+  Pack:
+    model: valentineset/helmet
+    custom_model_data: 1034
+  displayname: <White>Valentine Head
+  material: PAPER
+  permission: valentine.head
+valentine_hoe:
+  Pack:
+    model: valentineset/hoe
+    custom_model_data: 1003
+  displayname: <White>Valentine Hoe
+  material: IRON_HOE
+  permission: valentine.hoe
+valentine_key:
+  Pack:
+    model: valentineset/key
+    custom_model_data: 1035
+  displayname: <White>Valentine Key
+  material: PAPER
+  permission: valentine.key
+valentine_pickaxe:
+  Pack:
+    model: valentineset/pickaxe
+    custom_model_data: 1003
+  displayname: <White>Valentine Pickaxe
+  material: IRON_PICKAXE
+  permission: valentine.pickaxe
+valentine_scythe:
+  Pack:
+    model: valentineset/scythe
+    custom_model_data: 1021
+  displayname: <White>Valentine Scythe
+  material: IRON_SWORD
+  permission: valentine.scythe
+valentine_shield:
+  Pack:
+    blocking_model: valentineset/shield_blocking
+    model: valentineset/shield
+    custom_model_data: 1006
+  displayname: <White>Valentine Shield
+  material: SHIELD
+  permission: valentine.shield
+valentine_shovel:
+  Pack:
+    model: valentineset/shovel
+    custom_model_data: 1003
+  displayname: <White>Valentine Shovel
+  material: IRON_SHOVEL
+  permission: valentine.shovel
+valentine_spear:
+  Pack:
+    model: valentineset/spear
+    custom_model_data: 1022
+  displayname: <White>Valentine Spear
+  material: IRON_SWORD
+  permission: valentine.spear
+valentine_staff:
+  Pack:
+    model: valentineset/staff
+    custom_model_data: 1023
+  displayname: <White>Valentine Staff
+  material: IRON_SWORD
+  permission: valentine.staff
+valentine_sword:
+  Pack:
+    model: valentineset/sword
+    custom_model_data: 1024
+  displayname: <White>Valentine Sword
+  material: IRON_SWORD
+  permission: valentine.sword
+valentine_trident:
+  Pack:
+    model: valentineset/trident
+    custom_model_data: 1025
+  displayname: <White>Valentine Trident
+  material: IRON_SWORD
+  permission: valentine.trident
+valentine_wings:
+  Pack:
+    model: valentineset/wings
+    custom_model_data: 1036
+  displayname: <White>Valentine Wings
+  material: PAPER
+  permission: valentine.wings
+valentine_boots:
+  Pack:
+    parent_model: item/generated
+    texture: valentineset/armors/valentine_boots.png
+    custom_model_data: 1003
+  color: 255,209,213
+  displayname: <White>Valentine Boots
+  material: LEATHER_BOOTS
+  permission: valentine.boots
+  Components:
+    equippable:
+      slot: FEET
+      asset_id: nexo:valentine
+valentine_chestplate:
+  Pack:
+    parent_model: item/generated
+    texture: valentineset/armors/valentine_chestplate.png
+    custom_model_data: 1003
+  color: 255,209,213
+  displayname: <White>Valentine Chestplate
+  material: LEATHER_CHESTPLATE
+  permission: valentine.chestplate
+  Components:
+    equippable:
+      slot: CHEST
+      asset_id: nexo:valentine
+valentine_helmet:
+  Pack:
+    parent_model: item/generated
+    texture: valentineset/armors/valentine_helmet.png
+    custom_model_data: 1003
+  color: 255,209,213
+  displayname: <White>Valentine Helmet
+  material: LEATHER_HELMET
+  permission: valentine.helmet
+  Components:
+    equippable:
+      slot: HEAD
+      asset_id: nexo:valentine
+valentine_leggings:
+  Pack:
+    parent_model: item/generated
+    texture: valentineset/armors/valentine_leggings.png
+    custom_model_data: 1003
+  color: 255,209,213
+  displayname: <White>Valentine Leggings
+  material: LEATHER_LEGGINGS
+  permission: valentine.leggings
+  Components:
+    equippable:
+      slot: LEGS
+      asset_id: nexo:valentine
+valentine_cosmetics_bouquet:
+  Pack:
+    custom_model_data: 7740001
+    model: valentineset/bouquet_cosmetics
+  displayname: <White>Valentine Bouquet Cosmetics
+  material: POTION
+  permission: valentine.bouquet_cosmetics
+valentine_cosmetics_bouquet_normal_2:
+  Pack:
+    custom_model_data: 7740008
+    model: valentineset/bouquet_cosmetics_normal_2
+  displayname: <White>Valentine Bouquet Cosmetics Normal 2
+  material: POTION
+  permission: valentine.bouquet_cosmetics_normal_2
+valentine_cosmetics_bouquet_self:
+  Pack:
+    custom_model_data: 7740002
+    model: valentineset/bouquet_cosmetics_self
+  displayname: <White>Valentine Bouquet Cosmetics Self
+  material: POTION
+  permission: valentine.bouquet_cosmetics_self
+valentine_cosmetics_bouquet_self_2:
+  Pack:
+    custom_model_data: 7740003
+    model: valentineset/bouquet_cosmetics_self_2
+  displayname: <White>Valentine Bouquet Cosmetics Self 2
+  material: POTION
+  permission: valentine.bouquet_cosmetics_self_2
+valentine_cosmetics_head:
+  Pack:
+    custom_model_data: 7740000
+    model: valentineset/helmet
+  displayname: <White>Valentine Head Cosmetics
+  material: POTION
+  permission: valentine.head_cosmetics
+valentine_cosmetics_wings:
+  Pack:
+    custom_model_data: 7740004
+    model: valentineset/wings_cosmetics
+  displayname: <White>Valentine Wings Cosmetics
+  material: POTION
+  permission: valentine.wings_cosmetics
+valentine_cosmetics_wings_normal_2:
+  Pack:
+    custom_model_data: 7740007
+    model: valentineset/wings_cosmetics_normal_2
+  displayname: <White>Valentine Wings Cosmetics Normal 2
+  material: POTION
+  permission: valentine.wings_cosmetics_normal_2
+valentine_cosmetics_wings_self:
+  Pack:
+    custom_model_data: 7740005
+    model: valentineset/wings_cosmetics_self
+  displayname: <White>Valentine Wings Cosmetics Self
+  material: POTION
+  permission: valentine.wings_cosmetics_self
+valentine_cosmetics_wings_self_2:
+  Pack:
+    custom_model_data: 7740006
+    model: valentineset/wings_cosmetics_self_2
+  displayname: <White>Valentine Wings Cosmetics Self 2
+  material: POTION
+  permission: valentine.wings_cosmetics_self_2
+
+
+# 057946VKMHX563A2SEEENVL0S2GVH
+# tyL2p99056CXju/x1JIbLiMWTJrlZFSmYV3QEN7k5H+CEZKpk7VjgmC6axn0Pev9FWv3xqGZqseprKWQyaUmV1aT9Sm2EVADGWL+odZCtdQ=

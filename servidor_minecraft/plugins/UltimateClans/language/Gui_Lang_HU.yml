@@ -1,0 +1,720 @@
+ 
+# TRANSLATIONS OF GUI MENU FILES
+ 
+GUI:
+  # Common and repetitive translation items are clustered in this excerpt
+  Common: ''
+  Common back name: <red>Come back
+  Common back lore:
+  - ''
+  - ' <yellow>Click to Come back.'
+  Common next name: <green>Next page
+  Common next lore:
+  - ''
+  - ' <yellow>Click to proceed.'
+  Common previous name: <green>Previous page
+  Common previous lore:
+  - ''
+  - ' <yellow>Click to Come back.'
+  Common fill name: ' '
+  Common fill lore: [
+    ]
+   
+  # Item-by-item translations are below.
+  General: ''
+  General disband_confirm title: <red>Klán törlése?
+  General disband_confirm items confirm name: <green>Igen
+  General disband_confirm items confirm lore:
+  - ''
+  - ' <red>Kattints a megerősítéshez.'
+  General disband_confirm items cancel name: <green>Nem
+  General disband_confirm items cancel lore:
+  - ''
+  - ' <yellow>Kattints a megszakításhoz.'
+  General changeleader_confirm title: <red>Klán vezető megváltoztatása?
+  General changeleader_confirm items confirm name: <green>Igen
+  General changeleader_confirm items confirm lore:
+  - ''
+  - ' <red>Kattints a megerősítéshez.'
+  General changeleader_confirm items cancel name: <green>Nem
+  General changeleader_confirm items cancel lore:
+  - ''
+  - ' <yellow>Kattints a megszakításhoz.'
+  General clan_homes title: <blue>Klán otthon
+  General clan_homes items ally_homes name: <green>Szövetséges otthonok
+  General clan_homes items ally_homes lore:
+  - ''
+  - ' <yellow>Kattints a megnyitáshoz.'
+  General clan_homes items create name: <green>Új otthon létrehozása
+  General clan_homes items create lore:
+  - ''
+  - ' <yellow>Kattints a létrehozása.'
+  General clan_homes items current name: <green>Otthon %uclans_home:{name}:name%
+  General clan_homes items current lore:
+  - ''
+  - ' <yellow>Otthon információ'
+  - ' <gray>'
+  - ' <gray>Szerver: <green>%uclans_home:{name}:server%'
+  - ' <gray>Név: <aqua>%uclans_home:{name}:name%'
+  - ' <gray>Koordináta: <aqua>%uclans_home:{name}:location%'
+  - ''
+  - ' <yellow>Bal katt a teleportáláshoz '
+  - ' <red>Jobb katt a törléshez.'
+  General clan_homes items current visit name: <green>Otthon %uclans_home:{name}:name%
+  General clan_homes items current visit lore:
+  - ''
+  - ' <yellow>Otthon információ'
+  - ' <gray>'
+  - ' <gray>Szerver: <green>%uclans_home:{name}:server%'
+  - ' <gray>Név: <aqua>%uclans_home:{name}:name%'
+  General clan_delhome_confirm title: <red>Otthon <dark_red>%home_name% törlése<red>?
+  General clan_delhome_confirm items confirm name: <green>Igen
+  General clan_delhome_confirm items confirm lore:
+  - ' '
+  - ' <yellow>Kattints a megerősítéshez.'
+  General clan_delhome_confirm items cancel name: <green>Nem
+  General clan_delhome_confirm items cancel lore:
+  - ' '
+  - ' <yellow>Kattints a megszakításhoz.'
+  General noclan_home title: <blue>Klán <gray>| <red>Klán nélkül
+  General noclan_home items commands name: <green>Parancs lista és segítség
+  General noclan_home items commands lore:
+  - ' <yellow>Kattints ide a parancsokért'
+  General noclan_home items clans name: <green>Összes klán
+  General noclan_home items clans lore:
+  - ' <yellow>Kattints ide a klán listáért.'
+  General noclan_home items create name: <red>Nincs klánod
+  General noclan_home items create lore:
+  - ' <yellow>Kattints a klán létrehozásához.'
+  General noclan_home items profile name: <green>Profilod
+  General noclan_home items profile lore:
+  - ' <yellow>Kattints a profilod megnyitásához'
+  General clan_home title: <blue>Klán menü
+  General clan_home items info name: <green>Klán %uclans_tag_color%
+  General clan_home items info lore:
+  - ' <yellow>Klán információ'
+  - ' <gray>'
+  - ' <gray>Patent: <green>%uclans_patent_formated%'
+  - ''
+  - ' <gray>Klán szint: <green>%uclans_level%'
+  - ' <gray>Klán pont: <green>%uclans_points% <dark_gray>(%uclans_points_to_nextlevel% for next LevelUp)'
+  - ' <gray>Bank: <green>%uclans_money_currency%%uclans_bank_balance%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Leírás: <aqua>%uclans_desc_color%'
+  - ' '
+  - ' <yellow>Kattints a státusz lista megnyitásához.'
+  General clan_home items banner name: <green>Klán Banner
+  General clan_home items banner lore:
+  - ' '
+  - ' <yellow>Banner információ:'
+  - ''
+  - ' <white>Van Banner: <aqua>%uclans_hasbanner_formated%'
+  - ' <white>Banner: <aqua>%uclans_banner_material%'
+  - ' '
+  - ' <yellow>A klán banner a logód!'
+  General clan_home items clans name: <green>Összes klán
+  General clan_home items clans lore:
+  - ' <yellow>Kattints a klán lista megnyitásához.'
+  General clan_home items commands name: <green>Parancs lista
+  General clan_home items commands lore:
+  - ' <yellow>Kattints ide a parancsokért'
+  General clan_home items settings name: <green>Klán beállítások
+  General clan_home items settings lore:
+  - ' <yellow>Kattints a megnyitáshoz.'
+  General clan_home items home name: <green>Otthon menü megnyitása.
+  General clan_home items home lore:
+  - ' <yellow>Kattints a megnyitáshoz.'
+  General clan_home items ally name: <green>Szövetségesek
+  General clan_home items ally lore:
+  - ' '
+  - ' <gray>Szövetségek: <aqua>%uclans_clan_count_ally%'
+  - ' '
+  - ' <yellow>Kattints ide a szövetség menü megnyitásához.'
+  General clan_home items rival name: <green>Riválisok
+  General clan_home items rival lore:
+  - ' '
+  - ' <gray>Riválisok: <aqua>%uclans_clan_count_rival%'
+  - ' '
+  - ' <yellow>Kattints ide a rivális menü megnyitásához.'
+  General clan_home items members name: <green>Klán tagok
+  General clan_home items members lore:
+  - ' '
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ' '
+  - ' <yellow>Kattints ide a tag menü megnyitásához.'
+  General player_profile title: <blue>Profil <gray>| <green>%uclans_player%
+  General player_profile items head name: <green>%uclans_player%
+  General player_profile items head lore:
+  - ''
+  - ' <gray>Klán: <aqua>%uclans_hasclan_formated%'
+  - ' <gray>Rang: <aqua>%uclans_player_role_formated%'
+  - ' <gray>Vezető: <aqua>%uclans_leader_formated%'
+  - ' '
+  - ' <gray>Becenév: <aqua>%uclans_player%'
+  - ' <gray>Kdr: <aqua>%uclans_player_kills%<dark_gray>/<aqua>%uclans_player_deaths% <dark_gray>(%uclans_player_kdr%)'
+  - ' <gray>Csatlakozás: <aqua>%uclans_player_joindate_formated%'
+  - ' <gray>Utoljára aktív: <aqua>%uclans_player_lastsee_formated%'
+  General player_profile items invites name: <green>Meghívások.
+  General player_profile items invites lore:
+  - ''
+  - ' <yellow>Bejövő meghívók kezelése.'
+  - ' <yellow>Kattints a megnyitáshoz.'
+  General player_profile items settings name: <green>Profil beállítások.
+  General player_profile items settings lore:
+  - ''
+  - ' <yellow>Profil beállítások szerkesztése.'
+  - ' '
+  - ' <yellow>Kattints a megnyitáshoz.'
+  General player_settings title: <blue>Profil beállítás menü
+  General player_settings items nickname name: <green>Becenév  beállítása.
+  General player_settings items nickname lore:
+  - ''
+  - ' <gray>Név: <aqua>%uclans_player_realname%'
+  - ' <gray>Jelenlegi: <aqua>%uclans_player_nickname%'
+  - ''
+  - ' <yellow>BAL-KATT megváltoztatás.'
+  - ' <red>JOBB-KATT visszaállítás.'
+  General player_settings items skin name: <green>Kinézet frissítése.
+  General player_settings items skin lore:
+  - ''
+  - ' <yellow>Kattints a kinézeted frissítéséhez.'
+  General player_settings items skin_cooldown name: <green>Kinézet frissítve!
+  General player_settings items skin_cooldown lore:
+  - ''
+  - ' <red>Várj <aqua>%time%</aqua> <red>másodpercet a frissítéshez.'
+  General player_settings items invite name: <green>Klán meghívások.
+  General player_settings items invite lore:
+  - ''
+  - ' <white>Státusz: %uclans_player_settings_state:INVITATIONS%'
+  - ''
+  - ' <yellow>Kattints a kapcsoláshoz.'
+  - ''
+  - ' <red>Ha ki van kapcsolva, nem fogsz'
+  - <red>kapni klán meghívásokat.
+  General clan_stats title: <blue>Statisztikák <gray>| %uclans_tag_color%
+  General clan_stats items limits name: '<green>Klán limitek:'
+  General clan_stats items limits lore:
+  - ' '
+  - '<yellow>Limitek:'
+  - ' '
+  - ' <gray>Otthonok: <aqua>%uclans_limit_home%'
+  - ' <gray>Szövetségesek: <aqua>%uclans_limit_ally%'
+  - ' <gray>Riválisok: <aqua>%uclans_limit_rival%'
+  - ' <gray>Slotok: <aqua>%uclans_slots_total%'
+  - ' '
+  - ' <yellow>A limit a klán szinttel'
+  - <yellow>növekedhet.
+  General clan_stats items member_rival_ally name: '<green>Tagok, Riválisok és Szövetségek:'
+  General clan_stats items member_rival_ally lore:
+  - ' '
+  - '<yellow>Tagok, riválisok és szövetségek:'
+  - ' '
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ' <gray>Online tagok: <aqua>%uclans_count_onlinemembers%'
+  - ' <gray>Szövetségesek: <aqua>%uclans_clan_count_ally%'
+  - ' <gray>Riválisok: <aqua>%uclans_clan_count_rival%'
+  General clan_stats items others name: '<green>Egyéb statisztikák:'
+  General clan_stats items others lore:
+  - ' '
+  - '<yellow>Egyéb:'
+  - ' '
+  - ' <gray>Csatlakozott tag: <aqua>%uclans_clan_member_joined%'
+  - ' <gray>Kilépett tag: <aqua>%uclans_clan_member_leave%'
+  - ' <gray>Kirúgott tag: <aqua>%uclans_clan_member_kicked%'
+  - ' <gray>Tag változások: <aqua>%uclans_clan_tag_changed%'
+  General clan_stats items status name: '<green>Státusz:'
+  General clan_stats items status lore:
+  - ' '
+  - '<yellow>Státusz:'
+  - ' '
+  - ' <gray>Bank: <green>%uclans_money_currency%%uclans_bank_balance%'
+  - ' <gray>Lélek: <green>%uclans_money_currency%%uclans_clan_souls%'
+  - ' <gray>Szint: <aqua>%uclans_level%'
+  - ' <gray>Max Szint elérve: <aqua>%uclans_max_level_reached%'
+  - ' <gray>Klán pont: <aqua>%uclans_points%'
+  - ' <gray>Befejezett küldetések: <aqua>%uclans_quest_finished%'
+  General clan_stats items war name: '<green>Háború statisztikák:'
+  General clan_stats items war lore:
+  - ' '
+  - '<yellow>Háborúk:'
+  - ' '
+  - ' <gray>Győzelmek: <aqua>%uclans_clan_war_win%'
+  - ' <gray>Vereségek: <aqua>%uclans_clan_war_lose%'
+  - ' <gray>Összes háború: <aqua>%uclans_clan_war_total%'
+  General clan_stats items kdr name: '<green>KDR:'
+  General clan_stats items kdr lore:
+  - ' '
+  - '<yellow>KDR:'
+  - ' '
+  - ' <gray>Ölések: <aqua>%uclans_clan_kills%'
+  - ' <gray>Halálok: <aqua>%uclans_clan_deaths%'
+  - ' <gray>KDR összesen: <aqua>%uclans_clan_kdr%'
+  General clan_stats items banner name: <green>Klán Banner
+  General clan_stats items banner lore:
+  - ' '
+  - ' <yellow>Banner információ:'
+  - ''
+  - ' <white>Van Banner: <aqua>%uclans_hasbanner_formated%'
+  General clan_stats items foundation name: '<green>Klán:'
+  General clan_stats items foundation lore:
+  - ' '
+  - '<yellow>A klánról:'
+  - ' '
+  - ' <gray>Patent: <green>%uclans_patent_formated%'
+  - ' <gray>Vezető: <aqua>%uclans_leader%'
+  - ' <gray>Létrehozva: <aqua>%uclans_creation_date_formated%'
+  - ' <gray>Megerősítve: <white>%uclans_verified%'
+  - ' <gray>Slotok: <white>%uclans_slots% <dark_gray>(+%uclans_slots_extra%)'
+  - ' <gray>Nyitott: <white>%uclans_isopen_formated%'
+  - ' '
+  - ' <gray>Moderátorok (%uclans_count_moderators%):'
+  - '  <green>%uclans_moderators%'
+  General clan_stats items members name: <green>Tag lista
+  General clan_stats items members lore:
+  - ' '
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Kattints a megnyitáshoz.'
+  General clan_stats items homes name: <green>Otthon lista
+  General clan_stats items homes lore:
+  - ' '
+  - ' <gray>Otthonok: <aqua>%uclans_home%'
+  - ''
+  - ' <yellow>Kattints a megnyitáshoz.'
+  General clan_settings title: <red>Beállítások menü
+  General clan_settings items clan_roles name: <green>Klán rangok
+  General clan_settings items clan_roles lore:
+  - ''
+  - ' <yellow>Klán rangok kezelése.'
+  - ' <yellow>Kattints a megnyitáshoz.'
+  General clan_settings items member_ban name: <green>Kitiltott játékosok.
+  General clan_settings items member_ban lore:
+  - ''
+  - ' <white>Kitiltva: <aqua>%uclans_count_banned%'
+  - ''
+  - ' <red>Kitiltott játékosok nem tudnak'
+  - <red>csatlakozni a klánhoz.
+  - ''
+  - ' <yellow>Kattints a megnyitáshoz.'
+  General clan_settings items clan_edit name: <green>Klán szerkesztése.
+  General clan_settings items clan_edit lore:
+  - ''
+  - ' <yellow>Klán beállítások kezelése.'
+  - ' <yellow>Kattints a megnyitáshoz.'
+  General clan_roles title: <red>Klán rangok
+  General clan_roles items update name: <red>Jogosultságok szinkronizálása
+  General clan_roles items update lore:
+  - ' <yellow>Alapértelmezett jogosultságok'
+  - <yellow>szinkronizálása.
+  General clan_roles items blocked name: <red>%name%
+  General clan_roles items blocked lore:
+  - ' '
+  - ' <yellow>Nem szerkesztheted ezt a rangot'
+  General clan_roles_editor title: <red>Jog szerkesztő <gray>| <aqua>%name%
+  General clan_roles_editor items current name: <green>%key%
+  General clan_roles_editor items current lore:
+  - ' '
+  - ' <white>Státusz: %value%'
+  - ''
+  - ' <yellow>Kattints a kapcsoláshoz'
+  General banned_members title: <red>Kitiltott játékosok <gray>| <aqua>%amount%
+  General banned_members items current name: <aqua>%uclans_player%
+  General banned_members items current lore:
+  - ' <yellow>Kattints a <red>FELOLDÁSHOZ</red><yellow>'
+  General banned_members items add name: <red>Játékos kitiltása
+  General banned_members items add lore:
+  - ' <yellow>Kattints a kitiltáshoz.'
+  General clan_actions title: <red>Klán szerkesztése
+  General clan_actions items desc name: <green>Klán leírás megváltoztatása
+  General clan_actions items desc lore:
+  - ' <yellow>Kattints a klán leírás megváltoztatásához.'
+  General clan_actions items modtag name: <green>Klán tag megváltoztatása
+  General clan_actions items modtag lore:
+  - ' <yellow>Kattints a klán tag megváltoztatásához'
+  General clan_actions items join_leave name: <green>Csatlakozás és kilépés
+  General clan_actions items join_leave lore:
+  - ' '
+  - ' <white>Státusz: %uclans_actions_state:JOINLEAVE%'
+  - ''
+  - ' <yellow>Kattints a kapcsoláshoz '
+  - ' '
+  - ' <red>Ha ki van kapcsolva, nem'
+  - <red>jelenik meg a chaten a
+  - <red>belépés és kilépés.
+  General clan_actions items opened name: <green>Nyitott klán
+  General clan_actions items opened lore:
+  - ' '
+  - ' <white>Státusz: %uclans_actions_state:OPENED%'
+  - ''
+  - ' <yellow>Bárki csatlakozhat szabadon vagy'
+  - <yellow>csak meghívóval lehet csatlakozni.
+  General clan_actions items publichomes name: <green>Publikus otthonok
+  General clan_actions items publichomes lore:
+  - ' '
+  - ' <white>Státusz: %uclans_actions_state:PUBLICHOMES%'
+  - ''
+  - ' <yellow>Otthonokat más klánok is láthatják'
+  General clan_actions items ff name: <green>Baráti tűz
+  General clan_actions items ff lore:
+  - ' '
+  - ' <white>Státusz: %uclans_actions_state:CLANFF%'
+  - ''
+  - ' <yellow>Kattints a kapcsoláshoz '
+  - ' '
+  - ' <red>Ha aktiválva van, a klán'
+  - <red>tagok sebezhetik egymást.
+  General clan_actions items allysharedhome name: <green>Szövetséges otthonok
+  General clan_actions items allysharedhome lore:
+  - ' '
+  - ' <white>Státusz: %uclans_actions_state:ALLYSHAREDHOME%'
+  - ''
+  - ' <yellow>Kattints a kapcsoláshoz '
+  - ' '
+  - ' <red>Ha ki van kapcsolva, szövetségesek'
+  - <red>nem látják az otthonotok.
+  General clan_actions items allysharedchat name: <green>Szövetséges chat
+  General clan_actions items allysharedchat lore:
+  - ' '
+  - ' <white>Státusz: %uclans_actions_state:ALLYSHAREDCHAT%'
+  - ''
+  - ' <yellow>Kattints a kapcsoláshoz '
+  - ' '
+  - ' <red>Ha ki van kapcsolva, nem kaptok'
+  - <red>üzeneteket a szövetségesektől.
+  General clan_actions items warinvite name: <green>Háború meghívások
+  General clan_actions items warinvite lore:
+  - ' '
+  - ' <white>Státusz: %uclans_actions_state:WARINVITE%'
+  - ''
+  - ' <yellow>Kattints a kapcsoláshoz '
+  - ' '
+  - ' <red>Ha ki van kapcsolva, nem kaptok'
+  - <red>háború meghívásokat
+  General clan_actions items delete name: <red>Klán törlése
+  General clan_actions items delete lore:
+  - ' <yellow>Kattints a klán törléséhez'
+  - ' <red>Csak a vezető törölheti a klánt!'
+  - ' <red>A klán terület törölve lesz'
+  - ' <red>CHAT megerősítés szükséges!'
+  - ' '
+  - ' <red>Figyelem, nem visszavonható!'
+  General clan_top title: <blue>Klán lista <gray>| <green>%current%
+  General clan_top items active name: ' <green>Jelenlegi'
+  General clan_top items active lore: [
+    ]
+  General clan_top items all name: <red>Összes klán
+  General clan_top items all lore:
+  - ' <yellow>Kattints a megtekintéshez'
+  - ' '
+  General clan_top items kdr name: <red>Top KDR
+  General clan_top items kdr lore:
+  - ' <yellow>Kattints a KDR'
+  - '<yellow>szerinti rendezéshez '
+  - ' '
+  General clan_top items kill name: <red>Top ÖLÉSEK
+  General clan_top items kill lore:
+  - ' <yellow>Kattints az ölések'
+  - '<yellow>szerinti rendezéshez '
+  - ' '
+  General clan_top items death name: <red>Top HALÁLOK
+  General clan_top items death lore:
+  - ' <yellow>Kattints a halálok'
+  - '<yellow>szerinti rendezéshez '
+  - ' '
+  General clan_top items bank name: <red>Top BANK
+  General clan_top items bank lore:
+  - ' <yellow>Kattints a bank'
+  - '<yellow>szerinti rendezéshez '
+  - ' '
+  General clan_top items member name: <red>Top játékos
+  General clan_top items member lore:
+  - ' <yellow>Kattints a játékos'
+  - '<yellow>szerinti rendezéshez '
+  - ' '
+  General clan_top items level name: <red>Top szint
+  General clan_top items level lore:
+  - ' <yellow>Kattints a szint'
+  - '<yellow>szerinti rendezéshez '
+  - ' '
+  General clan_top items war name: <red>Top háború
+  General clan_top items war lore:
+  - ' <yellow>Kattints a háború'
+  - '<yellow>szerinti rendezéshez '
+  - ' '
+  General clan_top items point name: <red>Összes pont
+  General clan_top items point lore:
+  - ' <yellow>Kattints a pont'
+  - '<yellow>szerinti rendezéshez '
+  - ' '
+  General clan_top items patent name: <red>Patent
+  General clan_top items patent lore:
+  - ' <yellow>Kattints a patent'
+  - '<yellow>szerinti rendezéshez '
+  - ' '
+  General clan_top items current_war name: <green>Klán %uclans_tag_color%
+  General clan_top items current_war lore:
+  - ''
+  - ' <yellow>Klán információ'
+  - ' <gray>'
+  - ' <gray>Háború győzelmek: <green>%uclans_clan_war_win%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Vezető: <aqua>%uclans_leader%'
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Jobb kattolj az információkért.'
+  General clan_top items current_bank name: <green>Klán %uclans_tag_color%
+  General clan_top items current_bank lore:
+  - ''
+  - ' <yellow>Klán információ'
+  - ' <gray>'
+  - ' <gray>Bank: <green>%uclans_money_currency%%uclans_bank_balance%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Vezető: <aqua>%uclans_leader%'
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Jobb kattolj az információkért.'
+  General clan_top items current_member name: <green>Klán %uclans_tag_color%
+  General clan_top items current_member lore:
+  - ''
+  - ' <yellow>Klán információ'
+  - ' <gray>'
+  - ' <gray>Tagok: <green>%uclans_count_members%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Vezető: <aqua>%uclans_leader%'
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Jobb kattolj az információkért.'
+  General clan_top items current_death name: <green>Klán %uclans_tag_color%
+  General clan_top items current_death lore:
+  - ''
+  - ' <yellow>Klán információ'
+  - ' <gray>'
+  - ' <gray>Halálok: <green>%uclans_clan_deaths%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Vezető: <aqua>%uclans_leader%'
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Jobb kattolj az információkért.'
+  General clan_top items current_kill name: <green>Klán %uclans_tag_color%
+  General clan_top items current_kill lore:
+  - ''
+  - ' <yellow>Klán információ'
+  - ' <gray>'
+  - ' <gray>Ölések: <green>%uclans_clan_kills%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Vezető: <aqua>%uclans_leader%'
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Jobb kattolj az információkért.'
+  General clan_top items current_kdr name: <green>Klán %uclans_tag_color%
+  General clan_top items current_kdr lore:
+  - ''
+  - ' <yellow>Klán információ'
+  - ' <gray>'
+  - ' <gray>KDR: <green>%uclans_clan_kdr%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Vezető: <aqua>%uclans_leader%'
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Jobb kattolj az információkért.'
+  General clan_top items current_level name: <green>Klán %uclans_tag_color%
+  General clan_top items current_level lore:
+  - ''
+  - ' <yellow>Klán információ'
+  - ' <gray>'
+  - ' <gray>Szint: <green>%uclans_level%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Vezető: <aqua>%uclans_leader%'
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Jobb kattolj az információkért.'
+  General clan_top items current_point name: <green>Klán %uclans_tag_color%
+  General clan_top items current_point lore:
+  - ''
+  - ' <yellow>Klán információ'
+  - ' <gray>'
+  - ' <gray>Pont: <green>%uclans_points%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Vezető: <aqua>%uclans_leader%'
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Jobb kattolj az információkért.'
+  General clan_top items current_all name: <green>Klán %uclans_tag_color%
+  General clan_top items current_all lore:
+  - ''
+  - ' <yellow>Klán információ'
+  - ' <gray>'
+  - ' <gray>Létrehozva: <green>%uclans_creation_date_formated%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Vezető: <aqua>%uclans_leader%'
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Jobb kattolj az információkért.'
+  General clan_top items current_patent name: <green>Klán %uclans_tag_color%
+  General clan_top items current_patent lore:
+  - ''
+  - ' <yellow>Klán információ'
+  - ' <gray>'
+  - ' <gray>Patent: <green>%uclans_patent_formated%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Vezető: <aqua>%uclans_leader%'
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Jobb kattolj az információkért.'
+  General clan_top items current name: <green>Klán %uclans_tag_color%
+  General clan_top items current lore:
+  - ''
+  - ' <yellow>Klán információ'
+  - ' <gray>'
+  - ' <gray>Szint: <green>%uclans_level%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Vezető: <aqua>%uclans_leader%'
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Jobb kattolj az információkért.'
+  General clan_members_invite title: <blue>Játékos meghívás
+  General clan_members_invite items current name: <green>%uclans_player%
+  General clan_members_invite items current lore:
+  - ''
+  - ' <gray>Becenév: <aqua>%uclans_player%'
+  - ' <gray>KDR: <aqua>%uclans_player_kills%<dark_gray>/<aqua>%uclans_player_deaths% <dark_gray>(%uclans_player_kdr%)'
+  - ' <gray>Csatlakozás: <aqua>%uclans_player_joindate_formated%'
+  - ' <gray>Utoljára aktív: <aqua>%uclans_player_lastsee_formated%'
+  - ' '
+  - ' <yellow>Kattints a meghíváshoz.'
+  General clan_members_invite items search name: <red>Keresés
+  General clan_members_invite items search lore:
+  - ' <yellow>Kattints a játékos kereséshez.'
+  General clan_search_members_invite title: <blue>Keresés <gray>| <dark_red>%amount% eredmény(ek)<gray>
+  General clan_search_members_invite items current name: <green>%uclans_player%
+  General clan_search_members_invite items current lore:
+  - ''
+  - ' <gray>Becenév: <aqua>%uclans_player%'
+  - ' <gray>KDR: <aqua>%uclans_player_kills%<dark_gray>/<aqua>%uclans_player_deaths% <dark_gray>(%uclans_player_kdr%)'
+  - ' <gray>Csatlakozás: <aqua>%uclans_player_joindate_formated%'
+  - ' <gray>Utoljára aktív: <aqua>%uclans_player_lastsee_formated%'
+  - ' '
+  - ' <yellow>Kattints a meghíváshoz.'
+  General rival title: <blue>Rivális lista <gray>| %uclans_tag_color%
+  General rival items current name: <green>Klán %uclans_tag_color%
+  General rival items current lore:
+  - ''
+  - ' <yellow>Klán információ'
+  - ' <gray>'
+  - ' <gray>Szint: <green>%uclans_level%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Vezető: <aqua>%uclans_leader%'
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Jobb kattolj az információkért.'
+  - ' <red>Kattintson a bal oldali gombra az eltávolításhoz.'
+  General ally title: <blue>Szövetséges lista <gray>| %uclans_tag_color%
+  General ally items current name: <green>Klán %uclans_tag_color%
+  General ally items current lore:
+  - ''
+  - ' <yellow>Klán információ'
+  - ' <gray>'
+  - ' <gray>Szint: <green>%uclans_level%'
+  - ' <gray>'
+  - ' <gray>Tag: <aqua>%uclans_tag_color%'
+  - ' <gray>Vezető: <aqua>%uclans_leader%'
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Jobb kattolj az információkért.'
+  - ' <yellow>Kattintson a bal oldali gombra az eltávolításhoz.'
+  General members title: <blue>Tag lista <gray>| %uclans_tag_color%
+  General members items invite name: <green>Játékos meghívása
+  General members items invite lore:
+  - ' <yellow>Kattints játékos meghívásához'
+  General members items current name: <green>%uclans_player%
+  General members items current lore:
+  - ''
+  - ' <gray>Rang: <aqua>%uclans_player_role_formated%'
+  - ' <gray>Becenév: <aqua>%uclans_player%'
+  - ' <gray>KDR: <aqua>%uclans_player_kills%<dark_gray>/<aqua>%uclans_player_deaths% <dark_gray>(%uclans_player_kdr%)'
+  - ' <gray>Csatlakozás: <aqua>%uclans_player_joindate_formated%'
+  - ' <gray>Utoljára aktív: <aqua>%uclans_player_lastsee_formated%'
+  - ' '
+  - ' <yellow>Kattints a profil megtekintéséhez.'
+  General listhomes title: <blue>Otthon lista <gray>| %uclans_tag_color%
+  General listhomes items current name: <green>Otthon %uclans_home:{name}:name%
+  General listhomes items current lore:
+  - ''
+  - ' <yellow>Otthon információ'
+  - ' <gray>'
+  - ' <gray>Szerver: <green>%uclans_home:{name}:server%'
+  - ' <gray>Név: <aqua>%uclans_home:{name}:name%'
+  - ' <gray>Helyszín: <aqua>%uclans_home:<num>:location%'
+  General clan_allyhome title: <blue>Szövetséges otthon
+  General clan_allyhome items current name: <green>Otthon %uclans_home:{name}:name% klán %uclans_tag_color%.
+  General clan_allyhome items current lore:
+  - ''
+  - ' <yellow>Otthon információ'
+  - ' <gray>'
+  - ' <gray>Klán: <aqua>%uclans_tag_color%'
+  - ' <gray>Szerver: <green>%uclans_home:{name}:server%'
+  - ' <gray>Név: <aqua>%uclans_home:{name}:name%'
+  - ''
+  - ' <yellow>Bal katt a teleportáláshoz.'
+  General invites title: <blue>Meghívó lista <gray>| <green>%uclans_player_name%
+  General invites items current name: <green>Meghívó %uclans_tag_color%
+  General invites items current lore:
+  - ''
+  - ' <yellow>Meghívó információ'
+  - ' <gray>'
+  - ' <gray>Klán: <green>%uclans_tag_color%'
+  - ' <gray>Patent: <aqua>%uclans_patent_formated%'
+  - ' <gray>Szint: <aqua>%uclans_level%'
+  - ' <gray>Tagok: <aqua>%uclans_count_members%'
+  - ''
+  - ' <yellow>Bal katt elfogadás.'
+  - ' <red>Jobb katt elutasítás.'
+  General banner_home title: <blue><bold>Banner menü
+  General banner_home items current name: <green>Jelenlegi Banner
+  General banner_home items current lore:
+  - ' '
+  - ' <yellow>A klán banner a klánod logója.'
+  - ''
+  - ' <aqua><bold><< <red>Használd a gombokat a szélén <aqua><bold>>>'
+  General banner_home items upload name: <green>Feltöltés
+  General banner_home items upload lore:
+  - ''
+  - ' <yellow>Kattints a feltöltés menü megnyitásához.'
+  General banner_home items delete name: <green>Banner törlése
+  General banner_home items delete lore:
+  - ''
+  - ' <yellow>Kattints a jelenlegi banner törléséhez.'
+  General banner_home items pre name: <green>Kész bannerek.
+  General banner_home items pre lore:
+  - ''
+  - ' <yellow>Kattints a lista megnyitásához.'
+  General banner_delete title: <red>Biztosan törlöd a jelenlegi bannert?
+  General banner_delete items confirm name: <green>Igen
+  General banner_delete items confirm lore:
+  - ''
+  - ' <red>Kattints a megerősítéshez.'
+  General banner_delete items cancel name: <green>Nem
+  General banner_delete items cancel lore:
+  - ''
+  - ' <yellow>Kattints a megszakításhoz.'
+  General banner_upload title: <blue><bold>Banner feltöltés
+  General banner_upload items upload_slot name: ''
+  General banner_upload items upload_slot lore: [
+    ]
+  General banner_upload items confirm name: <green>Kattints a mentéshez.
+  General banner_upload items confirm lore:
+  - ''
+  - ' <yellow>Kattints ide a mentéshez.'

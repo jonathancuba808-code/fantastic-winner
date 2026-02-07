@@ -1,0 +1,36 @@
+name: Slice and Dice
+lore:
+- "&4•--"
+- ""
+- "&7A swift 3-part combo: two quick slashes followed by a powerful stab."
+- "&4•--"
+- "&c🗡 {damage} Damage"
+- "&e⌛ {cooldown}s Cooldown"
+- ""
+- "&4•--"
+material: 'COAL:1929'
+timer:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 3
+  per-level: 1
+  min: 3
+  max: 5
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 0.2
+  per-level: 0
+  min: 0.2
+  max: 0.2

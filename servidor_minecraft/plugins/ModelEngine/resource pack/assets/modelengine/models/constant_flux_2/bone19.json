@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/constant_flux_2","particle":"#0"},"elements":[{"from":[8.0,4.0,2.5],"to":[8.0,12.0,9.5],"faces":{"east":{"uv":[2.75,14.625,1.5,13.25],"tintindex":0,"rotation":0,"texture":"#0"},"west":{"uv":[1.5,14.625,2.75,13.25],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

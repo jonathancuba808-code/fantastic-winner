@@ -1,0 +1,39 @@
+#
+# eco
+# by Auxilor
+# Default config (With Comments) can be found here: https://github.com/Auxilor/eco/blob/master/eco-core/core-plugin/src/main/resources/config.yml
+#
+
+save-interval: 1
+data-handler: yaml
+math-cache-ttl: 200
+display-frame-ttl: 17
+log-full-extension-errors: false
+enforce-preparing-recipes: false
+no-update-checker: false
+conflicts:
+  whitelist:
+  - eco
+mysql:
+  prefix: eco_
+  database: database
+  password: p4ssw0rd
+  port: 3306
+  host: localhost
+  user: username
+  connections: 10
+mongodb:
+  database: eco
+  collection: profiles
+  url: ''
+use-safer-namespacedkey-creation: false
+use-display-frame: true
+literal-cache-ttl: 10
+use-fast-collated-drops: true
+use-immediate-placeholder-translation-for-math: false
+autosave-interval: 36000
+perform-data-migration: true
+display-without-meta: false
+playerflow: true
+displayed-recipes: true
+

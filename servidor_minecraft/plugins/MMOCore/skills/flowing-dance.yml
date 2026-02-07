@@ -1,0 +1,42 @@
+name: Flowing Dance
+lore:
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+- ""
+- "&7Perform a continuous, elegant combo of sword strikes while"
+- "&7dashing through enemies. Hit enemies get levitated for a while."
+- "&c🗡 {damage} Damage"
+- "&e⌛ {cooldown}s Cooldown"
+- ""
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+material: 'COAL:2274'
+timer:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 5
+  per-level: 1
+  min: 5
+  max: 9
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+skillcooldown:
+  base: 5
+  per-level: -0.01
+  min: 4
+  max: 5
+#AHWBV0MxRWbwgnMDBHSGN3cvBzY3FkeTxEaFNVT4VUT4V0VRFGbhV0awZ0cBFDTItkbtBTN

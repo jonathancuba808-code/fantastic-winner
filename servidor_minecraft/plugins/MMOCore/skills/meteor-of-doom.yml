@@ -1,0 +1,51 @@
+name: Meteor Of Doom
+lore:
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+- ""
+- "&7Slowly levitate upwards forming a huge meteor above you."
+- "&7Launch the meteor towards the surface, creating a cross-shaped"
+- "&7rupture with blazing fire, destroying and burning everything"
+- "&7in the area. Enemies in contact with the rupture's blazing"
+- "&7fire get burned."
+- "&c🗡 {damage} Damage"
+- "&6🔥 {burndamage} Burn Damage"
+- "&9⏱ {burnduration}s Burn Duration"
+- "&e⌛ {cooldown}s Cooldown"
+- ""
+- "&7&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+material: 'COAL:2312'
+timer:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 15
+  per-level: 1
+  min: 15
+  max: 18
+burndamage:
+  base: 2
+  per-level: 1
+  min: 2
+  max: 4
+burnduration:
+  base: 8
+  per-level: 0.1
+  min: 8
+  max: 11
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 8
+  per-level: -0.01
+  min: 7
+  max: 8

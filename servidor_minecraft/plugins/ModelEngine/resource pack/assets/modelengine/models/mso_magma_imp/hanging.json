@@ -1,0 +1,1 @@
+{"textures":{"0":"modelengine:entity/mso_magma_imp","particle":"#0"},"elements":[{"from":[4.0,3.0576177,7.9671707],"to":[12.0,8.057617,7.9671707],"faces":{"south":{"uv":[5.75,5.25,6.75,5.875],"tintindex":0,"rotation":0,"texture":"#0"},"north":{"uv":[5.75,5.25,6.75,5.875],"tintindex":0,"rotation":0,"texture":"#0"}}}],"display":{"gui":{"rotation":[-150.0,-45.0,180.0]}}}

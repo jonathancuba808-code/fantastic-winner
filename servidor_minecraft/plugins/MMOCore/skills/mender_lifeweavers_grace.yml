@@ -1,0 +1,41 @@
+name: Lifeweaver's Grace
+lore:
+- "&a•--"
+- ""
+- "&7Summon a large floating healing orb that travels forward."
+- "&7 As it moves, it targets the 3 lowest-health allies and launches healing projectiles at them,"
+- "&7removing debuffs and restoring significant health. Each of those projectiles then splits into 3 smaller orbs, lightly healing nearby allies around the original targets."
+- "&7lightly healing nearby allies around the original targets."
+- "&a•--"
+- "&c🗡 {damage} Damage"
+- "&e⌛ {cooldown}s Cooldown"
+- "&a💚 20% Healing Big Orb"
+- "&a💚 5% Healing"
+- ""
+- "&a•--"
+material: 'COAL:1946'
+timer:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 20
+  per-level: -0.5
+  min: 18
+  max: 20

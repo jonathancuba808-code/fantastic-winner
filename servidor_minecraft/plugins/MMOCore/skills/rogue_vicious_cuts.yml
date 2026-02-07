@@ -1,0 +1,37 @@
+name: Vicious Cuts
+lore:
+- "&4•--"
+- ""
+- "&7After crouching briefly, you gain the Vicious Cuts buff."
+- "&7Attacks cause enemies to bleed, dealing damage over time."
+- "&4•--"
+- "&c🗡 {damage} Damage"
+- ""
+- "&4•--"
+material: 'COAL:1928'
+passive-type: TIMER
+timer:
+  base: 100
+  per-level: 0
+  min: 0
+  max: 0
+damage:
+  base: 1.5
+  per-level: 0
+  min: 1.5
+  max: 1.5
+mana:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+stamina:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0
+cooldown:
+  base: 0
+  per-level: 0
+  min: 0
+  max: 0

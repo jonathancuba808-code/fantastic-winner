@@ -1,0 +1,18 @@
+trade_ui:
+  texture: spectra_trade_ui:spectra_trade_ui/trade_ui
+  ascent: 48
+  height: 256
+  char: ꐜ
+
+trade_not_ready:
+  texture: spectra_trade_ui:spectra_trade_ui/trade_not_ready
+  ascent: -48
+  height: 15
+  char: ꐝ
+
+trade_ready:
+  texture: spectra_trade_ui:spectra_trade_ui/trade_ready
+  ascent: -48
+  height: 15
+  char: ꐞ
+

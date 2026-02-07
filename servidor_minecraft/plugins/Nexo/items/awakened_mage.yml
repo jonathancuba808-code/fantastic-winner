@@ -1,0 +1,56 @@
+awakened_mage_runestaff:
+  Pack:
+    custom_model_data: 2089
+    model: awakened_mage_model/awakened_mage_runestaff
+  displayname: awakened_mage_runestaff
+  material: STONE_SWORD
+  permission: awakened_mage_runestaff
+icon_blazing_barrage:
+  Pack:
+    custom_model_data: 2308
+    model: awakened_mage_model/icon_blazing_barrage
+  displayname: icon_blazing_barrage
+  material: COAL
+  permission: icon_blazing_barrage
+icon_cryo_prison:
+  Pack:
+    custom_model_data: 2309
+    model: awakened_mage_model/icon_cryo_prison
+  displayname: icon_cryo_prison
+  material: COAL
+  permission: icon_cryo_prison
+icon_hailpiercer:
+  Pack:
+    custom_model_data: 2310
+    model: awakened_mage_model/icon_hailpiercer
+  displayname: icon_hailpiercer
+  material: COAL
+  permission: icon_hailpiercer
+icon_mana_barrier:
+  Pack:
+    custom_model_data: 2311
+    model: awakened_mage_model/icon_mana_barrier
+  displayname: icon_mana_barrier
+  material: COAL
+  permission: icon_mana_barrier
+icon_meteor_of_doom:
+  Pack:
+    custom_model_data: 2312
+    model: awakened_mage_model/icon_meteor_of_doom
+  displayname: icon_meteor_of_doom
+  material: COAL
+  permission: icon_meteor_of_doom
+icon_sorcery_combo:
+  Pack:
+    custom_model_data: 2313
+    model: awakened_mage_model/icon_sorcery_combo
+  displayname: icon_sorcery_combo
+  material: COAL
+  permission: icon_sorcery_combo
+icon_teleport_strike:
+  Pack:
+    custom_model_data: 2314
+    model: awakened_mage_model/icon_teleport_strike
+  displayname: icon_teleport_strike
+  material: COAL
+  permission: icon_teleport_strike

@@ -1,0 +1,2 @@
+{"parent":"item/handheld","textures":{"layer0":"item/stone_sword"},"overrides":[{"predicate":{"custom_model_data":4587},"model":"models/rogue_dualdaggers"}]}
+{"parent":"item/handheld","textures":{"layer0":"item/stone_sword"},"overrides":[{"predicate":{"custom_model_data":4588},"model":"models/rogue_dualdaggers"}]}

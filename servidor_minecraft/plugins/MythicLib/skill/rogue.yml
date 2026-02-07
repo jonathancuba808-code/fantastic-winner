@@ -1,0 +1,40 @@
+ROGUE_VICIOUS_CUTS:
+    mythicmobs-skill-id: rogue_vicious_cuts
+    passive-type: TIMER
+    modifiers:
+    - damage
+    
+ROGUE_SLICE_AND_DICE:
+    mythicmobs-skill-id: rogue_slice_and_dice
+    modifiers:
+    - duration
+    - damage
+    - skillcooldown
+    
+ROGUE_CUTTHROAT_COMBO:
+    mythicmobs-skill-id: rogue_cutthroat_combo
+    modifiers:
+    - duration
+    - damage
+    - skillcooldown
+ 
+ROGUE_SMOKEBOMB:
+    mythicmobs-skill-id: rogue_smokebomb
+    modifiers:
+    - duration
+    - damage
+    - skillcooldown
+ 
+ROGUE_GRAPPLING_HOOK:
+    mythicmobs-skill-id: rogue_grappling_hook
+    modifiers:
+    - duration
+    - damage
+    - skillcooldown
+    
+ROGUE_MARK_OF_DEATH:
+    mythicmobs-skill-id: rogue_mark_of_death
+    modifiers:
+    - duration
+    - damage
+    - skillcooldown

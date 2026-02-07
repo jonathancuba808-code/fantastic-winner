@@ -1,0 +1,200 @@
+
+# ~Written By RopeFire~
+
+#                                                                           ~End Mobs~
+
+random_enderling:
+  Type: enderling
+  Worlds: world_the_end
+  Chance: 0.75
+  Priority: 1
+  Action: ADD
+  PositionType: LAND
+  Cooldown: 60
+  Conditions:
+  - mobsInRadius{a=<1;r=48;type=enderling} true
+  - biome{b=minecraft:small_end_islands} false
+  - outside true
+  
+random_enderbruiser:
+  Type: enderbruiser
+  Worlds: world_the_end
+  Chance: 0.75
+  Priority: 1
+  Action: ADD
+  PositionType: LAND
+  Cooldown: 60
+  Conditions:
+  - mobsInRadius{a=<1;r=72;type=enderbruiser} true
+  - biome{b=minecraft:small_end_islands} false
+  - outside true
+
+random_ender_crawler:
+  Type: ender_crawler
+  Worlds: world_the_end
+  Chance: 0.75
+  Priority: 1
+  Action: ADD
+  PositionType: LAND
+  Cooldown: 60
+  Conditions:
+  - mobsInRadius{a=<1;r=96;type=ender_crawler} true
+  - biome{b=minecraft:small_end_islands} false
+  - outside true
+
+random_ender_watchman:
+  Type: ender_watchman
+  Worlds: world_the_end
+  Chance: 0.75
+  Priority: 1
+  Action: ADD
+  PositionType: LAND
+  Cooldown: 180
+  Conditions:
+  - mobsInRadius{a=<1;r=144;type=ender_watchman} true
+  - biome{b=minecraft:small_end_islands} false
+  - outside true
+
+random_end_wraith:
+  Type: end_wraith
+  Worlds: world_the_end
+  Chance: 0.75
+  Priority: 1
+  Action: ADD
+  PositionType: LAND
+  Cooldown: 60
+  Conditions:
+  - mobsInRadius{a=<1;r=72;type=end_wraith} true
+  - biome{b=minecraft:small_end_islands} false
+  - outside true
+
+random_endermauler:
+  Type: endermauler
+  Worlds: world_the_end
+  Chance: 0.5
+  Priority: 1
+  Action: ADD
+  PositionType: LAND
+  Cooldown: 180
+  Conditions:
+  - mobsInRadius{a=<1;r=192;type=endermauler} true
+  - biome{b=minecraft:small_end_islands} false
+  - outside true
+
+random_end_strider:
+  Type: end_strider
+  Worlds: world_the_end
+  Chance: 0.75
+  Priority: 1
+  Action: ADD
+  PositionType: LAND
+  Cooldown: 60
+  Conditions:
+  - mobsInRadius{a=<1;r=96;type=end_strider} true
+  - biome{b=minecraft:small_end_islands} false
+  - outside true
+
+#                                                                           ~Empowered End Mobs~
+  
+random_empowered_enderling:
+  Type: empowered_enderling
+  Worlds: world_the_end
+  Chance: 0.25
+  Priority: 1
+  Action: ADD
+  PositionType: LAND
+  Cooldown: 60
+  Conditions:
+  - mobsInRadius{a=<1;r=48;type=empowered_enderling} true
+  - biome{b=minecraft:small_end_islands} false
+  - outside true
+  
+random_empowered_enderbruiser:
+  Type: empowered_enderbruiser
+  Worlds: world_the_end
+  Chance: 0.25
+  Priority: 1
+  Action: ADD
+  PositionType: LAND
+  Cooldown: 60
+  Conditions:
+  - mobsInRadius{a=<1;r=72;type=empowered_enderbruiser} true
+  - biome{b=minecraft:small_end_islands} false
+  - outside true
+  
+random_empowered_ender_crawler:
+  Type: empowered_ender_crawler
+  Worlds: world_the_end
+  Chance: 0.25
+  Priority: 1
+  Action: ADD
+  PositionType: LAND
+  Cooldown: 60
+  Conditions:
+  - mobsInRadius{a=<1;r=96;type=empowered_ender_crawler} true
+  - biome{b=minecraft:small_end_islands} false
+  - outside true
+  
+random_empowered_ender_watchman:
+  Type: empowered_ender_watchman
+  Worlds: world_the_end
+  Chance: 0.25
+  Priority: 1
+  Action: ADD
+  PositionType: LAND
+  Cooldown: 300
+  Conditions:
+  - mobsInRadius{a=<1;r=144;type=empowered_ender_watchman} true
+  - biome{b=minecraft:small_end_islands} false
+  - outside true
+  
+random_empowered_end_wraith:
+  Type: empowered_end_wraith
+  Worlds: world_the_end
+  Chance: 0.25
+  Priority: 1
+  Action: ADD
+  PositionType: LAND
+  Cooldown: 60
+  Conditions:
+  - mobsInRadius{a=<1;r=72;type=empowered_end_wraith} true
+  - biome{b=minecraft:small_end_islands} false
+  - outside true
+  
+random_empowered_endermauler:
+  Type: empowered_endermauler
+  Worlds: world_the_end
+  Chance: 0.15
+  Priority: 1
+  Action: ADD
+  PositionType: LAND
+  Cooldown: 300
+  Conditions:
+  - mobsInRadius{a=<1;r=192;type=empowered_endermauler} true
+  - biome{b=minecraft:small_end_islands} false
+  - outside true
+  
+random_empowered_end_strider:
+  Type: empowered_end_strider
+  Worlds: world_the_end
+  Chance: 0.25
+  Priority: 1
+  Action: ADD
+  PositionType: LAND
+  Cooldown: 60
+  Conditions:
+  - mobsInRadius{a=<1;r=96;type=empowered_end_strider} true
+  - outside true
+  
+random_empowered_end_strider2:
+  Type: empowered_end_strider
+  Worlds: world_the_end
+  Chance: 1
+  Priority: 1
+  Action: ADD
+  PositionType: LAND
+  Cooldown: 60
+  Conditions:
+  - mobsInRadius{a=<1;r=80;type=empowered_end_strider} true
+  - biome{b=minecraft:small_end_islands} true  
+  - outside true

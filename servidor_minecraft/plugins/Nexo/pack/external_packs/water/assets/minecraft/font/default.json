@@ -1,0 +1,46 @@
+{
+  "providers":[
+     {
+        "file":"water_samurai_texture/vfx_water_impact_1.png",
+        "chars":["ᝠ"],
+        "ascent": 85,
+        "height": 180,
+        "type":"bitmap"
+     },
+     {
+        "file":"water_samurai_texture/vfx_water_impact_2.png",
+        "chars":["ᝡ"],
+        "ascent": 85,
+        "height": 180,
+        "type":"bitmap"
+     },
+     {
+        "file":"water_samurai_texture/vfx_water_impact_3.png",
+        "chars":["ᝢ"],
+        "ascent": 85,
+        "height": 180,
+        "type":"bitmap"
+     },
+     {
+        "file":"water_samurai_texture/vfx_water_impact_4.png",
+        "chars":["ᝣ"],
+        "ascent": 85,
+        "height": 180,
+        "type":"bitmap"
+     },
+     {
+        "file":"water_samurai_texture/vfx_water_impact_5.png",
+        "chars":["ᝤ"],
+        "ascent": 85,
+        "height": 180,
+        "type":"bitmap"
+     },
+     {
+        "file":"water_samurai_texture/vfx_water_impact_6.png",
+        "chars":["ᝥ"],
+        "ascent": 85,
+        "height": 180,
+        "type":"bitmap"
+     }
+  ]
+}

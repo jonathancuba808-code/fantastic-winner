@@ -1,0 +1,42 @@
+ROGUE_DUALDAGGERS:
+  base:
+    material: STONE_SWORD
+    custom-model-data: 4587
+    name: <gradient:#e0f0f0:#8eb1bc:#4e576d>Rogue Dualdaggers
+    lore:
+    - <gradient:#e0f0f0:#8eb1bc:#4e576d>The Dualldaggers of the Rogue Class
+    displayed-type: <gradient:#e0f0f0:#8eb1bc:#4e576d>Rogue
+    attack-damage: 5.0
+    unbreakable: true
+    ability:
+      ability1:
+        type: ROGUE_VICIOUS_CUTS
+        mode: TIMER
+        timer: 100
+      ability2:
+        type: ROGUE_SLICE_AND_DICE
+        mode: LEFT_CLICK
+        damage: 3
+        cooldown: 0.2
+      ability3:
+        type: ROGUE_CUTTHROAT_COMBO
+        mode: RIGHT_CLICK
+        damage: 7
+        cooldown: 0.1
+      ability4:
+        type: ROGUE_SMOKEBOMB
+        mode: SNEAK
+        damage: 6
+        cooldown: 0.01
+      ability5:
+        type: ROGUE_GRAPPLING_HOOK
+        mode: SHIFT_LEFT_CLICK
+        damage: 8
+        cooldown: 2
+      ability6:
+        type: ROGUE_MARK_OF_DEATH
+        mode: SHIFT_RIGHT_CLICK
+        damage: 20
+        cooldown: 0.3
+    disable-attack-passive: true
+    attack-speed: 1.0

@@ -1,0 +1,197 @@
+malevolentshrine_helmet:
+  material: LEATHER_HELMET
+  color: 126,175,217
+  Pack:
+    parent_model: item/generated
+    texture: elitecreatures/malevolent_shrine_animated_weapon_set/armor/malevolentshrine_helmet
+    custom_model_data: 1001
+  itemname: <white>Malevolent Shrine Helmet
+  Components:
+    equippable:
+      slot: HEAD
+      asset_id: nexo:malevolentshrine
+malevolentshrine_chestplate:
+  material: LEATHER_CHESTPLATE
+  color: 126,175,217
+  Pack:
+    parent_model: item/generated
+    texture: elitecreatures/malevolent_shrine_animated_weapon_set/armor/malevolentshrine_chestplate
+    custom_model_data: 1001
+  itemname: <white>Malevolent Shrine Chestplate
+  Components:
+    equippable:
+      slot: CHEST
+      asset_id: nexo:malevolentshrine
+malevolentshrine_leggings:
+  material: LEATHER_LEGGINGS
+  color: 126,175,217
+  Pack:
+    parent_model: item/generated
+    texture: elitecreatures/malevolent_shrine_animated_weapon_set/armor/malevolentshrine_leggings
+    custom_model_data: 1001
+  itemname: <white>Malevolent Shrine Leggings
+  Components:
+    equippable:
+      slot: LEGS
+      asset_id: nexo:malevolentshrine
+malevolentshrine_boots:
+  material: LEATHER_BOOTS
+  color: 126,175,217
+  Pack:
+    parent_model: item/generated
+    texture: elitecreatures/malevolent_shrine_animated_weapon_set/armor/malevolentshrine_boots
+    custom_model_data: 1001
+  itemname: <white>Malevolent Shrine Boots
+  Components:
+    equippable:
+      slot: FEET
+      asset_id: nexo:malevolentshrine
+malevolent_shrine_animated_weapon_set_axe:
+  material: DIAMOND_AXE
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/axe
+    custom_model_data: 1000
+  itemname: <white>Axe
+malevolent_shrine_animated_weapon_set_backpack:
+  material: PAPER
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/backpack
+    custom_model_data: 1022
+  itemname: <white>Backpack
+malevolent_shrine_animated_weapon_set_bow:
+  material: BOW
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/bow
+    pulling_models:
+    - elitecreatures/malevolent_shrine_animated_weapon_set/bow_0
+    - elitecreatures/malevolent_shrine_animated_weapon_set/bow_1
+    - elitecreatures/malevolent_shrine_animated_weapon_set/bow_2
+    custom_model_data: 1002
+  itemname: <white>Bow
+malevolent_shrine_animated_weapon_set_chest:
+  material: PAPER
+  Mechanics:
+    furniture:
+      limited_placing:
+        roof: false
+        floor: true
+        wall: false
+      hitbox:
+        barriers:
+        - 0,0,0
+      properties:
+        display_transform: NONE
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/chest
+    custom_model_data: 1023
+  itemname: <white>Chest
+malevolent_shrine_animated_weapon_set_crossbow:
+  material: CROSSBOW
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/crossbow
+    pulling_models:
+    - elitecreatures/malevolent_shrine_animated_weapon_set/crossbow_0
+    - elitecreatures/malevolent_shrine_animated_weapon_set/crossbow_1
+    - elitecreatures/malevolent_shrine_animated_weapon_set/crossbow_2
+    charged_model: elitecreatures/malevolent_shrine_animated_weapon_set/crossbow_charged
+    firework_model: elitecreatures/malevolent_shrine_animated_weapon_set/crossbow_firework
+    custom_model_data: 1001
+  itemname: <white>Crossbow
+malevolent_shrine_animated_weapon_set_dagger:
+  material: DIAMOND_SWORD
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/dagger
+    custom_model_data: 1000
+  itemname: <white>Dagger
+malevolent_shrine_animated_weapon_set_fishing_rod:
+  material: FISHING_ROD
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/fishing_rod
+    cast_model: elitecreatures/malevolent_shrine_animated_weapon_set/fishing_rod_cast
+    custom_model_data: 1002
+  itemname: <white>Fishing Rod
+malevolent_shrine_animated_weapon_set_greatsword:
+  material: DIAMOND_SWORD
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/greatsword
+    custom_model_data: 1001
+  itemname: <white>Greatsword
+malevolent_shrine_animated_weapon_set_hammer:
+  material: DIAMOND_AXE
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/hammer
+    custom_model_data: 1001
+  itemname: <white>Hammer
+malevolent_shrine_animated_weapon_set_hat:
+  material: PAPER
+  Mechanics:
+    hat:
+      enabled: true
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/hat
+    custom_model_data: 1024
+  itemname: <white>Hat
+malevolent_shrine_animated_weapon_set_hoe:
+  material: DIAMOND_HOE
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/hoe
+    custom_model_data: 1000
+  itemname: <white>Hoe
+malevolent_shrine_animated_weapon_set_key:
+  material: PAPER
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/key
+    custom_model_data: 1025
+  itemname: <white>Key
+malevolent_shrine_animated_weapon_set_mace:
+  material: DIAMOND_AXE
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/mace
+    custom_model_data: 1002
+  itemname: <white>Mace
+malevolent_shrine_animated_weapon_set_pickaxe:
+  material: DIAMOND_PICKAXE
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/pickaxe
+    custom_model_data: 1000
+  itemname: <white>Pickaxe
+malevolent_shrine_animated_weapon_set_shield:
+  material: SHIELD
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/shield
+    blocking_model: elitecreatures/malevolent_shrine_animated_weapon_set/shield_blocking
+    custom_model_data: 1003
+  itemname: <white>Shield
+malevolent_shrine_animated_weapon_set_shovel:
+  material: DIAMOND_SHOVEL
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/shovel
+    custom_model_data: 1000
+  itemname: <white>Shovel
+malevolent_shrine_animated_weapon_set_spear:
+  material: DIAMOND_SWORD
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/spear
+    custom_model_data: 1002
+  itemname: <white>Spear
+malevolent_shrine_animated_weapon_set_staff:
+  material: DIAMOND_SWORD
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/staff
+    custom_model_data: 1003
+  itemname: <white>Staff
+malevolent_shrine_animated_weapon_set_sword:
+  material: DIAMOND_SWORD
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/sword
+    custom_model_data: 1004
+  itemname: <white>Sword
+malevolent_shrine_animated_weapon_set_wing:
+  material: PAPER
+  Pack:
+    model: elitecreatures/malevolent_shrine_animated_weapon_set/wing
+    custom_model_data: 1026
+  itemname: <white>Wing
+
+
+# 7707IZ9J80

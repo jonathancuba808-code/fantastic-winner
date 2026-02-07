@@ -1,0 +1,26 @@
+qitem_snailjar_end:
+  Id: PAPER
+  Display: '&fSnail in a Jar'
+  Options:
+    PreventStacking: true
+  Lore:
+  - '&9Furniture'
+  - ''
+  - '&7Variant: End'
+  Model: 105
+  Type: FURNITURE
+  Furniture:
+    Hitbox:
+      Height: 0.3
+      Width: 0.3
+    CanRotate: true
+    Diagonalable: true
+    Material: PAPER
+    Model: 106
+    Placement: FLOOR
+    Health: 1
+  FurnitureSkills:
+  - sound{s=entity.glow_item_frame.rotate_item;p=0.7;v=1.0} @self ~onBlockRotate
+  - sound{s=block.glass.place;p=1.7;v=1.0} @self ~onBlockPlace
+  - sound{s=block.glass.break;p=0.7;v=1.0} @self ~onBlockBreak
+  - particles{p=block;material=GLASS;a=<random.5to10>;y=0.1;hs=0.1;vs=0.1;s=0} @self ~onBlockBreak
